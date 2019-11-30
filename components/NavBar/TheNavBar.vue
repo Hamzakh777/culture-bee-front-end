@@ -4,7 +4,7 @@
     >
         <div class="flex justify-between items-center pb-6 border-b-3 border-gray-700">
             <img 
-                src="../../assets/logo.png" 
+                src="/logo.png" 
                 class="h-11-1/4"
                 alt="culturebee logo"
             >

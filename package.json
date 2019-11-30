@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "icons": "vsvg -s ~/static/icons -t ~/components/Icons",
+    "icons": "vsvg -s static/icons -t components/Icons",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.16.4",
+    "tailwindcss-plugins": "^0.3.0",
     "vue-svgicon": "^3.2.6"
   }
 }
