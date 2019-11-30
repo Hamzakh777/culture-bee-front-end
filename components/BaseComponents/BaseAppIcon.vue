@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import '../Icons';
+
 export default {
     name: 'BaseAppIcon',
 

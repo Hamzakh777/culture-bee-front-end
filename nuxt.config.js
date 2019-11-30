@@ -62,6 +62,9 @@ export default {
 		/*
 		 ** You can extend webpack config here
 		 */
-		extend(config, ctx) {}
+		extend(config, ctx) { }
+	},
+	purgeCSS: {
+		whitelist: ['stroke-current', 'fill-current']
 	}
 };
