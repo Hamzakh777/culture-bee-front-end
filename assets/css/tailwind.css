@@ -1,3 +1,11 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import './components/btn-yellow.css';
+@import './components/section-title.css';
+@import './components//input-text.css';
+@import './components//sub-title.css';
+
+@tailwind base;
+body {
+	@apply font-poppins;
+}
+@tailwind components;
+@tailwind utilities;

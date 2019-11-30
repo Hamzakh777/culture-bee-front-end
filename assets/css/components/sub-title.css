@@ -1,0 +1,10 @@
+.sub-title {
+    @apply inline-block relative text-sm font-poppins font-bold text-blue uppercase;
+}
+
+.sub-title::before {    
+    content: '';
+    height: 5px;
+    z-index: -1;
+    @apply absolute bottom-0 left-0 right-0 mb-1 bg-yellow;
+}

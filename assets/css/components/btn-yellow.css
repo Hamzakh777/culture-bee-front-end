@@ -1,0 +1,11 @@
+.btn-yellow {
+    @apply px-5-1/2 bg-yellow text-sm text-gray-800 font-bold shadow-none;
+}
+
+.btn-yellow:focus {
+    @apply outline-none;
+}
+
+.btn-yellow:hover {
+    @apply bg-yellow-hover;
+}

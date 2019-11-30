@@ -1,0 +1,11 @@
+.input-text {
+    @apply h-12-1/2 px-6 bg-white text-sm text-gray-900 font-semibold;
+}
+
+.input-text:focus {
+    @apply outline-none;
+}
+
+.input-text::placeholder {
+    @apply text-gray-700;
+}

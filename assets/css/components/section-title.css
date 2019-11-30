@@ -1,0 +1,7 @@
+.section-title {
+    @apply font-din-condensed text-13 font-bold uppercase;
+}
+
+.section-title-light {
+    @apply .section-title text-white;
+}
