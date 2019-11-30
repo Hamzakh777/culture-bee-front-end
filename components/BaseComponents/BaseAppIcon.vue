@@ -1,0 +1,34 @@
+<template>
+    <svgicon
+        :class="classList"
+        :name="name">
+    </svgicon>
+</template>
+
+<script>
+export default {
+    name: 'BaseAppIcon',
+
+    props: {
+        name: {
+            type: String,
+            required: true,
+        },
+        classList: {
+            type: Array,
+            required: false
+        }
+    },
+};
+</script>
+
+<style>
+.AppIcon {
+  display: inline-block;
+  vertical-align: none;
+}
+
+.AppIcon--fill {
+  fill: none;
+}
+</style>
