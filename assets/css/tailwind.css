@@ -1,7 +1,8 @@
 @import './components/btn-yellow.css';
 @import './components/section-title.css';
-@import './components//input-text.css';
-@import './components//sub-title.css';
+@import './components/input-text.css';
+@import './components/sub-title.css';
+@import './components/btn-circular-arrow.css';
 
 @tailwind base;
 body {

@@ -5,8 +5,9 @@
     >
         <!-- follow button -->
         <div class="absolute top-0 right-0 mt-8 mr-8 cursor-pointer">
-            <div class="absolute h-4 w-4 top-1/2 -transform-y-50">
-                
+            <div class="absolute h-4 w-4 top-1/2 -transform-y-50 -ml-6">
+                <div class="yellow-sm-bar absolute top-1/2 left-1/2 transform-center"></div>
+                <div class="yellow-sm-bar absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%) rotate(90deg)"></div>
             </div>
             <span class="text-xs text-white font-bold uppercase tracking-widest">follow</span>
         </div>
@@ -34,3 +35,11 @@
         },
     }
 </script>
+
+<style>
+.yellow-sm-bar {
+    height: 3px;
+    width: 0.625rem;
+    @apply bg-yellow;
+}
+</style>
