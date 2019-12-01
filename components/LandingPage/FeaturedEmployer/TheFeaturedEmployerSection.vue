@@ -16,9 +16,9 @@
                 <div
                     class="absolute bottom-0 right-0 transform-y-50 px-16 py-12-1/2 mr-14 w-168 bg-white"
                 >
-                    <span class="sub-title">featured</span>
-                    <h4 class="text-8 font-bold text-gray">
-
+                    <span class="sub-title mb-4">featured</span>
+                    <h4 class="text-8 font-bold text-gray-700 leading-tight">
+                        Lily’s Kitchen has collaborated with Dog’s Trust this Christmas
                     </h4>
                 </div>
             </div>
