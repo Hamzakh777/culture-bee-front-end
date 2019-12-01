@@ -39,6 +39,7 @@ module.exports = {
 				'2-1/4': '0.6875rem',
 				'3-3/4': '0.9375rem',
 				'4-1/4': '1.0625rem',
+				'4-3/4': '1.375rem',
 				'7-1/3': '1.8125rem',
 				'8': '2rem',
 				'13': '3.25rem'
@@ -65,6 +66,7 @@ module.exports = {
 				'10': '2.5rem',
 				'11-1/4': '2.8125rem',
 				'11-1/2': '2.875rem',
+				'13': '3.25rem',
 				'14': '3.5rem',
 				'12-1/2': '3.125rem',
 				'16': '4rem',
@@ -87,9 +89,12 @@ module.exports = {
 				'84': '21rem',
 				'90': '22.5rem',
 				'94': '23.5rem',
+				'105': '26.25rem',
+				'118': '29.5rem',
 				'138': '34.5rem',
 				'140': '35rem',
-				'168': '42rem'
+				'168': '42rem',
+				'184': '46rem'
 			},
 			width: {
 				'31-%': '31%'
@@ -111,6 +116,9 @@ module.exports = {
 				},
 				'.-transform-x-50': {
 					transform: 'translateX(-50%)'
+				},
+				'.transform-y-50': {
+					transform: 'translateY(50%)'
 				}
 			};
 			addUtilities(newUtilities);

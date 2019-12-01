@@ -26,7 +26,6 @@ module.exports = {
         "tabWidth": 4,
         "semi": true,
         "tabSize": 4,
-
         "indent": ["error", 4],
         "trailingComma": "none"
       }

@@ -1,5 +1,5 @@
 .section-title {
-    @apply font-din-condensed text-13 font-bold uppercase;
+    @apply font-din-condensed text-13 text-gray-800 font-bold uppercase;
 }
 
 .section-title-light {

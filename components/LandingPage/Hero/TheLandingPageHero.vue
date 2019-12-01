@@ -5,7 +5,7 @@
         <!-- the slider wrapper -->
         <div class="relative flex-grow">
             <!-- the slider -->
-            <div class="container relative mx-auto p-10 h-full bg-purple">
+            <div class="container relative mx-auto p-10 h-full bg-cover bg-center" style="background-image: url('/images/blog/hero-1.jpg')">
                 <span class="section-title section-title-light">hot topic</span>
             </div>
             <!-- the white card -->

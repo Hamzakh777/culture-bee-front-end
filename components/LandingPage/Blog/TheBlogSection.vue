@@ -1,24 +1,22 @@
 <template>
     <BaseSection
-        class="pt-0"
-        title="Company updates"
-        btn-text="View all"
-        :is-title-light="false"
+        title="culturebee blog"
+        btn-text="View blog"
     >
         <div class="container mx-auto">
-            updates for the companies we follow
+            <BlogCard class="w-31-%"/>
         </div>
     </BaseSection>
 </template>
 
 <script>
+    import BlogCard from './BlogCard';
     import BaseSection from '~/components/BaseComponents/BaseSection';
-    
-    export default {
-        name: 'TheCompanyUpdates',
 
+    export default {
         components: {
-            BaseSection
+            BaseSection,
+            BlogCard
         }
     }
 </script>
