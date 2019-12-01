@@ -1,6 +1,7 @@
 <template>
     <div
-        class="flex flex-col relative h-100-vh w-full"
+        class="flex flex-col relative w-full"
+        style="height: 84vh"
     >   
         <!-- the slider wrapper -->
         <div class="relative flex-grow">
