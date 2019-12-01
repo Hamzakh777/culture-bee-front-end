@@ -4,7 +4,17 @@
         btn-text="View blog"
     >
         <div class="container mx-auto">
-            <BlogCard class="w-31-%"/>
+            <div v-swiper:mySwiper="swiperOption">
+                <div class="swiper-wrapper">
+                    <BlogCard 
+                        class="swiper-slide"
+                        v-for="i in 5"
+                        :key="i"
+                    />
+                </div>
+                <div class="swiper-button-prev btn-circular-arrow"></div>
+                <div class="swiper-button-next btn-circular-arrow"></div>
+            </div>
         </div>
     </BaseSection>
 </template>
@@ -17,6 +27,19 @@
         components: {
             BaseSection,
             BlogCard
-        }
+        },
+
+        data() {
+            return {
+                swiperOption: {
+                    slidesPerView: 3,
+                    spaceBetween:60,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    }
+                }
+            }
+        },
     }
 </script>
