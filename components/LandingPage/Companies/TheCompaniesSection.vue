@@ -54,9 +54,3 @@ export default {
 	}
 };
 </script>
-
-<style>
-.swiper-button-disabled.btn-circular-arrow-prev, .swiper-button-disabled.btn-circular-arrow-next {
-	opacity: 0;
-}
-</style>
