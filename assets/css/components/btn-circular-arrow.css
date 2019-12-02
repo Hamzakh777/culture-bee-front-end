@@ -1,5 +1,5 @@
 .btn-circular-arrow {
-    @apply absolute top-0 z-10 mt-45 h-16 w-16 rounded-full border-2 border-gray-700 bg-white;
+    @apply absolute top-0 z-10 mt-45 h-16 w-16 rounded-full border-2 border-gray-700 bg-white opacity-100 transition-all transition-250 transition-ease-out;
 }
 
 .btn-circular-arrow-next, .btn-circular-arrow-prev {

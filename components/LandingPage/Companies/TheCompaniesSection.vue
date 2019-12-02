@@ -56,16 +56,7 @@ export default {
 </script>
 
 <style>
-#companies-section .vueperslides__track, .vueperslides__parallax-wrapper {
-	overflow: visible;
-}
-#companies-section .vueperslide {
-	opacity: 0.35;
-	margin-left: 2%;
-	transition: 0.3s opacity ease-out;
-}
-#companies-section .vueperslide--visible {
-	opacity: 1;
-	margin-left: 0;
+.swiper-button-disabled.btn-circular-arrow-prev, .swiper-button-disabled.btn-circular-arrow-next {
+	opacity: 0;
 }
 </style>
