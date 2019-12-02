@@ -6,45 +6,28 @@
 		btn-text="View all"
 		:is-title-light="true"
 	>
-		<div class="container mx-auto">
-			<!-- slider  -->
-			<vueper-slides
-                class="no-shadow"
-                :visible-slides="3"
-                :bullets="false"
-                :dragging-distance="70"
-                :disableArrowsOnEdges="true"
-				:slide-multiple="true"
-				:arrows-outside="false"
-            >
-                <template v-slot:arrow-left>
-                    <div class="btn-circular-arrow text-gray-700">
-
-                    </div>
-                </template>
-                <template v-slot:arrow-right>
-					<div class="btn-circular-arrow">
-
-                    </div>
-                </template>
-                <vueper-slide
-                    v-for="i in 5"
-                    :key="i"
-                >
-                    <template v-slot:content>
-                        <companie-card  
-							style="width: 90%"
-							:class="{'self-start': i === 1, 'self-center': i%2 === 0, 'self-end': i%3 === 0}"
-						/>
-                    </template>
-                </vueper-slide>
-			</vueper-slides>
+		<div class="relative container mx-auto">
+			<div 
+				v-swiper:mySwiper="swiperOption"
+				class="h-118"
+			>
+                <div class="swiper-wrapper">
+					<companie-card  
+						class="swiper-slide"
+						v-for="i in 5"
+                        :key="i"
+						style="width: 90%"
+						:class="{'self-start': i === 1, 'self-center': i%2 === 0, 'self-end': i%3 === 0}"
+					/>
+                </div>
+            </div>
+            <div class="btn-circular-arrow-prev"></div>
+            <div class="btn-circular-arrow-next"></div>
 		</div>
 	</BaseSection>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides';
 import CompanieCard from './CompanieCard';
 import BaseSection from '~/components/BaseComponents/BaseSection';
 
@@ -54,21 +37,25 @@ export default {
 	components: {
 		CompanieCard,
 		BaseSection,
-		VueperSlides,
-		VueperSlide
 	},
 
 	data() {
 		return {
-			companies: []
+			companies: [],
+			swiperOption: {
+				slidesPerView: 3,
+				spaceBetween:64,
+				navigation: {
+					nextEl: '.btn-circular-arrow-next',
+					prevEl: '.btn-circular-arrow-prev'
+				}
+			}
 		};
 	}
 };
 </script>
 
 <style>
-@import '~/assets/css/plugins/vueper-slider.css';
-
 #companies-section .vueperslides__track, .vueperslides__parallax-wrapper {
 	overflow: visible;
 }

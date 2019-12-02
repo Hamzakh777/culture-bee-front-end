@@ -40,8 +40,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
     name: 'TheLandingPageHero',
 
@@ -56,15 +54,7 @@ export default {
                 prevEl: '.swiper-button-prev'
             }
         }
-    }),
-
-    beforeMount () {
-    if (process.browser) {
-        require('swiper/dist/css/swiper.css')
-        const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
-        Vue.use(VueAwesomeSwiper)
-    }
-  },
+    })
 };
 </script>
 
