@@ -9,6 +9,7 @@
             <h4 class="mb-5 text-4-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
             <span class="text-xs font-bold text-gray-800 tracking-widest uppercase">featured</span>
         </div>
+        <div class="absolute top-0 bottom-0 bg-gray-700" style="width: 2px; left: -2rem;"></div>
     </div>
 </template>
 
