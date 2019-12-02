@@ -119,7 +119,10 @@ module.exports = {
 				},
 				'.transform-y-50': {
 					transform: 'translateY(50%)'
-				}
+				},
+				'.transform-x-50': {
+					transform: 'translateX(50%)'
+				},
 			};
 			addUtilities(newUtilities);
 		},

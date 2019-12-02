@@ -3,7 +3,7 @@
         title="culturebee blog"
         btn-text="View blog"
     >
-        <div class="container mx-auto">
+        <div class="relative container mx-auto">
             <div v-swiper:mySwiper="swiperOption">
                 <div class="swiper-wrapper">
                     <BlogCard 
@@ -12,9 +12,9 @@
                         :key="i"
                     />
                 </div>
-                <div class="swiper-button-prev btn-circular-arrow"></div>
-                <div class="swiper-button-next btn-circular-arrow"></div>
             </div>
+            <div class="btn-circular-arrow-prev"></div>
+            <div class="btn-circular-arrow-next"></div>
         </div>
     </BaseSection>
 </template>
@@ -35,8 +35,8 @@
                     slidesPerView: 3,
                     spaceBetween:64,
                     navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev'
+                        nextEl: '.btn-circular-arrow-next',
+                        prevEl: '.btn-circular-arrow-prev'
                     }
                 }
             }
