@@ -22,8 +22,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="button-prev arrow left-0 -ml-24" style="transform: rotate(-135deg)"></div>
+                <div class="button-next arrow right-0 -mr-24"  style="transform: rotate(45deg)"></div>
             </div>
 			<!-- the white card -->
 			<div class="container absolute left-1/2 bottom-0 z-1 h-1 -transform-x-50">
@@ -46,13 +46,16 @@ export default {
 	data: () => ({
         corouselItems: [1, 2, 3, 4, 5],
         swiperOption: {
+            slidesPerView: 1,
             spaceBetween: 50,
             grabCursor: true,
             loop: true,
+            loopedSlides: 2,
             navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev'
-            }
+                nextEl: '.button-next',
+                prevEl: '.button-prev'
+            },
+            watchSlidesVisibility: true
         }
     })
 };
@@ -62,5 +65,13 @@ export default {
 .swiper-container {
     @apply h-full overflow-visible;
 }
-
+.swiper-wrapper .swiper-slide {
+	@apply opacity-75;
+}
+.swiper-wrapper .swiper-slide.swiper-slide-visible{
+	@apply opacity-100;
+}
+.arrow {
+    @apply absolute z-10 top-1/2 -transform-y-50 h-4 w-4 border-t-2 border-r-2 border-yellow;
+}
 </style>
