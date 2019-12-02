@@ -10,6 +10,14 @@
             >
             <div>
                 <div class="flex items-center">
+                    <div>
+                        <nuxt-link to="#">
+                            <span class="page-link">Employer</span>
+                        </nuxt-link>
+                        <nuxt-link to="#">
+                            <span class="page-link">Location</span>
+                        </nuxt-link>
+                    </div>
                     <SearchButton/>
                     <button
                         class="btn-yellow h-12-1/2"
@@ -48,3 +56,9 @@
         }),
     }
 </script>
+
+<style scoped>
+.page-link {
+    @apply text-sm font-semibold text-gray-700 mr-10;
+}
+</style>
