@@ -9,7 +9,7 @@
 		<div class="relative container mx-auto">
 			<div 
 				v-swiper:mySwiper="swiperOption"
-				class="h-118"
+				class="h-118 overflow-visible"
 			>
                 <div class="swiper-wrapper">
 					<companie-card  
@@ -48,9 +48,22 @@ export default {
 				navigation: {
 					nextEl: '.btn-circular-arrow-next',
 					prevEl: '.btn-circular-arrow-prev'
-				}
+				},
+				watchSlidesVisibility: true
 			}
 		};
 	}
 };
 </script>
+
+<style scoped>
+.swiper-container {
+	@apply overflow-visible;
+}
+.swiper-wrapper .swiper-slide {
+	@apply opacity-50;
+}
+.swiper-wrapper .swiper-slide.swiper-slide-visible{
+	@apply opacity-100;
+}
+</style>
