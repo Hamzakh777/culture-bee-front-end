@@ -39,7 +39,6 @@ export default {
 .updates-wrapper {
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr;
-	/* grid-template-rows: 20rem 30.75rem; */
 	grid-template-rows: auto auto;
 	grid-gap: 2rem;
 }
