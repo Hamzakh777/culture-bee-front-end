@@ -46,7 +46,17 @@
                         </div>
                     </div>
                     <div class="w-31-% text-center">
-                        icons here
+                        <a 
+                            class="inline-block relative h-7 w-7 mx-2 text-yellow hover:text-white"
+                            v-for="(link, index) in socialLinks"
+                            :key="index"
+                            :href="link.href"
+                        >
+                            <BaseAppIcon
+                                :name="link.icon"
+                                :classList="['absolute', 'top-1/2', 'left-1/2', 'h-6', 'transform-center', 'fill-current']"
+                            />
+                        </a>
                     </div>
                     <div class="w-31-%">
                         <a 
@@ -63,8 +73,14 @@
 </template>
 
 <script>
+    import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
+
     export default {
         name: 'TheFooter',
+
+        components: {
+            BaseAppIcon
+        },
 
         data: () => ({
             name: null,
@@ -86,6 +102,24 @@
                 {
                     name: 'Your data',
                     href: '/your-data'
+                }
+            ],
+            socialLinks: [
+                {
+                    icon: 'twitter',
+                    href: '#'
+                },
+                {
+                    icon: 'linkedin-letters',
+                    href: '#'
+                },
+                {
+                    icon: 'facebook-logo',
+                    href: '#'
+                },
+                {
+                    icon: 'instagram',
+                    href: '#'
                 }
             ]
         }),
