@@ -8,12 +8,7 @@
 				'h-full': size == 'big'
 			}"
 		>
-			<div class="absolute top-0 right-0 mt-8 h-19 w-19 bg-black text-white">
-                <BaseAppIcon
-                    name="like"
-                    :classList="['absolute', 'top-1/2', 'left-1/2', 'h-8', 'transform-center', 'fill-current', 'cursor-pointer']"
-                />
-			</div>
+			<base-like-icon class="top-0 right-0 mt-8"/>
 			<div 
 				v-if="size === 'big'"
 				class="absolute bottom-0 left-0 mr-19 px-7-1/2 py-9 bg-white"
@@ -51,7 +46,7 @@
 </template>
 
 <script>
-import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
+import BaseLikeIcon from '~/components/BaseComponents/BaseLikeIcon';
 
 export default {
 	name: 'CompanyUpdateCard',
@@ -65,7 +60,7 @@ export default {
     },
     
     components: {
-        BaseAppIcon
+		BaseLikeIcon
 	},
 	
 	data() {

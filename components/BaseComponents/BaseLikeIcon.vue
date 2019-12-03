@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="relative h-19 w-19 bg-black text-white"
+        class="absolute h-19 w-19 bg-black text-white"
     >
         <BaseAppIcon
             name="like"
