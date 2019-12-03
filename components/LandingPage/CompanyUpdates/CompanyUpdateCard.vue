@@ -8,7 +8,26 @@
 			}"
 			:style="size === 'big' ? 'height: 82.1%': ''"
 		>
+
+			<!-- like icon -->
 			<base-like-icon class="top-0 right-0 mt-8"/>
+
+			<!-- company logo -->
+			<div 
+				:class="{
+					'w-40 h-40': size === 'big',
+					'w-26 h-26': size !== 'big'
+				}"
+				class="flex justify-center items-center absolute top-0 left-0 mt-8 ml-8 p-2 bg-white"
+			>
+				<img 
+					class="w-full"
+					src="/logos/brave-gentle-man.png" 
+					alt=""
+				>
+			</div>
+
+			<!-- info card -->
 			<div 
 				v-if="size === 'big'"
 				class="absolute bottom-0 left-0 mr-19 px-7-1/2 py-9 bg-white"
