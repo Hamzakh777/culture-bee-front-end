@@ -4,9 +4,9 @@
 			class="relative bg-gray-200 bg-center bg-cover"
 			:class="{
 				'h-80': size === 'small',
-				'h-123': size === 'medium',
-				'h-full': size == 'big'
+				'h-123': size === 'medium'
 			}"
+			:style="size === 'big' ? 'height: 82.1%': ''"
 		>
 			<base-like-icon class="top-0 right-0 mt-8"/>
 			<div 
