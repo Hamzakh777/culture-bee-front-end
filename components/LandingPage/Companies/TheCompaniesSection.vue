@@ -21,8 +21,8 @@
 					/>
                 </div>
             </div>
-            <div class="btn-circular-arrow-prev"></div>
-            <div class="btn-circular-arrow-next"></div>
+            <div class="btn-circular-arrow-prev swiper-companies-prev"></div>
+            <div class="btn-circular-arrow-next swiper-companies-next"></div>
 		</div>
 	</BaseSection>
 </template>
@@ -46,8 +46,8 @@ export default {
 				slidesPerView: 3,
 				spaceBetween: 64,
 				navigation: {
-					nextEl: '.btn-circular-arrow-next',
-					prevEl: '.btn-circular-arrow-prev'
+					nextEl: '.swiper-companies-next',
+					prevEl: '.swiper-companies-prev'
 				},
 				watchSlidesVisibility: true
 			}

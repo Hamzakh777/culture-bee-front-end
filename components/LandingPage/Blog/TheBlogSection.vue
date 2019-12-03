@@ -13,8 +13,8 @@
                     />
                 </div>
             </div>
-            <div class="btn-circular-arrow-prev"></div>
-            <div class="btn-circular-arrow-next"></div>
+            <div class="btn-circular-arrow-prev swiper-blog-prev"></div>
+            <div class="btn-circular-arrow-next swiper-blog-next"></div>
         </div>
     </BaseSection>
 </template>
@@ -35,8 +35,8 @@
                     slidesPerView: 3,
                     spaceBetween:64,
                     navigation: {
-                        nextEl: '.btn-circular-arrow-next',
-                        prevEl: '.btn-circular-arrow-prev'
+                        nextEl: '.swiper-blog-next',
+                        prevEl: '.swiper-blog-prev'
                     }
                 }
             }

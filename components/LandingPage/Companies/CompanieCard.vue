@@ -11,6 +11,16 @@
             </div>
             <span class="text-xs text-white font-bold uppercase tracking-widest">follow</span>
         </div>
+
+        <!-- company icon -->
+        <div class="flex justify-center items-center absolute bottom-0 left-0 mb-22 ml-8 w-32 h-32 p-2 bg-white">
+            <img 
+                class="w-full"
+                src="/logos/brave-gentle-man.png" 
+                alt=""
+            >
+        </div>
+
         <!-- tags list -->
         <div class="flex items-center absolute bottom-0 left-0 right-0 h-13 bg-white px-8 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800">
             <span
