@@ -1,7 +1,8 @@
 <template>
     <svgicon
         :class="classList"
-        :name="name">
+        :name="name"
+    >
     </svgicon>
 </template>
 

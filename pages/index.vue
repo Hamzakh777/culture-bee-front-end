@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
 		<the-companies-section />
         <the-blog-section />

@@ -44,7 +44,7 @@ export default {
 			companies: [],
 			swiperOption: {
 				slidesPerView: 3,
-				spaceBetween:64,
+				spaceBetween: 64,
 				navigation: {
 					nextEl: '.btn-circular-arrow-next',
 					prevEl: '.btn-circular-arrow-prev'

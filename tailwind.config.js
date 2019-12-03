@@ -8,6 +8,7 @@ module.exports = {
 			black: '#000000',
 			blue: '#2C3258',
 			gray: {
+				'200': '#d3d3d3',
 				'700': '#474350',
 				'800': '#393E41',
 				'900': '#221F20'
@@ -30,6 +31,15 @@ module.exports = {
 			lg: '1024px',
 			xl: '1440px'
 		},
+		stroke: theme => ({
+			current: 'currentColor',
+			white: '#fff'
+		}),
+		fill: theme => ({
+			current: 'currentColor',
+			white: '#fff',
+			'light-white': 'rgba(255,255,255,0.4)'
+		}),
 		extend: {
 			borderWidth: {
 				'3': '3px'
@@ -71,6 +81,7 @@ module.exports = {
 				'12-1/2': '3.125rem',
 				'16': '4rem',
 				'17': '4.25rem',
+				'19': '4.75rem',
 				'18': '4.5rem',
 				'25': '6.25rem',
 				'26': '6.75rem',
@@ -91,6 +102,7 @@ module.exports = {
 				'94': '23.5rem',
 				'105': '26.25rem',
 				'118': '29.5rem',
+				'123': '30.75rem',
 				'138': '34.5rem',
 				'140': '35rem',
 				'168': '42rem',
@@ -104,7 +116,9 @@ module.exports = {
 			}
 		}
 	},
-	variants: {},
+	variants: {
+		fill: ['responsive', 'hover', 'focus']
+	},
 	plugins: [
 		function({ addUtilities }) {
 			const newUtilities = {
@@ -123,6 +137,12 @@ module.exports = {
 				'.transform-x-50': {
 					transform: 'translateX(50%)'
 				},
+				'.stroke-w-2': {
+					'stroke-width': '0.125rem'
+				},
+				'.stroke-w-12': {
+					'stroke-width': '0.75rem'
+				}
 			};
 			addUtilities(newUtilities);
 		},

@@ -1,5 +1,5 @@
 .sub-title {
-    @apply inline-block relative text-sm font-poppins font-bold text-blue uppercase tracking-widest;
+    @apply inline-block relative z-1 text-sm font-poppins font-bold text-blue uppercase tracking-widest;
 }
 
 .sub-title::before {    
