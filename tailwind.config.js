@@ -52,6 +52,7 @@ module.exports = {
 				'4-3/4': '1.375rem',
 				'7-1/3': '1.8125rem',
 				'8': '2rem',
+				'10-1/2': '2.625rem',
 				'13': '3.25rem'
 			},
 			height: {
@@ -120,7 +121,8 @@ module.exports = {
 		}
 	},
 	variants: {
-		fill: ['responsive', 'hover', 'focus']
+		fill: ['responsive', 'hover', 'focus'],
+		margin: ['responsive', 'last', 'hover', 'focus']
 	},
 	plugins: [
 		function({ addUtilities }) {
