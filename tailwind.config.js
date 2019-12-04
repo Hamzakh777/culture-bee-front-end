@@ -5,6 +5,7 @@ module.exports = {
 			'din-condensed': ['din-condensed', 'sans-serif']
 		},
 		colors: {
+			transparent: 'transparent',
 			black: '#000000',
 			blue: '#2C3258',
 			gray: {
@@ -47,6 +48,7 @@ module.exports = {
 			fontSize: {
 				xxs: '0.625rem',
 				'2-1/4': '0.6875rem',
+				'3-1/2': '0.875rem',
 				'3-3/4': '0.9375rem',
 				'4-1/4': '1.0625rem',
 				'4-3/4': '1.375rem',
