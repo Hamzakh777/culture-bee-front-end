@@ -35,7 +35,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="relative h-14 z-10 w-full bg-yellow"></div>
+		<div class="relative h-14 z-10 w-full bg-yellow">
+            <div class="flex items-center flex-row justify-startabsolute top-0 bottom-0 text-8">
+                <span></span>
+            </div>
+        </div>
 	</div>
 </template>
 
@@ -44,7 +48,30 @@ export default {
     name: 'TheLandingPageHero',
 
 	data: () => ({
-        corouselItems: [1, 2, 3, 4, 5],
+        slides: [
+            {
+                img: '',
+                title: ''
+            }
+        ],
+        words: [
+            {
+                text: 'Innovators',
+                classList: ['font-bold']
+            },
+            {
+                text: 'Leaders',
+                classList: ['font-semibold']
+            },
+            {
+                text: 'out-the-box thinkers',
+                classList: ['font-light']
+            },
+            {
+                text: 'Innovators',
+                classList: ['font-light']
+            },
+        ],
         swiperOption: {
             slidesPerView: 1,
             spaceBetween: 50,

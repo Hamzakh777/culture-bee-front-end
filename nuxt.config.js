@@ -71,6 +71,11 @@ export default {
 		extend(config, ctx) {}
 	},
 	purgeCSS: {
-		whitelist: ['stroke-current', 'fill-current', 'w-31-%', 'swiper-button-disabled']
+		whitelist: [
+			'stroke-current',
+			'fill-current',
+			'w-31-%',
+			'swiper-button-disabled'
+		]
 	}
 };

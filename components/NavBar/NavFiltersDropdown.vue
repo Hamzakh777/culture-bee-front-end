@@ -15,7 +15,7 @@
             class="pt-4"
         >
             <input 
-                class="w-full text-base mb-7-1/2 py-3-1/2 border-b-2 border-white bg-transparent"
+                class="w-full text-base mb-7-1/2 py-3-1/2 border-b-2 border-white bg-transparent text-white text-base font-semibold placeholder-white"
                 placeholder="Type to search"
                 type="text"
             >

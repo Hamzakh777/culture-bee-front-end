@@ -1,16 +1,21 @@
 <template>
     <div
-        class="container mx-auto pt-7-1/2"
+        class="container relative z-50 mx-auto pt-7-1/2"
     >
-        <div class="flex justify-between items-center pb-6 border-b-3 border-gray-700">
+        <div class="relative z-50 flex justify-between items-center pb-6 px-4 lg:px-0 md:border-b-3 md:border-gray-700">
             <img 
-                src="/logo.png" 
-                class="h-11-1/4"
+                src="/logo-big.svg" 
+                class="hidden md:inline-block h-11-1/4"
+                alt="culturebee logo"
+            >
+            <img 
+                src="/logo-small.svg" 
+                class="inline-block md:hidden h-11-1/4"
                 alt="culturebee logo"
             >
             <div>
                 <div class="flex items-center">
-                    <div>
+                    <div class="hidden lg:inline-block">
                         <nuxt-link to="#">
                             <span class="page-link">Employer</span>
                         </nuxt-link>
@@ -20,14 +25,27 @@
                     </div>
                     <SearchButton/>
                     <button
-                        class="btn-yellow h-12-1/2"
+                        class="hidden md:inline-block btn-yellow h-12-1/2"
                     >
                         Sign in
                     </button>
+                    <div 
+                        class="relative h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
+                        @click="toggleMobileMenu"
+                    >
+                        <div class="absolute top-1/2 left-1/2 transform-center">
+                            <div 
+                                v-for="i in 3"
+                                :key="i"
+                                class="w-5 h-1/2 mb-1 bg-black last:mb-0"
+                            >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-between py-4">
+        <div class="hidden lg:flex justify-between py-4">
             <a 
                 href=""
                 class="text-xs text-gray-900 font-bold tracking-widest"
@@ -37,28 +55,64 @@
                 {{ filter }}
             </a>
         </div>
+
+        <!-- mobile menu -->
+        <div 
+            v-if="isOpen"
+            class="fixed z-40 inset-0 w-full px-12 pt-32 bg-gray-to-black text-white overflow-y-auto"
+        >
+            <div class="flex flex-col justify-between w-full h-full">
+                <div>
+                    <nuxt-link to="#">
+                        <span class="page-link-mobile mb-8">Employer</span>
+                    </nuxt-link>
+                    <nuxt-link to="#">
+                        <span class="page-link-mobile mb-6">Location</span>
+                    </nuxt-link>
+                    <nav-filters-dropdown />
+                </div>
+                <button
+                    class="inline-block  btn-yellow h-12-1/2 mb-10"
+                >
+                    Sign in
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import SearchButton from './SearchButton';
+    import NavFiltersDropdown from './NavFiltersDropdown';
     import filters from '~/mocks/NavBar/filters';
 
     export default {
         name: 'TheNavBar',
 
         components: {
-            SearchButton
+            SearchButton,
+            NavFiltersDropdown
         },
 
         data: () => ({
-            filters
+            filters,
+            isOpen: false,
         }),
+
+        methods: {
+            toggleMobileMenu() {
+                this.isOpen = !this.isOpen;
+                console.log('adf')
+            }
+        }
     }
 </script>
 
 <style scoped>
 .page-link {
     @apply text-sm font-semibold text-gray-700 mr-10;
+}
+.page-link-mobile {
+    @apply .page-link block text-white text-base font-semibold;
 }
 </style>
