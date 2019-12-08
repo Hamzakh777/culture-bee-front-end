@@ -1,7 +1,15 @@
 .section-title {
-    @apply font-din-condensed text-13 text-gray-800 font-bold uppercase;
+    @apply font-din-condensed text-5-3/4 text-gray-800 font-bold uppercase;
+    @media(min-width: 768px) {
+        @apply text-10-1/2;
+    }
+    
+    @media(min-width: 1024px) {
+        @apply text-13;
+    }
 }
 
 .section-title-light {
-    @apply .section-title text-white;
+    @apply text-white;
 }
+
