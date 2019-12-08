@@ -32,6 +32,8 @@
         data() {
             return {
                 swiperOption: {
+                    slidesPerView: 3,
+                    spaceBetween: 64,
                     breakpoints: {
 					// when window width is >= 640px
 					640: {
@@ -58,8 +60,8 @@
 .btn-circular-arrow-prev, .btn-circular-arrow-next {
 	@apply hidden;
 
-	@media(min-width: 1024) {
-		@apply block
+	@media(min-width: 1024px) {
+		@apply block;
 	}
 }
 </style>

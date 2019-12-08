@@ -1,10 +1,12 @@
 <template>
-	<div class="hidden overflow-x-hidden">
+	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
-		<the-companies-section />
-        <the-blog-section />
-		<the-company-updates-section />
-		<the-featured-employer-section />
+		<div class="hidd">
+			<the-companies-section />
+			<the-blog-section />
+			<the-company-updates-section />
+			<the-featured-employer-section />
+		</div>
 	</div>
 </template>
 

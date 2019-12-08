@@ -6,7 +6,7 @@
 		btn-text="View all"
 		:is-title-light="true"
 	>
-		<div class="relative container mx-auto">
+		<div class="relative container mx-auto px-4">
 			<div 
 				v-swiper:mySwiper="swiperOption"
 				class="h-118 overflow-visible"
@@ -45,6 +45,19 @@ export default {
 			swiperOption: {
 				slidesPerView: 3,
 				spaceBetween: 64,
+				breakpoints: {
+					// when window width is >= 640px
+					640: {
+						slidesPerView: 3,
+						centeredSlides: true,
+						spaceBetween: 40
+					},
+					900: {
+						slidesPerView: 3,
+						centeredSlides: false,
+						spaceBetween: 64
+					}
+				},
 				navigation: {
 					nextEl: '.swiper-companies-next',
 					prevEl: '.swiper-companies-prev'
@@ -65,5 +78,12 @@ export default {
 }
 .swiper-wrapper .swiper-slide.swiper-slide-visible{
 	@apply opacity-100;
+}
+.btn-circular-arrow-prev, .btn-circular-arrow-next {
+	@apply hidden;
+
+	@media(min-width: 1024px) {
+		@apply block
+	}
 }
 </style>

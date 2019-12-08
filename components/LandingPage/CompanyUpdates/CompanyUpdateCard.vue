@@ -3,14 +3,14 @@
 		<div
 			class="relative bg-gray-200 bg-center bg-cover"
 			:class="{
-				'h-80': size === 'small',
-				'h-123': size === 'medium'
+				'h-54 md:h-80': size === 'small',
+				'h-54 md:h-123': size === 'medium',
+				'h-54 md:big-card-height': size === 'medium',
 			}"
-			:style="size === 'big' ? 'height: 82.1%': ''"
 		>
 
 			<!-- like icon -->
-			<base-like-icon class="top-0 right-0 mt-8"/>
+			<base-like-icon class="top-0 right-0 md:mt-8"/>
 
 			<!-- company logo -->
 			<div 
@@ -18,7 +18,7 @@
 					'w-40 h-40': size === 'big',
 					'w-26 h-26': size !== 'big'
 				}"
-				class="flex justify-center items-center absolute top-0 left-0 mt-8 ml-8 p-2 bg-white"
+				class="hidden md:flex justify-center items-center absolute top-0 left-0 mt-8 ml-8 p-2 bg-white"
 			>
 				<img 
 					class="w-full"
@@ -33,7 +33,7 @@
 				class="absolute bottom-0 left-0 mr-19 px-7-1/2 py-9 bg-white"
 			>
 				<span class="sub-title mb-5">update</span>
-				<h4 class="mb-5 text-8 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
+				<h4 class="mb-5 text-lg md:text-5-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
 				<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 					<span 
 						class="inline-block mb-2 mr-4"
@@ -50,7 +50,7 @@
 			class="px-7-1/2 py-9 bg-white"
 		>
 			<span class="inline-block sub-title mb-5">update</span>
-			<h4 class="mb-5 text-4-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
+			<h4 class="mb-5 text-lg md:text-5-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
 			<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 				<span 
 					class="inline-block mb-2 mr-4"
@@ -89,3 +89,11 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.big-card-height {
+	@media(max-width:1024px) {
+		height: 82.1%;
+	}
+}
+</style>

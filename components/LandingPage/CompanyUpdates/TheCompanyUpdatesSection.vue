@@ -7,7 +7,10 @@
 	>
 		<div class="container mx-auto">
 			<div class="updates-wrapper">
-				<company-update-card size="big"/>
+				<company-update-card 
+					class="hidden md:block"
+					size="big"
+				/>
 				<div>
 					<company-update-card />
 					<company-update-card :size="'medium'"/>
@@ -37,10 +40,12 @@ export default {
 
 <style scoped>
 .updates-wrapper {
-	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
-	grid-template-rows: auto auto;
-	grid-gap: 2rem;
+	@media(min-width: 1024px) {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		grid-template-rows: auto auto;
+		grid-gap: 2rem;
+	}
 }
 .main-update {
 	grid-area: 1 / 1 / 3 / 2;

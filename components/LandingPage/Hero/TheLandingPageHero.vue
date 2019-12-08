@@ -7,7 +7,7 @@
     >
 		<!-- the slider wrapper -->
 		<div class="container flex flex-col md:block mx-auto relative md:flex-grow">
-            <div v-swiper:mySwiper="swiperOption" class="h-105  md:h-full">
+            <div v-swiper:mySwiper="swiperOption" class="h-80 md:h-full">
                 <div class="swiper-wrapper">
                     <div
                         class="swiper-slide bg-cover bg-no-repeat bg-center"
@@ -18,7 +18,7 @@
                         <div
                             class="container relative mx-auto p-10 h-full"
                         >
-                            <span class="section-title section-title--light absolute left-0 top-0 mt-4 ml-4 md:mt-10 md:ml-10">hot topic</span>
+                            <span class="section-title section-title-light absolute left-0 top-0 mt-4 ml-4 md:mt-10 md:ml-10">hot topic</span>
                         </div>
                     </div>
                 </div>

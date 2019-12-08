@@ -30,7 +30,7 @@
                         Sign in
                     </button>
                     <div 
-                        class="relative h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
+                        class="relative md:hidden h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
                         @click="toggleMobileMenu"
                     >
                         <div class="absolute top-1/2 left-1/2 transform-center">
