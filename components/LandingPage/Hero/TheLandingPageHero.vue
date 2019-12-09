@@ -35,15 +35,32 @@
 				</div>
 			</div>
 		</div>
-		<div class="relative h-14 z-10 w-full bg-yellow">
-            <div class="flex items-center flex-row justify-startabsolute top-0 bottom-0 text-8">
-                <span></span>
-            </div>
+		<div class="relative h-14 z-10 w-full bg-yellow overflow-hidden">
+            <client-only>
+                <marquee-text 
+                    class="h-full text-8"
+                    :duration="35"
+                >
+                    <div
+                        v-for="(value, index) in companyValues"
+                        :key="index"
+                        :class="value.classList"
+                        class="inline-block mt-1"
+                    >
+                        <div class="flex flex-row items-center h-full">
+                            <span class="inline-block mx-6">{{value.text}}</span>
+                            <div class="h-2 w-2 bg-gray-900"></div>
+                        </div>
+                    </div>
+                </marquee-text>
+            </client-only>
         </div>
 	</div>
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
     name: 'TheLandingPageHero',
 
@@ -54,22 +71,58 @@ export default {
                 title: ''
             }
         ],
-        words: [
+        companyValues: [
             {
                 text: 'Innovators',
                 classList: ['font-bold']
             },
             {
                 text: 'Leaders',
+                classList: ['font-light']
+            },
+            {
+                text: 'Out-the-box thinkers',
                 classList: ['font-semibold']
             },
             {
-                text: 'out-the-box thinkers',
+                text: 'Techies',
+                classList: ['font-bold']
+            },
+            {
+                text: 'Changemakers',
                 classList: ['font-light']
             },
             {
-                text: 'Innovators',
+                text: 'Culture-obsessed',
+                classList: ['font-normal']
+            },
+            {
+                text: 'Designers',
+                classList: ['font-bold']
+            },
+            {
+                text: 'Growth hackers',
+                classList: ['font-semibold']
+            },
+            {
+                text: 'Marketers',
+                classList: ['font-normal']
+            },
+            {
+                text: 'Challengers',
                 classList: ['font-light']
+            },
+            {
+                text: 'Inspirers',
+                classList: ['font-bold']
+            },
+            {
+                text: 'Ethical',
+                classList: ['font-normal']
+            },
+            {
+                text: 'Real',
+                classList: ['font-bold']
             },
         ],
         swiperOption: {
@@ -84,7 +137,14 @@ export default {
             },
             watchSlidesVisibility: true
         }
-    })
+    }), 
+
+    beforeMount() {
+        if(process.browser) {
+            const MarqueeText = require('vue-marquee-text-component');
+            Vue.component('MarqueeText', MarqueeText);
+        }
+    }
 };
 </script>
 
@@ -100,5 +160,8 @@ export default {
 }
 .arrow {
     @apply absolute z-10 top-1/2 -transform-y-50 h-4 w-4 border-t-2 border-r-2 border-yellow;
+}
+.marquee-text-text {
+    @apply h-full;
 }
 </style>
