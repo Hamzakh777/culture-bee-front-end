@@ -43,7 +43,7 @@
                 <div class="flex justify-between items-center max-w-full"> 
                     <img 
                         v-for="(icon, index) in featuredBrands"
-                        class="h-10"
+                        style="width: 10%"
                         :key="index"
                         :src="`/images/splash-page/${icon}`" 
                         alt=""
