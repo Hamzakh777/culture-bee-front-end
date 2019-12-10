@@ -5,7 +5,7 @@
 			:class="{
 				'h-54 md:h-80': size === 'small',
 				'h-54 md:h-123': size === 'medium',
-				'h-54 md:big-card-height': size === 'medium',
+				'h-54 md:h-full': size === 'big',
 			}"
 		>
 
@@ -33,7 +33,7 @@
 				class="absolute bottom-0 left-0 mr-19 px-7-1/2 py-9 bg-white"
 			>
 				<span class="sub-title mb-5">update</span>
-				<h4 class="mb-5 text-lg md:text-5-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
+				<h4 class="mb-5 text-lg md:text-8 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
 				<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 					<span 
 						class="inline-block mb-2 mr-4"
@@ -92,8 +92,6 @@ export default {
 
 <style scoped>
 .big-card-height {
-	@media(max-width:1024px) {
-		height: 82.1%;
-	}
+	height: 82.1%;
 }
 </style>

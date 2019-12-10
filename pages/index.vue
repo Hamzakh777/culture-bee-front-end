@@ -1,6 +1,7 @@
 <template>
 	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
+		<create-account/>
 		<div class="hidd">
 			<the-companies-section />
 			<the-blog-section />
@@ -17,6 +18,7 @@ import TheCompaniesSection from '~/components/LandingPage/Companies/TheCompanies
 import TheBlogSection from '~/components/LandingPage/Blog/TheBlogSection';
 import TheCompanyUpdatesSection from '~/components/LandingPage/CompanyUpdates/TheCompanyUpdatesSection';
 import TheFeaturedEmployerSection from '~/components/LandingPage/FeaturedEmployer/TheFeaturedEmployerSection';
+import CreateAccount from '~/components/Account/CreateAccount/CreateAccount';
 
 export default {
 	components: {
@@ -24,7 +26,8 @@ export default {
 		TheCompaniesSection,
 		TheBlogSection,
 		TheCompanyUpdatesSection,
-		TheFeaturedEmployerSection
+		TheFeaturedEmployerSection,
+		CreateAccount
 	},
 
 	beforeMount () {

@@ -10,3 +10,9 @@ body {
 }
 @tailwind components;
 @tailwind utilities;
+
+@responsive {
+  .transform-y-50 {
+		transform: translateY(50%);
+	}
+}
