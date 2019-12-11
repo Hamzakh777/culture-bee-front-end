@@ -1,5 +1,5 @@
 .input-text {
-    @apply h-12-1/2 px-6 bg-white text-sm text-gray-900 font-semibold;
+    @apply h-12-1/2 px-6 border-2 border-gray-700 bg-white text-sm text-gray-900 font-semibold;
 }
 
 .input-text:focus {
