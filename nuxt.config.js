@@ -78,10 +78,10 @@ export default {
 			'w-10-%',
 			'w-40-%',
 			'w-45-%',
-			'md:10-%',
-			'md:31-%',
-			'md:40-%',
-			'md:45-%',
+			'md:w-10-%',
+			'md:w-31-%',
+			'md:w-40-%',
+			'md:w-45-%',
 			'swiper-button-disabled'
 		]
 	}
