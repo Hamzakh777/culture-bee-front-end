@@ -11,7 +11,8 @@
 			@change="change"
 		/>
 		<span
-			class="checkmark absolute top-1/2 left-0 -transform-y-50 h-5 w-5 border-2 border-gray-700"
+			class="checkmark absolute top-1/2 left-0 -transform-y-50 h-8 w-8 border-2"
+			:class="{'border-white': isLight, 'border-gray-700': !isLight}"
 		></span>
 	</label>
 </template>
@@ -25,7 +26,7 @@ export default {
 		event: 'change'
 	},
 
-	props: ['modelValue', 'value'],
+	props: ['modelValue', 'value', 'isLight'],
 
 	computed: {
 		isChecked() {

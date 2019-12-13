@@ -1,7 +1,7 @@
 <template>
 	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
-		<create-account/>
+		<create-account class="hidden"/>
 		<div class="hidd">
 			<the-companies-section />
 			<the-blog-section />

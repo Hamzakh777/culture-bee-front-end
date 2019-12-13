@@ -1,7 +1,7 @@
 <template>
     <div>
         <img 
-            src="/logo-big.svg" 
+            :src="isLight ? '/logo-big-light.svg' : '/logo-big.svg'" 
             class="hidden md:inline-block h-11-1/4"
             alt="culturebee logo"
         >
@@ -15,6 +15,13 @@
 
 <script>
     export default {
-        name: 'BaseLogo'
+        name: 'BaseLogo',
+
+        props: {
+            isLight: {
+                type: Boolean,
+                default: false
+            }
+        }
     }
 </script>
