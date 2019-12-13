@@ -75,6 +75,9 @@ export default {
 			'stroke-current',
 			'fill-current',
 			'w-31-%',
+			'w-10-%',
+			'w-40-%',
+			'w-45-%',
 			'swiper-button-disabled'
 		]
 	}
