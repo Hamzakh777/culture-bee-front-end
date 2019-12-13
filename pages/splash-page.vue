@@ -13,7 +13,7 @@
                 </div>  
             </div>
             <img 
-                class="object-contain max-h-full mx-auto md:pt-32 pb-10 px-8"
+                class="object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
                 src="/images/splash-page/hero.png" 
                 alt="cultureBee"
             >
