@@ -7,9 +7,60 @@
 @import './components/buttons/secondary-btn.css';
 
 @tailwind base;
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-Regular.otf) format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-Black.otf) format("opentype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-Bold.otf) format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-SemiBold.otf) format("opentype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-Light.otf) format("opentype");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(/fonts/Poppins/Poppins-Medium.otf) format("opentype");
+  font-weight: 500;
+}
+
+/* D-Din font */
+@font-face {
+  font-family: 'D-Din';
+  src: url(/fonts/D-Din/D-DIN.otf) format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'D-Din';
+  src: url(/fonts/D-Din/D-DIN-Bold.otf) format("opentype");
+  font-weight: bold;
+}
+
 body {
 	@apply font-poppins;
 }
+
 @tailwind components;
 @tailwind utilities;
 

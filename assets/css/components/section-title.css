@@ -1,5 +1,5 @@
 .section-title {
-    @apply font-din-condensed text-5-3/4 text-gray-800 font-bold uppercase;
+    @apply font-D-Din text-5-3/4 text-gray-800 font-bold uppercase leading-tight;
     @media(min-width: 768px) {
         @apply text-10-1/2;
     }

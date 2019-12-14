@@ -2,7 +2,7 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			poppins: ['Poppins', 'sans-serif'],
-			'din-condensed': ['din-condensed', 'sans-serif']
+			'D-Din': ['D-Din', 'sans-serif']
 		},
 		colors: {
 			transparent: 'transparent',

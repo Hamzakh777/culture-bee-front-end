@@ -18,6 +18,10 @@
                 alt="cultureBee"
             >
         </div>
+        <div>
+            <p class="font-poppins">test 1</p>
+            <p class="font-D-Din font-bold">test 1</p>
+        </div>
         <!-- mainling list sign up section -->
         <div class="py-8 md:py-18 px-4">
             <div class="container mx-auto max-w-5xl">
@@ -81,7 +85,7 @@
                         >
                     </div>
                     <div class="flex flex-col justify-center w-full md:w-1/2 mb-10 md:mb-0 pl-0 md:pl-8">
-                        <h2 class="section-title mb-4 md:mb-0">
+                        <h2 class="section-title mb-4 md:mb-10">
                             JOB ADVERTS WITH 100% TRANSPARENCY
                         </h2>
                         <p class="text-base font-normal max-w-sm">
