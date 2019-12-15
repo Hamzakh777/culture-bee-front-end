@@ -2,12 +2,11 @@
     <!-- the height should be dynamically calculated using the window height - nav height -->
 	<div 
         id="hero"
-        class="flex flex-col relative md:w-full" 
-        style="height: 84vh"
+        class="flex flex-col relative md:h-84-vh md:w-full" 
     >
 		<!-- the slider wrapper -->
 		<div class="container flex flex-col md:block mx-auto relative md:flex-grow">
-            <div v-swiper:mySwiper="swiperOption" class="h-80 md:h-full">
+            <div v-swiper:mySwiper="swiperOption" class="h-68 md:h-full">
                 <div class="swiper-wrapper">
                     <div
                         class="swiper-slide bg-cover bg-no-repeat bg-center"
@@ -35,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="relative h-14 z-10 w-full bg-yellow overflow-hidden">
+		<div class="hidden md:block relative h-14 z-10 w-full bg-yellow overflow-hidden">
             <client-only>
                 <marquee-text 
                     class="h-full text-8"

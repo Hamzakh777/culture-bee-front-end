@@ -24,7 +24,7 @@
         <!-- tags list -->
         <div class="flex items-center absolute bottom-0 left-0 right-0 h-13 bg-white px-8 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800">
             <span
-                class="mr-14"
+                class="mr-6 md:mr-14"
                 v-for="(tag, index) in tags"
                 :key="index"
             >

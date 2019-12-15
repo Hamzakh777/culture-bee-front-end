@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- hero section -->
-        <div class="relative md:h-100-vh bg-gray-to-black">
+        <div class="relative  md:h-100-vh bg-gray-to-black">
             <div class="md:absolute top-0 inset-x-0 w-full px-4 bg-gray-to-black">
                 <div class="container mx-auto flex flex-row justify-between items-center py-6">
                     <base-logo 
@@ -17,10 +17,6 @@
                 src="/images/splash-page/hero.png" 
                 alt="cultureBee"
             >
-        </div>
-        <div>
-            <p class="font-poppins">test 1</p>
-            <p class="font-D-Din font-bold">test 1</p>
         </div>
         <!-- mainling list sign up section -->
         <div class="py-8 md:py-18 px-4">
@@ -158,6 +154,6 @@
                     'wolt.png'
                 ]
             }
-        },
+        }
     }
 </script>

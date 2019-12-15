@@ -62,7 +62,8 @@ module.exports = {
 				'100-px': '100px'
 			},
 			height: {
-				'100-vh': '100vh'
+				'100-vh': '100vh',
+				'84-vh': '84vh'
 			},
 			inset: {
 				'1/2': '50%'

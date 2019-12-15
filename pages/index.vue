@@ -1,13 +1,11 @@
 <template>
 	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
-		<create-account class="hidden"/>
-		<div class="hidd">
-			<the-companies-section />
-			<the-blog-section />
-			<the-company-updates-section />
-			<the-featured-employer-section />
-		</div>
+		<create-account class=""/>
+		<the-companies-section />
+		<the-blog-section />
+		<the-company-updates-section />
+		<the-featured-employer-section />
 	</div>
 </template>
 

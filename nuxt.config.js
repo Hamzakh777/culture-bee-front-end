@@ -32,6 +32,7 @@ export default {
 	 */
 	plugins: [
 		'~/plugins/svg-icon',
+		'~/plugins/vuelidate',
 		{
 			src: '~/plugins/swiper',
 			mode: 'client'

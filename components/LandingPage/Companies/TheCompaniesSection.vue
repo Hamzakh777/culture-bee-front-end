@@ -48,7 +48,7 @@ export default {
 				breakpoints: {
 					// when window width is >= 640px
 					640: {
-						slidesPerView: 3,
+						slidesPerView: 1,
 						centeredSlides: true,
 						spaceBetween: 40
 					},

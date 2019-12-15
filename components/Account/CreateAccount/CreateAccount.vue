@@ -8,15 +8,16 @@
         </div>
         <div class="px-4 pb-20">
             <div>
-                <step-user-type/>
-                <step-sign-up/>
-                <step-profile-details/>
+                <step-user-type v-if="currentStep === 1"/>
+                <step-sign-up v-else-if="currentStep === 2"/>
+                <step-profile-details v-else-if="currentStep === 3"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex';
     import CreateAccountNav from './CreateAccountNav';
     import CreateAccountSlider from './CreateAccountSlider';
     import StepUserType from './Steps/StepUserType';
@@ -34,9 +35,12 @@
             StepProfileDetails
         },
 
+        computed: {
+            ...mapState('account/create', ['currentStep'])
+        },
+
         data() {
             return {
-                currentStep: 1,
                 userType: null
             }
         }
