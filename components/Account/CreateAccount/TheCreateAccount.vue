@@ -25,7 +25,7 @@
     import StepProfileDetails from './Steps/StepProfileDetails';
 
     export default {
-        name: 'CreateAccount',
+        name: 'TheCreateAccount',
 
         components: {
             CreateAccountNav,

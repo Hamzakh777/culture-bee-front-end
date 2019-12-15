@@ -1,7 +1,7 @@
 <template>
 	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
-		<create-account class=""/>
+		<the-create-account class=""/>
 		<the-companies-section />
 		<the-blog-section />
 		<the-company-updates-section />
@@ -16,7 +16,7 @@ import TheCompaniesSection from '~/components/LandingPage/Companies/TheCompanies
 import TheBlogSection from '~/components/LandingPage/Blog/TheBlogSection';
 import TheCompanyUpdatesSection from '~/components/LandingPage/CompanyUpdates/TheCompanyUpdatesSection';
 import TheFeaturedEmployerSection from '~/components/LandingPage/FeaturedEmployer/TheFeaturedEmployerSection';
-import CreateAccount from '~/components/Account/CreateAccount/CreateAccount';
+import TheCreateAccount from '~/components/Account/CreateAccount/TheCreateAccount';
 
 export default {
 	components: {
@@ -25,7 +25,7 @@ export default {
 		TheBlogSection,
 		TheCompanyUpdatesSection,
 		TheFeaturedEmployerSection,
-		CreateAccount
+		TheCreateAccount
 	},
 
 	beforeMount () {

@@ -14,6 +14,10 @@ module.exports = {
 				'800': '#393E41',
 				'900': '#221F20'
 			},
+			pink: {
+				500: '#FF7282',
+				600: '#EF5F70'
+			},
 			purple: '#474350',
 			yellow: '#FED006',
 			'yellow-hover': '#E2B800',
