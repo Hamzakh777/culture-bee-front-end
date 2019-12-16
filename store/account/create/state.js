@@ -1,5 +1,5 @@
 const state = () => ({
-	currentStep: 1,
+	currentStep: 4,
 	totalSteps: 8,
 	userType: '',
 	email: ''

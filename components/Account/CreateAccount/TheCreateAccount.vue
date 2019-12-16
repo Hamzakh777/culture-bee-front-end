@@ -6,12 +6,13 @@
             <create-account-nav class="md:hidden"/>
             <create-account-slider :current-step="currentStep" />
         </div>
-        <div class="md:flex justify-center items-center relative md:w-1/2 px-4 pb-20">
+        <div class="md:flex justify-center items-center relative md:w-1/2 px-4">
             <create-account-nav class="hidden md:flex absolute top-0 inset-x-0"/>
             <div>
                 <step-user-type v-if="currentStep === 1"/>
                 <step-sign-up v-else-if="currentStep === 2"/>
                 <step-profile-details v-else-if="currentStep === 3"/>
+                <step-about-user v-else-if="currentStep === 4" />
             </div>
         </div>
     </div>
@@ -24,6 +25,7 @@
     import StepUserType from './Steps/StepUserType';
     import StepSignUp from './Steps/StepSignUp';
     import StepProfileDetails from './Steps/StepProfileDetails';
+    import StepAboutUser from './Steps/StepAboutUser';
 
     export default {
         name: 'TheCreateAccount',
@@ -33,7 +35,8 @@
             CreateAccountSlider,
             StepUserType,
             StepSignUp,
-            StepProfileDetails
+            StepProfileDetails,
+            StepAboutUser
         },
 
         computed: {

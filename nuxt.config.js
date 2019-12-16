@@ -69,7 +69,11 @@ export default {
 		/*
 		 ** You can extend webpack config here
 		 */
-		extend(config, ctx) {}
+		extend(config, ctx) {
+			config.resolve.alias['~src'] = '/';
+			config.resolve.alias['~components'] = '/components';
+			config.resolve.alias['~baseComponents'] = '/components/BaseComponents';
+		}
 	},
 	purgeCSS: {
 		whitelist: [

@@ -16,7 +16,7 @@
         />
         <button 
             class="primary-btn block py-4 w-full"
-            @click.prevent="nextStep"
+            @click.prevent="validate"
         >
             next
         </button>
@@ -61,7 +61,7 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate']),
+            ...mapMutations('account/create', ['mutate', 'nextStep']),
 
             /**
              * @param {String} type
@@ -79,7 +79,16 @@
                 }
             },
 
-
+            /**
+             * Validate if an option has been select
+             * and go to next step
+             */
+            validate() {
+                this.$v.$touch();
+                if(!this.$v.$invalid) {
+                    this.nextStep();
+                }
+            }
         }
     }
 </script>

@@ -1,0 +1,13 @@
+@import '~/node_modules/vue-select/dist/vue-select.css';
+
+.vs__dropdown-toggle {
+    @apply py-2 px-2 border-2 border-gray-700 rounded-none;
+}
+
+.vs__dropdown-menu {
+    @apply border-2 border-gray-700 rounded-none;
+}
+
+.vs__search {
+    @apply text-sm text-gray-900 font-semibold;
+}

@@ -5,6 +5,7 @@
 @import './components/sub-title.css';
 @import './components/btn-circular-arrow.css';
 @import './components/buttons/secondary-btn.css';
+@import './plugins/main.css';
 
 @tailwind base;
 

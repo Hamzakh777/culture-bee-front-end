@@ -19,23 +19,18 @@
             type="text"
             placeholder="Name"
         >
-        <div class="flex flex-col items-center">
-            <button
-                class="primary-btn w-full mb-6"
-            >
-                next
-            </button>
-            <button
-                class="secondary-btn"
-            >
-                Back
-            </button>
-        </div>
+        <steps-nav/>
     </div>
 </template>
 
 <script>
+    import StepsNav from './StepsNav';
+
     export default {
-        name: 'StepProfileDetails'
+        name: 'StepProfileDetails',
+
+        components: {
+            StepsNav
+        }
     }
 </script>

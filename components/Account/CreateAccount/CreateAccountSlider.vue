@@ -4,13 +4,13 @@
         v-swiper:mySwiper="swiperOption"
     >
         <div class="swiper-wrapper py-6 text-center">
-            <div class="swiper-slide mb-4">
+            <div class="swiper-slide swiper-no-swiping mb-4">
                 <h4 class="section-title section-title-light uppercase">Join us today</h4>
             </div>
             <div
                 v-for="(slide, index) in jobSeekerSlides"    
                 :key="index"
-                class="swiper-slide mb-5"
+                class="swiper-slide swiper-no-swiping mb-5"
             > 
                 <h4 class="section-title section-title-light uppercase">{{ slide.title }}</h4>
                 <p class="hidden">{{ slide.description }}</p>
@@ -21,20 +21,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
     export default {
         name: 'CreateAccountSlider',
 
-        props: {
-            currentStep: {
-                type: Number,
-                required: true
-            }
-        },
-
         watch: {
             currentStep(newVal) {
-                console.log(newVal)
+                this.mySwiper.slideTo(newVal - 1);
+                // console.log(newVal)
             } 
+        },
+
+        computed: {
+            ...mapState('account/create', ['currentStep'])
         },
 
         data() {
@@ -64,12 +64,6 @@
                         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
                     },
                 ]
-            }
-        },
-
-        mounted() {
-            if(process.browser) {
-                this.mySwiper.slideTo(2)
             }
         }
     }
