@@ -49,19 +49,20 @@
         <!-- terms and conditions -->
         <div class="mt-4 mb-6">
             <div class="flex flex-row items-center">
-                <div>
+                <div class="self-start mt-5">
                     <base-radio-button 
                         v-model="acceptTermsAndPrivacyUse"
                     />
                 </div>
                 <div class="pl-6 text-xs font-medium text-gray-800">
-                    By signing up to CultureBee, you are agreeing to our Terms of Use and Privacy Policy
+                    <p>By signing up to CultureBee, you are agreeing to our Terms of Use and Privacy Policy</p>
+                    <base-input-error-message 
+                        class="-ml-4 pt-3"
+                        v-if="!$v.acceptTermsAndPrivacyUse.required && $v.acceptTermsAndPrivacyUse.$error"
+                        :error-type="'accept-t&p'"
+                    />
                 </div>
             </div>
-            <base-input-error-message 
-                v-if="!$v.acceptTermsAndPrivacyUse.required && $v.acceptTermsAndPrivacyUse.$error"
-                :error-type="'accept-t&p'"
-            />
         </div>
         <!-- sign up button -->
         <button
