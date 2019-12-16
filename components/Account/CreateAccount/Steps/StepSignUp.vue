@@ -39,10 +39,6 @@
             v-model="repeatPassword"
         >
         <base-input-error-message 
-            v-if="!$v.repeatPassword.required && $v.repeatPassword.$error"
-            :error-type="'required'"
-        />
-        <base-input-error-message 
             v-if="!$v.repeatPassword.sameAsPassword && $v.repeatPassword.$error"
             :error-type="'same-as-password'"
         />
@@ -51,6 +47,7 @@
             <div class="flex flex-row items-center">
                 <div class="self-start mt-5">
                     <base-radio-button 
+                        :value="true"
                         v-model="acceptTermsAndPrivacyUse"
                     />
                 </div>
@@ -103,7 +100,6 @@
                 minLength: minLength(8)
             },
             repeatPassword: {
-                required,
                 sameAsPassword: sameAs('password')
             },
             acceptTermsAndPrivacyUse: {
@@ -115,7 +111,7 @@
             return {
                 password: null,
                 repeatPassword: null,
-                acceptTC: false
+                acceptTermsAndPrivacyUse: false
             }
         },
 
