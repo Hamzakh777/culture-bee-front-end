@@ -56,3 +56,15 @@ export default {
 	}
 };
 </script>
+<style>
+/* Create a custom checkbox */
+.checkmark:after {
+    content: "";
+    @apply hidden absolute inset-0 m-1-1/2 bg-yellow;
+}
+
+/* Show custom checkmark when checkbox is selected */
+.checkbox:checked ~ .checkmark:after {
+    @apply block;
+}
+</style>

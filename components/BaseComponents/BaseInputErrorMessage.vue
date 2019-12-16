@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 text-xs text-pink-600">
+    <div class="mb-2 -mt-2 px-4 text-xs text-pink-600">
         {{ messages[errorType] }}
     </div>
 </template>
@@ -18,7 +18,11 @@
         data() {
             return {
                 messages: {
-                    'required': 'This input is required'
+                    'required': 'This input is required',
+                    'email': 'Please write a valid email',
+                    'same-as-password': 'The password must be identical',
+                    'password-min-length-8': 'Password min lenght is 8',
+                    'accept-t&p': 'Please accept the T&P'
                 }
             }
         },
