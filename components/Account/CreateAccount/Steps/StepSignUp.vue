@@ -54,8 +54,8 @@
                         v-model="acceptTermsAndPrivacyUse"
                     />
                 </div>
-                <div class="pl-6 text-xs font-medium text-gray-800">
-                    <p>By signing up to CultureBee, you are agreeing to our Terms of Use and Privacy Policy</p>
+                <div class="pl-6 text-xs">
+                    <p class="font-medium text-gray-800">By signing up to CultureBee, you are agreeing to our Terms of Use and Privacy Policy</p>
                     <base-input-error-message 
                         class="-ml-4 pt-3"
                         v-if="!$v.acceptTermsAndPrivacyUse.required && $v.acceptTermsAndPrivacyUse.$error"
@@ -120,7 +120,7 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate']),
+            ...mapMutations('account/create', ['mutate', 'nextStep']),
             /**
              * @param {String} property - the property to mutate in the store
              * @param {*} value - the mutated property new value
@@ -138,7 +138,7 @@
             signUp() {
                 this.$v.$touch();
                 if(!this.$v.$invalid) {
-                    console.log('adfadfadsf');
+                    this.nextStep();
                 }
             }
         }
