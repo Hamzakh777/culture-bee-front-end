@@ -1,12 +1,13 @@
 <template>
-    <div class="fixed inset-0 z-50 bg-white overflow-y-auto">
+    <div class="fixed inset-0 z-50 md:flex bg-white overflow-y-auto">
         <div 
-            class="bg-gray-to-black pb-5"
+            class="md:flex justify-center items-center md:w-1/2 bg-gray-to-black pb-5"
         >
-            <create-account-nav />
+            <create-account-nav class="md:hidden"/>
             <create-account-slider :current-step="currentStep" />
         </div>
-        <div class="px-4 pb-20">
+        <div class="md:flex justify-center items-center relative md:w-1/2 px-4 pb-20">
+            <create-account-nav class="hidden md:flex absolute top-0 inset-x-0"/>
             <div>
                 <step-user-type v-if="currentStep === 1"/>
                 <step-sign-up v-else-if="currentStep === 2"/>
