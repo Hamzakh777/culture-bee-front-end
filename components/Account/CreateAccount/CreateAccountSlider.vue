@@ -1,22 +1,29 @@
 <template>
-    <div 
-        class="px-4 text-white"
-        v-swiper:mySwiper="swiperOption"
-    >
-        <div class="swiper-wrapper py-6 text-center">
-            <div class="swiper-slide swiper-no-swiping mb-4">
-                <h4 class="section-title section-title-light uppercase">Join us today</h4>
+    <div class="w-full">
+        <img 
+            class="hidden md:block mb-6 mx-auto h-10"
+            src="/logo-big-light.svg"
+        >
+        <div 
+            class="px-4 text-white"
+            v-swiper:mySwiper="swiperOption"
+        >
+            <div class="swiper-wrapper py-6 text-center">
+                <div class="swiper-slide swiper-no-swiping mb-4">
+                    <h4 class="section-title section-title-light md:mb-6 uppercase">Join us today</h4>
+                    <p class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center">Lorem ipsum dolor sit amet, consectetur </p>
+                </div>
+                <div
+                    v-for="(slide, index) in jobSeekerSlides"    
+                    :key="index"
+                    class="swiper-slide swiper-no-swiping mb-5"
+                > 
+                    <h4 class="section-title section-title-light uppercase">{{ slide.title }}</h4>
+                    <p class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center">{{ slide.description }}</p>
+                </div>
             </div>
-            <div
-                v-for="(slide, index) in jobSeekerSlides"    
-                :key="index"
-                class="swiper-slide swiper-no-swiping mb-5"
-            > 
-                <h4 class="section-title section-title-light uppercase">{{ slide.title }}</h4>
-                <p class="hidden">{{ slide.description }}</p>
-            </div>
+            <div class="swiper-pagination swiper-pagination-create-account"></div>
         </div>
-        <div class="swiper-pagination swiper-pagination-create-account"></div>
     </div>
 </template>
 

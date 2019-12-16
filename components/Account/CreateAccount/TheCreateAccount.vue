@@ -4,9 +4,9 @@
             class="md:flex justify-center items-center md:w-1/2 bg-gray-to-black pb-5"
         >
             <create-account-nav class="md:hidden"/>
-            <create-account-slider :current-step="currentStep" />
+            <create-account-slider />
         </div>
-        <div class="md:flex justify-center items-center relative md:w-1/2 px-4">
+        <div class="md:flex justify-center items-center relative md:w-1/2 px-4 md:px-8">
             <create-account-nav class="hidden md:flex absolute top-0 inset-x-0"/>
             <div>
                 <step-user-type v-if="currentStep === 1"/>
