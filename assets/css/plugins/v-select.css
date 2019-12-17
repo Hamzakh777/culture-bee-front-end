@@ -8,8 +8,8 @@
     @apply border-2 border-gray-700 rounded-none;
 }
 
-.vs__search {
-    @apply text-sm text-gray-900 font-semibold;
+.vs--single .vs__selected, .vs__search {
+    @apply text-sm text-gray-700 font-semibold;
 }
 
 .vs__search::placeholder, .vs--open .vs__search::placeholder {
