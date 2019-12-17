@@ -1,12 +1,15 @@
 <template>
     <div class="relative">
-        <div class="absolute top-1/2 left-0 -transform-y-50 w-10/12 ml-6 text-sm text-gray-900 font-semibold" v-if="!value">
+        <div 
+            v-if="!value"
+            class="absolute top-1/2 left-0 -transform-y-50 w-10/12 ml-6 text-sm text-gray-900 font-semibold"
+        >
             {{placeholder}}
         </div>
         <select 
-            class="relative h-12 w-full pl-3 pr-7 border-gray-700 border-2 rounded-none bg-white text-sm text-gray-900 font-semibold focus:outline-none"
+            class="relative h-12 w-full pl-6 pr-7 border-gray-700 border-2 rounded-none bg-white text-sm text-gray-900 font-semibold focus:outline-none"
             :value="value"
-            @input="$emit('input', $event.target.value)"
+            @input="change($event.target.value)"
         >
             <option 
                 v-for="(option, index) in options"
@@ -25,7 +28,7 @@
 
         model: {
             prop: 'value',
-            event: 'input'
+            event: 'change'
         },
 
         props: {
@@ -39,6 +42,12 @@
             },
             value: {
                 type: [String, Number]
+            }
+        },
+
+        methods: {
+            change(value) {
+                this.$emit('change', value);
             }
         }
     }
