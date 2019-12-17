@@ -1,6 +1,6 @@
 <template>
     <div class="mb-2 -mt-2 px-4 text-xs text-pink-600">
-        {{ messages[errorType] }}
+        {{ errorType === 'custom' ? customMessage : messages[errorType] }}
     </div>
 </template>
 
@@ -12,6 +12,10 @@
             errorType: {
                 type: String,
                 required: true
+            },
+            customMessage: {
+                type: String,
+                default: ''
             }
         },
 

@@ -15,22 +15,72 @@
             </label>
         </div>
         <input 
-            class="input-text w-full mb-6"
+            class="input-text w-full mb-4"
             type="text"
             placeholder="Name"
+            :value="name"
+            @input="setName($event.target.value)"
         >
-        <steps-nav/>
+        <base-input-error-message 
+            v-if="!$v.name.required && $v.name.$error"
+            :error-type="'required'"
+        />
+        <base-input-error-message 
+            v-if="!$v.name.minLength && $v.name.$error"
+            :error-type="'min-length-3'"
+            :custom-message="'A name min length is 3'"
+        />
+        <steps-nav
+            @next="validate"
+            :no-prev="true"
+        />
     </div>
 </template>
 
 <script>
+    import {required, minLength} from 'vuelidate/lib/validators';
+    import { mapState, mapMutations } from 'vuex';
     import StepsNav from './StepsNav';
+    import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
     export default {
         name: 'StepProfileDetails',
 
         components: {
-            StepsNav
+            StepsNav,
+            BaseInputErrorMessage
+        },
+
+        computed: {
+            ...mapState('account/create', ['name'])
+        },
+
+        validations: {
+            name: {
+                required, 
+                minLength: minLength(3)
+            }
+        },
+
+        methods: {
+            ...mapMutations('account/create', ['mutate', 'nextStep', 'previousStep']),
+
+            setName(name) {
+                console.log(name);
+                const payload = {
+                    property: 'name',
+                    with: name
+                };
+
+                this.mutate(payload);
+            },
+
+            validate() {
+                this.$v.$touch();
+                if(!this.$v.$invalid) {
+                    this.nextStep();
+                }
+            }
         }
     }
 </script>

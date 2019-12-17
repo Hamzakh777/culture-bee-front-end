@@ -62,12 +62,20 @@
             </div>
         </div>
         <!-- sign up button -->
-        <button
-            class="primary-btn w-full"
-            @click.prevent="signUp"
-        >
-            Sign up
-        </button>
+        <div class="flex flex-col items-center">
+            <button
+                class="primary-btn w-full mb-6"
+                @click.prevent="signUp"
+            >
+                Sign up
+            </button>
+            <button
+                class="secondary-btn"
+                @click.prevent="previousStep"
+            >
+                Back
+            </button>
+    </div>
     </div>
 </template>
 
@@ -116,13 +124,12 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate', 'nextStep']),
+            ...mapMutations('account/create', ['mutate', 'nextStep', 'previousStep']),
             /**
              * @param {String} property - the property to mutate in the store
              * @param {*} value - the mutated property new value
              */
             setProperty(property, value) {
-                console.log(this.$v)
                 const payload = {
                     property,
                     with: value

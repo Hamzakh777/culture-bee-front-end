@@ -30,7 +30,10 @@
                 multiple
             />
         </div>
-        <steps-nav :is-last-step="true"/>
+        <steps-nav 
+            :is-last-step="true"
+            @prev="previousStep"
+        />
     </div>
 </template>
 
@@ -58,7 +61,7 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate']),
+            ...mapMutations('account/create', ['mutate', 'previousStep']),
 
             /**
              * Mutate a property in the store
