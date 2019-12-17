@@ -4,39 +4,89 @@
 			class="hidden md:block mb-6 mx-auto h-10"
 			src="/logo-big-light.svg"
 		/>
-		<div v-swiper:mySwiper="swiperOption" class="px-4 text-white">
-			<div class="swiper-wrapper py-6 text-center">
-				<div class="swiper-slide swiper-no-swiping mb-4">
-					<h4
-						class="section-title section-title-light md:mb-6 uppercase"
-					>
-						Join us today
-					</h4>
-					<p
-						class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
-					>
-						Lorem ipsum dolor sit amet, consectetur
-					</p>
-				</div>
-				<div
-					v-for="(slide, index) in slides"
-					:key="index"
-					class="swiper-slide swiper-no-swiping mb-5"
-				>
-					<h4 class="section-title section-title-light uppercase">
-						{{ userType === 'job-seeker' ? slide.jobSeeker.title : slide.employer.title }}
-					</h4>
-					<p
-						class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
-					>
-						{{ userType === 'job-seeker' ? slide.jobSeeker.description : slide.employer.description }}
-					</p>
-				</div>
-			</div>
-			<div
-				class="swiper-pagination swiper-pagination-create-account"
-			></div>
-		</div>
+        <!-- the reason for duplicating the component is that the swiper library doesn't render properly when a prop changes -->
+        <div 
+            :class="{'hidden': usertype !== 'job-seeker'}"
+        >
+            <!-- employer slider -->
+            <div 
+                v-swiper:mySwiperEmployer="swiperOption1" 
+                class="px-4 text-white"
+            >
+                <div class="swiper-wrapper py-6 text-center">
+                    <div class="swiper-slide swiper-no-swiping mb-4">
+                        <h4
+                            class="section-title section-title-light md:mb-6 uppercase"
+                        >
+                            Join us today
+                        </h4>
+                        <p
+                            class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
+                        >
+                            Lorem ipsum dolor sit amet, consectetur
+                        </p>
+                    </div>
+                    <div
+                        v-for="(slide, index) in slides"
+                        :key="index"
+                        class="swiper-slide swiper-no-swiping mb-5"
+                    >
+                        <h4 class="section-title section-title-light uppercase">
+                            {{ slide.employer.title }}
+                        </h4>
+                        <p
+                            class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
+                        >
+                            {{ slide.employer.description  }}
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="swiper-pagination swiper-pagination-create-account swiper-pagination-create-account--1"
+                ></div>
+            </div>
+        </div>
+        <!-- job seeker -->
+        <div
+            :class="{'hidden': usertype === 'job-seeker'}"
+        >
+            <div 
+                v-swiper:mySwiperJobSeeker="swiperOption2" 
+                class="px-4 text-white"
+            >
+                <div class="swiper-wrapper py-6 text-center">
+                    <div class="swiper-slide swiper-no-swiping mb-4">
+                        <h4
+                            class="section-title section-title-light md:mb-6 uppercase"
+                        >
+                            Join us today
+                        </h4>
+                        <p
+                            class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
+                        >
+                            Lorem ipsum dolor sit amet, consectetur
+                        </p>
+                    </div>
+                    <div
+                        v-for="(slide, index) in slides"
+                        :key="index"
+                        class="swiper-slide swiper-no-swiping mb-5"
+                    >
+                        <h4 class="section-title section-title-light uppercase">
+                            {{ slide.employer.title }}
+                        </h4>
+                        <p
+                            class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
+                        >
+                            {{ slide.employer.description  }}
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="swiper-pagination swiper-pagination-create-account swiper-pagination-create-account--2"
+                ></div>
+            </div>
+        </div>
 	</div>
 </template>
 
@@ -48,7 +98,8 @@ export default {
 
 	watch: {
 		currentStep(newVal) {
-			this.mySwiper.slideTo(newVal - 1);
+            this.mySwiperJobSeeker.slideTo(newVal - 1);
+            this.mySwiperEmployer.slideTo(newVal - 1);
 		}
 	},
 
@@ -58,11 +109,18 @@ export default {
 
 	data() {
 		return {
-			swiperOption: {
+			swiperOption1: {
 				slidesPerView: 1,
 				spaceBetween: 64,
 				pagination: {
-					el: '.swiper-pagination-create-account'
+					el: '.swiper-pagination-create-account--1'
+				}
+            },
+            swiperOption2: {
+				slidesPerView: 1,
+				spaceBetween: 64,
+				pagination: {
+					el: '.swiper-pagination-create-account--2'
 				}
             },
             slides: [
