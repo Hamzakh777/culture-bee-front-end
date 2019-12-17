@@ -1,6 +1,6 @@
 const state = () => ({
-	currentStep: 4,
-	totalSteps: 8,
+	currentStep: 1,
+	totalSteps: 5,
 	userType: 'job-seeker', // employer - job-seeker
 	email: '',
 	industry: ''
