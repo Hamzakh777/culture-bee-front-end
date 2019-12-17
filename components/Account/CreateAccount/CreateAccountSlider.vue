@@ -6,7 +6,7 @@
 		/>
         <!-- the reason for duplicating the component is that the swiper library doesn't render properly when a prop changes -->
         <div 
-            :class="{'hidden': usertype !== 'job-seeker'}"
+            :class="{'hidden': userType !== 'job-seeker'}"
         >
             <!-- employer slider -->
             <div 
@@ -32,12 +32,12 @@
                         class="swiper-slide swiper-no-swiping mb-5"
                     >
                         <h4 class="section-title section-title-light uppercase">
-                            {{ slide.employer.title }}
+                            {{ slide.jobSeeker.title }}
                         </h4>
                         <p
                             class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                         >
-                            {{ slide.employer.description  }}
+                            {{ slide.jobSeeker.description  }}
                         </p>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
         </div>
         <!-- job seeker -->
         <div
-            :class="{'hidden': usertype === 'job-seeker'}"
+            :class="{'hidden': userType === 'job-seeker'}"
         >
             <div 
                 v-swiper:mySwiperJobSeeker="swiperOption2" 
@@ -167,10 +167,13 @@ export default {
 </script>
 <style>
 .swiper-pagination-create-account .swiper-pagination-bullet {
-	@apply h-3 w-3 rounded-full bg-white opacity-100;
+	@apply h-3 w-3 mx-1 rounded-full bg-white opacity-100;
 }
-.swiper-pagination-create-account
-	.swiper-pagination-bullet.swiper-pagination-bullet-active {
+.swiper-pagination-create-account .swiper-pagination-bullet.swiper-pagination-bullet-active {
 	@apply bg-yellow;
+}
+.swiper-pagination-create-account {
+    bottom: 10px;
+    @apply w-full left-0;
 }
 </style>
