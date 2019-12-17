@@ -7,7 +7,9 @@
             {{ isLastStep ? 'Finish' : 'Next' }}
         </button>
         <button
+            v-if="!noPrev"
             class="secondary-btn"
+            @click.prevent="$emit('prev')"
         >
             Back
         </button>
@@ -20,6 +22,10 @@
 
         props: {
             isLastStep: {
+                type: Boolean,
+                default: false
+            },
+            noPrev: {
                 type: Boolean,
                 default: false
             }
