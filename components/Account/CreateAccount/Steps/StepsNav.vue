@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center md:flex-row md:justify-between">
         <button
-            class="primary-btn w-full mb-6"
+            class="primary-btn w-full md:w-auto mb-6 md:mb-0"
             @click.prevent="$emit('next')"
         >
             {{ isLastStep ? 'Finish' : 'Next' }}

@@ -23,7 +23,11 @@ module.exports = {
       "warn",
       {
         "singleQuote": true,
-        "tabWidth": 4
+        "tabWidth": 4,
+        "semi": true,
+        "tabSize": 4,
+        "indent": ["error", 4],
+        "trailingComma": "none"
       }
     ]
   }

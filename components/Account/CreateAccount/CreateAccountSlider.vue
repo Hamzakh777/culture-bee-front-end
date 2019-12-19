@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full">
 		<img
-			class="hidden md:block mb-6 mx-auto h-10"
+			class="hidden md:block mb-4 md:mb-0 mx-auto h-10"
 			src="/logo-big-light.svg"
 		/>
         <!-- the reason for duplicating the component is that the swiper library doesn't render properly when a prop changes -->
@@ -13,7 +13,7 @@
                 v-swiper:mySwiperEmployer="swiperOption1" 
                 class="px-4 text-white"
             >
-                <div class="swiper-wrapper py-6 text-center">
+                <div class="swiper-wrapper py-6 md:py-14 text-center">
                     <div class="swiper-slide swiper-no-swiping mb-4">
                         <h4
                             class="section-title section-title-light md:mb-6 uppercase"
@@ -78,7 +78,7 @@
                         <p
                             class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                         >
-                            {{ slide.employer.description  }}
+                            {{ slide.employer.description }}
                         </p>
                     </div>
                 </div>
