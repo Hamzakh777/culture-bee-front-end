@@ -6,7 +6,7 @@
 		btn-text="View all"
 		:is-title-light="true"
 	>
-		<div class="relative container mx-auto px-4">
+		<div class="relative container mx-auto px-4 md:px-0">
 			<div 
 				v-swiper:mySwiper="swiperOption"
 				class="h-118 overflow-visible"
