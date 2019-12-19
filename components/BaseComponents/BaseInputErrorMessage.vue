@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-2 -mt-2 px-4 text-xs text-pink-600">
+    <div class="mb-2 -mt-2 px-4 text-xs text-pink-500">
         {{ errorType === 'custom' ? customMessage : messages[errorType] }}
     </div>
 </template>
@@ -26,7 +26,8 @@
                     'email': 'Please write a valid email',
                     'same-as-password': 'The password must be identical',
                     'password-min-length-8': 'Password min lenght is 8',
-                    'accept-t&p': 'Please accept the T&P'
+                    'accept-t&p': 'Please accept the T&P',
+                    'accept-gdpr': 'Please accept GDPR T&C'
                 }
             }
         },

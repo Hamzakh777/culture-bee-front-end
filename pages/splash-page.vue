@@ -33,26 +33,33 @@
 					</button>
 				</div>
 				<div class="max-w-3xl mx-auto -mt-4 mb-4">
-					<base-input-error-message 
+					<base-big-input-error-message 
 						v-if="!$v.email.required && $v.email.$error"
 						:error-type="'required'"
 					/>
-					<base-input-error-message 
+					<base-big-input-error-message 
 						v-if="!$v.email.email && $v.email.$error"
 						:error-type="'email'"
 					/>
 				</div>
 				<div class="flex max-w-lg  mx-auto">
 					<base-radio-button 
+						class="self-start"
 						:value="true"
 						:is-light="true" 
-						v-model="isTermsAndConditionsAccepted"
+						v-model="isGdprAccepted"
 					/>
-					<small class="block pl-4 text-left">
-						By signing up to CultureBee, you are agreeing to our
-						<a href="#">Terms of Use</a> and
-						<a href="#">Privacy Policy</a>
-					</small>
+					<div>
+						<small class="block pl-4 mb-2 text-left">
+							By signing up to CultureBee, you are agreeing to our
+							<a href="#">Terms of Use</a> and
+							<a href="#">Privacy Policy</a>
+						</small>
+						<base-input-error-message 
+							v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
+							:error-type="'accept-gdpr'"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -124,11 +131,11 @@
 						placeholder="Email" 
 						v-model="email"
 					/>
-					<base-input-error-message 
+					<base-big-input-error-message 
 						v-if="!$v.email.required && $v.email.$error"
 						:error-type="'required'"
 					/>
-					<base-input-error-message 
+					<base-big-input-error-message 
 						v-if="!$v.email.email && $v.email.$error"
 						:error-type="'email'"
 					/>
@@ -139,10 +146,21 @@
 						Sign up
 					</button>
 					<div class="flex flex-row">
-						<base-radio-button :is-light="true" />
-						<small
-							class="block flex-grow pl-4 text-left text-xs"
-						>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
+						<base-radio-button 
+							class="self-start"
+							:is-light="true" 
+							:value="true"
+							v-model="isGdprAccepted"
+						/>
+						<div>
+							<small
+								class="block flex-grow pl-4 mb-2 text-left text-xs"
+							>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
+							<base-input-error-message 
+								v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
+								:error-type="'accept-gdpr'"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -157,7 +175,9 @@ import { required, email } from 'vuelidate/lib/validators';
 import FooterBottom from '~/components/Footer/FooterBottom';
 import BaseLogo from '~/components/BaseComponents/BaseLogo';
 import BaseRadioButton from '~/components/BaseComponents/BaseRadioButton';
+import BaseBigInputErrorMessage from '~/components/BaseComponents/BaseBigInputErrorMessage';
 import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
+
 
 export default {
 	layout: 'simple',
@@ -166,6 +186,7 @@ export default {
 		FooterBottom,
 		BaseLogo,
 		BaseRadioButton,
+		BaseBigInputErrorMessage,
 		BaseInputErrorMessage
 	},
 
@@ -181,7 +202,7 @@ export default {
 			],
 			scrollHeight: 0,
 			email: '',
-			isTermsAndConditionsAccepted: false
+			isGdprAccepted: false
 		};
 	},
 
@@ -190,7 +211,7 @@ export default {
 			required,
 			email
 		},
-		isTermsAndConditionsAccepted: {
+		isGdprAccepted: {
 			required
 		}
 	},
