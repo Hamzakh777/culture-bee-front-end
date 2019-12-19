@@ -126,7 +126,7 @@
 						</div>
 					</div>
 					<input 
-						class="input-text w-full mb-6" 
+						class="input-text w-full mb-4" 
 						type="text" 
 						placeholder="Email" 
 						v-model="email"
@@ -140,7 +140,7 @@
 						:error-type="'email'"
 					/>
 					<button 
-						class="btn-yellow w-full mb-6"
+						class="btn-yellow w-full mb-6 mt-4"
 						@click.prevent="subscribeToNewsletter"
 					>
 						Sign up
@@ -152,9 +152,9 @@
 							:value="true"
 							v-model="isGdprAccepted"
 						/>
-						<div>
+						<div class="text-left">
 							<small
-								class="block flex-grow pl-4 mb-2 text-left text-xs"
+								class="block flex-grow pl-4 mb-2 text-xs"
 							>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
 							<base-input-error-message 
 								v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
