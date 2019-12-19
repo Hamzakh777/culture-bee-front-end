@@ -67,7 +67,7 @@ export default {
 		proxy: true
 	},
 	proxy: {
-		'/api': 'http://culture-bee-back-end.test/'
+		'/api': process.env.NODE_ENV === 'development' ? 'http://culture-bee-back-end.test/' : 'https://culture-bee-back-end.herokuapp.com/'
 	},
 	/*
 	 ** Build configuration
