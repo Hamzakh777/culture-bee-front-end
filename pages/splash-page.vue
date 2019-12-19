@@ -242,7 +242,6 @@ export default {
                     this.scrollHeight = window.pageYOffset;
                 }
 			);
-			console.log(process.env)
 		}
     },
     
