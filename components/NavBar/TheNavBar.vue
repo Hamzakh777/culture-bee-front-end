@@ -26,6 +26,7 @@
                     <SearchButton/>
                     <button
                         class="hidden md:inline-block btn-yellow h-12-1/2"
+                        @click.prevent="createAccount"
                     >
                         Sign in
                     </button>
@@ -85,6 +86,7 @@
     import SearchButton from './SearchButton';
     import NavFiltersDropdown from './NavFiltersDropdown';
     import filters from '~/mocks/NavBar/filters';
+    import EventBus from '~/components/EventBus';
 
     export default {
         name: 'TheNavBar',
@@ -103,6 +105,10 @@
             toggleMobileMenu() {
                 this.isOpen = !this.isOpen;
                 console.log('adf')
+            },
+
+            createAccount() {
+                EventBus.$emit('show-create-account');
             }
         }
     }

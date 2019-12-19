@@ -1,5 +1,8 @@
 <template>
-    <div class="fixed inset-0 z-50 md:flex bg-white overflow-y-auto">
+    <div 
+        class="fixed inset-0 z-50 md:flex bg-white overflow-y-auto"
+        v-if="isActive"
+    >
         <div 
             class="md:flex justify-center items-center md:w-1/2 bg-gray-to-black pb-5"
         >
@@ -8,7 +11,7 @@
         </div>
         <div class="md:flex justify-center items-center relative md:w-1/2 px-4 md:px-8">
             <create-account-nav class="hidden md:flex absolute top-0 inset-x-0"/>
-            <div class="max-w-xl">
+            <div class="w-full max-w-md">
                 <step-user-type v-if="currentStep === 1"/>
                 <step-sign-up v-else-if="currentStep === 2"/>
                 <step-profile-details v-else-if="currentStep === 3"/>
@@ -26,6 +29,7 @@
     import StepSignUp from './Steps/StepSignUp';
     import StepProfileDetails from './Steps/StepProfileDetails';
     import StepAboutUser from './Steps/StepAboutUser';
+    import EventBus from '~/components/EventBus';
 
     export default {
         name: 'TheCreateAccount',
@@ -43,9 +47,22 @@
             ...mapState('account/create', ['currentStep'])
         },
 
+        created() {
+            EventBus.$on('show-create-account', () => {
+                this.open();
+            });
+        },
+
         data() {
             return {
-                userType: null
+                userType: null,
+                isActive: false
+            }
+        },
+
+        methods: {
+            open() {
+                this.isActive = true;
             }
         }
     }
