@@ -53,15 +53,22 @@ export default {
 	modules: [
 		// Doc: https://axios.nuxtjs.org/usage
 		'@nuxtjs/axios',
+		'@nuxtjs/proxy',
 		'@nuxtjs/pwa',
 		// Doc: https://github.com/nuxt-community/dotenv-module
-		'@nuxtjs/dotenv'
+		'@nuxtjs/dotenv',
+		'vue-scrollto/nuxt'
 	],
 	/*
 	 ** Axios module configuration
 	 ** See https://axios.nuxtjs.org/options
 	 */
-	axios: {},
+	axios: {
+		proxy: true
+	},
+	proxy: {
+		'/api': 'http://culture-bee-back-end.test/'
+	},
 	/*
 	 ** Build configuration
 	 */

@@ -5,7 +5,7 @@
 			<div class="md:absolute top-0 inset-x-0 w-full px-4 bg-gray-to-black">
 				<div class="container mx-auto flex flex-row justify-between items-center py-6">
 					<base-logo :is-light="true" />
-					<button class="btn-yellow">Early access</button>
+					<button class="btn-yellow" v-scroll-to="'#newsletter'">Early access</button>
 				</div>
 			</div>
 			<img
@@ -15,7 +15,7 @@
 			/>
 		</div>
 		<!-- mainling list sign up section -->
-		<div class="py-8 md:py-18 px-4">
+		<div class="py-8 md:py-18 px-4" id="newsletter">
 			<div class="container mx-auto max-w-5xl">
 				<h2 class="section-title mb-4 md:mb-10 text-center">EARLY ACCESS & PRODUCT UPDATES</h2>
 				<div class="flex flex-col md:flex-row md:items-stretch w-full max-w-3xl mx-auto mb-5 md:mb-8">
@@ -23,14 +23,37 @@
 						class="input-text flex-grow h-auto mb-4 md:mb-0 md:mr-8 py-3-1/2 border-2 border-gray-700"
 						type="text"
 						placeholder="Email"
+						v-model="email"
 					/>
-					<button class="btn-yellow w-full md:w-45">Sign up</button>
+					<button 
+						class="btn-yellow w-full md:w-45"
+						@click.prevent="subscribeToNewsletter"
+					>
+						Sign up
+					</button>
 				</div>
-				<small class="block text-center">
-					By signing up to CultureBee, you are agreeing to our
-					<a href="#">Terms of Use</a> and
-					<a href="#">Privacy Policy</a>
-				</small>
+				<div class="max-w-3xl mx-auto -mt-4 mb-4">
+					<base-input-error-message 
+						v-if="!$v.email.required && $v.email.$error"
+						:error-type="'required'"
+					/>
+					<base-input-error-message 
+						v-if="!$v.email.email && $v.email.$error"
+						:error-type="'email'"
+					/>
+				</div>
+				<div class="flex max-w-lg  mx-auto">
+					<base-radio-button 
+						:value="true"
+						:is-light="true" 
+						v-model="isTermsAndConditionsAccepted"
+					/>
+					<small class="block pl-4 text-left">
+						By signing up to CultureBee, you are agreeing to our
+						<a href="#">Terms of Use</a> and
+						<a href="#">Privacy Policy</a>
+					</small>
+				</div>
 			</div>
 		</div>
 		<!-- section - brand culture -->
@@ -95,10 +118,28 @@
 							<div class="leading-none text-32-px md:text-85-px">culturebee</div>
 						</div>
 					</div>
-					<input class="input-text w-full mb-6" type="text" placeholder="Email" />
-					<button class="btn-yellow w-full mb-6">Sign up</button>
+					<input 
+						class="input-text w-full mb-6" 
+						type="text" 
+						placeholder="Email" 
+						v-model="email"
+					/>
+					<base-input-error-message 
+						v-if="!$v.email.required && $v.email.$error"
+						:error-type="'required'"
+					/>
+					<base-input-error-message 
+						v-if="!$v.email.email && $v.email.$error"
+						:error-type="'email'"
+					/>
+					<button 
+						class="btn-yellow w-full mb-6"
+						@click.prevent="subscribeToNewsletter"
+					>
+						Sign up
+					</button>
 					<div class="flex flex-row">
-						<base-checkbox :is-light="true" />
+						<base-radio-button :is-light="true" />
 						<small
 							class="block flex-grow pl-4 text-left text-xs"
 						>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
@@ -112,9 +153,11 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators';
 import FooterBottom from '~/components/Footer/FooterBottom';
 import BaseLogo from '~/components/BaseComponents/BaseLogo';
-import BaseCheckbox from '~/components/BaseComponents/BaseCheckbox';
+import BaseRadioButton from '~/components/BaseComponents/BaseRadioButton';
+import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
 export default {
 	layout: 'simple',
@@ -122,7 +165,8 @@ export default {
 	components: {
 		FooterBottom,
 		BaseLogo,
-		BaseCheckbox
+		BaseRadioButton,
+		BaseInputErrorMessage
 	},
 
 	data() {
@@ -135,8 +179,20 @@ export default {
 				'min-doktor.png',
 				'wolt.png'
 			],
-			scrollHeight: 0
+			scrollHeight: 0,
+			email: '',
+			isTermsAndConditionsAccepted: false
 		};
+	},
+
+	validations: {
+		email: {
+			required,
+			email
+		},
+		isTermsAndConditionsAccepted: {
+			required
+		}
 	},
 
 	mounted() {
@@ -156,6 +212,19 @@ export default {
                 this.scrollHeight = window.pageYOffset;
             });
         }
-    }
+	},
+	
+	methods: {
+		async subscribeToNewsletter() {
+			this.$v.$touch();
+			if(!this.$v.$invalid) {
+				const response =  await this.$axios.$post(`/api/newsletter`, {
+					email: 'test@gmail.com'
+				});
+
+				console.log(response);
+			}
+		}
+	}
 };
 </script>
