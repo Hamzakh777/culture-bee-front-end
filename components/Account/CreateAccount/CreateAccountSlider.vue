@@ -54,7 +54,7 @@
                 v-swiper:mySwiperJobSeeker="swiperOption2" 
                 class="px-4 text-white"
             >
-                <div class="swiper-wrapper py-6 text-center">
+                <div class="swiper-wrapper py-6 md:py-14 text-center">
                     <div class="swiper-slide swiper-no-swiping mb-4">
                         <h4
                             class="section-title section-title-light md:mb-6 uppercase"
