@@ -18,48 +18,57 @@
 		<div class="py-8 md:py-18 px-4" id="newsletter">
 			<div class="container mx-auto max-w-5xl">
 				<h2 class="section-title mb-4 md:mb-10 text-center">EARLY ACCESS & PRODUCT UPDATES</h2>
-				<div class="flex flex-col md:flex-row md:items-stretch w-full max-w-3xl mx-auto mb-5 md:mb-8">
-					<input
-						class="input-text flex-grow h-auto mb-4 md:mb-0 md:mr-8 py-3-1/2 border-2 border-gray-700"
-						type="text"
-						placeholder="Email"
-						v-model="email"
-					/>
-					<button 
-						class="btn-yellow w-full md:w-45"
-						@click.prevent="subscribeToNewsletter"
+				<div v-if="!isSubscribedToNewsletter">
+					<div class="flex flex-col md:flex-row md:items-stretch w-full max-w-3xl mx-auto mb-5 md:mb-8">
+						<input
+							class="input-text flex-grow h-auto mb-4 md:mb-0 md:mr-8 py-3-1/2 border-2 border-gray-700"
+							type="text"
+							placeholder="Email"
+							v-model="email"
+						/>
+						<BaseAjaxButton
+							class="w-full md:w-45"
+							:is-loading="isLoading"
+							@click="subscribeToNewsletter"
+						>
+							Sign up
+						</BaseAjaxButton>
+					</div>
+					<div 
+						v-if="$v.email.$error"
+						class="max-w-3xl mx-auto -mt-4 mb-4"
 					>
-						Sign up
-					</button>
-				</div>
-				<div class="max-w-3xl mx-auto -mt-4 mb-4">
-					<base-big-input-error-message 
-						v-if="!$v.email.required && $v.email.$error"
-						:error-type="'required'"
-					/>
-					<base-big-input-error-message 
-						v-if="!$v.email.email && $v.email.$error"
-						:error-type="'email'"
-					/>
-				</div>
-				<div class="flex max-w-lg  mx-auto">
-					<base-radio-button 
-						class="self-start"
-						:value="true"
-						:is-light="true" 
-						v-model="isGdprAccepted"
-					/>
-					<div>
-						<small class="block pl-4 mb-2 text-left">
-							By signing up to CultureBee, you are agreeing to our
-							<a href="#">Terms of Use</a> and
-							<a href="#">Privacy Policy</a>
-						</small>
-						<base-input-error-message 
-							v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
-							:error-type="'accept-gdpr'"
+						<base-big-input-error-message 
+							v-if="!$v.email.required && $v.email.$error"
+							:error-type="'required'"
+						/>
+						<base-big-input-error-message 
+							v-if="!$v.email.email && $v.email.$error"
+							:error-type="'email'"
 						/>
 					</div>
+					<div class="flex max-w-lg mx-auto">
+						<base-radio-button 
+							class="self-start"
+							:value="true"
+							:is-light="true" 
+							v-model="isGdprAccepted"
+						/>
+						<div>
+							<small class="block pl-4 mb-2 text-left">
+								By signing up to CultureBee, you are agreeing to our
+								<a href="#">Terms of Use</a> and
+								<a href="#">Privacy Policy</a>
+							</small>
+							<base-input-error-message 
+								v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
+								:error-type="'accept-gdpr'"
+							/>
+						</div>
+					</div>
+				</div>
+				<div v-else>
+					<p class="max-w-sm mx-auto text-center text-lg font-medium">Thanks, we'll be in touch very soon</p>
 				</div>
 			</div>
 		</div>
@@ -125,43 +134,49 @@
 							<div class="leading-none text-32-px md:text-85-px">culturebee</div>
 						</div>
 					</div>
-					<input 
-						class="input-text w-full mb-4" 
-						type="text" 
-						placeholder="Email" 
-						v-model="email"
-					/>
-					<base-big-input-error-message 
-						v-if="!$v.email.required && $v.email.$error"
-						:error-type="'required'"
-					/>
-					<base-big-input-error-message 
-						v-if="!$v.email.email && $v.email.$error"
-						:error-type="'email'"
-					/>
-					<button 
-						class="btn-yellow w-full mb-6 mt-4"
-						@click.prevent="subscribeToNewsletter"
-					>
-						Sign up
-					</button>
-					<div class="flex flex-row">
-						<base-radio-button 
-							class="self-start"
-							:is-light="true" 
-							:value="true"
-							v-model="isGdprAccepted"
+					<div v-if="!isSubscribedToNewsletter">
+						<input 
+							class="input-text w-full mb-4" 
+							type="text" 
+							placeholder="Email" 
+							v-model="email"
 						/>
-						<div class="text-left">
-							<small
-								class="block flex-grow pl-4 mb-2 text-xs"
-							>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
-							<base-input-error-message 
-								v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
-								:error-type="'accept-gdpr'"
+						<base-big-input-error-message 
+							v-if="!$v.email.required && $v.email.$error"
+							:error-type="'required'"
+						/>
+						<base-big-input-error-message 
+							v-if="!$v.email.email && $v.email.$error"
+							:error-type="'email'"
+						/>
+						<BaseAjaxButton
+							class="w-full mb-6 mt-4"
+							:is-loading="isLoading"
+							@click="subscribeToNewsletter"
+						>
+							Sign up
+						</BaseAjaxButton>
+						<div class="flex flex-row">
+							<base-radio-button 
+								class="self-start"
+								:is-light="true" 
+								:value="true"
+								v-model="isGdprAccepted"
 							/>
+							<div class="text-left">
+								<small
+									class="block flex-grow pl-4 mb-2 text-xs"
+								>We promise not to use your data in any way that we wouldn’t want ours to be used</small>
+								<base-input-error-message 
+									v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
+									:error-type="'accept-gdpr'"
+								/>
+							</div>
 						</div>
 					</div>
+					<div v-else>
+					<p class="max-w-sm mx-auto text-center text-lg font-medium text-white">Thanks, we'll be in touch very soon</p>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -177,7 +192,7 @@ import BaseLogo from '~/components/BaseComponents/BaseLogo';
 import BaseRadioButton from '~/components/BaseComponents/BaseRadioButton';
 import BaseBigInputErrorMessage from '~/components/BaseComponents/BaseBigInputErrorMessage';
 import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
-
+import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 
 export default {
 	layout: 'simple',
@@ -187,7 +202,8 @@ export default {
 		BaseLogo,
 		BaseRadioButton,
 		BaseBigInputErrorMessage,
-		BaseInputErrorMessage
+		BaseInputErrorMessage,
+		BaseAjaxButton
 	},
 
 	data() {
@@ -202,7 +218,9 @@ export default {
 			],
 			scrollHeight: 0,
 			email: '',
-			isGdprAccepted: false
+			isGdprAccepted: false,
+			isSubscribedToNewsletter: false,
+			isLoading: false
 		};
 	},
 
@@ -238,12 +256,20 @@ export default {
 	methods: {
 		async subscribeToNewsletter() {
 			this.$v.$touch();
-			if(!this.$v.$invalid) {
+			if(this.$v.$invalid) return;
+			
+			try {
+				this.isLoading = true;
 				const response =  await this.$axios.$post(`/api/newsletter`, {
 					email: 'test@gmail.com'
 				});
 
 				console.log(response);
+				this.isLoading = false;
+				this.isSubscribedToNewsletter = true;
+			} catch (error) {
+				this.isLoading = false;
+				console.error(error);
 			}
 		}
 	}
