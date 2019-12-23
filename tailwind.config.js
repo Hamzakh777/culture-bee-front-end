@@ -28,6 +28,11 @@ module.exports = {
 				'to bottom',
 				theme('colors.gray.800'),
 				theme('colors.black')
+			],
+			'gray-to-black-to-bottom-right': [
+				'to bottom right',
+				theme('colors.gray.800'),
+				theme('colors.black')
 			]
 		}),
 		screens: {
@@ -66,8 +71,9 @@ module.exports = {
 				'100-px': '100px'
 			},
 			height: {
-				'100-vh': '100vh',
-				'84-vh': '84vh'
+				'84-vh': '84vh',
+				'92-vh': '92-vh',
+				'100-vh': '100vh'
 			},
 			inset: {
 				'1/2': '50%'
@@ -130,7 +136,8 @@ module.exports = {
 				'45-%': '45%'
 			},
 			zIndex: {
-				'1': '1'
+				'1': '1',
+				'100': 100
 			}
 		}
 	},
@@ -139,7 +146,7 @@ module.exports = {
 		margin: ['responsive', 'last', 'hover', 'focus']
 	},
 	plugins: [
-		function({ addUtilities }) {
+		function ({ addUtilities }) {
 			const newUtilities = {
 				'.transform-center': {
 					transform: 'translate(-50%, -50%);'
@@ -165,7 +172,7 @@ module.exports = {
 			};
 			addUtilities(newUtilities);
 		},
-	require('./node_modules/tailwindcss-plugins/gradients/index.js'),
-	require('tailwindcss-transitions')()
+		require('./node_modules/tailwindcss-plugins/gradients/index.js'),
+		require('tailwindcss-transitions')()
 	]
 };
