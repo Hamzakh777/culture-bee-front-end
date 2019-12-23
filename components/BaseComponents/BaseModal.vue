@@ -14,7 +14,7 @@
 					<slot name="title"></slot>
 				</div>
 				<!-- close button -->
-				<div class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10">
+				<div class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10" @click="close">
 					<div class="cross"></div>
 				</div>
 			</div>
@@ -54,7 +54,7 @@ export default {
 
 	methods: {
 		close() {
-			this.$emit('close');
+			this.$emit('update:isActive', false);
 		}
 	}
 };
