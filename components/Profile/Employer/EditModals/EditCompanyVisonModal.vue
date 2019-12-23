@@ -12,7 +12,6 @@
             <div>
                 <textarea 
                     class="input-text resize-none w-full h-94 mb-8 py-6 px-6 text-sm font-semibold font-poppins"
-
                 >
                 </textarea>
             </div>
