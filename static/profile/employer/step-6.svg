@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>ICON</title>
+    <desc>Created with Sketch.</desc>
+    <g id="FEED-VIEW" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Create-profile" transform="translate(-165.000000, -3760.000000)">
+            <g id="MODULE-6-" transform="translate(72.000000, 3501.000000)">
+                <g id="Group-9-Copy-2">
+                    <g id="ICON" transform="translate(94.000000, 260.000000)">
+                        <circle id="Oval" stroke="#000000" stroke-width="2" cx="30" cy="30" r="30"></circle>
+                        <text id="?" font-family="Poppins-Medium, Poppins" font-size="42" font-weight="400" fill="#393E41">
+                            <tspan x="19" y="45">?</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
