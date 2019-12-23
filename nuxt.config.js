@@ -26,13 +26,14 @@ export default {
 	/*
 	 ** Global CSS
 	 */
-	css: ['swiper/dist/css/swiper.css'],
+	css: ['swiper/dist/css/swiper.css', '@fortawesome/fontawesome-svg-core/styles.css'],
 	/*
 	 ** Plugins to load before mounting the App
 	 */
 	plugins: [
 		'~/plugins/svg-icon',
 		'~/plugins/vuelidate',
+		'~/plugins/vue-fontawesome',
 		{
 			src: '~/plugins/swiper',
 			mode: 'client'

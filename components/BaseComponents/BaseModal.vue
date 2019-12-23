@@ -1,21 +1,23 @@
 <template>
-	<div class="fixed inset-0 z-100">
+	<div v-if="isActive" class="fixed inset-0 z-100">
 		<div
-			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full max-w-4xl z-100 bg-white overflow-y-auto"
-			style="max-height: 45rem"
 			:class="additionalClasses"
-			v-if="isActive"
 			v-on-clickaway="close"
 			@mouseleave="$emit('mouse-leave')"
+			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full max-w-4xl z-100 bg-white overflow-y-auto"
+			style="max-height: 45rem"
 		>
-			<div
-				class="relative h-18 bg-gray-to-black-to-bottom-right"
-			>
-				<div class="pl-10 pt-3 pr-20 font-D-Din text-white text-8 uppercase font-bold">
+			<div class="relative h-18 bg-gray-to-black-to-bottom-right">
+				<div
+					class="pl-10 pt-3 pr-20 font-D-Din text-white text-8 uppercase font-bold"
+				>
 					<slot name="title"></slot>
 				</div>
 				<!-- close button -->
-				<div class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10" @click="close">
+				<div
+					@click="close"
+					class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10"
+				>
 					<div class="cross"></div>
 				</div>
 			</div>
@@ -61,10 +63,11 @@ export default {
 };
 </script>
 <style>
-.cross::after, .cross::before {
+.cross::after,
+.cross::before {
 	content: '';
 	transform: translate(-50%, -50%) rotate(45deg);
-	@apply absolute top-1/2 left-1/2 bg-gray-800;	
+	@apply absolute top-1/2 left-1/2 bg-gray-800;
 }
 
 .cross::after {
@@ -73,7 +76,7 @@ export default {
 }
 
 .cross::before {
-	height: 3px; 
+	height: 3px;
 	@apply w-5;
 }
 </style>

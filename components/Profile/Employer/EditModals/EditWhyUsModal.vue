@@ -65,7 +65,7 @@
 
         data() {
             return {
-                isActive: true,
+                isActive: false,
                 isLoading: false,
                 currentStep: 1,
                 totalSteps: 4
