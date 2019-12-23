@@ -5,7 +5,7 @@
     >
         <base-app-icon
             name="edit-pen"
-            :class-list="['absolute', 'top-0', 'right-0', 'h-7', 'fill-current', 'text-white', 'cursor-pointer', 'hover:text-yellow']"
+            :class-list="['absolute', 'top-0', 'right-0', 'h-7', 'fill-current', 'cursor-pointer']"
         />
     </div>
 </template>

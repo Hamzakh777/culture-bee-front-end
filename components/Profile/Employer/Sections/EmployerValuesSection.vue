@@ -18,7 +18,7 @@
 					</div>
 				</div>
 			</div>
-            <base-edit-pen class="ml-16"/>
+            <base-edit-pen class="ml-16 text-white hover:text-yellow"/>
 		</div>
 	</div>
 </template>
