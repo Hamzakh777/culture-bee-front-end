@@ -32,8 +32,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex justify-end items-center mt-10 pb-6">
-            <button class="secondary-btn" @click="EventBus.$emit(steps[currentStep].nextEventName)">
+		<div class="flex justify-end items-center mt-10">
+            <button class="secondary-btn mr-16" @click="EventBus.$emit(steps[currentStep].nextEventName)">
                 back
             </button>
             <button class="primary-btn" @click="EventBus.$emit(steps[currentStep].nextEventName)">
