@@ -19,7 +19,7 @@
             <!-- edit button -->
             <base-app-icon
                 name="edit-pen"
-                :class-list="['absolute', 'top-0', 'right-0', 'fill-current', 'text-white']"
+                :class-list="['absolute', 'top-0', 'right-0', 'h-7', 'mt-8', 'fill-current', 'text-white', 'cursor-pointer', 'hover:text-yellow']"
             />
         </div>
         <!-- bg image -->
