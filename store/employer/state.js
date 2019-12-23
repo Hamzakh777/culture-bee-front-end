@@ -1,7 +1,11 @@
 const state = () => ({
 	values: [],
 	companyVision: '',
-	benefits: []
+	benefits: [],
+	// why us
+	companyTagline: '',
+	companyEthos: '',
+	coreValues: []
 });
 
 export default state;
