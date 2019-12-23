@@ -3,14 +3,18 @@
         :is-active.sync="isActive"
     >
         <template #title>
-            Add values
+            company vision
         </template>
         <template #content>
-            <div class="base-title">
-                what does your company believe in?
+            <div class="base-title mb-4">
+                Summary
             </div>
             <div>
+                <textarea 
+                    class="input-text resize-none w-full h-94 mb-8 py-6 px-6 text-sm font-semibold font-poppins"
 
+                >
+                </textarea>
             </div>
             <div class="flex justify-end">
                 <base-ajax-button
@@ -30,7 +34,7 @@
     import EventBus from '~/_utils/Eventbus';
 
     export default {
-        name: 'EditValuesModal',
+        name: 'EditCompanyVisonModal',
 
         components: {
             BaseModal,
@@ -38,13 +42,13 @@
         },
 
         computed: {
-            ...mapState('employer', ['values'])
+            ...mapState('employer', ['companyVision'])
         },
 
         data() {
             return {
-                isActive: false,
-                isLoading: false
+                isLoading: false,
+                isActive: true
             }
         },
 

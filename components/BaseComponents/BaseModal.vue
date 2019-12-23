@@ -1,7 +1,8 @@
 <template>
 	<div class="fixed inset-0 z-100">
 		<div
-			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-92-vh max-w-4xl max-h-full z-100 bg-white shadow-3xl-0y"
+			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full max-w-4xl z-100 bg-white overflow-y-auto"
+			style="max-height: 45rem"
 			:class="additionalClasses"
 			v-if="isActive"
 			v-on-clickaway="close"

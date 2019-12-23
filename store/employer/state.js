@@ -1,5 +1,6 @@
 const state = () => ({
-	values: []
+	values: [],
+	companyVision: ''
 });
 
 export default state;
