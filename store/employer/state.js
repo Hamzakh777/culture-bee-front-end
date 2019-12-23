@@ -1,5 +1,5 @@
 const state = () => ({
-	test: 1
+	values: []
 });
 
 export default state;

@@ -1,0 +1,7 @@
+.base-title {
+    @apply font-D-Din text-gray-900 text-8 uppercase font-bold;
+}
+
+.base-title-light {
+    @apply font-D-Din text-white text-8 uppercase font-bold;
+}
