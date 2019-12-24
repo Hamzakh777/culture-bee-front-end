@@ -29,11 +29,12 @@
         <!-- job tags and date -->
         <div class="flex flex-col justify-between text-right">
             <div class="small-text">yesterday</div>
-            <div>
+            <div class="flex">
                 <div 
                     v-for="(tag, index) in tags"
                     :key="index"
                     class="small-text"
+                    :class="{'ml-5': index !== 0}"
                 >
                     {{tag}}
                 </div>
