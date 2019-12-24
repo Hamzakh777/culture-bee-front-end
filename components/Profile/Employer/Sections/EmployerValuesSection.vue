@@ -18,7 +18,10 @@
 					</div>
 				</div>
 			</div>
-            <base-edit-pen class="ml-16 text-white hover:text-yellow"/>
+            <base-edit-pen 
+				class="ml-16 text-white hover:text-yellow"
+				@click="$emit('open-the-modal-for-this-part')"
+			/>
 		</div>
 	</div>
 </template>
