@@ -2,7 +2,7 @@
 	<div class="py-18">
 		<div class="container flex justify-between mx-auto">
 			<div class="base-title">Company vision</div>
-			<div class="max-w-2xl px-8">
+			<div class="max-w-4xl px-8">
 				<div class="text-5-1/2 font-bold text-gray-800">
 					<base-splited-paragraphs :text="companyVision" />
 				</div>
