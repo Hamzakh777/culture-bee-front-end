@@ -26,7 +26,38 @@ const state = () => ({
 		}
 	},
 	companyVision: 'TALA is a new brand of athleisure and activewear that holds sustainability at its core. Garments are produced and hand finished in Portugal where a number of steps have been taken to ensure every step of the process is as sustainable as possible. \n Partnering with a world-leading facility has ensured that the garments not only fulfil the functionality demanded by the customer but also lessen the footprint by spinning the required yarn and fibres on site.',
-	benefits: [],
+	benefits: {
+		1: {
+			title: 'Breakfast',
+			subtitle: 'A mix of cereals, pastry and fruits available',
+			imgUr: ''
+		},
+		2: {
+			title: 'yoga classes',
+			subtitle: 'With our lovely resident wellness coach Hillary',
+			imgUr: ''
+		},
+		3: {
+			title: 'Flexible',
+			subtitle: 'Flexible working to fit around your lifestyle',
+			imgUr: ''
+		},
+		4: {
+			title: 'socials',
+			subtitle: 'Monthly offsite socials to encourage teambuilding',
+			imgUr: ''
+		},
+		5: {
+			title: 'GROWTH',
+			subtitle: 'We send you on self-development courses',
+			imgUr: ''
+		},
+		6: {
+			title: 'BRUNCH',
+			subtitle: 'Monthly bonding bunch with the whole team',
+			imgUr: ''
+		}
+	},
 	// why us
 	companyTagline: 'We believe that #itscooltobekind',
 	companyEthos: 'We are on a mission to create products that are 100% up-cycled, and we are 92% of the way there…! Our packaging is recycled and recyclable and the tags are made from 100% plantable paper. Simply plant, love and care for them, and watch them grow!',

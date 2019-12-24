@@ -1,7 +1,7 @@
 <template>
     <div
         @click="$emit('click')"
-        class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50"
+        class="relative right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50"
     >
         <div class="cross"></div>
     </div>

@@ -33,7 +33,12 @@ module.exports = {
 				'to bottom right',
 				theme('colors.gray.800'),
 				theme('colors.black')
-			]
+			],
+			'transparent-to-black': [
+				'to bottom',
+				theme('colors.transparent'),
+				theme('colors.black')
+			]	
 		}),
 		screens: {
 			sm: '640px',
