@@ -5,8 +5,8 @@
 			:key="index"
             class="mb-4"
 			:class="{
-				'text-base text-blue-400 font-bold': index === 0,
-				'text-sm text-blue-800 font-medium': index !== 0
+				'text-5-1/2 text-blue-400 font-bold': index === 0,
+				'text-base text-blue-800 font-medium': index !== 0
 			}"
 		>
 			{{ paragraph }}
