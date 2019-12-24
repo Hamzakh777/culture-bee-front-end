@@ -1,11 +1,36 @@
 <template>
-    <div>
-
-    </div>
+	<div class="py-18">
+		<div class="container flex justify-between mx-auto">
+			<div class="base-title">Company vision</div>
+			<div class="max-w-2xl px-8">
+				<div class="text-5-1/2 font-bold text-gray-800">
+					<base-splited-paragraphs :text="companyVision" />
+				</div>
+			</div>
+			<!-- edit button -->
+			<base-edit-pen
+				@click="$emit('open-the-modal-for-this-part')"
+				class="ml-16 text-gray-800 hover:text-yellow"
+			/>
+		</div>
+	</div>
 </template>
 
 <script>
-    export default {
-        name: 'EmployerCompanyVisionSection'
-    }
+import { mapState } from 'vuex';
+import BaseSplitedParagraphs from '~/components/baseComponents/BaseSplitedParagraphs';
+import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
+
+export default {
+	name: 'EmployerCompanyVisionSection',
+
+	components: {
+        BaseSplitedParagraphs,
+        BaseEditPen
+	},
+
+	computed: {
+		...mapState('employer', ['companyVision'])
+	}
+};
 </script>
