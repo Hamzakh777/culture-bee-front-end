@@ -1,0 +1,3 @@
+.small-text {
+    @apply text-xs font-bold text-gray-800 tracking-widest uppercase;
+}

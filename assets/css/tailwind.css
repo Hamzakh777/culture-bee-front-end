@@ -7,6 +7,7 @@
 @import './components/buttons/secondary-btn.css';
 @import './components/buttons/primary-btn.css';
 @import './components/base-title.css';
+@import './components/typography/small-text.css';
 @import './plugins/main.css';
 
 @tailwind base;

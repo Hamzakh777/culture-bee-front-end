@@ -5,6 +5,7 @@
 		<employer-culture-feed />
 		<employer-why-us-section />
 		<employer-benefits-section />
+		<employer-jobs-section />
 	</div>
 </template>
 
@@ -14,6 +15,7 @@ import EmployerCompanyVisionSection from './Sections/EmployerCompanyVisionSectio
 import EmployerCultureFeed from './Sections/EmployerCultureFeed';
 import EmployerWhyUsSection from './Sections/EmployerWhyUsSection';
 import EmployerBenefitsSection from './Sections/EmployerBenefitsSection';
+import EmployerJobsSection from './Sections/EmployerJobsSection';
 
 export default {
 	name: 'EmployerProfileSections',
@@ -23,7 +25,8 @@ export default {
 		EmployerCompanyVisionSection,
 		EmployerCultureFeed,
 		EmployerWhyUsSection,
-		EmployerBenefitsSection
+		EmployerBenefitsSection,
+		EmployerJobsSection
 	}
 };
 </script>
