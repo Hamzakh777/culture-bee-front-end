@@ -1,4 +1,10 @@
 const state = () => ({
+	// intro
+	coverPhotoUrl: '',
+	companyLogoUrl: '',
+	companyName: '',
+	quickPitch: '',
+	location: '',
 	values: {
 		1: {
 			icon: 'seedling',

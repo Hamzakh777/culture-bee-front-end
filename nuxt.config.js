@@ -26,7 +26,10 @@ export default {
 	/*
 	 ** Global CSS
 	 */
-	css: ['swiper/dist/css/swiper.css', '@fortawesome/fontawesome-svg-core/styles.css'],
+	css: [
+		'swiper/dist/css/swiper.css',
+		'@fortawesome/fontawesome-svg-core/styles.css'
+	],
 	/*
 	 ** Plugins to load before mounting the App
 	 */
@@ -68,8 +71,12 @@ export default {
 		proxy: true
 	},
 	proxy: {
-		'/api': process.env.NODE_ENV === 'development' ? 'http://culture-bee-back-end.test/' : 'https://culture-bee-back-end.herokuapp.com/'
+		'/api': {
+			target: process.env.NODE_ENV === 'development'
+				? 'http://culture-bee-back-end.test/'
+				: 'https://culture-bee-back-end.herokuapp.com/', pathRewrite: {'^/api/': '/api/'} }
 	},
+	
 	/*
 	 ** Build configuration
 	 */
@@ -80,7 +87,8 @@ export default {
 		extend(config, ctx) {
 			config.resolve.alias['~src'] = '/';
 			config.resolve.alias['~components'] = '/components';
-			config.resolve.alias['~baseComponents'] = '/components/BaseComponents';
+			config.resolve.alias['~baseComponents'] =
+				'/components/BaseComponents';
 		}
 	},
 	purgeCSS: {

@@ -138,10 +138,20 @@
                 this.mutate(payload);
             },
 
-            signUp() {
+            async signUp() {
                 this.$v.$touch();
-                if(!this.$v.$invalid) {
-                    this.nextStep();
+                if(this.$v.$invalid) return 
+        
+                try {
+                    const response = await this.$axios.$post('/api/register', {
+                        name: 'test',
+                        email: 'test@test.com',
+                        password: '123413513h5lkhl'
+                    });
+
+                    console.log(response);
+                } catch (error) {
+                    console.error(error);
                 }
             }
         }

@@ -1,15 +1,19 @@
 <template>
 	<div v-if="isActive" class="fixed inset-0 z-100">
 		<div
-			:class="additionalClasses"
 			v-on-clickaway="close"
 			@mouseleave="$emit('mouse-leave')"
-			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full max-w-4xl z-100 bg-white overflow-y-auto"
+			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full md:h-auto max-w-4xl z-100 bg-white overflow-y-auto"
+			:class="{ additionalClasses }"
 			style="max-height: 45rem"
 		>
-			<div class="relative h-18 bg-gray-to-black-to-bottom-right">
+			<div 
+				class="absolute top-0 left-0 right-0 h-18"
+				:class="{'bg-white': isLight, 'bg-gray-to-black-to-bottom-right': !isLight }"
+			>
 				<div
-					class="pl-10 pt-3 pr-20 font-D-Din text-white text-8 uppercase font-bold"
+					class="pl-10 pt-3 pr-20 font-D-Din text-8 uppercase font-bold"
+					:class="{'text-gray-800': isLight, 'text-white': !isLight }"
 				>
 					<slot name="title"></slot>
 				</div>
@@ -22,7 +26,7 @@
 				</div>
 			</div>
 			<!-- the content -->
-			<div class="px-10 py-8">
+			<div class="relative mt-18 px-10 py-8">
 				<slot name="content"></slot>
 			</div>
 		</div>
@@ -51,6 +55,10 @@ export default {
 		isActive: {
 			type: Boolean,
 			required: true,
+			default: false
+		},
+		isLight: {
+			type: Boolean,
 			default: false
 		}
 	},
