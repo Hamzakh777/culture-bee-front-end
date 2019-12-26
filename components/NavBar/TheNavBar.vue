@@ -2,9 +2,9 @@
     <div
         class="container relative z-50 mx-auto pt-7-1/2"
     >
-        <div class="relative z-50 flex justify-between items-center pb-6 px-4 lg:px-0 md:border-b-3 md:border-gray-700">
+        <div class="relative z-50 flex justify-between items-center pb-6 px-4 lg:px-0">
             <img 
-                src="/logo-big.svg" 
+                src="/logo-big.png" 
                 class="hidden md:inline-block h-11-1/4"
                 alt="culturebee logo"
             >
@@ -13,6 +13,8 @@
                 class="inline-block md:hidden h-11-1/4"
                 alt="culturebee logo"
             >
+            <!-- post update button -->
+            <button></button>
             <div>
                 <div class="flex items-center">
                     <div class="hidden lg:inline-block">
@@ -46,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden lg:flex justify-between py-4">
+        <!-- <div class="hidden lg:flex justify-between py-4">
             <a 
                 href=""
                 class="text-xs text-gray-900 font-bold tracking-widest"
@@ -55,7 +57,7 @@
             >
                 {{ filter }}
             </a>
-        </div>
+        </!-->
 
         <!-- mobile menu -->
         <div 
