@@ -1,5 +1,10 @@
 .primary-btn {
-    @apply px-6 py-3 bg-yellow text-base text-gray-800 font-bold shadow-none;
+    transition: 0.2 all ease-in-out;
+    @apply px-6 py-3 bg-yellow text-base text-gray-800 font-bold shadow-none cursor-pointer;
+}
+
+.primary-btn--black {
+    @apply bg-gray-to-black-to-bottom-right text-white;
 }
 
 .primary-btn:focus {
