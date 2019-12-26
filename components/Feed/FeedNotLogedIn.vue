@@ -37,12 +37,39 @@
             </div>
             <div>
                 <job-card 
+                    class="mb-6"
                     :is-job-seeker-view="true"
                 />
                 <job-card 
                     :is-job-seeker-view="true"
                 />
             </div>
+            <nuxt-link 
+                class="primary-btn block w-48 mx-auto mt-10 px-8 text-center"
+                to="/search/jobs"
+            >
+                See more
+            </nuxt-link>
+        </div>
+        <!-- from cutlure bee blog -->
+        <!-- jobs section -->
+        <div class="mt-16">
+            <div class="base-title mb-10">
+                FROM THE CULTUREBEE BLOG
+            </div>
+            <div>
+                <blog-card 
+                    v-for="(post, index) in blogPosts"
+                    :key="index"
+                    :post="post"
+                />
+            </div>
+            <nuxt-link 
+                class="primary-btn block w-48 mx-auto mt-10 px-8 text-center"
+                to="/search/jobs"
+            >
+                See more
+            </nuxt-link>
         </div>
     </div>
 </template>
@@ -50,6 +77,7 @@
 <script>
     import CompanieCard from '../Companies/CompanieCard';
     import JobCard from '../Jobs/JobCard';
+    import BlogCard from '../Blog/BlogCard';
     import FeedCard from './FeedCard';
 
     export default {
@@ -58,7 +86,8 @@
         components: {
             CompanieCard,
             FeedCard,
-            JobCard
+            JobCard,
+            BlogCard
         },
 
         data() {
@@ -69,7 +98,15 @@
                     tags: ['volunteer', 'csr', 'pride'],
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
                 },
-                jobs: []
+                jobs: [],
+                blogPosts: [
+                    {
+                        id: 1,
+                        title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+                        tags: ['featured'],
+                        coverImgUrl: '/images/blog/image-1.jpg'
+                    }
+                ]
             }
         },
     }
