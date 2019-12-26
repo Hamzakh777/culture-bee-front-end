@@ -28,6 +28,7 @@
 
         methods: {
             click() {
+                this.$emit('click');
                 this.isActive = !this.isActive
             }
         }

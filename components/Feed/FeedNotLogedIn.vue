@@ -30,11 +30,26 @@
                 <feed-card :update="handPickedUpdate" />
             </div>
         </div>
+        <!-- jobs section -->
+        <div class="mt-16">
+            <div class="base-title mb-10">
+                jobs from featured employers
+            </div>
+            <div>
+                <job-card 
+                    :is-job-seeker-view="true"
+                />
+                <job-card 
+                    :is-job-seeker-view="true"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
     import CompanieCard from '../Companies/CompanieCard';
+    import JobCard from '../Jobs/JobCard';
     import FeedCard from './FeedCard';
 
     export default {
@@ -42,7 +57,8 @@
 
         components: {
             CompanieCard,
-            FeedCard
+            FeedCard,
+            JobCard
         },
 
         data() {
@@ -52,7 +68,8 @@
                     coverImgUrl: '/images/company-updates/update-1.jpg',
                     tags: ['volunteer', 'csr', 'pride'],
                     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
-                }
+                },
+                jobs: []
             }
         },
     }
