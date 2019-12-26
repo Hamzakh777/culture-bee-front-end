@@ -1,6 +1,7 @@
 /* eslint-disable */
 require('./arrow-down')
 require('./arrow')
+require('./camera')
 require('./edit-pen')
 require('./facebook-logo')
 require('./instagram')
@@ -9,3 +10,4 @@ require('./linkedin-letters')
 require('./location-pin')
 require('./search')
 require('./twitter')
+require('./video-camera')

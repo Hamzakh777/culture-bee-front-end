@@ -106,13 +106,13 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-            isActive: true,
+            isActive: false,
             files: []
 		};
 	},
 
 	mounted() {
-		EventBus.$on('open-employer-values-modal', () => {
+		EventBus.$on('open-employer-intro-modal', () => {
 			this.isActive = true;
 		});
     },
