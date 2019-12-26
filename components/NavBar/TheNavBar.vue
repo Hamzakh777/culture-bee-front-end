@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container relative z-50 mx-auto pt-7-1/2"
+        class="container relative z-50 mx-auto pt-6"
     >
         <div class="relative z-50 flex justify-between items-center pb-6 px-4 lg:px-0">
             <img 
