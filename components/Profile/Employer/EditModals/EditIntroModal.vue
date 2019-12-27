@@ -1,5 +1,9 @@
 <template>
-	<base-modal :is-active.sync="isActive" :is-light="true">
+	<base-modal 
+        :is-active="isActive" 
+        :is-light="true"
+        @close="toggle"
+    >
 		<template #title>Edit intro</template>
 		<template #content>
 			<!-- cover img and logo -->
@@ -127,6 +131,10 @@ export default {
                 }
                 this.files.push(newFile);
             }
+        },
+
+        toggle() {
+            this.isActive = false;
         }
     }
 };

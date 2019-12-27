@@ -8,7 +8,7 @@
 					class="flex items-center pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
 				>
 					<div
-						class="flex items-center justify-center h-16 w-16 rounded-full border-2"
+						class="flex items-center justify-center h-14 w-14 rounded-full border-2"
 						style="border-color: inherit"
 					>
 						<font-awesome-icon :icon="value.icon" class="text-8" />
@@ -20,7 +20,7 @@
 			</div>
             <base-edit-pen 
 				class="ml-16 text-white hover:text-yellow"
-				@click="$emit('open-the-modal-for-this-part')"
+				@click="$emit('open-employer-values-modal')"
 			/>
 		</div>
 	</div>

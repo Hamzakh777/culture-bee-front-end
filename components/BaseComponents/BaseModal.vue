@@ -20,7 +20,7 @@
 				<!-- close button -->
 				<div
 					@click="close"
-					class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10"
+					class="absolute right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 mr-10 cursor-pointer"
 				>
 					<div class="cross"></div>
 				</div>
@@ -65,7 +65,7 @@ export default {
 
 	methods: {
 		close() {
-			this.$emit('update:isActive', false);
+			this.$emit('close');
 		}
 	}
 };

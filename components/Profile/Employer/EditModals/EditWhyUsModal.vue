@@ -1,6 +1,7 @@
 <template>
     <base-modal 
-        :is-active.sync="isActive"
+        :is-active="isActive"
+        @close="toggle"
     >
         <template #title>
             why us
@@ -29,14 +30,10 @@
                 >
                 </textarea>
             </div>
-
             <div class="flex justify-end">
-                <div>
-
-                </div>
                 <base-ajax-button
                     :is-loading="isLoading"
-                    @click="nextStep"
+                    @click="next"
                 >
                     Next
                 </base-ajax-button>
@@ -73,13 +70,18 @@
         },
 
         mounted() {
-            EventBus.$on('open-employer-values-modal', () => {
+            EventBus.$on('open-employer-why-us-modal', () => {
                 this.isActive = true;
             });
         },
 
         methods: {
-            
+            next() {
+                console.log('next');
+            },
+            toggle() {
+                this.isActive = !this.isActive;
+            }
         }
     }
 </script>

@@ -1,6 +1,7 @@
 <template>
     <base-modal 
-        :is-active.sync="isActive"
+        :is-active="isActive"
+        @close="toggle"
     >
         <template #title>
             add benefits
@@ -47,7 +48,6 @@
                     
                 </div>
                 <div>
-
                     <base-ajax-button
                         :is-loading="isLoading"
                     >
@@ -79,14 +79,21 @@
 
         data() {
             return {
-                isActive: false
+                isActive: false,
+                isLoading: false
             }
         },
 
         mounted() {
-            EventBus.$on('open-employer-values-modal', () => {
-                this.isActive = true;
+            EventBus.$on('open-employer-benefits-modal', () => {
+                this.toggle()
             });
-        }
+        },
+
+        methods: {
+		toggle() {
+			this.isActive = !this.isActive;
+		}
+	}
     }
 </script>

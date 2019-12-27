@@ -4,8 +4,8 @@ export default {
         title: 'Add your company values',
         description: 'Your company values let everyone know what you stand for as a group. This will ensure you attract the right energy.',
         iconUrl: '/profile/employer/step-1.svg',
-        nextEventName: 'event-name',
-        prevEventname: 'event-name',
+        nextEventName: 'open-employer-values-modal',
+        prevEventname: '',
         nextButtonText: 'Add values'
     },
     2: {
@@ -13,7 +13,7 @@ export default {
         title: 'Add your company vision',
         description: 'Your company vision let everyone know what you stand for as a group. This will ensure you attract the right energy.',
         iconUrl: '/profile/employer/step-2.svg',
-        nextEventName: 'event-name',
+        nextEventName: 'open-employer-company-vision-modal',
         prevEventname: 'event-name',
         nextButtonText: 'Add vision'
     },
@@ -22,7 +22,7 @@ export default {
         title: 'Add company updates',
         description: 'Let people know what your latest accomplishments/events/interests are so they can see if they are aligned with you. ',
         iconUrl: '/profile/employer/step-3.svg',
-        nextEventName: 'event-name',
+        nextEventName: 'open-employer-benefits-modal',
         prevEventname: 'event-name',
         nextButtonText: 'Post update'
     },
@@ -31,7 +31,7 @@ export default {
         title: 'Add your why ',
         description: 'Your ethos is the strongest message you can send as a company, showcase your beliefs here.',
         iconUrl: '/profile/employer/step-4.svg',
-        nextEventName: 'event-name',
+        nextEventName: 'open-employer-why-us-modal',
         prevEventname: 'event-name',
         nextButtonText: 'Add your why'
     },

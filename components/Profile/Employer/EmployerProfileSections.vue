@@ -1,15 +1,16 @@
 <template>
 	<div>
-		<employer-values-section />
-		<employer-company-vision-section />
-		<employer-culture-feed />
-		<employer-why-us-section />
-		<employer-benefits-section />
-		<employer-jobs-section />
+		<employer-values-section v-if="currentProfileCreationStep >= 2" />
+		<employer-company-vision-section v-if="currentProfileCreationStep >= 3" />
+		<employer-culture-feed v-if="currentProfileCreationStep >= 4" />
+		<employer-why-us-section v-if="currentProfileCreationStep >= 5" />
+		<employer-benefits-section v-if="currentProfileCreationStep >= 6" />
+		<employer-jobs-section v-if="currentProfileCreationStep === 'done'" />
 	</div>
 </template>
 
 <script>
+import {mapState} from 'vuex';
 import EmployerValuesSection from './Sections/EmployerValuesSection';
 import EmployerCompanyVisionSection from './Sections/EmployerCompanyVisionSection';
 import EmployerCultureFeed from './Sections/EmployerCultureFeed';
@@ -27,6 +28,10 @@ export default {
 		EmployerWhyUsSection,
 		EmployerBenefitsSection,
 		EmployerJobsSection
+	},
+
+	computed: {
+		...mapState('employer', ['currentProfileCreationStep'])
 	}
 };
 </script>
