@@ -34,7 +34,6 @@
 
 <script>
     import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
-    import EventBus from '~/_utils/Eventbus';
 
     export default {
         name: 'EmployerHero',
@@ -45,7 +44,7 @@
 
         methods: {
             openEditIntro() {
-                EventBus.$emit('open-employer-intro-modal');
+                this.$bus.$emit('open-employer-intro-modal');
             }
         }
     }
