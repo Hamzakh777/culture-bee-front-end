@@ -108,6 +108,16 @@ export default {
 			'md:w-40-%',
 			'md:w-45-%',
 			'swiper-button-disabled'
+		],
+		extractors: [
+			{
+				extractor: class {
+					static extract(content) {
+						return content.match(/[\w-/:%]+(?<!:)/g) || [];
+					}
+				},
+				extensions: ['html', 'vue', 'js']
+			}
 		]
 	}
 };
