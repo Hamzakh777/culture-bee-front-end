@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import BaseSplitedParagraphs from '~/components/baseComponents/BaseSplitedParagraphs';
+import BaseSplitedParagraphs from '~/components/BaseComponents/BaseSplitedParagraphs';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
