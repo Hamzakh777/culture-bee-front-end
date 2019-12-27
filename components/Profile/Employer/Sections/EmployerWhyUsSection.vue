@@ -2,7 +2,7 @@
     <div class="py-18 bg-gray-100">
         <div class="container mx-auto">
             <div class="flex justify-between mx-auto">
-                <div class="base-title">Company vision</div>
+                <div class="base-title">Why us</div>
                 <div class="max-w-4xl px-8 text-gray-800">
                     <!-- company tagline -->
                     <div class="mb-6 text-10-1/2 font-bold">

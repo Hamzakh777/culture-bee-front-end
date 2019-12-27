@@ -43,15 +43,28 @@
             </div>
 
             <!-- buttons -->
-            <div class="flex justify-between">
-                <div class="">
-                    
+            <div class="flex justify-between items-center">
+                <div class="flex">
+                    <div
+                        class="h-3 w-3 rounded-full mr-2 cursor-pointer"
+                        :class="{'bg-gray-800': i !== currentActiveBenefit, 'bg-yellow': i === currentActiveBenefit}"
+                        v-for="i in 6"
+                        :key="i"
+                        @click="switchActiveBenefit(i)"
+                    >
+                    </div>
                 </div>
-                <div>
+                <div class="flex items-center">
+                    <button
+                        class="secondary-btn mr-14"
+                    >
+                        skip
+                    </button>
                     <base-ajax-button
                         :is-loading="isLoading"
+                        @click="submit"
                     >
-                        Add to profile
+                        Save
                     </base-ajax-button>
                 </div>
             </div>
@@ -60,10 +73,9 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapMutations } from 'vuex';
     import BaseModal from '~/components/BaseComponents/BaseModal';
     import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
-    import EventBus from '~/_utils/Eventbus';
 
     export default {
         name: 'EditBenefitsModal',
@@ -80,20 +92,32 @@
         data() {
             return {
                 isActive: false,
-                isLoading: false
+                isLoading: false,
+                currentActiveBenefit: 1 // the benefit being edited
             }
         },
 
-        mounted() {
-            EventBus.$on('open-employer-benefits-modal', () => {
-                this.toggle()
+        created() {
+            this.$bus.$on('open-employer-benefits-modal', () => {
+                this.toggle();
             });
         },
 
         methods: {
-		toggle() {
-			this.isActive = !this.isActive;
-		}
-	}
+            ...mapMutations('employer', ['nextStep']),
+
+            toggle() {
+                this.isActive = !this.isActive;
+            },
+
+            switchActiveBenefit(num) {
+                this.currentActiveBenefit = num;
+            },
+
+            submit() {
+                this.toggle();
+                this.nextStep();
+            }
+        }
     }
 </script>

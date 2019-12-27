@@ -37,32 +37,32 @@ const state = () => ({
 		1: {
 			title: 'Breakfast',
 			subtitle: 'A mix of cereals, pastry and fruits available',
-			imgUr: ''
+			imgUrl: ''
 		},
 		2: {
 			title: 'yoga classes',
 			subtitle: 'With our lovely resident wellness coach Hillary',
-			imgUr: ''
+			imgUrl: ''
 		},
 		3: {
 			title: 'Flexible',
 			subtitle: 'Flexible working to fit around your lifestyle',
-			imgUr: ''
+			imgUrl: ''
 		},
 		4: {
 			title: 'socials',
 			subtitle: 'Monthly offsite socials to encourage teambuilding',
-			imgUr: ''
+			imgUrl: ''
 		},
 		5: {
 			title: 'GROWTH',
 			subtitle: 'We send you on self-development courses',
-			imgUr: ''
+			imgUrl: ''
 		},
 		6: {
 			title: 'BRUNCH',
 			subtitle: 'Monthly bonding bunch with the whole team',
-			imgUr: ''
+			imgUrl: ''
 		}
 	},
 	// why us

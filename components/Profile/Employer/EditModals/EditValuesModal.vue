@@ -39,7 +39,6 @@ import { mapState, mapMutations } from 'vuex';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
-import EventBus from '@/_utils/EventBus';
 
 export default {
 	name: 'EditValuesModal',
@@ -61,8 +60,8 @@ export default {
 		...mapState('employer', ['values'])
 	},
 
-	mounted() {
-		EventBus.$on('open-employer-values-modal', () => {
+	created() {
+		this.$bus.$on('open-employer-values-modal', () => {
 			this.toggle();
 		});
 	},

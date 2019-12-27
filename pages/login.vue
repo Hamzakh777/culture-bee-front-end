@@ -10,6 +10,7 @@ import Login from '~/components/Account/Login/Login';
 export default {
 	components: {
 		Login
-	}
+	},
+	layout: 'simple'
 };
 </script>

@@ -9,7 +9,7 @@
 			</div>
 			<!-- edit button -->
 			<base-edit-pen
-				@click="$emit('open-the-modal-for-this-part')"
+				@click="edit"
 				class="ml-16 text-gray-800 hover:text-yellow"
 			/>
 		</div>
@@ -31,6 +31,12 @@ export default {
 
 	computed: {
 		...mapState('employer', ['companyVision'])
+	},
+
+	methods: {
+		edit() {
+			this.$bus.$emit('open-the-modal-for-this-part');
+		}
 	}
 };
 </script>

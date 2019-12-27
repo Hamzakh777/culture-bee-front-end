@@ -37,6 +37,7 @@ export default {
 		'~/plugins/svg-icon',
 		'~/plugins/vuelidate',
 		'~/plugins/vue-fontawesome',
+		'~/plugins/event-bus',
 		{
 			src: '~/plugins/swiper',
 			mode: 'client'

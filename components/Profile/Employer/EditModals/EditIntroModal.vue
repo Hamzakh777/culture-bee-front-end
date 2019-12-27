@@ -19,7 +19,7 @@
 					></div>
                     <client-only>
                         <file-upload
-                            class="absolute h-4 w-4 top-0 right-0 mr-10 mt-10 text-white"
+                            class="absolute z-2  h-4 w-4 top-0 right-0 mr-10 mt-10 text-white"
                             extensions="gif,jpg,jpeg,png,webp"
                             accept="image/png,image/gif,image/jpeg,image/webp"
                             name="avatar"
@@ -89,7 +89,6 @@ import { mapState } from 'vuex';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
-import EventBus from '~/_utils/Eventbus';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
@@ -115,9 +114,9 @@ export default {
 		};
 	},
 
-	mounted() {
-		EventBus.$on('open-employer-intro-modal', () => {
-			this.isActive = true;
+	created() {
+		this.$bus.$on('open-employer-intro-modal', () => {
+			this.toggle();
 		});
     },
     
@@ -134,7 +133,7 @@ export default {
         },
 
         toggle() {
-            this.isActive = false;
+            this.isActive = !this.isActive;
         }
     }
 };

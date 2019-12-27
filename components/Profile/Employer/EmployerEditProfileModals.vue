@@ -1,7 +1,7 @@
 <template>
     <div>
         <edit-values-modal />
-        <edit-company-vison-modal />
+        <edit-company-vision-modal />
         <edit-benefits-modal />
         <edit-why-us-modal />
         <edit-intro-modal />
@@ -10,7 +10,7 @@
 
 <script>
     import EditValuesModal from './EditModals/EditValuesModal';
-    import EditCompanyVisonModal from './EditModals/EditCompanyVisonModal';
+    import EditCompanyVisionModal from './EditModals/EditCompanyVisionModal';
     import EditBenefitsModal from './EditModals/EditBenefitsModal';
     import EditWhyUsModal from './EditModals/EditWhyUsModal';
     import EditIntroModal from './EditModals/EditIntroModal';
@@ -20,7 +20,7 @@
 
         components: {
             EditValuesModal,
-            EditCompanyVisonModal,
+            EditCompanyVisionModal,
             EditBenefitsModal,
             EditWhyUsModal,
             EditIntroModal

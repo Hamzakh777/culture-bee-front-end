@@ -46,7 +46,6 @@
     import { mapState } from 'vuex';
     import BaseModal from '~/components/BaseComponents/BaseModal';
     import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
-    import EventBus from '~/_utils/Eventbus';
 
     export default {
         name: 'EditWhyUsModal',
@@ -69,8 +68,8 @@
             }
         },
 
-        mounted() {
-            EventBus.$on('open-employer-why-us-modal', () => {
+        created() {
+            this.$bus.$on('open-employer-why-us-modal', () => {
                 this.isActive = true;
             });
         },
@@ -81,6 +80,11 @@
             },
             toggle() {
                 this.isActive = !this.isActive;
+            },
+
+            submit() {
+                this.toggle();
+                this.nextStep();
             }
         }
     }

@@ -10,6 +10,7 @@
     export default {
         components: {
             TheCreateAccount
-        }
+        },
+        layout: 'simple'
     }
 </script>

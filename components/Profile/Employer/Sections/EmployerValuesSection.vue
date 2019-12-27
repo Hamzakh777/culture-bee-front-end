@@ -20,7 +20,7 @@
 			</div>
             <base-edit-pen 
 				class="ml-16 text-white hover:text-yellow"
-				@click="$emit('open-employer-values-modal')"
+				@click="$bus.$emit('open-employer-values-modal')"
 			/>
 		</div>
 	</div>

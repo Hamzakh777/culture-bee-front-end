@@ -12,14 +12,19 @@
                         <div class="text-13 text-white font-D-Din tracking-tight uppercase font-bold">Name of the company</div>
                     </div>
 
-                    <div class="secondary-btn text-yellow">Edit intro</div>
+                    <div 
+                        class="secondary-btn text-yellow cursor-pointer"
+                        @click="openEditIntro"
+                    >
+                        Edit intro
+                    </div>
                 </div>
             </div>
 
             <!-- edit button -->
             <base-app-icon
                 name="edit-pen"
-                :class-list="['absolute', 'top-0', 'right-0', 'h-7', 'mt-16', 'fill-current', 'text-white', 'cursor-pointer', 'hover:text-yellow']"
+                :class-list="['absolute', 'top-0', 'right-0', 'h-7', 'mt-16', 'mr-8', 'fill-current', 'text-white', 'cursor-pointer', 'hover:text-yellow']"
             />
         </div>
         <!-- bg image -->
@@ -29,12 +34,19 @@
 
 <script>
     import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
+    import EventBus from '~/_utils/Eventbus';
 
     export default {
         name: 'EmployerHero',
 
         components: {
             BaseAppIcon
+        },
+
+        methods: {
+            openEditIntro() {
+                EventBus.$emit('open-employer-intro-modal');
+            }
         }
     }
 </script>

@@ -1,4 +1,7 @@
 const mutations = {
+    mutate(state, payload) {
+        state[payload.property] = payload.with;
+    },
     setValueTitle(state, payload) {
         state.values[payload.key].title = payload.title;
     },

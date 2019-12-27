@@ -45,7 +45,6 @@
 import { mapState, mapMutations } from 'vuex';
 import steps from './steps';
 // eslint-disable-next-line no-unused-vars
-import EventBus from '@/_utils/EventBus';
 
 export default {
 	name: 'EmployerAccountProgress',
@@ -56,6 +55,7 @@ export default {
 
 	data() {
 		return {
+			totalSteps: 6,
 			steps
 		};
 	},
@@ -68,7 +68,7 @@ export default {
 		...mapMutations('employer', ['prevStep']),
 
 		next() {
-			EventBus.$emit(
+			this.$bus.$emit(
 				this.steps[this.currentProfileCreationStep].nextEventName
 			);
 		}
