@@ -1,18 +1,30 @@
 <template>
 	<div>
 		<!-- hero section -->
-		<div class="relative md:h-100-vh bg-gray-to-black">
-			<div class="md:absolute top-0 inset-x-0 w-full px-4 bg-gray-to-black">
+		<div class="hero relative md:min-h-screen bg-gray-to-black">
+			<div class="lg:fixed z-10 top-0 inset-x-0 w-full px-4 bg-gray-to-black">
 				<div class="container mx-auto flex flex-row justify-between items-center py-6">
 					<base-logo :is-light="true" />
 					<button class="btn-yellow" v-scroll-to="'#newsletter'">Early access</button>
 				</div>
 			</div>
 			<img
-				class="object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
+				class="block lg:hidden object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
 				src="/images/splash-page/hero.png"
 				alt="cultureBee"
 			/>
+			<div
+				class="relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
+				style="height: 2000px"
+			>
+				<div 
+					class="hero-img h-screen fixed left-0 h-screen w-full bg-contain bg-no-repeat bg-center transition-all"
+					:class="{'fixed top-0 z-20': animationProgress !== 100, 'absolute bottom-0 z-1': animationProgress === 100}"
+					:style="`transform: scale(${imgScale}); transform-origin: center center;`"
+				>
+
+				</div>
+			</div>
 		</div>
 		<!-- mainling list sign up section -->
 		<div class="py-8 md:py-18 px-4" id="newsletter">
@@ -187,6 +199,7 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
+// import ZoomScroll from 'vue-zoom-scroll';
 import FooterBottom from '~/components/Footer/FooterBottom';
 import BaseLogo from '~/components/BaseComponents/BaseLogo';
 import BaseRadioButton from '~/components/BaseComponents/BaseRadioButton';
@@ -203,7 +216,8 @@ export default {
 		BaseRadioButton,
 		BaseBigInputErrorMessage,
 		BaseInputErrorMessage,
-		BaseAjaxButton
+		BaseAjaxButton,
+		// ZoomScroll
 	},
 
 	data() {
@@ -217,6 +231,8 @@ export default {
 				'wolt.png'
 			],
 			scrollHeight: 0,
+			imgScale: 1.5,
+			animationProgress: 0,
 			email: '',
 			isGdprAccepted: false,
 			isSubscribedToNewsletter: false,
@@ -236,11 +252,9 @@ export default {
 
 	mounted() {
 		if (process.browser) {
-			document.addEventListener(
-				'scroll', 
-				function() {
-                    this.scrollHeight = window.pageYOffset;
-                }
+			document.addEventListener('scroll', () => {
+					this.handleScroll();
+                }, {passive: true}
 			);
 		}
     },
@@ -271,7 +285,30 @@ export default {
 				this.isLoading = false;
 				console.error(error);
 			}
+		},
+
+		handleScroll() {
+			// get the scroll distance starting from the top of the page
+			this.scrollHeight = window.pageYOffset;
+			
+			if(this.scrollHeight <= (2000 - window.innerHeight) && this.scrollHeight !== 0) {
+				const currentScale = this.scrollHeight / (2000 - window.innerHeight) ;
+
+				this.animationProgress = currentScale;
+				this.imgScale = 1.8 - currentScale;
+			} else if(this.scrollHeight >= (2000 - window.innerHeight)) {
+				this.animationProgress = 100;
+			}
 		}
 	}
 };
 </script>
+
+<style scoped>
+.hero-img {
+	background-image: url(/images/splash-page/hero.png);
+}
+.hero >>> .zoom-scroll__content {
+	@apply bg-no-repeat;
+}
+</style>
