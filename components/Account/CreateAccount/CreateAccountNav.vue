@@ -1,11 +1,12 @@
 <template>
     <div class="flex flex-row justify-between items-center p-4">
         <BaseLogo/>
-        <button
+        <nuxt-link
             class="btn-yellow"
+            to="/login"
         >
             Sign in
-        </button>
+        </nuxt-link>
     </div>
 </template>
 
