@@ -14,7 +14,7 @@
 				alt="cultureBee"
 			/>
 			<div
-				class="relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
+				class="hidden lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
 				style="height: 2000px"
 			>
 				<div 
