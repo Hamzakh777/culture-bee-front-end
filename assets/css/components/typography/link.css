@@ -1,0 +1,3 @@
+.link {
+    @apply text-xs font-semibold text-gray-800;
+}

@@ -14,24 +14,40 @@
 				alt="culturebee logo"
 			/>
 			<!-- post update button -->
-			<button></button>
+			<button
+				class="primary-btn block w-31-%"
+			>
+				Post update
+			</button>
+
 			<div>
-				<div class="flex items-center">
+				<div class="flex items-center relative">
 					<div class="hidden lg:inline-block">
-						<nuxt-link to="#">
-							<span class="page-link">Employer</span>
-						</nuxt-link>
-						<nuxt-link to="#">
-							<span class="page-link">Location</span>
+						<nuxt-link to="jobs">
+							<span class="page-link">Jobs</span>
 						</nuxt-link>
 					</div>
 					<SearchButton />
+					
+					<!-- login button  -->
 					<nuxt-link
+						v-if="isLoggedIn"
 						class="hidden md:inline-block btn-yellow h-12-1/2"
 						to="/login"
 					>
 						Sign in
 					</nuxt-link>
+
+					<!-- name initials -->
+					<div
+						v-else
+						class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
+						@click="openUserPopup"
+					>
+						{{ nameInitials }}
+					</div>
+
+					<!-- nav burger button -->
 					<div
 						@click="toggleMobileMenu"
 						class="relative md:hidden h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
@@ -44,6 +60,9 @@
 							></div>
 						</div>
 					</div>
+
+					<!-- user popup -->
+					<the-user-popup />
 				</div>
 			</div>
 		</div>
@@ -66,10 +85,7 @@
 			<div class="flex flex-col justify-between w-full h-full">
 				<div>
 					<nuxt-link to="#">
-						<span class="page-link-mobile mb-8">Employer</span>
-					</nuxt-link>
-					<nuxt-link to="#">
-						<span class="page-link-mobile mb-6">Location</span>
+						<span class="page-link-mobile mb-6">Jobs</span>
 					</nuxt-link>
 					<nav-filters-dropdown />
 				</div>
@@ -82,17 +98,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import SearchButton from './SearchButton';
 import NavFiltersDropdown from './NavFiltersDropdown';
+import TheUserPopup from './User/TheUserPopup';
 import filters from '~/mocks/NavBar/filters';
-// import EventBus from '~/components/EventBus';
 
 export default {
 	name: 'TheNavBar',
 
 	components: {
 		SearchButton,
-		NavFiltersDropdown
+		NavFiltersDropdown,
+		TheUserPopup
+	},
+
+	computed: {
+		...mapGetters('user', ['isLoggedIn', 'nameInitials'])
 	},
 
 	data: () => ({
@@ -104,6 +126,10 @@ export default {
 		toggleMobileMenu() {
 			this.isOpen = !this.isOpen;
 			console.log('adf');
+		},
+
+		openUserPopup() {
+			this.$bus.$emit('open-navbar-user-popup');
 		}
 	}
 };
