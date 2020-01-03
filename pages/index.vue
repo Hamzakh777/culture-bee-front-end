@@ -1,7 +1,6 @@
 <template>
 	<div class="overflow-x-hidden">
 		<the-landing-page-hero />
-		<the-create-account class=""/>
 		<the-companies-section />
 		<the-blog-section />
 		<the-company-updates-section />
@@ -16,7 +15,6 @@ import TheCompaniesSection from '~/components/LandingPage/Companies/TheCompanies
 import TheBlogSection from '~/components/LandingPage/Blog/TheBlogSection';
 import TheCompanyUpdatesSection from '~/components/LandingPage/CompanyUpdates/TheCompanyUpdatesSection';
 import TheFeaturedEmployerSection from '~/components/LandingPage/FeaturedEmployer/TheFeaturedEmployerSection';
-import TheCreateAccount from '~/components/Account/CreateAccount/TheCreateAccount';
 
 export default {
 	components: {
@@ -24,8 +22,7 @@ export default {
 		TheCompaniesSection,
 		TheBlogSection,
 		TheCompanyUpdatesSection,
-		TheFeaturedEmployerSection,
-		TheCreateAccount
+		TheFeaturedEmployerSection
 	},
 
 	beforeMount () {
@@ -34,6 +31,6 @@ export default {
 			const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
 			Vue.use(VueAwesomeSwiper)
 		}
-	},
+	}
 };
 </script>

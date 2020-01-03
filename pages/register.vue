@@ -5,12 +5,22 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     import TheCreateAccount from '~/components/Account/CreateAccount/TheCreateAccount';
 
     export default {
         components: {
             TheCreateAccount
         },
-        layout: 'simple'
+
+        layout: 'simple',
+
+        beforeMount () {
+            if (process.browser) {
+                require('swiper/dist/css/swiper.css')
+                const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
+                Vue.use(VueAwesomeSwiper)
+            }
+        }
     }
 </script>
