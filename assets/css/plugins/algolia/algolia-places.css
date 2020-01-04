@@ -1,0 +1,62 @@
+/* input */
+.ap-input {
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    @apply h-auto px-6 py-3 mb-4 rounded-none border-2 border-gray-700 bg-white text-sm font-medium text-gray-900 font-semibold resize-none;
+}
+
+.ap-input:focus {
+    @apply outline-none;
+}
+
+.ap-input::placeholder {
+    @apply text-gray-900 font-semibold;
+}
+
+/* location icon */
+.ap-input-icon {
+    @apply absolute top-1/2 -transform-y-50 h-2 w-2 -mt-2;
+}
+.ap-icon-pin {
+    @apply top-1/2 bottom-auto h-5 -transform-y-50;
+}
+
+.ap-input-icon svg {
+    @apply fill-current text-blue;
+}
+
+.ap-icon-clear svg {
+    @apply fill-current text-gray-800;
+}
+
+/* result items list */
+.ap-suggestions {
+    max-height: 400px;
+    @apply overflow-y-scroll;
+}
+
+/* result item */
+.ap-suggestion {
+    @apply flex flex-row items-start h-auto;
+}
+
+.ap-suggestion-icon {
+    @apply mt-2 fill-current text-gray-800;
+}
+
+.ap-name {
+    @apply mx-1;
+}
+
+.ap-suggestion svg {
+    @apply fill-current text-gray-800;
+}
+
+.ap-suggestion.ap-cursor svg {
+    @apply fill-current text-yellow;
+}
+
+/* footer */
+.ap-footer {
+    @apply hidden;
+}

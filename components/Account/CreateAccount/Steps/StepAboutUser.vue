@@ -11,9 +11,10 @@
             <!-- location -->
             <input 
                 class="input-text"
-                type="text"
+                type="search"
+                id="address-input"
                 placeholder="Location"
-            >
+                >
             <!-- Your industry -->
             <v-select 
                 class="mb-4"
@@ -57,6 +58,18 @@
         data() {
             return {
                 industries: ['Industry 1', 'Industry 2', 'Industry 3']
+            }
+        },
+
+        mounted() {
+            if(process.browser) {
+                const places = require('places.js');
+
+                places({
+                    appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
+                    apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
+                    container: document.querySelector('#address-input')
+                });
             }
         },
 
