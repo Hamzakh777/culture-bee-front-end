@@ -1,7 +1,7 @@
 <template>
     <div
         @click="$emit('click')"
-        class="relative right-0 top-1/2 h-9 w-9 bg-yellow -transform-y-50 cursor-pointer"
+        class="relative h-8 w-8 bg-yellow cursor-pointer"
     >
         <div class="cross"></div>
     </div>
@@ -22,12 +22,12 @@
 }
 
 .cross::after {
-	width: 3px;
+	width: 2px;
 	height: 60%;
 }
 
 .cross::before {
-	height: 3px;
+	height: 2px;
 	width: 60%;
 }  
 </style>

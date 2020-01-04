@@ -23,3 +23,12 @@
 .vs__dropdown-option {
     @apply py-2 px-7 text-sm;
 }
+
+/* selected item */
+.vs__selected {
+    @apply rounded-none border-2 border-gray-800 bg-white text-sm font-semibold;
+}
+
+.vs__deselect svg {
+    @apply p-2 fill-current text-yellow;
+}

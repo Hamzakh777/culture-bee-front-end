@@ -3,7 +3,7 @@
 		<div
 			v-on-clickaway="close"
 			@mouseleave="$emit('mouse-leave')"
-			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full md:h-auto max-w-4xl z-100 bg-white overflow-y-auto"
+			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full md:h-auto max-w-4xl z-100 bg-white overflow-y-auto overflow-x-hidden"
 			:class="{ additionalClasses }"
 			style="max-height: 45rem"
 		>

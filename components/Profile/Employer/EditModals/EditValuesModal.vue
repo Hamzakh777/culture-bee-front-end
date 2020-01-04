@@ -72,7 +72,7 @@
 					/>
 					<div class="relative w-10 h-4">
 						<base-close-button
-							v-if="value.title !== '' && value.title !== null"
+							v-if="(value.title !== '' && value.title !== null) || (value.icon !== '' && value.icon !== null)"
 							@click="resetValue(key)"
 							style="height: 1.5rem; width: 1.5rem"
 						/>
@@ -148,7 +148,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('employer', ['nextStep', 'mutate']),
+		...mapMutations('employer', ['mutate', 'nextStep']),
 
 		submit() {
 			this.toggle();
@@ -160,8 +160,8 @@ export default {
 		},
 
 		resetValue(key) {
-			this.clonedValues[key].title = null;
-			this.clonedValues[key].icon = null;
+			this.clonedValues[key].title = '';
+			this.clonedValues[key].icon = '';
 		},
 
 		setActiveIconSelector(index = null) {

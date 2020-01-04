@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center md:flex-row md:justify-between">
+    <div class="flex flex-col-reverse items-center md:flex-row md:justify-between">
         <button
             class="primary-btn w-full md:w-auto mb-6 md:mb-0"
             @click.prevent="$emit('next')"

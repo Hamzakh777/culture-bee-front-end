@@ -25,20 +25,39 @@
                     class="input-text w-full h-42 py-3-1/2 resize-none"
                     placeholder="Enter up to 75 characters"
                     maxlength="75"
+                    
                 >
                 </textarea>
             </div>
 
             <!-- upload -->
-            <div class="flex justify-between items-end mb-10">
+            <div class="upload flex justify-between items-end mb-10">
                 <div class="flex items-center">
                     <div class="base-title mr-16">upload</div>
-                    <label>
-                        <img src="/profile/employer/camera.svg">
-                    </label>
+                    <client-only>
+                        <file-upload
+                            extensions="jpg,jpeg,png"
+                            accept="image/png,image/jpeg,image/jpg"
+                            :multiple="false"
+                            :size="1024 * 1024"
+                            @input-filter="inputFilter"
+                            @input-file="inputFile"
+                        >
+                            <img 
+                                class="cursor-pointer hover:opacity-75 transition-all"
+                                src="/profile/employer/camera.svg"
+                            >
+                        </file-upload>
+                    </client-only>
                 </div>
-                <div class="h-25 w-25 bg-gray-200">
-
+                <!-- the uploaded image -->
+                <div 
+                    class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
+                >
+                    <base-close-button
+                        class="top-0 right-0 mt-2 mr-2"
+                        style="position: absolute; height: 1.25rem; width: 1.25rem"
+                    />
                 </div>
             </div>
 
@@ -74,15 +93,19 @@
 
 <script>
     import { mapState, mapMutations } from 'vuex';
+    import FileUpload from 'vue-upload-component';
     import BaseModal from '~/components/BaseComponents/BaseModal';
     import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
+    import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 
     export default {
         name: 'EditBenefitsModal',
 
         components: {
             BaseModal,
-            BaseAjaxButton
+            BaseAjaxButton,
+            FileUpload,
+            BaseCloseButton
         },
 
         computed: {
@@ -114,6 +137,36 @@
                 this.currentActiveBenefit = num;
             },
 
+            inputFile(newFile, oldFile, prevent) {
+                if (newFile && !oldFile) {
+                    
+                }
+                if (!newFile && oldFile) {
+                    
+                }
+            },
+
+            inputFilter(newFile, oldFile, prevent) {
+                if (newFile && !oldFile) {
+                    if (!/\.(jpg|jpeg|png)$/i.test(newFile.name)) {
+                        this.alert('Your choice is not a picture');
+                        return prevent();
+                    }
+                }
+                if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
+                    newFile.url = '';
+                    const URL = window.URL || window.webkitURL;
+
+                    if (URL && URL.createObjectURL) {
+                        newFile.url = URL.createObjectURL(newFile.file);
+                    }
+                }
+            },
+
+            remveFile() {
+
+            },
+
             submit() {
                 this.toggle();
                 this.nextStep();
@@ -121,3 +174,8 @@
         }
     }
 </script>
+<style scoped>
+.upload >>> .file-uploads {
+    @apply cursor-pointer;
+}
+</style>

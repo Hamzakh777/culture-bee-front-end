@@ -1,4 +1,5 @@
 const state = () => ({
+	isEditing: true, 
 	currentProfileCreationStep: 1,
 	// intro
 	coverPhotoUrl: '',
