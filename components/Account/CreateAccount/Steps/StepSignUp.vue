@@ -138,21 +138,23 @@
                 this.mutate(payload);
             },
 
-            async signUp() {
+            signUp() {
                 this.$v.$touch();
-                if(this.$v.$invalid) return 
-        
-                try {
-                    const response = await this.$axios.$post('http://culture-bee-back-end.test/api/register', {
-                        name: 'test',
-                        email: 'test@test.com',
-                        password: '123413513h5lkhl'
-                    });
+                if(this.$v.$invalid) return;
 
-                    console.log(response);
-                } catch (error) {
-                    console.error(error);
-                }
+
+                this.nextStep();
+                // try {
+                //     const response = await this.$axios.$post('http://culture-bee-back-end.test/api/register', {
+                //         name: 'test',
+                //         email: 'test@test.com',
+                //         password: '123413513h5lkhl'
+                //     });
+
+                //     console.log(response);
+                // } catch (error) {
+                //     console.error(error);
+                // }
             }
         }
     }
