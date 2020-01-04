@@ -1,6 +1,8 @@
 <template>
     <div>
-        <footer-top />
+        <footer-top 
+            v-if="!isLoggedIn"
+        />
         <footer-bottom />
     </div>
 </template>
@@ -15,6 +17,10 @@
         components: {
             FooterTop,
             FooterBottom
-        }
+        },
+
+        computed: {
+            ...mapGetters('user', ['isLoggedIn'])
+        },
     }
 </script>
