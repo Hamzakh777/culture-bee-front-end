@@ -9,7 +9,7 @@
 				>
 					<div
 						class="flex items-center justify-center h-14 w-14 rounded-full border-2"
-						style="border-color: inherit"
+						style="border-color: currentColor"
 					>
 						<font-awesome-icon :icon="value.icon" class="text-8" />
 					</div>
