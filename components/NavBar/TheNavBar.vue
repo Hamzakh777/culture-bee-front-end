@@ -16,6 +16,7 @@
 			<!-- post update button -->
 			<button
 				class="primary-btn block w-31-%"
+				@click="$bus.$emit('open-post-company-update-modal')"
 			>
 				Post update
 			</button>
