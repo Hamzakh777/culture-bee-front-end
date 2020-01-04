@@ -10,7 +10,24 @@
 		>
 
 			<!-- like icon -->
-			<base-like-icon class="top-0 right-0 md:mt-8"/>
+			<base-like-icon 
+				v-if="role === 'job-seeker'"
+				class="top-0 right-0 md:mt-8"
+			/>
+
+			<!-- edit remove buttons -->
+			<div
+				v-else-if="isEditing === true"
+				class="absolute top-0 right-0 flex items-center mt-4 mr-4"
+			>
+				<base-edit-pen 
+					class="flex items-center justify-center h-8 w-8 mr-2 bg-gray-700 text-white"
+					:pen-class-list="['relative', 'h-4']"
+				/>
+				<base-close-button
+					style="height: 2rem; width: 2rem"
+				/>
+			</div>
 
 			<!-- info card -->
 			<div 
@@ -50,7 +67,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BaseLikeIcon from '~/components/BaseComponents/BaseLikeIcon';
+import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
+import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
 	name: 'CompanyUpdateCard',
@@ -64,7 +84,14 @@ export default {
     },
     
     components: {
-		BaseLikeIcon
+		BaseLikeIcon,
+		BaseCloseButton,
+		BaseEditPen
+	},
+
+	computed: {
+		...mapState('user', ['role']),
+		...mapState('employer', ['isEditing'])
 	},
 	
 	data() {
