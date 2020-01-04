@@ -46,14 +46,18 @@
                     <div class="flex flex-row items-center flex-wrap">
                         <!-- selected tags -->
                         <base-selected-option
-                            class="mr-6"
+                            class="mb-4 mr-6"
+                            v-for="(tag, index) in selectedTags"
+                            :key="index"
+                            @remove="removeTag(index)"
                         >
-                            asdlkfj;ajdflja;dsf
+                            {{ tag }}
                         </base-selected-option>
                         <!-- tags select input -->
                         <tag-select 
                             :options="tags"
                             placeholder="add tag"
+                            v-model="selectedTags"
                         />
                     </div>
                 </div>
@@ -138,6 +142,7 @@
                 ],
                 pin: false,
                 isLoading: false,
+                selectedTags: [],
                 img: null
             }
         },
@@ -183,6 +188,10 @@
                         newFile.url = URL.createObjectURL(newFile.file);
                     }
                 }
+            },
+
+            removeTag(indexToRemove) {
+                this.selectedTags = this.selectedTags.filter((tag, index) => index !== indexToRemove);
             },
 
             removeImg() {
