@@ -7,11 +7,11 @@
             class="right-0 top-0 mt-2 mr-2"
             style="height: 1.25rem; width: 1.25rem; position: absolute"
         /> 
-        <div class="mb-4 text-sm font-bold">
+        <div class="mb-2 text-sm font-bold">
             {{title}}
         </div>
         <div class="text-xs font-normal">
-
+            {{description}}
         </div>
     </div>
 </template>

@@ -14,7 +14,7 @@
                 <base-tip-box   
                     class="right-0 top-0 z-1 mt-4 mr-4"
                     title="Tip"
-                    description="Remeber to keep it real"
+                    description="Remember to keep it real"
                 />
                 <textarea 
                     class="input-text w-full h-full px-0 border-none text-base resize-none"
