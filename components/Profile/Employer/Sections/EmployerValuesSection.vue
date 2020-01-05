@@ -3,7 +3,7 @@
 		<div class="container flex items-center mx-auto">
 			<div class="flex-grow flex justify-between">
 				<div
-					v-for="(value, name, index) in values"
+					v-for="(value, name, index) in valuesToShow"
 					:key="index"
 					class="flex items-center pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
 				>
@@ -46,7 +46,22 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['values'])
+		...mapState('employer', ['values']),
+
+		valuesToShow() {
+			let data = {};
+
+			for (const key in this.values) {
+				if (this.values.hasOwnProperty(key)) {
+					const value = this.values[key];
+					if(value.title !== '' && value.title !== null) {
+						data[key] = value;
+					}
+				}
+			}
+			
+			return data;
+		}
 	}
 };
 </script>
