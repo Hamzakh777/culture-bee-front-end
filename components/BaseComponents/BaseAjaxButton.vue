@@ -1,10 +1,12 @@
 <template>
     <button
-        class="btn-yellow relative"
+        class="relative"
+        :class="{'primary-btn': !isDark, 'primary-btn primary-btn--black': isDark}"
         @click.prevent="click"
     >
         <base-loader-dots 
             class="absolute top-1/2 left-1/2 transform-center h-5"
+            :class="{'text-gray-800': !isDark, 'text-yellow': isDark}"
             v-if="isLoading"
         />
         <span 
@@ -29,6 +31,11 @@
             isLoading: {
                 type: Boolean,
                 required: true
+            },
+            isDark: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
 
