@@ -9,5 +9,13 @@
     content: '';
     height: 5px;
     z-index: -1;
-    @apply absolute bottom-0 left-0 right-0 mb-1 bg-yellow;
+    @apply absolute bottom-0 left-0 right-0 mb-1 bg-yellow transition-all;
+}
+
+.sub-title--no-underline::before {
+    opacity: 0;
+}
+
+.sub-title--no-underline:hover::before {
+    opacity: 100;
 }

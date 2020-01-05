@@ -19,7 +19,7 @@
 				</div>
 			</div>
             <base-edit-pen
-				v-if="isEditSection" 
+				v-if="isEditPage" 
 				class="ml-16 text-white hover:text-yellow"
 				@click="$bus.$emit('open-employer-values-modal')"
 			/>

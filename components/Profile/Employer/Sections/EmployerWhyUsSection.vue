@@ -1,5 +1,5 @@
 <template>
-    <div class="py-18 bg-gray-100">
+    <div class="py-18 bg-gray-100" id="why-us">
         <div class="container mx-auto">
             <div class="flex justify-between mx-auto">
                 <div class="base-title">Why us</div>
@@ -14,10 +14,13 @@
                     </div>
                 </div>
                 <!-- edit button -->
-                <base-edit-pen
-                    @click="$emit('open-the-modal-for-this-part')"
-                    class="ml-16 text-gray-800 hover:text-yellow"
-                />
+                <div class="ml-16">
+                    <base-edit-pen
+                        v-if="isEditPage"
+                        @click="$emit('open-the-modal-for-this-part')"
+                        class="text-gray-800 hover:text-yellow"
+                    />
+                </div>
             </div>
             <div class="flex items-stretch justify-between mt-16">
                 <core-value-card 

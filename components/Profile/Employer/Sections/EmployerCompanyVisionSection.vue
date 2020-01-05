@@ -1,5 +1,5 @@
 <template>
-	<div class="py-18">
+	<div class="py-18" id="vision">
 		<div class="container flex justify-between mx-auto">
 			<div class="base-title">Company vision</div>
 			<div class="max-w-4xl px-8">
@@ -8,11 +8,13 @@
 				</div>
 			</div>
 			<!-- edit button -->
-			<base-edit-pen
-				v-if="isEditPage"
-				@click="edit"
-				class="ml-16 text-gray-800 hover:text-yellow"
-			/>
+			<div class="ml-16">
+				<base-edit-pen
+					v-if="isEditPage"
+					@click="edit"
+					class="text-gray-800 hover:text-yellow"
+				/>
+			</div>
 		</div>
 	</div>
 </template>

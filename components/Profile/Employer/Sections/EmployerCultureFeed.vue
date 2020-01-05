@@ -1,5 +1,5 @@
 <template>
-    <div class="py-18">
+    <div class="py-18" id="updates">
         <div class="container mx-auto">
             <div class="flex items-center justify-between">
                 <div class="base-title">Company feed</div>
@@ -34,7 +34,14 @@
     import CompanyUpdateCard from '~/components/Companies/CompanyUpdateCard';
 
     export default {
-        name: 'EmployerCultureFeed',
+		name: 'EmployerCultureFeed',
+		
+		props: {
+			isEditPage: {
+				type: Boolean,
+				required: true
+			}
+		},
 
         components: {
             CompanyUpdateCard

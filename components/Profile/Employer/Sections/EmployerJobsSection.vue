@@ -1,11 +1,12 @@
 <template>
-    <div class="py-18">
+    <div class="py-18" id="jobs">
         <div class="container mx-auto">
             <div class="flex items-center justify-between">
                 <div class="base-title">
                     latest jobs
                 </div>
                 <button
+                    v-if="isEditPage"
                     class="primary-btn"
                 >
                     Edit jobs

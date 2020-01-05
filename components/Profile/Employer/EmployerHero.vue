@@ -38,6 +38,14 @@
     export default {
         name: 'EmployerHero',
 
+        props: {
+            isEdit: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        },
+
         components: {
             BaseAppIcon
         },
