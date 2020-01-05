@@ -31,7 +31,9 @@
                     </nuxt-link>
                 </div>
             </div>
-            <nuxt />
+            <div class="flex-grow">
+                <nuxt />
+            </div>
         </div>
         <the-footer />
         <company-update-modal />
