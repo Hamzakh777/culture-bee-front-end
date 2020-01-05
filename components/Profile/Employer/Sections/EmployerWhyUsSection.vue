@@ -38,6 +38,13 @@
     export default {
         name: 'EmployerWhyUsSection',
 
+        props: {
+            isEditPage: {
+                type: Boolean,
+                required: true
+            }
+        },
+
         components: {
             BaseEditPen,
             CoreValueCard

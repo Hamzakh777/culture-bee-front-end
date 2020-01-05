@@ -51,7 +51,6 @@
     import StepsNav from './StepsNav';
     import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
-
     export default {
         name: 'StepProfileDetails',
 

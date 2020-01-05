@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<employer-values-section   />
-		<employer-company-vision-section   />
-		<employer-culture-feed   />
-		<employer-why-us-section   />
-		<employer-benefits-section   />
-		<employer-jobs-section />
+		<employer-values-section :is-edit-page="isEditPage" />
+		<employer-company-vision-section  :is-edit-page="isEditPage" />
+		<employer-culture-feed  :is-edit-page="isEditPage" />
+		<employer-why-us-section  :is-edit-page="isEditPage" />
+		<employer-benefits-section  :is-edit-page="isEditPage" />
+		<employer-jobs-section :is-edit-page="isEditPage" />
 	</div>
 </template>
 
@@ -20,6 +20,14 @@ import EmployerJobsSection from './Sections/EmployerJobsSection';
 
 export default {
 	name: 'EmployerProfileSections',
+
+	props: {
+		isEditPage: {
+			type: Boolean,
+			required: false,
+			default: false
+		}
+	},
 
 	components: {
 		EmployerValuesSection,

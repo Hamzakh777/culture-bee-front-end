@@ -17,6 +17,13 @@
     export default {
         name: 'EmployerBenefitsSection',
 
+        props: {
+            isEditPage: {
+                type: Boolean,
+                required: true
+            }
+        },
+
         components: {
             BenefitCard
         }

@@ -9,6 +9,7 @@
 			</div>
 			<!-- edit button -->
 			<base-edit-pen
+				v-if="isEditPage"
 				@click="edit"
 				class="ml-16 text-gray-800 hover:text-yellow"
 			/>
@@ -23,6 +24,13 @@ import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
 	name: 'EmployerCompanyVisionSection',
+
+	props: {
+		isEditPage: {
+			type: Boolean,
+			required: true
+		}
+	},
 
 	components: {
         BaseSplitedParagraphs,

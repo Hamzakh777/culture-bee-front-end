@@ -14,7 +14,7 @@
                 type="search"
                 id="address-input"
                 placeholder="Location"
-                >
+            >
             <!-- Your industry -->
             <v-select 
                 class="mb-4"

@@ -25,6 +25,13 @@
     export default {
         name: 'EmployerJobsSection',
 
+        props: {
+            isEditPage: {
+                type: Boolean,
+                required: true
+            }
+        },
+
         components: {
             JobCard
         }

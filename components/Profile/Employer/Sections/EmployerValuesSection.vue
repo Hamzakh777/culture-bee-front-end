@@ -18,7 +18,8 @@
 					</div>
 				</div>
 			</div>
-            <base-edit-pen 
+            <base-edit-pen
+				v-if="isEditSection" 
 				class="ml-16 text-white hover:text-yellow"
 				@click="$bus.$emit('open-employer-values-modal')"
 			/>
@@ -32,6 +33,13 @@ import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
 	name: 'EmployerValuesSection',
+
+	props: {
+		isEditPage: {
+			type: Boolean,
+			required: true
+		}
+	},
 
 	components: {
 		BaseEditPen

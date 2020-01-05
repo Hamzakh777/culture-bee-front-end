@@ -4,8 +4,9 @@
             <div class="flex items-center justify-between">
                 <div class="base-title">Company feed</div>
                 <button
+					v-if="isEditPage"
                     class="primary-btn"
-                    @click="$emit('open-modal-to-add-new-update')"
+                    @click="$emit('open-post-company-update-modal')"
                 >
                     Post update
                 </button>
