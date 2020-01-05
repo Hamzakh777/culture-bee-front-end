@@ -50,18 +50,21 @@
 <script>
     import {required, minLength, sameAs} from 'vuelidate/lib/validators';
     import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
+    import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
     export default {
         layout: 'accountDetails',
 
         components: {
-            BaseAjaxButton
+            BaseAjaxButton,
+            BaseInputErrorMessage
         },
 
         data() {
             return {
                 currentPassword: '',
-                newPassword: ''
+                newPassword: '',
+                isLoading: false
             }
         },
 
@@ -76,7 +79,7 @@
         },
 
         methods: {
-            updated() {
+            update() {
                 this.$v.$touch();
 
                 if(!this.$v.$invalid) {
