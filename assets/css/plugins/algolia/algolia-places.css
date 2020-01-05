@@ -13,10 +13,12 @@
     @apply text-gray-900 font-semibold;
 }
 
+
 /* location icon */
 .ap-input-icon {
     @apply absolute top-1/2 -transform-y-50 h-2 w-2 -mt-2;
 }
+
 .ap-icon-pin {
     @apply top-1/2 bottom-auto h-5 -transform-y-50;
 }
@@ -27,6 +29,12 @@
 
 .ap-icon-clear svg {
     @apply fill-current text-gray-800;
+}
+
+@media(min-width: 1024px) {
+   .ap-input-icon {
+        @apply -mt-4;
+    } 
 }
 
 /* result items list */
