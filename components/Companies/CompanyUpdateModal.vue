@@ -55,6 +55,7 @@
                         </base-selected-option>
                         <!-- tags select input -->
                         <tag-select 
+                            v-if="selectedTags.length !== 3"
                             :options="tags"
                             placeholder="add tag"
                             v-model="selectedTags"
