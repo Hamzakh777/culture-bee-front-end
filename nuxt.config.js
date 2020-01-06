@@ -107,7 +107,17 @@ export default {
 			'md:w-31-%',
 			'md:w-40-%',
 			'md:w-45-%',
-			'swiper-button-disabled'
+			'swiper-button-disabled',
+			'vs--single',
+			'vs--searchable',
+			'vs__dropdown-toggle',
+			'vs__selected-options',
+			'vs__search',
+			'vs__actions',
+			'vs__open-indicator',
+			'vs__spinner',
+			'vs__clear',
+			'v-select'
 		],
 		extractors: [
 			{
