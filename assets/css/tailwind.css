@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 @import './components/btn-yellow.css';
 @import './components/section-title.css';
 @import './components/input-text.css';
@@ -8,6 +9,7 @@
 @import './components/base-title.css';
 @import './components/typography/main.css';
 @import './plugins/main.css';
+/* purgecss end ignore */
 
 @tailwind base;
 
