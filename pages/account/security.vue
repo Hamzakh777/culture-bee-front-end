@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import {required, minLength, sameAs} from 'vuelidate/lib/validators';
+    import {required, minLength} from 'vuelidate/lib/validators';
     import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
     import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 

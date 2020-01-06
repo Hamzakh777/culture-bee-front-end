@@ -11,7 +11,7 @@
         props: {
             errorType: {
                 type: String,
-                required: true
+                required: false
             },
             customMessage: {
                 type: String,

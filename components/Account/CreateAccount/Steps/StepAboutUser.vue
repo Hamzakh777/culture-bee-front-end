@@ -1,99 +1,157 @@
 <template>
-    <div class="py-8">
-        <div class="mb-4">
-            <!-- company name -->
-            <input 
-                v-if="userType === 'employer'"
-                class="input-text"
-                type="text"
-                placeholder="Company name"
-            >
-            <!-- location -->
-            <input 
-                class="input-text"
-                type="search"
-                id="address-input"
-                placeholder="Location"
-            >
-            <!-- Your industry -->
-            <v-select 
-                class="mb-4"
-                :value="industry"
-                @input="mutateStoreProp('industry', $event)"
-                :options="industries"
-                placeholder="Your industry"
-            />
-            <!-- your skills -->
-            <v-select 
-                v-if="userType === 'job-seeker'"
-                placeholder="Your skills" 
-                :options="['skill 1', 'skill 2']"
-                multiple
-            />
-        </div>
-        <steps-nav 
-            :is-last-step="true"
-            @prev="previousStep"
-        />
-    </div>
+	<div class="py-8">
+		<div class="mb-4">
+			<!-- company name -->
+			<input
+				v-if="userType === 'employer'"
+				class="input-text"
+				type="text"
+				placeholder="Company name"
+				:value="companyName"
+				@input="setStoreProp('companyName', $event.target.value)"
+			/>
+			<div v-if="userType === 'employer'">
+				<base-input-error-message
+					v-if="$v.companyName.$error"
+					:error-type="'required'"
+				/>
+			</div>
+			<!-- location -->
+			<input
+				class="input-text"
+				type="search"
+				id="address-input"
+				placeholder="Location"
+				:value="location"
+				@input="setStoreProp('location', $event.target.value)"
+			/>
+			<!-- Your industry -->
+			<v-select
+				class="mb-4"
+				:value="industry"
+				@input="setStoreProp('industry', $event.Description)"
+				:options="industries"
+				:max-height="'250px'"
+				label="Description"
+				placeholder="Your industry"
+			/>
+			<base-input-error-message
+				v-if="$v.industry.$error"
+				:error-type="'required'"
+			/>
+			<!-- your skills -->
+			<v-select
+				v-if="userType === 'job-seeker'"
+				placeholder="Your skills"
+				:options="['skill 1', 'skill 2']"
+				multiple
+				@input="setStoreProp('skills', $event)"
+			/>
+		</div>
+		<steps-nav :is-last-step="true" @prev="previousStep" @next="submit" />
+	</div>
 </template>
 
 <script>
-    import {mapState, mapMutations} from 'vuex';
-    import vSelect from 'vue-select';
-    import StepsNav from './StepsNav';
+import { mapState, mapMutations, mapActions } from 'vuex';
+import { required } from 'vuelidate/lib/validators';
+import vSelect from 'vue-select';
+import StepsNav from './StepsNav';
+import industries from '~/assets/data/account/industries';
+import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
+import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
-    export default {
-        name: 'StepAboutUser',
+export default {
+	name: 'StepAboutUser',
 
-        components: {
-            vSelect,
-            StepsNav
-        },
+	mixins: [mutateStorePropMixin],
 
-        computed: {
-            ...mapState('account', ['userType', 'industry'])
-        },
+	components: {
+		vSelect,
+		StepsNav,
+		BaseInputErrorMessage
+	},
 
-        data() {
-            return {
-                industries: ['Industry 1', 'Industry 2', 'Industry 3']
-            }
-        },
+	computed: {
+		...mapState('account', [
+			'userType',
+			'industry',
+			'companyName',
+			'skills',
+			'location'
+		])
+	},
 
-        mounted() {
-            if(process.browser) {
-                const places = require('places.js');
+	data() {
+		return {
+			industries,
+			placesInstance: null
+		};
+	},
 
-                places({
-                    appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
-                    apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
-                    container: document.querySelector('#address-input')
-                });
-            }
-        },
+	validations() {
+		if (this.userType === 'job-seeker') {
+			return {
+				industry: {
+					required
+				}
+			};
+		} else {
+			return {
+				industry: {
+					required
+				},
+				companyName: {
+					require
+				}
+			};
+		}
+	},
 
-        methods: {
-            ...mapMutations('account', ['mutate', 'previousStep']),
+	mounted() {
+		if (process.browser) {
+			const places = require('places.js');
 
-            /**
-             * Mutate a property in the store
-             * @param {String} - the name of property
-             * @param {*} - the value of the property
-             */
-            mutateStoreProp(name, value) {
-                const payload = {
-                    property: name,
-                    with: value
-                };
+			this.placesInstance = places({
+				appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
+				apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
+				container: document.querySelector('#address-input')
+			});
 
-                this.mutate(payload);
-            }
-        }
-    }
+			this.placesInstance.on('change', e => {
+				this.setStoreProp('location', e.suggestion.value);
+			});
+		}
+	},
+
+	methods: {
+		...mapMutations('account', ['mutate', 'previousStep']),
+		...mapActions('account', ['update']),
+
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
+
+		async submit() {
+			this.$v.$touch();
+			if (this.$v.$invalid) return;
+
+			this.toggleLoader();
+			try {
+				const response = await this.update();
+
+				console.log(response);
+				this.toggleLoader();
+			} catch (error) {
+				console.error(error);
+				this.toggleLoader();
+			}
+		}
+	}
+};
 </script>
 <style scoped>
 .input-text {
-    @apply mb-4 w-full;
+	@apply mb-4 w-full;
 }
 </style>

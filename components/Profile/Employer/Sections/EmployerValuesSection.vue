@@ -49,7 +49,7 @@ export default {
 		...mapState('employer', ['values']),
 
 		valuesToShow() {
-			let data = {};
+			const data = {};
 
 			for (const key in this.values) {
 				if (this.values.hasOwnProperty(key)) {

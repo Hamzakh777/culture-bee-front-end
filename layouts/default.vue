@@ -7,15 +7,27 @@
 	</div>
 </template>
 <script>
+import {mapMutations} from 'vuex';
 import TheNavBar from '@/components/NavBar/TheNavBar';
 import TheFooter from '@/components/Footer/TheFooter';
 import CompanyUpdateModal from '@/components/Companies/CompanyUpdateModal';
 
 export default {
+    
     components: {
         TheNavBar,
         TheFooter,
         CompanyUpdateModal
+    },
+
+    created() {
+        if(process.browser) {
+            this.retrieveToken();
+        }
+    },
+
+    methods: {
+        ...mapMutations('account', ['retrieveToken'])
     }
 };
 </script>

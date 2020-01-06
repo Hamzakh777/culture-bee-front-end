@@ -154,8 +154,7 @@
                 });
 
                 this.placesInstance.on('change', e => {
-                    console.log(e.value);
-                    this.setStoreProp('location', e.value);
+                    this.setStoreProp('location', e.suggestion.value);
                 })
             }
         },

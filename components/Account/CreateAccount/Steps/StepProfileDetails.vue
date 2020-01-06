@@ -3,7 +3,7 @@
         <div class="flex items-end mb-6">
             <div 
                 class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-yellow bg-center bg-cover bg-no-repeat"
-                :style="'background-image: url(' + (img !== null ? img.url : '/images/global/icons/smile-face.png') + '); background-size:' + (img !== null ? 'cover' : '90% 90%') "
+                :style="'background-image: url(' + (profileImgFile !== null ? profileImgFile.url : '/images/global/icons/smile-face.png') + '); background-size:' + (profileImgFile !== null ? 'cover' : '90% 90%') "
             >
             </div>
             <file-upload
@@ -11,7 +11,6 @@
                 extensions="gif,jpg,jpeg,png,webp"
                 accept="image/png,image/gif,image/jpeg,image/webp"
                 name="avatar"
-                v-model="files"
                 @input-file="inputFile"
                 ref="upload"
             >
@@ -44,7 +43,7 @@
 
 <script>
     import {required, minLength} from 'vuelidate/lib/validators';
-    import { mapState, mapMutations } from 'vuex';
+    import { mapState, mapMutations, mapActions } from 'vuex';
     import FileUpload from 'vue-upload-component';
     import StepsNav from './StepsNav';
     import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
@@ -59,7 +58,7 @@
         },
 
         computed: {
-            ...mapState('account', ['name'])
+            ...mapState('account', ['name', 'profileImgFile'])
         },
 
         validations: {
@@ -71,13 +70,13 @@
 
         data() {
             return {
-                img: null,
                 isLoading: false
             }
         },
 
         methods: {
             ...mapMutations('account', ['mutate', 'nextStep', 'previousStep']),
+            ...mapActions('account', ['update']),
 
             toggleLoader() {
                 this.isLoading = !this.isLoading;
@@ -90,7 +89,11 @@
                     if (URL && URL.createObjectURL) {
                         newFile.url = URL.createObjectURL(newFile.file);
                     }
-                    this.img = newFile;
+                    const payload = {
+                        property: 'profileImgFile',
+                        with: newFile
+                    }
+                    this.mutate(payload);
                 }
             },
 
@@ -107,19 +110,15 @@
                 this.$v.$touch();
                 if(this.$v.$invalid) return ;
                 
-                this.nextStep();
                 this.toggleLoader();
                 try {
-                    // we have to use the formData api to be able to upload files
-                    let formData = new FormData();
+                    const response = await this.update();
 
-                    formData.append('name', this.name);
-                    formData.append('profileImgFile', this.img.file);
-
-                    const response = await this.$axios.put('api/profile', formData);
                     console.log(response);
                     this.toggleLoader();
+                    this.nextStep();
                 } catch (error) {
+                    this.toggleLoader();
                     alert(error);
                 }
             }

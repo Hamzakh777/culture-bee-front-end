@@ -4,7 +4,10 @@ const state = () => ({
 	email: '',
 	industry: '',
 	name: '',
-	profileImgUrl: ''
+	skills: [],
+	profileImgUrl: '',
+	profileImgFile: null,
+	companyName: ''
 });
 
 export default state;
