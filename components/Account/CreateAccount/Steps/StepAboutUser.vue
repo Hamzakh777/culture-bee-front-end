@@ -52,7 +52,7 @@
         },
 
         computed: {
-            ...mapState('account/create', ['userType', 'industry'])
+            ...mapState('account', ['userType', 'industry'])
         },
 
         data() {
@@ -74,7 +74,7 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate', 'previousStep']),
+            ...mapMutations('account', ['mutate', 'previousStep']),
 
             /**
              * Mutate a property in the store

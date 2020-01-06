@@ -42,7 +42,7 @@
         },
 
         computed: {
-            ...mapState('account/create', ['currentStep'])
+            ...mapState('account', ['currentStep'])
         },
 
         data() {

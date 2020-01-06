@@ -1,6 +1,5 @@
 <template>
     <div class="py-12">
-
         <input 
             class="input-text"
             type="email"
@@ -15,6 +14,10 @@
         <base-input-error-message 
             v-if="!$v.email.email && $v.email.$error"
             :error-type="'email'"
+        />
+        <base-input-error-message 
+            v-if="isEmailAlreadyInUse"
+            custom-message='Email is already in use'
         />
         <!-- password -->
         <input 
@@ -63,12 +66,13 @@
         </div>
         <!-- sign up button -->
         <div class="flex flex-col items-center md:flex-row-reverse md:justify-between">
-            <button
+            <base-ajax-button
                 class="primary-btn w-full md:w-auto mb-6 md:mb-0"
-                @click.prevent="signUp"
+                @click="signUp"
+                :is-loading="isLoading"
             >
                 Sign up
-            </button>
+            </base-ajax-button>
             <button
                 class="secondary-btn"
                 @click.prevent="previousStep"
@@ -84,6 +88,7 @@
     import {required, email, minLength, sameAs} from 'vuelidate/lib/validators';
     import BaseRadioButton from '../../../BaseComponents/BaseRadioButton';
     import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
+    import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 
 
     export default {
@@ -91,11 +96,12 @@
 
         components: {
             BaseRadioButton,
-            BaseInputErrorMessage
+            BaseInputErrorMessage,
+            BaseAjaxButton
         },
 
         computed: {
-            ...mapState('account/create', ['email'])
+            ...mapState('account', ['email', 'userType'])
         },
 
         validations: {
@@ -119,12 +125,14 @@
             return {
                 password: null,
                 repeatPassword: null,
-                acceptTermsAndPrivacyUse: false
+                acceptTermsAndPrivacyUse: false,
+                isLoading: false,
+                isEmailAlreadyInUse: false
             }
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate', 'nextStep', 'previousStep']),
+            ...mapMutations('account', ['mutate', 'nextStep', 'previousStep', 'setToken']),
             /**
              * @param {String} property - the property to mutate in the store
              * @param {*} value - the mutated property new value
@@ -138,23 +146,42 @@
                 this.mutate(payload);
             },
 
-            signUp() {
+            toggleLoader() {
+                this.isLoading = !this.isLoading;
+            },
+
+            async signUp() {
                 this.$v.$touch();
                 if(this.$v.$invalid) return;
 
+                try {
+                    const body = {
+                        email: this.email,
+                        password: this.password,
+                        password_confirmation: this.repeatPassword,
+                        role: this.userType
+                    };
+                    const response = await this.$axios.post('https://culture-bee-back-end.test/api/register', body);
 
-                this.nextStep();
-                // try {
-                //     const response = await this.$axios.$post('http://culture-bee-back-end.test/api/register', {
-                //         name: 'test',
-                //         email: 'test@test.com',
-                //         password: '123413513h5lkhl'
-                //     });
+                    this.toggleLoader();
 
-                //     console.log(response);
-                // } catch (error) {
-                //     console.error(error);
-                // }
+                    if(response.data.original !== undefined){ 
+                        this.isEmailAlreadyInUse = true;
+                        setTimeout(() => {
+                            this.isEmailAlreadyInUse = false;
+                        }, 5000);
+                        this.toggleLoader();
+                    } else { 
+                        const token = response.data.access_token;
+                        this.$axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+                        this.toggleLoader();
+                        this.setToken(token);
+                        this.nextStep();
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
     }

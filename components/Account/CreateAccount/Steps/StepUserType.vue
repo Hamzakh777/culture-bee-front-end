@@ -36,7 +36,7 @@
         },
 
         computed: {
-            ...mapState('account/create', ['userType'])
+            ...mapState('account', ['userType'])
         },
 
         data() {
@@ -61,7 +61,7 @@
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate', 'nextStep']),
+            ...mapMutations('account', ['mutate', 'nextStep']),
 
             /**
              * @param {String} type

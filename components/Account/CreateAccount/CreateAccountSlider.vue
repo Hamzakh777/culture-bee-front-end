@@ -104,7 +104,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account/create', ['currentStep', 'userType'])
+		...mapState('account', ['currentStep', 'userType'])
 	},
 
 	data() {

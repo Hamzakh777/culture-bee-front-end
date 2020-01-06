@@ -1,6 +1,6 @@
 <template>
     <div class="mb-2 -mt-2 px-4 text-xs text-pink-500">
-        {{ errorType === 'custom' ? customMessage : messages[errorType] }}
+        {{ customMessage !== '' ? customMessage : messages[errorType] }}
     </div>
 </template>
 

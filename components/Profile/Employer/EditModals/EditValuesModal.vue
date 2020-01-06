@@ -117,8 +117,8 @@ export default {
 					with: newVal
 				};
 
-				console.log(payload);
-				// this.mutate(payload);
+				// console.log(payload);
+				this.mutate(payload);
 			},
 
 			deep: true
@@ -151,8 +151,8 @@ export default {
 		...mapMutations('employer', ['mutate', 'nextStep']),
 
 		submit() {
-			this.toggle();
-			this.nextStep();
+			// this.toggle();
+			// this.nextStep();
 		},
 
 		toggle() {

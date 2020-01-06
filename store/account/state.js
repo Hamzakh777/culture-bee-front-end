@@ -1,5 +1,9 @@
 const state = () => ({
-	test: 1
+	currentStep: 1,
+	userType: 'job-seeker', // employer - job-seeker
+	email: '',
+	industry: '',
+	name: ''
 });
 
 export default state;
