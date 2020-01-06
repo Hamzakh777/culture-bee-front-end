@@ -10,7 +10,9 @@
 		>
 
 			<!-- like icon -->
-			<base-like-icon class="top-0 right-0 md:mt-8"/>
+			<base-like-icon 
+				class="top-0 right-0 md:mt-8"
+			/>
 
 			<!-- company logo -->
 			<div 

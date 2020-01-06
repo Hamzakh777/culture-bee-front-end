@@ -16,14 +16,15 @@
 				<company-update-card 
 					class="hidden md:block"
 					size="big"
+					:is-edit-page="isEditPage"
 				/>
 				<div>
-					<company-update-card />
-					<company-update-card :size="'medium'"/>
+					<company-update-card :is-edit-page="isEditPage" />
+					<company-update-card :is-edit-page="isEditPage" :size="'medium'"/>
 				</div>
 				<div>
-					<company-update-card :size="'medium'"/>
-					<company-update-card />
+					<company-update-card :is-edit-page="isEditPage" :size="'medium'"/>
+					<company-update-card :is-edit-page="isEditPage" />
 				</div>
 			</div>
         </div>

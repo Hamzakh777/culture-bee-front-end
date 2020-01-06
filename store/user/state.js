@@ -2,7 +2,7 @@ const state = () => ({
 	id: 1,
 	name: 'test test',
 	role: 'employer',
-	location: '',
+	location: 'S17, London',
 	companyName: '',
 	industry: '',
 	profileImgUrl: null,

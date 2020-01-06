@@ -1,5 +1,6 @@
 <template>
     <svgicon
+        @click="$emit('click')"
         :class="classList"
         :name="name"
     >

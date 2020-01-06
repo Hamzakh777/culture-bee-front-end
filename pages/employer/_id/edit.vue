@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<employer-hero />
+		<employer-hero :is-edit-page="true"/>
 		<div class="container mx-auto py-10">
 			<employer-account-progress />
 		</div>
-		<employer-profile-sections />
+		<employer-profile-sections :is-edit-page="true" />
 		<employer-edit-profile-modals /> 
 	</div>
 </template>

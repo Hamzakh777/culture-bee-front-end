@@ -1,7 +1,10 @@
 <template>
     <div class="relative h-118 w-31-% bg-gray-200 bg-center bg-cover bg-no-repeat">
         <div class="flex flex-col justify-between relative z-1 h-full w-full">
-            <div class="flex justify-end mt-6 mr-6">
+            <div 
+                v-if="isEditPage"
+                class="flex justify-end mt-6 mr-6"
+            >
                 <!-- emit the id too -->
                 <base-edit-pen 
                     class="h-9 w-9 mr-4 bg-gray-800 text-white hover:text-yellow text-yello"
@@ -12,6 +15,7 @@
                     @click="$emit('remove-the-benefit')"
                 />
             </div>
+            <div v-else></div>
             <div class="px-8 py-10 text-white">
                 <!-- title -->
                 <div class="font-D-Din text-5xl font-bold uppercase">
@@ -35,6 +39,14 @@
 
     export default {
         name: 'BenefitCard',
+
+        props: {
+            isEditPage: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        },
         
         components: {
             BaseCloseButton,

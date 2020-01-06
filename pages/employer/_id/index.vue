@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<employer-hero :is-edit="false"/>
+		<employer-hero :is-edit-page="false"/>
 		<employer-profile-sections />
 	</div>
 </template>

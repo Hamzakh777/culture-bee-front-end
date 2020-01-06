@@ -5,8 +5,8 @@ const state = () => ({
 	coverPhotoUrl: '',
 	companyLogoUrl: '',
 	companyName: '',
-	quickPitch: '',
-	location: '',
+	quickPitch: 'Funky fresh sustainable wears for people who cares',
+	totalJobs: 16,
 	values: {
 		1: {
 			icon: 'seedling',

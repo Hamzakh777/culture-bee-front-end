@@ -5,7 +5,7 @@
                 Benefits
             </div>
             <div class="flex justify-between flex-wrap mt-12">
-                <benefit-card />
+                <benefit-card :is-edit-page="isEditPage" />
             </div>
         </div>
     </div>

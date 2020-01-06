@@ -11,13 +11,13 @@
 
 			<!-- like icon -->
 			<base-like-icon 
-				v-if="role === 'job-seeker'"
+				v-if="!isEditPage"
 				class="top-0 right-0 md:mt-8"
 			/>
 
 			<!-- edit remove buttons -->
 			<div
-				v-else-if="isEditing === true"
+				v-else-if="isEditing === true && isEditPage === true"
 				class="absolute top-0 right-0 flex items-center mt-4 mr-4"
 			>
 				<base-edit-pen 
@@ -80,7 +80,12 @@ export default {
 			type: String,
 			required: false,
 			default: 'small'
-        }
+		},
+		isEditPage: {
+			type: Boolean,
+			required: false,
+			default: false
+		}
     },
     
     components: {
