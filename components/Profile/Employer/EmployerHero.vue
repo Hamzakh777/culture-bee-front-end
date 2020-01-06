@@ -1,7 +1,7 @@
 <template>
 	<div class="relative h-138 bg-gray-to-black">
 		<div class="container flex items-end relative z-1 h-full py-12 mx-auto">
-			<div class="flex items-stretch">
+			<div class="flex items-stretch w-full">
 				<!-- logo -->
 				<div class="flex items-center h-45 w-45 p-5 bg-white"></div>
 				<!-- company info -->
@@ -60,6 +60,12 @@
 				name="edit-pen"
                 @click="openEditIntro"
 			/>
+
+            <!-- follow button -->
+            <base-follow-button 
+                v-if="!isEditPage"
+                class="absolute bottom-0 right-0"
+            />
 		</div>
 		<!-- bg image -->
 		<div class="absolute inset-0 z-0"></div>
@@ -69,12 +75,14 @@
 <script>
 import { mapState } from 'vuex';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
+import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
 export default {
 	name: 'EmployerHero',
 
 	components: {
-		BaseAppIcon
+        BaseAppIcon,
+        BaseFollowButton
 	},
 
 	props: {
