@@ -154,6 +154,7 @@
                 this.$v.$touch();
                 if(this.$v.$invalid) return;
 
+                this.toggleLoader();
                 try {
                     const body = {
                         email: this.email,
@@ -161,7 +162,7 @@
                         password_confirmation: this.repeatPassword,
                         role: this.userType
                     };
-                    const response = await this.$axios.post('https://culture-bee-back-end.test/api/register', body);
+                    const response = await this.$axios.post('api/register', body);
 
                     this.toggleLoader();
 
@@ -170,17 +171,17 @@
                         setTimeout(() => {
                             this.isEmailAlreadyInUse = false;
                         }, 5000);
-                        this.toggleLoader();
                     } else { 
+                        // adding the authorization header for future requests
+                        
                         const token = response.data.access_token;
                         this.$axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
-                        this.toggleLoader();
                         this.setToken(token);
                         this.nextStep();
                     }
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             }
         }

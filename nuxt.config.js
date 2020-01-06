@@ -69,18 +69,18 @@ export default {
 	 ** See https://axios.nuxtjs.org/options
 	 */
 	axios: {
-		baseURL: process.env.API_URL,
+		baseURL: 'https://culture-bee-back-end.test/',
 		proxy: false,
 		common: {
 			Accept: 'application/json, text/plain, */*'
 		}
 	},
-	proxy: {
-		'/api': {
-			target: process.env.NODE_ENV === 'development'
-				? 'http://127.0.0.1:8000/'
-				: 'https://culture-bee-back-end.herokuapp.com/', pathRewrite: {'^/api/': '/api/'} }
-	},
+	// proxy: {
+	// 	'/api': {
+	// 		target: process.env.NODE_ENV === 'development'
+	// 			? 'http://127.0.0.1:8000/'
+	// 			: 'https://culture-bee-back-end.herokuapp.com/', pathRewrite: {'^/api/': '/api/'} }
+	// },
 
 	/*
 	 ** Build configuration

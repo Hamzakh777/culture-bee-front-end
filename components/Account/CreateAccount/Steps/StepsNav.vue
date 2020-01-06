@@ -1,24 +1,31 @@
 <template>
     <div class="flex flex-col-reverse items-center md:flex-row md:justify-between">
         <button
-            class="primary-btn w-full md:w-auto mb-6 md:mb-0"
-            @click.prevent="$emit('next')"
-        >
-            {{ isLastStep ? 'Finish' : 'Next' }}
-        </button>
-        <button
             v-if="!noPrev"
             class="secondary-btn"
             @click.prevent="$emit('prev')"
         >
             Back
         </button>
+        <base-ajax-button
+            class="primary-btn w-full md:w-auto mb-6 md:mb-0"
+            @click="$emit('next')"
+            :is-loading="isLoading"
+        >
+            {{ isLastStep ? 'Finish' : 'Next' }}
+        </base-ajax-button>
     </div>
 </template>
 
 <script>
+    import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
+
     export default {
         name: 'StepsNav',
+
+        components: {
+            BaseAjaxButton
+        },
 
         props: {
             isLastStep: {
@@ -27,6 +34,11 @@
             },
             noPrev: {
                 type: Boolean,
+                default: false
+            },
+            isLoading: {
+                type: Boolean,
+                required: false,
                 default: false
             }
         }

@@ -3,11 +3,8 @@
         <div class="flex items-end mb-6">
             <div 
                 class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-yellow bg-center bg-cover bg-no-repeat"
-                :style="'background-image: url(' + (files.length ? files[0].url : '/images/global/icons/smile-face.png') + '); background-size:' + (files.length ? 'cover' : '90% 90%') "
+                :style="'background-image: url(' + (img !== null ? img.url : '/images/global/icons/smile-face.png') + '); background-size:' + (img !== null ? 'cover' : '90% 90%') "
             >
-                <!-- <img 
-                    :src="files.length ? files[0].url : '/images/global/icons/smile-face.png'"
-                > -->
             </div>
             <file-upload
                 class="relative ml-4 font-medium text-gray-800 cursor-pointer underline"
@@ -38,8 +35,9 @@
             :custom-message="'A name min length is 3'"
         />
         <steps-nav
-            @next="validate"
+            @next="submit"
             :no-prev="true"
+            :is-loading="isLoading"
         />
     </div>
 </template>
@@ -61,7 +59,7 @@
         },
 
         computed: {
-            ...mapState('account/create', ['name'])
+            ...mapState('account', ['name'])
         },
 
         validations: {
@@ -73,12 +71,17 @@
 
         data() {
             return {
-                files: []
+                img: null,
+                isLoading: false
             }
         },
 
         methods: {
-            ...mapMutations('account/create', ['mutate', 'nextStep', 'previousStep']),
+            ...mapMutations('account', ['mutate', 'nextStep', 'previousStep']),
+
+            toggleLoader() {
+                this.isLoading = !this.isLoading;
+            },
 
             inputFile(newFile, oldFile) {
                 if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
@@ -87,12 +90,11 @@
                     if (URL && URL.createObjectURL) {
                         newFile.url = URL.createObjectURL(newFile.file);
                     }
-                    this.files.push(newFile);
+                    this.img = newFile;
                 }
             },
 
             setName(name) {
-                console.log(name);
                 const payload = {
                     property: 'name',
                     with: name
@@ -101,10 +103,24 @@
                 this.mutate(payload);
             },
 
-            validate() {
+            async submit() {
                 this.$v.$touch();
-                if(!this.$v.$invalid) {
-                    this.nextStep();
+                if(this.$v.$invalid) return ;
+                
+                this.nextStep();
+                this.toggleLoader();
+                try {
+                    // we have to use the formData api to be able to upload files
+                    let formData = new FormData();
+
+                    formData.append('name', this.name);
+                    formData.append('profileImgFile', this.img.file);
+
+                    const response = await this.$axios.put('api/profile', formData);
+                    console.log(response);
+                    this.toggleLoader();
+                } catch (error) {
+                    alert(error);
                 }
             }
         }

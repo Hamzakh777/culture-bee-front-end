@@ -33,7 +33,7 @@
 
 @media(min-width: 1024px) {
    .ap-input-icon {
-        @apply -mt-4;
+        @apply -mt-2;
     } 
 }
 

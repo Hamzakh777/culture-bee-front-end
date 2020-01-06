@@ -3,7 +3,8 @@ const state = () => ({
 	userType: 'job-seeker', // employer - job-seeker
 	email: '',
 	industry: '',
-	name: ''
+	name: '',
+	profileImgUrl: ''
 });
 
 export default state;
