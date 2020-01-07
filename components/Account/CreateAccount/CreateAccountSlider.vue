@@ -6,7 +6,7 @@
 		/>
         <!-- the reason for duplicating the component is that the swiper library doesn't render properly when a prop changes -->
         <div 
-            :class="{'hidden': userType !== 'job-seeker'}"
+            :class="{'hidden': role !== 'job-seeker'}"
         >
             <!-- employer slider -->
             <div 
@@ -48,7 +48,7 @@
         </div>
         <!-- job seeker -->
         <div
-            :class="{'hidden': userType === 'job-seeker'}"
+            :class="{'hidden': role === 'job-seeker'}"
         >
             <div 
                 v-swiper:mySwiperJobSeeker="swiperOption2" 
@@ -104,7 +104,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['currentStep', 'userType'])
+		...mapState('account', ['currentStep', 'role'])
 	},
 
 	data() {

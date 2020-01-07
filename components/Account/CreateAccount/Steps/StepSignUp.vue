@@ -105,7 +105,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['email', 'userType'])
+		...mapState('account', ['email', 'role'])
 	},
 
 	validations: {
@@ -169,7 +169,7 @@ export default {
 					email: this.email,
 					password: this.password,
 					password_confirmation: this.repeatPassword,
-					role: this.userType
+					role: this.role
 				};
 				const response = await this.$axios.post('api/register', body);
 

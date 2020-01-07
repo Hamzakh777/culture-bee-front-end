@@ -8,6 +8,18 @@ const mutations = {
 	mutate(state, payload) {
 		state[payload.property] = payload.with;
 	},
+
+	setId(state, id) {
+		state.id = id;
+	},
+	setUserData(state, data) {
+		state.id = data.data.id;
+		state.name = data.data.name;
+		state.email = data.data.email;
+		state.location = data.data.location;
+		state.profileImgUrl = data.data.profileImgUrl;
+		state.role = data.data.role;
+	},	
 	retrieveToken(state) {
 		if (localStorage.getItem('access_token') !== null) {
 			state.accessToken = localStorage.getItem('access_token');

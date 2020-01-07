@@ -3,15 +3,15 @@
         <div class="section-title mb-5 text-center">who are you?</div> 
         <button
             class="primary-btn block mb-4 py-4 w-full border-2 border-gray-800 text-3-1/2 hover:bg-transparent"
-            :class="{'bg-gray-to-black text-white': type.value === userType, 'bg-transparent text-gray-800': type.value !== userType}"
-            v-for="(type, index) in userTypes"
+            :class="{'bg-gray-to-black text-white': type.value === role, 'bg-transparent text-gray-800': type.value !== role}"
+            v-for="(type, index) in roles"
             :key="index"
-            @click.prevent="setUserType(type.value)"
+            @click.prevent="setrole(type.value)"
         >
             {{ type.title }}
         </button>
         <base-input-error-message 
-            v-if="$v.userType.$error"
+            v-if="$v.role.$error"
             :error-type="'required'"
         />
         <button 
@@ -29,19 +29,19 @@
     import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
     export default {
-        name: 'StepUserType',
+        name: 'Steprole',
 
         components: {
             BaseInputErrorMessage
         },
 
         computed: {
-            ...mapState('account', ['userType'])
+            ...mapState('account', ['role'])
         },
 
         data() {
             return {
-                userTypes: [
+                roles: [
                     {
                         title: `I'm a job seeker`,
                         value: 'job-seeker'
@@ -55,7 +55,7 @@
         },
 
         validations: {
-            userType: {
+            role: {
                 required
             }
         },
@@ -66,10 +66,10 @@
             /**
              * @param {String} type
              */
-            setUserType(type) {
+            setrole(type) {
                 try {
                     const payload = {
-                        property: 'userType',
+                        property: 'role',
                         with: type
                     };
 

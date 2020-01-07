@@ -155,7 +155,11 @@
 
                 this.placesInstance.on('change', e => {
                     this.setStoreProp('location', e.suggestion.value);
-                })
+                });
+
+                this.placesInstance.on('clear', () => {
+                    this.setStoreProp('location', '');
+                });
             }
         },
 

@@ -106,21 +106,11 @@
                 this.mutate(payload);
             },
 
-            async submit() {
+            submit() {
                 this.$v.$touch();
                 if(this.$v.$invalid) return ;
                 
-                this.toggleLoader();
-                try {
-                    const response = await this.update();
-
-                    console.log(response);
-                    this.toggleLoader();
-                    this.nextStep();
-                } catch (error) {
-                    this.toggleLoader();
-                    alert(error);
-                }
+                this.nextStep();
             }
         }
     }

@@ -21,12 +21,6 @@ export default {
 		EmployerAccountProgress,
 		EmployerEditProfileModals,
 		EmployerProfileSections
-	},
-
-	mounted() {
-		if(process.browser) {
-			localStorage.setItem('access_token', 'lkashdflkjhasdklfjklasdjfklasjdlfasdf');
-		}
 	}
 };
 </script>

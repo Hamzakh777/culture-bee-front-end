@@ -22,27 +22,30 @@
 			</div>
 		</div>
 		<div class="row border-b-2 border-gray-800">
-			<nuxt-link class="link block mb-4" to="/profile">
+			<nuxt-link class="link block mb-4" to="/account/details">
 				Edit profile
 			</nuxt-link>
-			<nuxt-link class="link block mb-4" to="/profile">
+			<nuxt-link class="link block mb-4" to="/account/details">
 				Account details
 			</nuxt-link>
-			<nuxt-link class="link block" to="/profile">
+			<nuxt-link class="link block" to="/jobs">
 				Your jobs
 			</nuxt-link>
 		</div>
 		<div class="row">
-			<nuxt-link class="link block" to="/profile">
+			<div
+				class="link block cursor-pointer" 
+				@click="logout"
+			>
 				Logout
-			</nuxt-link>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 
 export default {
 	name: 'TheUserPopup',
@@ -50,8 +53,8 @@ export default {
 	mixins: [clickaway],
 
 	computed: {
-		...mapGetters('user', ['nameInitials']),
-		...mapState('user', ['name'])
+		...mapGetters('account', ['nameInitials']),
+		...mapState('account', ['name'])
 	},
 
 	data() {
@@ -67,6 +70,8 @@ export default {
 	},
 
 	methods: {
+		...mapActions('account', ['logout']),
+
 		toggle() {
 			this.isOpen = !this.isOpen;
 		}

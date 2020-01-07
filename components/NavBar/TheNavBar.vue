@@ -32,7 +32,7 @@
 					
 					<!-- login button  -->
 					<nuxt-link
-						v-if="isLoggedIn"
+						v-if="!isLoggedIn"
 						class="hidden md:inline-block btn-yellow h-12-1/2"
 						to="/login"
 					>
@@ -63,7 +63,9 @@
 					</div>
 
 					<!-- user popup -->
-					<the-user-popup />
+					<the-user-popup 
+						v-if="isLoggedIn"
+					/>
 				</div>
 			</div>
 		</div>
@@ -115,7 +117,7 @@ export default {
 	},
 
 	computed: {
-		...mapGetters('user', ['isLoggedIn', 'nameInitials'])
+		...mapGetters('account', ['isLoggedIn', 'nameInitials'])
 	},
 
 	data: () => ({

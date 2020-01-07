@@ -3,14 +3,14 @@
 		<div class="mb-4">
 			<!-- company name -->
 			<input
-				v-if="userType === 'employer'"
+				v-if="role === 'employer'"
 				class="input-text"
 				type="text"
 				placeholder="Company name"
 				:value="companyName"
 				@input="setStoreProp('companyName', $event.target.value)"
 			/>
-			<div v-if="userType === 'employer'">
+			<div v-if="role === 'employer'">
 				<base-input-error-message
 					v-if="$v.companyName.$error"
 					:error-type="'required'"
@@ -19,11 +19,11 @@
 			<!-- location -->
 			<input
 				class="input-text"
-				type="search"
+				type="text"
 				id="address-input"
 				placeholder="Location"
 				:value="location"
-				@input="setStoreProp('location', $event.target.value)"
+				@input="setLocation($event.target.value)"
 			/>
 			<!-- Your industry -->
 			<v-select
@@ -41,7 +41,7 @@
 			/>
 			<!-- your skills -->
 			<v-select
-				v-if="userType === 'job-seeker'"
+				v-if="role === 'job-seeker'"
 				placeholder="Your skills"
 				:options="['skill 1', 'skill 2']"
 				multiple
@@ -74,11 +74,12 @@ export default {
 
 	computed: {
 		...mapState('account', [
-			'userType',
+			'role',
 			'industry',
 			'companyName',
 			'skills',
-			'location'
+			'location',
+			'id'
 		])
 	},
 
@@ -87,10 +88,10 @@ export default {
 			industries,
 			placesInstance: null
 		};
-	},
-
-	validations() {
-		if (this.userType === 'job-seeker') {
+    },
+    
+    validations() {
+		if (this.role === 'job-seeker') {
 			return {
 				industry: {
 					required
@@ -102,7 +103,7 @@ export default {
 					required
 				},
 				companyName: {
-					require
+					required
 				}
 			};
 		}
@@ -118,8 +119,14 @@ export default {
 				container: document.querySelector('#address-input')
 			});
 
+
 			this.placesInstance.on('change', e => {
+				console.log(e);
 				this.setStoreProp('location', e.suggestion.value);
+			});
+
+			this.placesInstance.on('clear', () => {
+				this.setStoreProp('location', '');
 			});
 		}
 	},
@@ -132,18 +139,29 @@ export default {
 			this.isLoading = !this.isLoading;
 		},
 
+		redirectAfterRegistration() {
+			const route = this.role === 'job-seeker' ? '/feed' : `/employer/${this.id}`;
+
+			this.$router.push({
+				path: route
+			});
+		},
+
+		setLocation(location) {
+			this.setStoreProp('location', location);
+		},
+
 		async submit() {
 			this.$v.$touch();
 			if (this.$v.$invalid) return;
-
 			this.toggleLoader();
-			try {
-				const response = await this.update();
 
-				console.log(response);
+			try {
+                await this.update();
+
 				this.toggleLoader();
+				this.redirectAfterRegistration();
 			} catch (error) {
-				console.error(error);
 				this.toggleLoader();
 			}
 		}

@@ -1,20 +1,55 @@
 const actions = {
-    update({ commit, state }) {
-        return new Promise((resolve, reject) => {
-            const formData = new FormData();
+	update({ commit, state, dispatch }) {
+		return new Promise((resolve, reject) => {
+			const formData = new FormData();
 
-            formData.append('companyName', state.companyName);
-            formData.append('industry', state.industry);
-            formData.append('location', state.location);
-            formData.append('skills', JSON.stringify(state.skills));
-            formData.append('profileImgFile', state.profileImgFile !== null ? state.profileImgFile.file : null);
-            formData.append('name', state.name);
+			formData.append('companyName', state.companyName);
+			formData.append('industry', state.industry);
+			formData.append('location', state.location);
+			formData.append('skills', JSON.stringify(state.skills));
+			formData.append(
+				'profileImgFile',
+				state.profileImgFile !== null ? state.profileImgFile.file : null
+			);
+			formData.append('name', state.name);
 
-            this.$axios.post('/api/profile', formData)
-                .then(response => resolve(response))
-                .catch(err => reject(err));
-        })
-    }    
-}
+			this.$axios
+				.post('/api/profile', formData)
+                .then(response => {
+                    resolve(response);
+					commit('setId', response.data.userId);
+					dispatch('getLogedInUser');
+                })
+				.catch(err => reject(err));
+		});
+	},
+	async getLogedInUser({ commit }) {
+		try {
+			const response = await this.$axios.get('api/profile');
+
+			commit('setUserData', response.data);
+		} catch (error) {
+			alert('An error occured trying to retrieve the user data');
+		}
+	},
+	async logout({ commit }) {
+		try {
+			await this.$axios.post('api/logout');
+
+			commit('destroyAccessToken');
+			this.$router.push({
+				path: '/'
+			});
+		} catch (error) {
+			// user is not authenticated
+			if (error.response.status === 401) {
+				commit('destroyAccessToken');
+				this.$router.push({
+					path: '/'
+				});
+			}
+		}
+	}
+};
 
 export default actions;

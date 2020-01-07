@@ -7,7 +7,7 @@
 	</div>
 </template>
 <script>
-import {mapMutations} from 'vuex';
+import {mapMutations, mapGetters, mapActions} from 'vuex';
 import TheNavBar from '@/components/NavBar/TheNavBar';
 import TheFooter from '@/components/Footer/TheFooter';
 import CompanyUpdateModal from '@/components/Companies/CompanyUpdateModal';
@@ -20,14 +20,22 @@ export default {
         CompanyUpdateModal
     },
 
+    computed: {
+        ...mapGetters('account', ['isLoggedIn'])
+    },
+
     created() {
         if(process.browser) {
             this.retrieveToken();
         }
+        if(this.isLoggedIn) {
+            this.getLogedInUser();
+        } 
     },
 
     methods: {
-        ...mapMutations('account', ['retrieveToken'])
+        ...mapMutations('account', ['retrieveToken']),
+        ...mapActions('account', ['getLogedInUser'])
     }
 };
 </script>
