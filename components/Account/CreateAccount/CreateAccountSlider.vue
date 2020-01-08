@@ -2,7 +2,7 @@
 	<div class="w-full">
 		<img
 			class="hidden md:block mb-4 md:mb-0 mx-auto h-10"
-			src="/logo-big-light.svg"
+			src="/logo-big-light.png"
 		/>
         <!-- the reason for duplicating the component is that the swiper library doesn't render properly when a prop changes -->
         <div 
@@ -64,7 +64,7 @@
                         <p
                             class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                         >
-                            Lorem ipsum dolor sit amet, consectetur
+                            Start connecting through culture
                         </p>
                     </div>
                     <div
@@ -128,12 +128,12 @@ export default {
                     jobSeeker: {
                         title: 'hi job seeker',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            "You're a few steps away from sharing your real journey"
                     },
                     employer: {
                         title: 'WELCOME EMPLOYER',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            "You're a few steps away from sharing your real journey"
                     }
                 },
                 {

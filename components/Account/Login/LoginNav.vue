@@ -1,6 +1,8 @@
 <template>
     <div class="flex flex-row justify-between items-center p-4">
-        <BaseLogo/>
+        <BaseLogo
+            class="lg:opacity-0"
+        />
         <nuxt-link
             class="btn-yellow"
             to="/register"
