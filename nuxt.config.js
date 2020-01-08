@@ -72,7 +72,7 @@ export default {
 		baseURL: 'https://culture-bee-back-end.test/',
 		proxy: false,
 		common: {
-			Accept: 'application/json, text/plain, */*'
+			Accept: 'application/json'
 		}
 	},
 	// proxy: {
