@@ -145,6 +145,9 @@ export default {
 			this.$router.push({
 				path: route
 			});
+
+			// set the registration step to 1
+			this.setStoreProp('currentStep', 1);
 		},
 
 		setLocation(location) {
