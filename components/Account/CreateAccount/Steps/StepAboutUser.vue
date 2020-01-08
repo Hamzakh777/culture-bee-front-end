@@ -140,7 +140,7 @@ export default {
 		},
 
 		redirectAfterRegistration() {
-			const route = this.role === 'job-seeker' ? '/feed' : `/employer/${this.id}`;
+			const route = this.role === 'job-seeker' ? '/feed' : `/employer/${this.id}/edit`;
 
 			this.$router.push({
 				path: route

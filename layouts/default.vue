@@ -21,7 +21,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters('account', ['isLoggedIn'])
+        ...mapGetters('account', ['isLoggedIn', 'accessToken'])
     },
 
     created() {
@@ -30,7 +30,7 @@ export default {
         }
         if(this.isLoggedIn) {
             this.getLogedInUser();
-        } 
+        }
     },
 
     methods: {
