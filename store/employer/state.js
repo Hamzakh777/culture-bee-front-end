@@ -75,23 +75,23 @@ const state = () => ({
 	// why us
 	companyTagline: 'We believe that #itscooltobekind',
 	companyEthos: 'We are on a mission to create products that are 100% up-cycled, and we are 92% of the way there…! Our packaging is recycled and recyclable and the tags are made from 100% plantable paper. Simply plant, love and care for them, and watch them grow!',
-	coreValues: {
-		1: {
+	coreValues: [
+		{
 			title: 'WE LISTEN',
 			subtitle: 'All of our #TeamTala family has a say in our products',
 			description: 'We want them to be comfortable & empowered with expressing their opinions in the products.'
 		},
-		2: {
+		{
 			title: 'WE care',
 			subtitle: 'We’re a bunch of kind souls trying to save the world ',
 			description: 'We’re all big characters who have their opinions but will always stay open-minded.'
 		},
-		3: {
+		{
 			title: 'WE evolve',
 			subtitle: 'The nature of our company means that we’re adaptive',
 			description: 'As the clothing is made from recycled materials, we have to stay on our toes with creativity'
 		}
-	}
+	]
 });
 
 export default state;

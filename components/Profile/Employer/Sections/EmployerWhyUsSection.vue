@@ -17,7 +17,7 @@
                 <div class="ml-16">
                     <base-edit-pen
                         v-if="isEditPage"
-                        @click="$emit('open-the-modal-for-this-part')"
+                        @click="$bus.$emit('open-employer-why-us-modal')"
                         class="text-gray-800 hover:text-yellow"
                     />
                 </div>

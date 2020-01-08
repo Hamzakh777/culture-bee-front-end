@@ -48,7 +48,7 @@ export default {
 	 */
 	buildModules: [
 		// Doc: https://github.com/nuxt-community/eslint-module
-		'@nuxtjs/eslint-module',
+		// '@nuxtjs/eslint-module',
 		// Doc: https://github.com/nuxt-community/nuxt-tailwindcss
 		'@nuxtjs/tailwindcss'
 	],
@@ -69,7 +69,9 @@ export default {
 	 ** See https://axios.nuxtjs.org/options
 	 */
 	axios: {
-		baseURL: 'https://culture-bee-back-end.herokuapp.com/',
+		baseURL: process.env.NODE_ENV === 'development'
+			? 'https://culture-bee-back-end.test/'
+ 			: 'https://culture-bee-back-end.herokuapp.com/',
 		proxy: false,
 		common: {
 			Accept: 'application/json'
