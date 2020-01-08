@@ -69,7 +69,7 @@ export default {
 	 ** See https://axios.nuxtjs.org/options
 	 */
 	axios: {
-		baseURL: 'https://culture-bee-back-end.test/',
+		baseURL: 'https://culture-bee-back-end.herokuapp.com/',
 		proxy: false,
 		common: {
 			Accept: 'application/json'
