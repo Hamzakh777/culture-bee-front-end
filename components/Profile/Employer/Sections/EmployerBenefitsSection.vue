@@ -4,6 +4,12 @@
             <div class="base-title-light">
                 Benefits
             </div>
+            <button
+                class="primary-btn"
+                @click.prevent="$bus.$emit('open-employer-add-benefits-modal')"
+            >
+                addd
+            </button>  
             <div class="flex justify-between flex-wrap mt-12">
                 <benefit-card :is-edit-page="isEditPage" />
             </div>

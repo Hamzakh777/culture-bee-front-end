@@ -29,7 +29,7 @@ export default {
             this.retrieveToken();
         }
         if(this.isLoggedIn) {
-            this.getLogedInUser();
+            // this.getLogedInUser();
         }
     },
 
