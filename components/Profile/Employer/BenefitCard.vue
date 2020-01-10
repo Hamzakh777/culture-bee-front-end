@@ -17,8 +17,8 @@
 						'left-1/2',
 						'transform-center'
 					]"
-					class="h-9 w-9 mr-4 bg-gray-800 text-white hover:text-yellow text-yello"
-					@click="$emit('edit-benefit')"
+					class="h-9 w-9 mr-4 bg-gray-800 text-white hover:text-yellow text-yellow cursor-pointer"
+					@click="$bus.$emit('open-edit-benefit-modal', benefit.id)"
 				/>
 				<base-close-button @click="$emit('remove-the-benefit')" />
 			</div>

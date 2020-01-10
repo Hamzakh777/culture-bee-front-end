@@ -2,6 +2,7 @@ const actions = {
     fetchBenefits({ commit }) {
         // do some fetching   
     },
+    
     addBenefits({ commit }) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -9,6 +10,11 @@ const actions = {
             }, 4000);
         });
     },
+
+    updateBenefit({ commit }) {
+
+    },
+
     deleteBenefit({ commit }, id) {
         try {
             console.log('removing update');
