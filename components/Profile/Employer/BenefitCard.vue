@@ -1,5 +1,8 @@
 <template>
-    <div class="relative h-118 w-31-% bg-gray-200 bg-center bg-cover bg-no-repeat">
+    <div 
+        class="relative h-118 mb-14 w-31-% bg-gray-200 bg-center bg-cover bg-no-repeat"
+        :style="benefit.imgUrl !== null ?  `background-image: url(${benefit.imgUrl})` : ''"
+    >
         <div class="flex flex-col justify-between relative z-1 h-full w-full">
             <div 
                 v-if="isEditPage"
@@ -19,11 +22,11 @@
             <div class="px-8 py-10 text-white">
                 <!-- title -->
                 <div class="font-D-Din text-5xl font-bold uppercase">
-                    Breakfast
+                    {{ benefit.title }}
                 </div>
                 <!-- subtitle -->
                 <div class="text-5-1/2 font-bold">
-                    A mix of cereals, pastry and fruits available
+                    {{ benefit.subtitle }}
                 </div>
             </div>
         </div>
@@ -45,6 +48,10 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            benefit: {
+                type: Object,
+                required: true
             }
         },
         

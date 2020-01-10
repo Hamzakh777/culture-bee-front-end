@@ -1,5 +1,8 @@
 const actions = {
-    addBenefit({ commit }) {
+    fetchBenefits({ commit }) {
+        // do some fetching   
+    },
+    addBenefits({ commit }) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(true);

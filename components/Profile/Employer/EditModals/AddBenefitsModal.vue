@@ -5,10 +5,10 @@
 		</template>
 		<template #content>
 			<div
-                v-for="(benefit, index) in $v.companyBenefits.$each.$iter"
-                :key="index"
-                :class="{ hidden: index != (currentActiveBenefit - 1) }"
-            >
+				v-for="(benefit, index) in $v.companyBenefits.$each.$iter"
+				:key="index"
+				:class="{ hidden: index != currentActiveBenefit - 1 }"
+			>
 				<div class="mb-8">
 					<div class="base-title mb-4">
 						Summary
@@ -65,14 +65,16 @@
 					</div>
 					<!-- the uploaded image -->
 					<div
-                        v-if="benefit.$model.imgFile !== null"
+						v-if="benefit.$model.imgFile !== null"
 						class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
-						:style="`background-image: url(${benefit.$model.imgFile.url})`"
+						:style="
+							`background-image: url(${benefit.$model.imgUrl})`
+						"
 					>
 						<base-close-button
 							class="top-0 right-0 mt-2 mr-2"
 							style="position: absolute; height: 1.25rem; width: 1.25rem"
-                            @click="removeImg"
+							@click="removeImg"
 						/>
 					</div>
 				</div>
@@ -93,8 +95,8 @@
 					></div>
 				</div>
 				<div class="flex items-center">
-					<button 
-						class="secondary-btn mr-14" 
+					<button
+						class="secondary-btn mr-14"
 						@click.prevent="nextStep"
 					>
 						skip
@@ -126,9 +128,9 @@ export default {
 		FileUpload,
 		BaseCloseButton,
 		BaseInputErrorMessage
-    },
-    
-    watch: {
+	},
+
+	watch: {
 		companyBenefits: {
 			handler(newVal) {
 				this.setBenefits(newVal);
@@ -153,10 +155,10 @@ export default {
 	created() {
 		this.$bus.$on('open-employer-add-benefits-modal', () => {
 			this.toggle();
-        });
-        
-        // close the data from the vuex store here
-        this.companyBenefits = JSON.parse(JSON.stringify(this.benefits));
+		});
+
+		// close the data from the vuex store here
+		this.companyBenefits = JSON.parse(JSON.stringify(this.benefits));
 	},
 
 	validations: {
@@ -174,7 +176,7 @@ export default {
 	},
 
 	methods: {
-        ...mapMutations('employer', ['nextStep']),
+		...mapMutations('employer', ['nextStep']),
 		...mapMutations('employer/benefits', ['setBenefits']),
 		...mapActions('employer/benefits', ['addBenefits']),
 
@@ -193,11 +195,11 @@ export default {
 		inputFile(newFile, oldFile, prevent) {
 			if (newFile && !oldFile) {
 				// add
-				this.changeImg(newFile);
+				this.changeImg(newFile.file, newFile.url);
 			}
 			if (!newFile && oldFile) {
-                // remove
-                this.changeImg(null);
+				// remove
+				this.changeImg(null, null);
 			}
 		},
 
@@ -221,17 +223,18 @@ export default {
 		/**
 		 * changing an object property in an  array doesn't get detected by vue
 		 */
-		changeImg(data) {
+		changeImg(data, url) {
 			const benefits = JSON.parse(JSON.stringify(this.companyBenefits));
-				
-			benefits[this.currentActiveBenefit - 1 ].imgFile = data;
+
+			benefits[this.currentActiveBenefit - 1].imgFile = data;
+			benefits[this.currentActiveBenefit - 1].imgUrl = url;
 
 			this.companyBenefits = benefits;
 		},
 
 		removeImg() {
-            this.changeImg(null);
-        },
+			this.changeImg(null, null);
+		},
 
 		async submit() {
 			// validate
@@ -241,7 +244,7 @@ export default {
 
 			for (const key in benefits) {
 				if (benefits.hasOwnProperty(key)) {
-					if(benefits[key].$error === true) {
+					if (benefits[key].$error === true) {
 						isValide = false;
 						// if a benefit is not valid, go to it
 						this.currentActiveBenefit = parseInt(key) + 1;
@@ -249,9 +252,9 @@ export default {
 				}
 			}
 
-			if(isValide === false) return;
+			if (isValide === false) return;
 
-			// save 
+			// save
 			try {
 				this.toggleLoader();
 				await this.addBenefits();
