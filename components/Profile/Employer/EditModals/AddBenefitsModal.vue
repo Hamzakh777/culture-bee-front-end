@@ -20,6 +20,7 @@
 						v-model="benefit.title.$model"
 					/>
 					<base-input-error-message
+						class="mt-2"
 						v-if="benefit.title.$error"
 						:error-type="'required'"
 					/>
@@ -36,6 +37,7 @@
 					>
 					</textarea>
 					<base-input-error-message
+						class="mt-1"
 						v-if="benefit.subtitle.$error"
 						:error-type="'required'"
 					/>
@@ -65,6 +67,7 @@
 					<div
                         v-if="benefit.$model.imgFile !== null"
 						class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
+						:style="`background-image: url(${benefit.$model.imgFile.url})`"
 					>
 						<base-close-button
 							class="top-0 right-0 mt-2 mr-2"
@@ -125,7 +128,6 @@ export default {
     watch: {
 		companyBenefits: {
 			handler(newVal) {
-                console.log('setting benefits');
 				this.setBenefits(newVal);
 			},
 			deep: true
@@ -182,15 +184,12 @@ export default {
 
 		inputFile(newFile, oldFile, prevent) {
 			if (newFile && !oldFile) {
-                // add
-                const benefits = this.companyBenefits;
-                benefits[this.currentActiveBenefit].imgFile = newFile;
-
-                this.companyBenefits = benefits;                
+				// add
+				this.changeImg(newFile);
 			}
 			if (!newFile && oldFile) {
                 // remove
-                this.companyBenefits[this.currentActiveBenefit].imgFile = null;
+                this.changeImg(null);
 			}
 		},
 
@@ -211,11 +210,39 @@ export default {
 			}
 		},
 
+		/**
+		 * changing an object property in an  array doesn't get detected by vue
+		 */
+		changeImg(data) {
+			const benefits = JSON.parse(JSON.stringify(this.companyBenefits));
+				
+			benefits[this.currentActiveBenefit - 1 ].imgFile = data;
+
+			this.companyBenefits = benefits;
+		},
+
 		removeImg() {
-            this.companyBenefits[this.currentActiveBenefit].imgFile = null;
+            this.changeImg(null);
         },
 
 		submit() {
+			// validate
+			const benefits = this.$v.companyBenefits.$each.$iter;
+			let isValide = true;
+			this.$v.$touch();
+
+			for (const key in benefits) {
+				if (benefits.hasOwnProperty(key)) {
+					if(benefits[key].$error === true) {
+						isValide = false;
+						this.currentActiveBenefit = parseInt(key) + 1;
+					}
+				}
+			}
+
+			if(isValide === false) return;
+            // if a benefit is not valid, go to it
+            
 			this.toggle();
 			this.nextStep();
 		}

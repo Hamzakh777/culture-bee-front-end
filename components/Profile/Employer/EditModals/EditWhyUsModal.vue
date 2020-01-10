@@ -210,6 +210,10 @@ export default {
 
 		submit() {
 			console.log('save it to the baaackend');
+			// validate 
+
+			// go to the section that's not valid
+			
 		}
 	}
 };

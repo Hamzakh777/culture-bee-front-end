@@ -1,6 +1,6 @@
 const mutations = {
     setBenefits(state, benefits) {
-        // state.benefits = benefits;
+        state.benefits = benefits;
     }
 };
 
