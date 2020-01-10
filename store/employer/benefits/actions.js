@@ -1,7 +1,9 @@
 const actions = {
-    addBenefit({ commit }, id) {
+    addBenefit({ commit }) {
         return new Promise((resolve, reject) => {
-
+            setTimeout(() => {
+                resolve(true);
+            }, 4000);
         });
     },
     deleteBenefit({ commit }, id) {

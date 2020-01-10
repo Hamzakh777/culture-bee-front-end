@@ -93,7 +93,10 @@
 					></div>
 				</div>
 				<div class="flex items-center">
-					<button class="secondary-btn mr-14" @click.prevent="skip">
+					<button 
+						class="secondary-btn mr-14" 
+						@click.prevent="nextStep"
+					>
 						skip
 					</button>
 					<base-ajax-button :is-loading="isLoading" @click="submit">
@@ -106,7 +109,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
@@ -172,10 +175,15 @@ export default {
 
 	methods: {
         ...mapMutations('employer', ['nextStep']),
-        ...mapMutations('employer/benefits', ['setBenefits']),
+		...mapMutations('employer/benefits', ['setBenefits']),
+		...mapActions('employer/benefits', ['addBenefits']),
 
 		toggle() {
 			this.isActive = !this.isActive;
+		},
+
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
 		},
 
 		switchActiveBenefit(num) {
@@ -225,7 +233,7 @@ export default {
             this.changeImg(null);
         },
 
-		submit() {
+		async submit() {
 			// validate
 			const benefits = this.$v.companyBenefits.$each.$iter;
 			let isValide = true;
@@ -235,16 +243,25 @@ export default {
 				if (benefits.hasOwnProperty(key)) {
 					if(benefits[key].$error === true) {
 						isValide = false;
+						// if a benefit is not valid, go to it
 						this.currentActiveBenefit = parseInt(key) + 1;
 					}
 				}
 			}
 
 			if(isValide === false) return;
-            // if a benefit is not valid, go to it
-            
-			this.toggle();
-			this.nextStep();
+
+			// save 
+			try {
+				this.toggleLoader();
+				await this.addBenefits();
+
+				this.toggleLoader();
+				this.nextStep();
+			} catch (error) {
+				console.error(error);
+				this.toggleLoader();
+			}
 		}
 	}
 };
