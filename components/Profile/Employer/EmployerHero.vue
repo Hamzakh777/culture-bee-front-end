@@ -3,7 +3,14 @@
 		<div class="container flex items-end relative z-1 h-full py-12 mx-auto">
 			<div class="flex items-stretch w-full">
 				<!-- logo -->
-				<div class="flex items-center h-45 w-45 p-5 bg-white"></div>
+				<div 
+					class="flex items-center h-45 w-45 p-5 bg-white"
+				>
+					<img 
+						v-if="profileImgUrl !== null && profileImgUrl !== undefined"
+						:src="profileImgUrl"
+					>
+				</div>
 				<!-- company info -->
 				<div class="flex flex-col justify-between ml-14  text-white">
 					<div>
@@ -11,7 +18,7 @@
 							<div
 								class="mb-3 text-13 font-D-Din tracking-tight uppercase font-bold tracking-wide leading-none"
 							>
-								Name of the company
+								{{ companyName }}
 							</div>
 							<!-- location -->
 							<div class="ml-3 -mb-2 text-sm font-bold">
@@ -70,8 +77,9 @@
 		<!-- bg image -->
 		<div 
 			class="absolute inset-0 z-0 bg-center bg-cover bg-center"
-			:style=" coverImgUrl !== undefined && coverImgUrl !== null ? `background-image: url(${coverImgUrl})` : ''"
 		>
+			<div class="absolute inset-0 z-0 bg-cover bg-center" :style=" coverImgUrl !== undefined && coverImgUrl !== null ? `background-image: url(${coverImgUrl})` : ''"></div>
+			<div class="absolute inset-0 z-1 opacity-50 bg-gray-to-black"></div>
 		</div>
 	</div>
 </template>
@@ -99,7 +107,7 @@ export default {
 
 	computed: {
 		...mapState('employer', ['quickPitch', 'totalJobs']),
-		...mapState('account', ['location', 'quickPitch', 'profileImgUrl', 'coverImgUrl'])
+		...mapState('account', ['location', 'quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName'])
 	},
 
 	methods: {
