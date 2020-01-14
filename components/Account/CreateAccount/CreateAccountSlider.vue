@@ -23,7 +23,7 @@
                         <p
                             class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                         >
-                            Lorem ipsum dolor sit amet, consectetur
+                            Start connecting through culture
                         </p>
                     </div>
                     <div
@@ -128,24 +128,24 @@ export default {
                     jobSeeker: {
                         title: 'hi job seeker',
                         description:
-                            "You're a few steps away from sharing your real journey"
+                            "You're just a few steps away from discovering real company journeys"
                     },
                     employer: {
                         title: 'WELCOME EMPLOYER',
                         description:
-                            "You're a few steps away from sharing your real journey"
+                            "You're just a few steps away from sharing your real journey with job seekers"
                     }
                 },
                 {
                     jobSeeker: {
                         title: 'tell us about you',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            'We just need a few details to get you started'
                     },
                     employer: {
                         title: 'tell us about you',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            'We just need a few details to get you started'
                     }
                 },
                 {
