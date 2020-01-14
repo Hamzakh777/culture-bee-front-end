@@ -70,7 +70,7 @@
 		<!-- bg image -->
 		<div 
 			class="absolute inset-0 z-0 bg-center bg-cover bg-center"
-			:style=" coverImgUrl != false ? `background-image: url(${coverImgUrl})` : ''"
+			:style=" coverImgUrl !== undefined && coverImgUrl !== null ? `background-image: url(${coverImgUrl})` : ''"
 		>
 		</div>
 	</div>

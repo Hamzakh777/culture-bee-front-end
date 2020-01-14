@@ -11,12 +11,9 @@
 				></textarea>
 			</div>
 			<div class="flex justify-end">
-				<base-ajax-button 
-					:is-loading="isLoading"
-					@click="submit"
-				>
-				Add to profile
-			</base-ajax-button>
+				<base-ajax-button :is-loading="isLoading" @click="submit">
+					Add to profile
+				</base-ajax-button>
 			</div>
 		</template>
 	</base-modal>
@@ -35,12 +32,12 @@ export default {
 		BaseAjaxButton
 	},
 
-    data() {
-        return {
-            isLoading: false,
-            isActive: false
-        };
-    },
+	data() {
+		return {
+			isLoading: false,
+			isActive: false
+		};
+	},
 
 	computed: {
 		...mapState('employer', ['companyVision'])
@@ -59,7 +56,7 @@ export default {
 			this.isActive = !this.isActive;
 		},
 
-		setVision(value) { 
+		setVision(value) {
 			const payload = {
 				property: 'companyVision',
 				with: value
