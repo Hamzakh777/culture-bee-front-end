@@ -7,7 +7,7 @@
 			</div>
 			<div class="mb-8">
 				<div
-					v-for="(value, key, index) in clonedValues"
+					v-for="(value, index) in clonedValues"
 					:key="index"
 					class="flex flex-row items-center w-full mb-3 p-2 border-2 border-gray-800"
 				>
@@ -73,15 +73,19 @@
 					<div class="relative w-10 h-4">
 						<base-close-button
 							v-if="(value.title !== '' && value.title !== null) || (value.icon !== '' && value.icon !== null)"
-							@click="resetValue(key)"
+							@click="resetValue(index)"
 							style="height: 1.5rem; width: 1.5rem"
 						/>
 					</div>
 				</div>
 			</div>
 			<div class="flex justify-end">
-				<base-ajax-button :is-loading="isLoading" @click="submit"
-					>Add to profile</base-ajax-button
+				<base-ajax-button 
+					:is-loading="isLoading" 
+					@click="submit"
+				>
+					Add to profile
+				</base-ajax-button
 				>
 			</div>
 		</template>
@@ -90,7 +94,7 @@
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import vSelect from 'vue-select';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
@@ -109,22 +113,6 @@ export default {
 		vSelect
 	},
 
-	watch: {
-		clonedValues: {
-			handler(newVal) {
-				const payload = {
-					property: 'values',
-					with: newVal
-				};
-
-				// console.log(payload);
-				this.mutate(payload);
-			},
-
-			deep: true
-		}
-	},
-
 	data() {
 		return {
 			fontawesomeIcons,
@@ -136,7 +124,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['values'])
+		...mapState('employer/values', ['values'])
 	},
 
 	created() {
@@ -148,20 +136,36 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('employer', ['mutate', 'nextStep']),
+		...mapMutations('employer', ['nextStep']),
+		...mapActions('employer/values', ['addValues']),
 
-		submit() {
+		async submit() {
 			// this.toggle();
 			// this.nextStep();
+			this.toggleLoader();
+			try {
+				const response = await this.addValues({
+					values: this.clonedValues
+				});
+
+				console.log(response);
+			} catch (error) {
+				console.log(error);
+			}
+			this.toggleLoader();
 		},
 
 		toggle() {
 			this.isActive = !this.isActive;
 		},
 
-		resetValue(key) {
-			this.clonedValues[key].title = '';
-			this.clonedValues[key].icon = '';
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
+
+		resetValue(index) {
+			this.clonedValues[index].title = '';
+			this.clonedValues[index].icon = '';
 		},
 
 		setActiveIconSelector(index = null) {

@@ -3,7 +3,7 @@
 		<div class="container flex items-center mx-auto">
 			<div class="flex-grow flex justify-between">
 				<div
-					v-for="(value, name, index) in valuesToShow"
+					v-for="(value, index) in valuesToShow"
 					:key="index"
 					class="flex items-center pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
 				>
@@ -18,8 +18,8 @@
 					</div>
 				</div>
 			</div>
-            <base-edit-pen
-				v-if="isEditPage" 
+			<base-edit-pen
+				v-if="isEditPage"
 				class="ml-16 text-white hover:text-yellow"
 				@click="$bus.$emit('open-employer-values-modal')"
 			/>
@@ -46,21 +46,14 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['values']),
+		...mapState('employer/values', ['values']),
 
 		valuesToShow() {
-			const data = {};
+			return this.values;
 
-			for (const key in this.values) {
-				if (this.values.hasOwnProperty(key)) {
-					const value = this.values[key];
-					if(value.title !== '' && value.title !== null) {
-						data[key] = value;
-					}
-				}
-			}
-			
-			return data;
+			// return this.values.filter(
+			// 	value => value.icon != false && value.title != false
+			// );
 		}
 	}
 };

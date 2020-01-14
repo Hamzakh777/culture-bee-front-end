@@ -11,7 +11,7 @@
 </template>
 
 <script>
-// import {mapState} from 'vuex';
+import { mapActions } from 'vuex';
 import EmployerValuesSection from './Sections/EmployerValuesSection';
 import EmployerCompanyVisionSection from './Sections/EmployerCompanyVisionSection';
 import EmployerCultureFeed from './Sections/EmployerCultureFeed';
@@ -39,6 +39,10 @@ export default {
 		EmployerBenefitsSection,
 		EmployerJobsSection,
 		EmployerSectionsLinks
-	}
+	},
+
+	methods: {
+		
+	},
 };
 </script>

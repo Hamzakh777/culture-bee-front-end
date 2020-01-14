@@ -68,7 +68,11 @@
             />
 		</div>
 		<!-- bg image -->
-		<div class="absolute inset-0 z-0"></div>
+		<div 
+			class="absolute inset-0 z-0 bg-center bg-cover bg-center"
+			:style=" coverImgUrl != false ? `background-image: url(${coverImgUrl})` : ''"
+		>
+		</div>
 	</div>
 </template>
 
@@ -95,7 +99,7 @@ export default {
 
 	computed: {
 		...mapState('employer', ['quickPitch', 'totalJobs']),
-		...mapState('user', ['location'])
+		...mapState('account', ['location', 'quickPitch', 'profileImgUrl', 'coverImgUrl'])
 	},
 
 	methods: {
