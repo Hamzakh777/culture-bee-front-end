@@ -241,7 +241,6 @@ export default {
         },
         
         inputFileCoverPhoto(newFile, oldFile, prevent) {
-            console.log('cover')
             if (newFile && !oldFile) {
 				if (!/\.(jpg|jpeg|png)$/i.test(newFile.name)) {
 					this.alert('Your choice is not a picture');
