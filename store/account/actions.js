@@ -23,11 +23,24 @@ const actions = {
 				.catch(err => reject(err));
 		});
 	},
+	updateAccountDetails({ commit }, data) {
+		return new Promise((resolve, reject) => {
+			this.$axios.post('/api/profile', data)
+				.then((response) => {
+					console.log(response.data.user);
+					commit('setUserData', response.data.user);
+					resolve(response);
+				})
+				.catch(err => {
+					reject(err);
+				})
+		})
+	},
 	async getLogedInUser({ commit }) {
 		try {
 			const response = await this.$axios.get('api/profile');
 
-			commit('setUserData', response.data);
+			commit('setUserData', response.data.data);
 		} catch (error) {
 			alert('An error occured trying to retrieve the user data');
 		}
@@ -41,13 +54,10 @@ const actions = {
 				path: '/'
 			});
 		} catch (error) {
-			// user is not authenticated
-			if (error.response.status === 401) {
-				commit('destroyAccessToken');
-				this.$router.push({
-					path: '/'
-				});
-			}
+			commit('destroyAccessToken');
+			this.$router.push({
+				path: '/'
+			});
 		}
 	}
 };
