@@ -193,10 +193,9 @@ export default {
 				}
 			} else if (this.currentStep === 4) {
 				if (this.$v.values.$each[4]) this.submit();
-			} else {
-				if (this.$v.values.$each[this.currentStep - 2]) {
-					this.goToNextStep();
-				}
+				
+			} else if(this.$v.values.$each[this.currentStep - 2]) {
+				this.goToNextStep();
 			}
 		},
 

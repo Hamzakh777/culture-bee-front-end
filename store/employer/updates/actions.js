@@ -10,7 +10,7 @@ const actions = {
         });
     },
 
-    updateUpdate({ coomit }, data) {
+    updateUpdate({ commit }, data) {
         return new Promise((resolve, reject) => {
             this.$axios.put('api/employer/updates/', data)
                 .then((response) => {
@@ -21,8 +21,15 @@ const actions = {
         });
     },
 
-    deleteUpdate() {
-
+    deleteUpdate({ commit }, id) {
+        return new Promise((resolve, reject) => {
+            this.$axios.post(`api/employer/updates/${id}`)
+                .then((response) => {
+                    resolve(response);
+                    commit('removeUpdate', id)
+                })
+                .catch(err => reject(err));
+        });
     }
 }
 
