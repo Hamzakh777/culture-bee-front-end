@@ -93,12 +93,21 @@
 						</file-upload>
 					</client-only>
 
-					<!-- submit button  -->
+					<!-- add an update -->
 					<base-ajax-button
-                        @click="submit"
+						v-if="!isEdit"
+                        @click="add"
                         :is-loading="isLoading" 
                     >
 						Post update
+					</base-ajax-button>
+					<!-- update an update -->
+					<base-ajax-button
+						v-else
+                        @click="update"
+                        :is-loading="isLoading" 
+                    >
+						Update update
 					</base-ajax-button>
 				</div>
 			</div>
@@ -149,6 +158,7 @@ export default {
 	data() {
 		return {
 			isActive: false,
+			id: null,
 			tags: [
 				'Volunteer',
 				'Finance',
@@ -163,7 +173,7 @@ export default {
 			selectedTags: [],
 			imgUrl: null,
 			img: null,
-			isEdit: true
+			isEdit: false
 		};
 	},
 
@@ -187,35 +197,64 @@ export default {
 			this.description = update.description;
 			this.isPinned = update.isPinned;
 			this.imgUrl = update.imgUrl;
-            this.selectedTags = update.tags;
+			this.selectedTags = update.tags;
+			this.id = update.id;
 		});
 	},
 
 	methods: {
-		...mapActions('employer/updates', ['addUpdate']),
+		...mapActions('employer/updates', ['addUpdate', 'updateUpdate']),
 
 		toggle() {
 			this.isActive = !this.isActive;
 		},
 
-		async submit() {
+		async add() {
 			this.$v.$touch();
 			if (this.$v.$invalid) return;
 
             this.toggleLoader();
 			try {
-                const formData = new FormData();
+				const formData = new FormData();
+				
                 formData.append('description', this.description);
-                formData.append('tags', this.img === null ? '' : JSON.stringify(this.selectedTags));
+                formData.append('tags', this.tags === null ? '' : JSON.stringify(this.selectedTags));
                 formData.append('imgFile', this.img === null ? '' : this.img.file);
                 formData.append('isPinned', this.isPinned === true ? 1 : 0);
-                
+            
 				await this.addUpdate(formData);
 
                 this.toggle();
 			} catch (error) {
-                alert('an error happened');
-                console.error(error);
+				alert('an error happened');
+				console.error(error);
+            }
+            this.toggleLoader();
+		},
+
+		async update() {
+			this.$v.$touch();
+			if (this.$v.$invalid) return;
+
+            this.toggleLoader();
+			try {
+				const formData = new FormData();
+				
+                formData.append('description', this.description);
+                formData.append('tags', this.tags === null ? '' : JSON.stringify(this.selectedTags));
+                formData.append('imgFile', this.img === null ? '' : this.img.file);
+				formData.append('isPinned', this.isPinned === true ? 1 : 0);
+				formData.append('imgUrl', this.imgUrl === null ? '' : this.imgUrl);
+            
+				await this.updateUpdate({
+					updateData: formData,
+					id: this.id
+				});
+
+                this.toggle();
+			} catch (error) {
+				alert('an error happened');
+				console.error(error);
             }
             this.toggleLoader();
 		},
@@ -255,6 +294,7 @@ export default {
 		},
 
 		removeImg() {
+			if(this.isEdit) this.imgUrl = false; 
 			this.img = null;
 		},
 
