@@ -18,6 +18,8 @@ const mutations = {
 	setUserData(state, data) {
 		state.id = data.id;
 		state.name = data.name;
+		state.companyName = data.companyName;
+		state.currentProfileCreationStep = data.currentProfileCreationStep;
 		state.email = data.email;
 		state.location = data.location;
 		state.profileImgUrl = data.profileImgUrl;

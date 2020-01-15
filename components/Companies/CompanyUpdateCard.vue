@@ -23,9 +23,11 @@
 				<base-edit-pen 
 					class="flex items-center justify-center h-8 w-8 mr-2 bg-gray-700 text-white"
 					:pen-class-list="['relative', 'h-4']"
+					@click="handleUpdateClick"
 				/>
 				<base-close-button
 					style="height: 2rem; width: 2rem"
+					@click="handleDelete"
 				/>
 			</div>
 
@@ -46,6 +48,7 @@
 					</span>
 				</div>
 			</div>
+			<base-loader v-if="isLoading" />
 		</div>
 		<div 
 			v-if="size !== 'big'"
@@ -67,10 +70,11 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import BaseLikeIcon from '~/components/BaseComponents/BaseLikeIcon';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
 	name: 'CompanyUpdateCard',
@@ -85,13 +89,18 @@ export default {
 			type: Boolean,
 			required: false,
 			default: false
+		},
+		update: {
+			type: Object,
+			required: true
 		}
     },
     
     components: {
 		BaseLikeIcon,
 		BaseCloseButton,
-		BaseEditPen
+		BaseEditPen,
+		BaseLoader
 	},
 
 	computed: {
@@ -101,9 +110,32 @@ export default {
 	
 	data() {
 		return {
-			tags: ['volunteer', 'csr', 'pride']
+			tags: ['volunteer', 'csr', 'pride'],
+			isLoading: false
 		}
 	},
+
+	methods: {
+		...mapActions('employer/updates', ['deleteUpdate']),
+
+		async handleDelete() {
+			this.toggleLoader();
+			try {
+				await this.deleteUpdate(this.update.id);
+			} catch (error) {
+				alert('An error happened');
+			}
+			this.toggleLoader();
+		},
+
+		handleUpdateClick() {
+			this.$bus.$emit('open-edit-company-update-modal', this.update.id)
+		},
+
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		}
+	}
 };
 </script>
 

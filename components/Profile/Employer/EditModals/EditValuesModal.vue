@@ -124,7 +124,8 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer/values', ['values'])
+		...mapState('employer/values', ['values']),
+		...mapState('account', ['currentProfileCreationStep'])
 	},
 
 	created() {
@@ -140,17 +141,16 @@ export default {
 		...mapActions('employer/values', ['addValues']),
 
 		async submit() {
-			// this.toggle();
-			// this.nextStep();
 			this.toggleLoader();
 			try {
-				const response = await this.addValues({
+				await this.addValues({
 					values: this.clonedValues
 				});
 
-				console.log(response);
+				this.toggle();
+				if(this.currentProfileCreationStep === 1) this.nextStep();
 			} catch (error) {
-				console.log(error);
+				alert('An error happened');
 			}
 			this.toggleLoader();
 		},

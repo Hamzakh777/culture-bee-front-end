@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import EmployerValuesSection from './Sections/EmployerValuesSection';
 import EmployerCompanyVisionSection from './Sections/EmployerCompanyVisionSection';
 import EmployerCultureFeed from './Sections/EmployerCultureFeed';
@@ -41,8 +41,23 @@ export default {
 		EmployerSectionsLinks
 	},
 
+	watch: {
+		/**
+		 * When the id updates we should trigger a request to fetch the for each section
+		 */
+		id(newVal) {
+			if(newVal !== null && newVal !== undefined) this.fetchData();
+		} 
+	},
+
+	computed: {
+		...mapState('account', ['id'])
+	},
+
 	methods: {
-		
+		fetchData() {
+			// fetch the data for all teh sections
+		}
 	},
 };
 </script>

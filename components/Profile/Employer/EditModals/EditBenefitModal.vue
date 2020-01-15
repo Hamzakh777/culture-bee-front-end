@@ -89,7 +89,7 @@
 </template>
 
 <script>
-    import { mapState, mapMutations, mapActions } from 'vuex';
+    import { mapState } from 'vuex';
     import { required } from 'vuelidate/lib/validators';
     import FileUpload from 'vue-upload-component';
     import BaseModal from '~/components/BaseComponents/BaseModal';
@@ -192,7 +192,9 @@
 
             submit() {
                 this.$v.$touch();
-                if (this.$v.$invalid) return ;
+                if (!this.$v.$invalid){
+                    
+                };
             }
         },
     }

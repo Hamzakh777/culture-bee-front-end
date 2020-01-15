@@ -3,6 +3,7 @@ const state = () => ({
 	id: null,
 	companyName: null,
 	quickPitch: null,
+	currentProfileCreationStep: 1,
 	role: 'job-seeker', // employer - job-seeker
 	email: '',
 	industry: '',

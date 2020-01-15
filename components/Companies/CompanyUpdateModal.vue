@@ -1,7 +1,7 @@
 <template>
 	<base-modal :is-active="isActive" @close="toggle">
 		<template #title>
-			Post update
+			{{ isEdit ? 'Edit update' : 'Post update' }}
 		</template>
 		<template #content>
 			<div class="base-title mb-4">
@@ -15,9 +15,9 @@
 				/>
 				<!-- selected img -->
 				<div
-					v-if="img !== null"
+					v-if="updateImg !== null && updateImg !== ''"
 					class="absolute bottom-0 left-0 h-26 w-26 mb-5 ml-5 bg-center bg-cover"
-					:style="`background-image: url(${img.url})`"
+					:style="`background-image: url(${updateImg})`"
 				>
 					<base-close-button
 						class="right-0 top-0 mt-2 mr-2"
@@ -25,6 +25,8 @@
 						@click="removeImg"
 					/>
 				</div>
+
+
 				<textarea
 					class="input-text w-full h-full px-0 border-none text-base resize-none"
 					placeholder="Start typing"
@@ -105,7 +107,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import FileUpload from 'vue-upload-component';
 import TagSelect from './TagSelect';
@@ -132,6 +134,18 @@ export default {
 		BaseInputErrorMessage
 	},
 
+	computed: {
+		...mapState('employer/updates', ['updates']),
+
+		updateImg() {
+            if(this.img !== null) {
+                return this.img.url;
+            } else {
+                return this.imgUrl;
+            }
+        }
+	},
+
 	data() {
 		return {
 			isActive: false,
@@ -147,7 +161,9 @@ export default {
 			isPinned: true,
 			isLoading: false,
 			selectedTags: [],
-			img: null
+			imgUrl: null,
+			img: null,
+			isEdit: true
 		};
 	},
 
@@ -163,11 +179,15 @@ export default {
             this.reset();
 		});
 		this.$bus.$on('open-edit-company-update-modal', id => {
-            this.toggle();
-			const update = this.updates.filter(update => update.id === id);
+			const update = this.updates.filter(update => update.id === id)[0];
 
-            console.log(update);
-            
+			this.toggle();
+			this.isEdit = true;
+			
+			this.description = update.description;
+			this.isPinned = update.isPinned;
+			this.imgUrl = update.imgUrl;
+            this.selectedTags = update.tags;
 		});
 	},
 
@@ -243,7 +263,7 @@ export default {
         },
         
         reset() {
-            this.description = null,
+            this.description = null;
             this.selectedTags = [];
             this.isPinned = false;
             this.img = null;
