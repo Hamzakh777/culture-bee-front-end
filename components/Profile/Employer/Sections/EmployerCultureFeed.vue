@@ -6,7 +6,7 @@
                 <button
 					v-if="isEditPage"
                     class="primary-btn"
-                    @click="$emit('open-post-company-update-modal')"
+                    @click="$bus.$emit('open-post-company-update-modal')"
                 >
                     Post update
                 </button>
