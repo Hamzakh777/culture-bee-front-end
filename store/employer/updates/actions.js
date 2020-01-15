@@ -14,8 +14,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             this.$axios.post('api/employer/updates', data)
                 .then((response) => {
-                    resolve(response);
                     commit('addUpdate', response.data.update)
+                    resolve(response);
                 })
                 .catch(err => reject(err));
         });
@@ -23,10 +23,20 @@ const actions = {
 
     updateUpdate({ commit }, data) {
         return new Promise((resolve, reject) => {
-            this.$axios.put('api/employer/updates/', data)
+            // using put because laravel gets an empty request when sending 
+            // put without application/x-www-form-urlencoded header 
+            // but then axios can't send the fucking header -_-
+            this.$axios.put(`api/employer/updates/${data.id}`, data.updateData, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
                 .then((response) => {
+                    commit('updateUpdate', {
+                        id: data.id,
+                        update: response.data.update
+                    });
                     resolve(response);
-                    commit('addUpdate', response.data.update)
                 })
                 .catch(err => reject(err));
         });
@@ -36,8 +46,8 @@ const actions = {
         return new Promise((resolve, reject) => {
             this.$axios.delete(`api/employer/updates/${id}`)
                 .then((response) => {
-                    resolve(response);
                     commit('removeUpdate', id)
+                    resolve(response);
                 })
                 .catch(err => reject(err));
         });
