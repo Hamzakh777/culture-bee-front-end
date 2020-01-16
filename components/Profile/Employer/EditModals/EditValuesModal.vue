@@ -143,8 +143,12 @@ export default {
 		async submit() {
 			this.toggleLoader();
 			try {
+				const valuesToSend = this.clonedValues.filter(value => {
+					return value.title !== '' && value.title !== null && value.icon !== null
+				});
+
 				await this.addValues({
-					values: this.clonedValues
+					values: valuesToSend
 				});
 
 				this.toggle();
