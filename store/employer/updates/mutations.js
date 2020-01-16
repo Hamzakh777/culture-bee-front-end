@@ -11,6 +11,9 @@ const mutations = {
                 element = data.update;
             }
         });
+    },
+    removeUpdate(state, id) {
+        state.updates = state.updates.filter(update => update.id !== id);
     }
 };
 
