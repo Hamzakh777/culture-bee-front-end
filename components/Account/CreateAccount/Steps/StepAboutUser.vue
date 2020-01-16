@@ -18,9 +18,9 @@
 			</div>
 			<!-- location -->
 			<input
+				id="address-input"
 				class="input-text"
 				type="text"
-				id="address-input"
 				placeholder="Location"
 				:value="location"
 				@input="setLocation($event.target.value)"
@@ -121,7 +121,6 @@ export default {
 
 
 			this.placesInstance.on('change', e => {
-				console.log(e);
 				this.setStoreProp('location', e.suggestion.value);
 			});
 
