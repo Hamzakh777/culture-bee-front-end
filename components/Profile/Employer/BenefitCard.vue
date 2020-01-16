@@ -17,10 +17,12 @@
 						'left-1/2',
 						'transform-center'
 					]"
-					class="h-9 w-9 mr-4 bg-gray-800 text-white hover:text-yellow text-yellow cursor-pointer"
+					class="h-8 w-8 mr-4 bg-gray-800 text-white hover:text-yellow text-yellow cursor-pointer"
 					@click="$bus.$emit('open-edit-benefit-modal', benefit.id)"
 				/>
-				<base-close-button @click="$emit('remove-the-benefit')" />
+				<base-close-button 
+					@click="handleDeleteClick" 
+				/>
 			</div>
 			<div v-else></div>
 			<div class="px-8 py-10 text-white">
@@ -34,13 +36,16 @@
 				</div>
 			</div>
 		</div>
+		<base-loader v-if="isLoading" />
 		<div class="absolute inset-0 bg-transparent-to-black opacity-75"></div>
 	</div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
 	name: 'BenefitCard',
@@ -59,7 +64,34 @@ export default {
 
 	components: {
 		BaseCloseButton,
-		BaseEditPen
-	}
+		BaseEditPen,
+		BaseLoader
+	},
+
+	data() {
+		return {
+			isLoading: false
+		}
+	},
+
+	methods: {
+		...mapActions('employer/benefits', ['deleteBenefit']),
+
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
+
+		async handleDeleteClick() {
+			this.toggleLoader();
+			try {
+				await this.deleteBenefit(this.benefit.id);
+
+			} catch (error) {
+				alert('An error happened');
+				console.error(error);
+			}
+			this.toggleLoader();
+		}
+	},
 };
 </script>

@@ -45,7 +45,7 @@ export default {
 
 	methods: {
 		edit() {
-			this.$bus.$emit('open-employer-company-vision-modal');
+			this.$bus.$emit('open-employer-edit-company-vision-modal');
 		}
 	}
 };

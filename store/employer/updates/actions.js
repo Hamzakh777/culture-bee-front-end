@@ -46,7 +46,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             this.$axios.delete(`api/employer/updates/${id}`)
                 .then((response) => {
-                    commit('removeUpdate', id)
+                    commit('removeUpdate', id);
                     resolve(response);
                 })
                 .catch(err => reject(err));

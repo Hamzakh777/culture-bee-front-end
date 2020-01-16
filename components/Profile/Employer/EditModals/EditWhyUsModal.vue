@@ -16,32 +16,31 @@
 					class="input-text w-full mb-8"
 					placeholder="Type a keyword in here"
 					type="text"
-					:value="companyTagline"
-					@input="setStoreProp('companyTagline', $event.target.value)"
+					v-model="clonedTagline"
 				/>
 				<base-input-error-message
-					v-if="$v.companyTagline.$error"
+					class="-mt-5"
+					v-if="$v.clonedTagline.$error"
 					:error-type="'required'"
 				/>
 				<div class="base-title mb-3">
 					Ethos
 				</div>
 				<textarea
-					class="input-text w-full h-48 py-3 resize-none"
+					class="input-text w-full h-48 py-3 mb-4 resize-none"
 					placeholder="You can type up to 250 characters here"
-					:value="companyEthos"
-					@input="setStoreProp('companyEthos', $event.target.value)"
+					v-model="clonedEthos"
 				>
 				</textarea>
 				<base-input-error-message
-					v-if="$v.companyEthos.$error"
+					v-if="$v.clonedEthos.$error"
 					:error-type="'required'"
 				/>
 			</div>
 			<!-- other steps -->
 			<div v-else>
 				<div
-					v-for="(coreValue, index) in $v.values.$each.$iter"
+					v-for="(coreValue, index) in $v.clonedCoreValues.$each.$iter"
 					:key="index"
 					:class="{ hidden: index != currentStep - 2 }"
 				>
@@ -99,7 +98,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
@@ -117,19 +116,10 @@ export default {
 		BaseInputErrorMessage
 	},
 
-	watch: {
-		values: {
-			handler(newVal) {
-				this.setStoreProp('coreValues', newVal);
-			},
-			deep: true
-		}
-	},
-
 	computed: {
-		...mapState('employer', [
-			'companyTagline',
-			'companyEthos',
+		...mapState('employer/whyUs', [
+			'tagline',
+			'ethos',
 			'coreValues'
 		])
 	},
@@ -140,23 +130,26 @@ export default {
 			isLoading: false,
 			currentStep: 1,
 			totalSteps: 4,
-			values: []
+			clonedTagline: null,
+			clonedEthos: null,
+			clonedCoreValues: [],
+			isEdit: false
 		};
 	},
 
 	validations() {
 		if (this.currentStep === 1) {
 			return {
-				companyTagline: {
+				clonedTagline: {
 					required
 				},
-				companyEthos: {
+				clonedEthos: {
 					required
 				}
 			};
 		} else {
 			return {
-				values: {
+				clonedCoreValues: {
 					required,
 					$each: {
 						title: {
@@ -175,15 +168,27 @@ export default {
 	},
 
 	created() {
+		this.currentStep = 1;
+		
 		this.$bus.$on('open-employer-why-us-modal', () => {
-			this.isActive = true;
+			this.toggle();
+			this.clonedCoreValues = this.coreValues;
 		});
 
-		this.values = JSON.parse(JSON.stringify(this.coreValues));
+		this.$bus.$on('open-employer-edit-why-us-modal', () => {
+			this.isEdit = true;
+
+			this.toggle();
+
+			this.clonedTagline = this.tagline;
+			this.clonedEthos = this.ethos;
+			this.clonedCoreValues = this.coreValues;
+		})
 	},
 
 	methods: {
-		...mapMutations('employer', ['mutate']),
+		...mapMutations('employer', ['nextStep']),
+		...mapActions('employer/whyUs', ['addWhyUs']),
 
 		next() {
 			this.$v.$touch();
@@ -192,9 +197,8 @@ export default {
 					this.goToNextStep();
 				}
 			} else if (this.currentStep === 4) {
-				if (this.$v.values.$each[4]) this.submit();
-				
-			} else if(this.$v.values.$each[this.currentStep - 2]) {
+				if (!this.$v.clonedCoreValues.$each.$iter[2].$invalid) this.submit();
+			} else if (!this.$v.clonedCoreValues.$each.$iter[this.currentStep - 2].$invalid) {
 				this.goToNextStep();
 			}
 		},
@@ -207,13 +211,39 @@ export default {
 			this.isActive = !this.isActive;
 		},
 
-		submit() {
-			console.log('save it to the baaackend');
-			// validate 
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
 
-			// go to the section that's not valid
-			
-		}
+		toggleEdit() {
+			this.idEdit = !this.idEdit;
+		},
+
+		submit() {
+			this.$v.$touch();
+
+			if (!this.$v.$invalid){
+				this.add();
+			};
+		},
+
+		async add() {
+			this.toggleLoader();
+			try {
+				await this.addWhyUs({
+					tagline: this.clonedTagline,
+					ethos: this.clonedEthos,
+					coreValues: this.clonedCoreValues,
+				});
+
+				this.toggle();
+				this.nextStep();
+			} catch (error) {
+				alert('An error happened');
+				console.error(error);
+			}
+			this.toggleLoader();
+		},
 	}
 };
 </script>

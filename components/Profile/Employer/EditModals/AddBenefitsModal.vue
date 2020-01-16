@@ -5,7 +5,7 @@
 		</template>
 		<template #content>
 			<div
-				v-for="(benefit, index) in $v.companyBenefits.$each.$iter"
+				v-for="(benefit, index) in $v.benefits.$each.$iter"
 				:key="index"
 				:class="{ hidden: index != currentActiveBenefit - 1 }"
 			>
@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
@@ -130,25 +130,55 @@ export default {
 		BaseInputErrorMessage
 	},
 
-	watch: {
-		companyBenefits: {
-			handler(newVal) {
-				this.setBenefits(newVal);
-			},
-			deep: true
-		}
-	},
-
-	computed: {
-		...mapState('employer/benefits', ['benefits'])
-	},
-
 	data() {
 		return {
 			isActive: false,
 			isLoading: false,
-			companyBenefits: [],
-			currentActiveBenefit: 1 // the benefit being edited
+			currentActiveBenefit: 1, // the benefit being edited
+			benefits: [
+				{
+					id: 1,
+					title: 'Breakfast',
+					subtitle: 'A mix of cereals, pastry and fruits available',
+					imgFile: null,
+					imgUrl: ''
+				},
+				{
+					id: 2,
+					title: 'yoga classes',
+					subtitle: 'With our lovely resident wellness coach Hillary',
+					imgFile: null,
+					imgUrl: ''
+				},
+				{
+					id: 3,
+					title: 'Flexible',
+					subtitle: 'Flexible working to fit around your lifestyle',
+					imgFile: null,
+					imgUrl: ''
+				},
+				{
+					id: 4,
+					title: 'socials',
+					subtitle: 'Monthly offsite socials to encourage teambuilding',
+					imgFile: null,
+					imgUrl: ''
+				},
+				{
+					id: 5,
+					title: 'GROWTH',
+					subtitle: 'We send you on self-development courses',
+					imgFile: null,
+					imgUrl: ''
+				},
+				{
+					id: 6,
+					title: 'BRUNCH',
+					subtitle: 'Monthly bonding bunch with the whole team',
+					imgFile: null,
+					imgUrl: ''
+				}
+			]
 		};
 	},
 
@@ -157,12 +187,10 @@ export default {
 			this.toggle();
 		});
 
-		// close the data from the vuex store here
-		this.companyBenefits = JSON.parse(JSON.stringify(this.benefits));
 	},
 
 	validations: {
-		companyBenefits: {
+		benefits: {
 			required,
 			$each: {
 				title: {
@@ -177,7 +205,6 @@ export default {
 
 	methods: {
 		...mapMutations('employer', ['nextStep']),
-		...mapMutations('employer/benefits', ['setBenefits']),
 		...mapActions('employer/benefits', ['addBenefits']),
 
 		toggle() {
@@ -224,12 +251,8 @@ export default {
 		 * changing an object property in an  array doesn't get detected by vue
 		 */
 		changeImg(data, url) {
-			const benefits = JSON.parse(JSON.stringify(this.companyBenefits));
-
-			benefits[this.currentActiveBenefit - 1].imgFile = data;
-			benefits[this.currentActiveBenefit - 1].imgUrl = url;
-
-			this.companyBenefits = benefits;
+			this.benefits[this.currentActiveBenefit - 1].imgFile = data;
+			this.benefits[this.currentActiveBenefit - 1].imgUrl = url;
 		},
 
 		removeImg() {
@@ -238,7 +261,7 @@ export default {
 
 		async submit() {
 			// validate
-			const benefits = this.$v.companyBenefits.$each.$iter;
+			const benefits = this.$v.benefits.$each.$iter;
 			let isValide = true;
 			this.$v.$touch();
 
@@ -255,16 +278,18 @@ export default {
 			if (isValide === false) return;
 
 			// save
+			this.toggleLoader();
 			try {
-				this.toggleLoader();
-				await this.addBenefits();
+				await this.addBenefits({
+					benefits: this.benefits
+				});
 
-				this.toggleLoader();
 				this.nextStep();
 			} catch (error) {
+				alert('An error happened');
 				console.error(error);
-				this.toggleLoader();
 			}
+			this.toggleLoader();
 		}
 	}
 };

@@ -5,8 +5,9 @@
 			:class="{
 				'h-54 md:h-80': size === 'small',
 				'h-54 md:h-123': size === 'medium',
-				'h-54 md:h-82-10/1-%': size === 'big',
+				'h-54 md:h-82-10/1-% big-card-max-height': size === 'big',
 			}"
+			:style="update.imgUrl !== null ? `background-image: url(${update.imgUrl})` : ''"
 		>
 
 			<!-- like icon -->
@@ -37,7 +38,9 @@
 				class="absolute bottom-0 left-0 mr-19 px-7-1/2 py-9 bg-white"
 			>
 				<span class="sub-title mb-5">update</span>
-				<h4 class="mb-5 text-lg md:text-8 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
+				<h4 class="mb-5 text-lg md:text-8 font-bold text-gray-800">
+					Lorem ipsum dolor sit amet, consectetur 
+				</h4>
 				<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 					<span 
 						class="inline-block mb-2 mr-4"
@@ -140,8 +143,8 @@ export default {
 </script>
 
 <style scoped>
-.big-card-height {
-	height: 82.1%;
+.big-card-max-height {
+	max-height: 1042px;
 }
 </style>
 

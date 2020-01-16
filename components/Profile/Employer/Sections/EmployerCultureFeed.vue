@@ -82,7 +82,6 @@
 				updates.shift();
 
 				const updatesLength = updates.length;
-				console.log('updatesLength')
 				const arrSpliceIndex =
 					updatesLength % 2 ? updatesLength / 2 : (updatesLength + 1) / 2;
 
