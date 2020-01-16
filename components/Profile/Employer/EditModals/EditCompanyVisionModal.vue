@@ -6,8 +6,7 @@
 			<div>
 				<textarea
 					class="input-text resize-none w-full h-94 mb-8 py-6 px-6 text-sm font-semibold font-poppins"
-					:value="companyVision"
-					@input="setVision($event.target.value)"
+					v-model="clonedDescription"
 				></textarea>
 			</div>
 			<div class="flex justify-end">
@@ -20,7 +19,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
+import { required } from 'vuelidate/lib/validators';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 
@@ -35,41 +35,99 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			isActive: false
+			isActive: false,
+			isEdit: false,
+			clonedDescription: null
 		};
 	},
 
+	validations: {
+		clonedDescription: {
+			required
+		}
+	},
+
+
 	computed: {
-		...mapState('employer', ['companyVision'])
+		...mapState('employer/vision', ['description'])
 	},
 
 	created() {
 		this.$bus.$on('open-employer-company-vision-modal', () => {
+			this.clonedDescription = null;
 			this.toggle();
 		});
+
+		this.$bus.$on('open-employer-edit-company-vision-modal', () => {
+			this.clonedDescription = this.description;
+			this.toggle();
+		})
 	},
 
 	methods: {
-		...mapMutations('employer', ['mutate', 'nextStep']),
+		...mapMutations('employer', ['nextStep']),
+		...mapActions('employer/vision', ['addVision', 'updateVision']),
 
 		toggle() {
 			this.isActive = !this.isActive;
 		},
 
-		setVision(value) {
-			const payload = {
-				property: 'companyVision',
-				with: value
-			};
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
 
-			this.mutate(payload);
+		toggleEdit() {
+			this.idEdit = !this.idEdit;
 		},
 
 		submit() {
-			// make some ajax request bla bla bla
-			this.toggle();
-			this.nextStep();
-		}
+			this.$v.$touch();
+
+			if (!this.$v.$invalid){
+
+				switch (this.isEdit) {
+					case true:
+						this.update();
+
+						break;
+					case false:
+						this.add();
+
+						break;
+				}
+			};
+		},
+
+		async add() {
+			this.toggleLoader();
+			try {
+				await this.addVision({
+					description: this.clonedDescription
+				});
+
+				this.toggle();
+				this.nextStep();
+			} catch (error) {
+				alert('An error happened');
+				console.error(error);
+			}
+			this.toggleLoader();
+		},
+		
+		async updated() {
+			this.toggleLoader();
+			try {
+				await this.updateVision({
+					description: this.clonedDescription
+				});
+
+				this.toggle();
+			} catch (error) {
+				alert('An error happened');
+				console.error(error);
+			}
+			this.toggleLoader();
+		},
 	}
 };
 </script>
