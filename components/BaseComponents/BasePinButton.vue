@@ -23,7 +23,7 @@
 
         props: {
             pinned: {
-                type: Boolean,
+                type: [Boolean, Number],
                 required: true
             }
         }

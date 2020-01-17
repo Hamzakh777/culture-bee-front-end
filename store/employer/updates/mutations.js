@@ -9,11 +9,14 @@ const mutations = {
         state.updates = updates;
     },
     updateUpdate(state, data) {
-        state.updates =  state.updates.forEach(element => {
+        const updates =  state.updates.map(element => {
             if (element.id === data.update.id) {
                 element = data.update;
             }
+            return element;
         });
+
+        state.updates = updates;
     },
     removeUpdate(state, id) {
         state.updates = state.updates.filter(update => update.id !== id);

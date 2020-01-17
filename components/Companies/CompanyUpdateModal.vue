@@ -245,7 +245,8 @@ export default {
                 formData.append('imgFile', this.img === null ? '' : this.img.file);
 				formData.append('isPinned', this.isPinned === true ? 1 : 0);
 				formData.append('imgUrl', this.imgUrl === null ? '' : this.imgUrl);
-            
+				formData.append('_method', 'PUT'); // laravel method spooffing
+				
 				await this.updateUpdate({
 					updateData: formData,
 					id: this.id
@@ -294,7 +295,9 @@ export default {
 		},
 
 		removeImg() {
-			if(this.isEdit) this.imgUrl = false; 
+			if(this.isEdit) {
+				this.imgUrl = null; 
+			}
 			this.img = null;
 		},
 
