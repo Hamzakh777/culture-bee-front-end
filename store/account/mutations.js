@@ -23,6 +23,7 @@ const mutations = {
 		state.email = data.email;
 		state.location = data.location;
 		state.profileImgUrl = data.profileImgUrl;
+		state.quickPitch = data.quickPitch;
 		state.coverImgUrl = data.coverImgUrl;
 		state.role = data.role;
 	},	

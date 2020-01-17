@@ -68,7 +68,7 @@
 						v-if="benefit.$model.imgFile !== null"
 						class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
 						:style="
-							`background-image: url(${benefit.$model.imgUrl})`
+							`background-image: url(${benefit.$model.imgFile.url})`
 						"
 					>
 						<base-close-button
@@ -184,6 +184,7 @@ export default {
 
 	created() {
 		this.$bus.$on('open-employer-add-benefits-modal', () => {
+			this.reset();
 			this.toggle();
 		});
 
@@ -222,11 +223,11 @@ export default {
 		inputFile(newFile, oldFile, prevent) {
 			if (newFile && !oldFile) {
 				// add
-				this.changeImg(newFile.file, newFile.url);
+				this.changeImg(newFile);
 			}
 			if (!newFile && oldFile) {
 				// remove
-				this.changeImg(null, null);
+				this.changeImg(null);
 			}
 		},
 
@@ -247,12 +248,8 @@ export default {
 			}
 		},
 
-		/**
-		 * changing an object property in an  array doesn't get detected by vue
-		 */
-		changeImg(data, url) {
-			this.benefits[this.currentActiveBenefit - 1].imgFile = data;
-			this.benefits[this.currentActiveBenefit - 1].imgUrl = url;
+		changeImg(file) {
+			this.benefits[this.currentActiveBenefit - 1].imgFile = file;
 		},
 
 		removeImg() {
@@ -280,16 +277,34 @@ export default {
 			// save
 			this.toggleLoader();
 			try {
-				await this.addBenefits({
-					benefits: this.benefits
-				});
+				const benefits = this.prepareData();
+				await this.addBenefits(benefits);
 
 				this.nextStep();
+				this.toggle();
 			} catch (error) {
 				alert('An error happened');
-				console.error(error);
 			}
 			this.toggleLoader();
+		},
+
+		/**
+		 * @return {FormData}
+		 */
+		prepareData() {
+			const formData = new FormData();
+
+			this.benefits.forEach((benefit, index) => {
+				formData.append(`title${index + 1}`, benefit.title);
+				formData.append(`subtitle${index + 1}`, benefit.subtitle);
+                formData.append(`imgFile${index + 1}`, benefit.imgFile === null ? '' : benefit.imgFile.file);
+			});
+
+			return formData;
+		},
+
+		reset() {
+
 		}
 	}
 };
