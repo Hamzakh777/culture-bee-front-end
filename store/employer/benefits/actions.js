@@ -2,9 +2,9 @@ const actions = {
 	fetchBenefits({ commit }, id) {
 		return new Promise((resolve, reject) => {
 			this.$axios
-				.post(`api/employer/{id}/benefits`)
+				.get(`api/employer/${id}/benefits`)
 				.then(response => {
-					commit('addBenefits', response.data.updates);
+					commit('setBenefits', response.data.benefits);
 					resolve(response);
 				})
 				.catch(err => reject(err));
