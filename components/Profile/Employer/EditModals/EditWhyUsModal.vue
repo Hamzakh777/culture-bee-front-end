@@ -183,6 +183,20 @@ export default {
 			this.clonedTagline = this.tagline;
 			this.clonedEthos = this.ethos;
 			this.clonedCoreValues = this.coreValues;
+			this.currentStep = 1;
+
+			// close the data in the store
+			this.clonedCoreValues = JSON.parse(JSON.stringify(this.coreValues));
+
+			while (this.clonedCoreValues.length !== 3) {
+				const emptyValue = {
+					title: '',
+					subtitle: '',
+					description: ''
+				};
+				
+				this.clonedCoreValues.push(emptyValue);
+			}
 		})
 	},
 
