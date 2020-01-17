@@ -38,6 +38,7 @@ export default {
 		'~/plugins/vuelidate',
 		'~/plugins/vue-fontawesome',
 		'~/plugins/event-bus',
+		'~/plugins/axios',
 		{
 			src: '~/plugins/swiper',
 			mode: 'client'
