@@ -50,7 +50,7 @@ export default {
 	name: 'EmployerAccountProgress',
 
 	computed: {
-		...mapState('employer', ['currentProfileCreationStep'])
+		...mapState('account', ['currentProfileCreationStep'])
 	},
 
 	data() {
