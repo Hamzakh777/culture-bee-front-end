@@ -1,5 +1,5 @@
 const mutations = {
-    mutate(state, values) {
+    setValues(state, values) {
         state.values = values;
     }
 };

@@ -21,6 +21,8 @@ export default {
 		EmployerAccountProgress,
 		EmployerEditProfileModals,
 		EmployerProfileSections
-	}
+	},
+
+	
 };
 </script>

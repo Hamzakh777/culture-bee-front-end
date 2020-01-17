@@ -4,7 +4,7 @@
 			<div class="base-title">Company vision</div>
 			<div class="max-w-4xl px-8">
 				<div class="text-5-1/2 font-bold text-gray-800">
-					<base-splited-paragraphs :text="companyVision" />
+					<base-splited-paragraphs :text="description" />
 				</div>
 			</div>
 			<!-- edit button -->
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import BaseSplitedParagraphs from '~/components/BaseComponents/BaseSplitedParagraphs';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
@@ -40,10 +40,21 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['companyVision'])
+		...mapState('employer/vision', ['description'])
+	},
+
+	mounted() {
+		try {
+			this.fetchVision(this.$route.params.id);
+		} catch (error) {
+			alert('An error happend trying to load company vision');
+			console.error(error);
+		}
 	},
 
 	methods: {
+		...mapActions('employer/vision', ['fetchVision']),
+
 		edit() {
 			this.$bus.$emit('open-employer-edit-company-vision-modal');
 		}

@@ -1,9 +1,9 @@
 const actions = {
     fetchVision({ commit }, id) {
         return new Promise((resolve, reject) => {
-            this.$axios.post(`api/employer/{id}/vision`)
+            this.$axios.get(`api/employer/${id}/vision`)
                 .then((response) => {
-                    commit('addBenefits', response.data.updates)
+                    commit('setVision', response.data.vision)
                     resolve(response);
                 })
                 .catch(err => reject(err));

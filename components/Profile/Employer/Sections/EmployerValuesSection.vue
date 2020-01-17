@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 
 export default {
@@ -49,12 +49,22 @@ export default {
 		...mapState('employer/values', ['values']),
 
 		valuesToShow() {
-			return this.values;
-
-			// return this.values.filter(
-			// 	value => value.icon != false && value.title != false
-			// );
+			return this.values.filter(
+				value => value.icon !== null && value.title !== null && value.icon !== '' && value.title !== '' 
+			);
 		}
+	},
+
+	mounted() {
+		try {
+			this.fetchValues(this.$route.params.id);
+		} catch (error) {
+			alert('An error happend trying to load company values');
+		}
+	},
+
+	methods: {
+		...mapActions('employer/values', ['fetchValues'])
 	}
 };
 </script>

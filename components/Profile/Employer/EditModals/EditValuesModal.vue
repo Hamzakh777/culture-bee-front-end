@@ -17,7 +17,7 @@
 					>
 						<!-- plus -->
 						<div 
-							v-if="value.icon == false"
+							v-if="value.icon === null || value.icon === ''"
 							class="plus"
 							@click="setActiveIconSelector(index)"
 						>
@@ -131,9 +131,18 @@ export default {
 	created() {
 		this.$bus.$on('open-employer-values-modal', () => {
 			this.toggle();
+			// close the data in the store
+			this.clonedValues = JSON.parse(JSON.stringify(this.values));
+
+			while (this.clonedValues.length !== 7) {
+				const emptyValue = {
+					title: null,
+					icon: null
+				};
+				
+				this.clonedValues.push(emptyValue);
+			}
 		});
-		// close the data in the store
-		this.clonedValues = JSON.parse(JSON.stringify(this.values));
 	},
 
 	methods: {
