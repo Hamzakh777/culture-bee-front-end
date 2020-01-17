@@ -14,7 +14,6 @@ export default {
         description: 'Your company vision let everyone know what you stand for as a group. This will ensure you attract the right energy.',
         iconUrl: '/profile/employer/step-2.svg',
         nextEventName: 'open-employer-company-vision-modal',
-        prevEventname: 'event-name',
         nextButtonText: 'Add vision'
     },
     3: {
@@ -23,7 +22,6 @@ export default {
         description: 'Let people know what your latest accomplishments/events/interests are so they can see if they are aligned with you. ',
         iconUrl: '/profile/employer/step-3.svg',
         nextEventName: 'open-employer-benefits-modal',
-        prevEventname: 'event-name',
         nextButtonText: 'Post update'
     },
     4: {
@@ -32,7 +30,6 @@ export default {
         description: 'Your ethos is the strongest message you can send as a company, showcase your beliefs here.',
         iconUrl: '/profile/employer/step-4.svg',
         nextEventName: 'open-employer-why-us-modal',
-        prevEventname: 'event-name',
         nextButtonText: 'Add your why'
     },
     5: {
@@ -40,8 +37,7 @@ export default {
         title: 'Add the benefits of your company',
         description: 'Attract potential employees with benefits of working for your company',
         iconUrl: '/profile/employer/step-5.svg',
-        nextEventName: 'event-name',
-        prevEventname: 'event-name',
+        nextEventName: 'open-employer-add-benefits-modal',
         nextButtonText: 'Add benefits'
     },
     6: {
@@ -50,7 +46,6 @@ export default {
         description: 'Attract potential employees with an advert that really represents your company',
         iconUrl: '/profile/employer/step-6.svg',
         nextEventName: 'event-name',
-        prevEventname: 'event-name',
         nextButtonText: 'Post a job'
     }
 };
