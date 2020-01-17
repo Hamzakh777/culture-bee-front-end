@@ -134,7 +134,7 @@ export default {
 			// close the data in the store
 			this.clonedValues = JSON.parse(JSON.stringify(this.values));
 
-			while (this.clonedValues.length !== 7) {
+			while (this.clonedValues.length !== 6) {
 				const emptyValue = {
 					title: null,
 					icon: null
