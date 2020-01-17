@@ -10,6 +10,15 @@ const mutations = {
      */
     removeBenefit(state, id) {
         this.state.benefits = this.state.benefits.filter((benefit) => benefit.id !== id);
+    },
+
+    updateBenefit(state, updatedBenefit) {
+        state.benefits = state.benefits.map(element => {
+            if (element.id === updatedBenefit.id) {
+                element = updatedBenefit;
+            }
+            return element;
+        });
     }
 };
 

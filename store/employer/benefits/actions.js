@@ -23,12 +23,12 @@ const actions = {
 		});
 	},
 
-	updateBenefit({ commit }) {
+	updateBenefit({ commit }, data) {
 		return new Promise((resolve, reject) => {
 			this.$axios
-				.put('api/employer/updates/', data)
+				.post(`api/employer/benefits/${data.id}`, data.formData)
 				.then(response => {
-					commit('updateBenefit', response.data.update);
+					commit('updateBenefit', response.data.benefit);
 					resolve(response);
 				})
 				.catch(err => reject(err));

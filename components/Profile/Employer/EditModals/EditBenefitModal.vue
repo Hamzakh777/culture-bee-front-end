@@ -1,5 +1,5 @@
 <template>
-    <base-modal :is-active="isActive" @close="toggle">
+	<base-modal :is-active="isActive" @close="toggle">
 		<template #title>
 			Edit benefit
 		</template>
@@ -61,7 +61,7 @@
 					</div>
 					<!-- the uploaded image -->
 					<div
-						v-if="benefitToEdit.imgUrl != false"
+						v-if="benefitToEdit.imgUrl !== null"
 						class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
 						:style="
 							`background-image: url(${benefitToEdit.imgUrl})`
@@ -89,113 +89,154 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
-    import { required } from 'vuelidate/lib/validators';
-    import FileUpload from 'vue-upload-component';
-    import BaseModal from '~/components/BaseComponents/BaseModal';
-    import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
-    import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
-    import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
+import { mapState, mapActions } from 'vuex';
+import { required } from 'vuelidate/lib/validators';
+import FileUpload from 'vue-upload-component';
+import BaseModal from '~/components/BaseComponents/BaseModal';
+import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
+import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
+import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
-    export default {
+export default {
+	components: {
+		BaseModal,
+		BaseAjaxButton,
+		FileUpload,
+		BaseCloseButton,
+		BaseInputErrorMessage
+	},
 
-        components: {
-            BaseModal,
-            BaseAjaxButton,
-            FileUpload,
-            BaseCloseButton,
-            BaseInputErrorMessage
-        },
+	computed: {
+		...mapState('employer/benefits', ['benefits'])
+	},
 
-        computed: {
-            ...mapState('employer/benefits', ['benefits'])
-        },
+	data() {
+		return {
+			isActive: false,
+			isLoading: false,
+			benefitToEdit: {
+                id: null,
+				title: '',
+				subtitle: '',
+				imgFile: null,
+				imgUrl: null
+			}
+		};
+	},
 
-        data() {
-            return {
-                isActive: false,
-                isLoading: false,
-                benefitToEdit: {
-                    title: '',
-                    subtitle: '',
-                    imgFile: null,
-                    imgUrl: null
-                }
-            };
-        },
+	created() {
+		this.$bus.$on('open-edit-benefit-modal', id => {
+			this.toggle();
+			let benefitToEdit = this.benefits.filter(
+				item => id === item.id
+			)[0];
 
-        created() {
-            this.$bus.$on('open-edit-benefit-modal', (id) => {
+            benefitToEdit = JSON.parse(JSON.stringify(benefitToEdit));
+            
+            this.benefitToEdit.id = benefitToEdit.id;
+            this.benefitToEdit.title = benefitToEdit.title;
+            this.benefitToEdit.subtitle = benefitToEdit.subtitle;
+            this.benefitToEdit.imgUrl = benefitToEdit.imgUrl;
+
+		});
+	},
+
+	validations: {
+		benefitToEdit: {
+			title: {
+				required
+			},
+			subtitle: {
+				required
+			}
+		}
+	},
+
+	methods: {
+		...mapActions('employer/benefits', ['updateBenefit']),
+
+		toggle() {
+			this.isActive = !this.isActive;
+		},
+
+		toggleLoader() {
+			this.isLoading = !this.isLoading;
+		},
+
+		inputFile(newFile, oldFile, prevent) {
+			if (newFile && !oldFile) {
+				// add
+				this.changeImg(newFile.file, newFile.url);
+			}
+			if (!newFile && oldFile) {
+				// remove
+				this.changeImg(null, null);
+			}
+		},
+
+		inputFilter(newFile, oldFile, prevent) {
+			if (newFile && !oldFile) {
+				if (!/\.(jpg|jpeg|png)$/i.test(newFile.name)) {
+					this.alert('Your choice is not a picture');
+					return prevent();
+				}
+			}
+			if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
+				newFile.url = '';
+				const URL = window.URL || window.webkitURL;
+
+				if (URL && URL.createObjectURL) {
+					newFile.url = URL.createObjectURL(newFile.file);
+				}
+			}
+		},
+
+		changeImg(data, url) {
+			this.benefitToEdit.imgFile = data;
+			this.benefitToEdit.imgUrl = url;
+		},
+
+		removeImg() {
+			this.changeImg(null, null);
+		},
+
+		async submit() {
+			this.$v.$touch();
+			if (this.$v.$invalid) return;
+
+			this.toggleLoader();
+			try {
+				const formData = new FormData();
+				formData.append(`title`, this.benefitToEdit.title);
+				formData.append(`subtitle`, this.benefitToEdit.subtitle);
+				formData.append(
+					`imgFile`,
+					this.benefitToEdit.imgFile === null
+						? ''
+						: this.benefitToEdit.imgFile
+				);
+				formData.append(
+					`imgUrl`,
+					this.benefitToEdit.imgUrl === null
+						? ''
+						: this.benefitToEdit.imgUrl
+				);
+				// since sending a put request in laravel never works correctly
+				// we have to do some method spooffing
+				formData.append('_method', 'PUT');
+
+				await this.updateBenefit({
+					id: this.benefitToEdit.id,
+					formData
+                });
+                
                 this.toggle();
-                const benefitToEdit = this.benefits.filter((item) => id === item.id)[0];
-
-                this.benefitToEdit = JSON.parse(JSON.stringify(benefitToEdit));
-            })
-        },
-
-        validations: {
-            benefitToEdit: {
-                title: {
-                    required
-                },
-                subtitle: {
-                    required
-                }
-            }
-        },
-
-        methods: {
-            toggle() {
-                this.isActive = !this.isActive;
-            },
-
-            toggleLoader() {
-                this.isLoading = !this.isLoading;
-            },
-
-            inputFile(newFile, oldFile, prevent) {
-                if (newFile && !oldFile) {
-                    // add
-                    this.changeImg(newFile.file, newFile.url);
-                }
-                if (!newFile && oldFile) {
-                    // remove
-                    this.changeImg(null, null);
-                }
-            },
-
-            inputFilter(newFile, oldFile, prevent) {
-                if (newFile && !oldFile) {
-                    if (!/\.(jpg|jpeg|png)$/i.test(newFile.name)) {
-                        this.alert('Your choice is not a picture');
-                        return prevent();
-                    }
-                }
-                if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
-                    newFile.url = '';
-                    const URL = window.URL || window.webkitURL;
-
-                    if (URL && URL.createObjectURL) {
-                        newFile.url = URL.createObjectURL(newFile.file);
-                    }
-                }
-            },
-
-            changeImg(data, url) {
-                this.benefitToEdit.imgFile = data;
-                this.benefitToEdit.imgUrl = url
-            },
-
-            removeImg() {
-                this.changeImg(null, null);
-            },
-
-            submit() {
-                this.$v.$touch();
-                if (!this.$v.$invalid){
-                    
-                };
-            }
-        },
-    }
+			} catch (error) {
+                alert('An error happend');
+                console.error(error);
+			}
+			this.toggleLoader();
+		}
+	}
+};
 </script>
