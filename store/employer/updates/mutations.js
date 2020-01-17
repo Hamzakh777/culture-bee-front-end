@@ -1,4 +1,7 @@
 const mutations = {
+    setUpdates(state, updates) {
+        state.updates = updates;
+    },
     addUpdate(state, update) {
         state.updates.unshift(update);
     },

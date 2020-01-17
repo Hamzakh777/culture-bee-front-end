@@ -144,6 +144,7 @@ export default {
 
 <style scoped>
 .big-card-max-height {
+	min-height: 800px;
 	max-height: 1042px;
 }
 </style>

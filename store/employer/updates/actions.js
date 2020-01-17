@@ -1,10 +1,10 @@
 const actions = {
-    fetchUpdates(id) {
+    fetchUpdates({ commit }, id) {
         return new Promise((resolve, reject) => {
-            this.$axios.post(`api/employer/{id}/updates`)
+            this.$axios.get(`api/employer/${id}/updates`)
                 .then((response) => {
                     resolve(response);
-                    commit('addUpdates', response.data.updates)
+                    commit('setUpdates', response.data.updates);
                 })
                 .catch(err => reject(err));
         });
