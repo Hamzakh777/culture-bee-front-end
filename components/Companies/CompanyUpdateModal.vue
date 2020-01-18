@@ -203,6 +203,7 @@ export default {
 	},
 
 	methods: {
+		...mapMutations('account', ['incrementProfileCreationStep']),
 		...mapActions('employer/updates', ['addUpdate', 'updateUpdate']),
 
 		toggle() {
@@ -224,7 +225,8 @@ export default {
             
 				await this.addUpdate(formData);
 
-                this.toggle();
+				this.toggle();
+				if(this.currentProfileCreationStep === 2) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('an error happened');
 				console.error(error);
