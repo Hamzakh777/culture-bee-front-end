@@ -4,7 +4,7 @@
 			<div class="flex items-stretch w-full">
 				<!-- logo -->
 				<div 
-					class="flex items-center h-45 w-45 p-5 bg-white"
+					class="flex items-center h-45 w-45 p-5 bg-white overflow-hidden"
 				>
 					<img 
 						v-if="profileImgUrl !== null && profileImgUrl !== undefined"

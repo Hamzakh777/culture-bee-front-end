@@ -41,23 +41,8 @@ export default {
 		EmployerSectionsLinks
 	},
 
-	watch: {
-		/**
-		 * When id updates show the sections
-		 */
-		id(newVal) {
-			if(newVal !== null && newVal !== undefined) this.fetchData();
-		} 
-	},
-
 	computed: {
-		...mapState('account', ['id', 'currentProfileCreationStep'])
-	},
-
-	methods: {
-		fetchData() {
-			// fetch the data for all teh sections
-		}
-	},
+		...mapState('employer', ['currentProfileCreationStep'])
+	}
 };
 </script>
