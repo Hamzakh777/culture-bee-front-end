@@ -48,7 +48,11 @@
 				@input="setStoreProp('skills', $event)"
 			/>
 		</div>
-		<steps-nav :is-last-step="true" @prev="previousStep" @next="submit" />
+		<steps-nav 
+			:is-last-step="true" 
+			@prev="previousStep" 
+			@next="submit" 
+		/>
 	</div>
 </template>
 
