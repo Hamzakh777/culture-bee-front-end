@@ -146,7 +146,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('employer', ['nextStep']),
+		...mapMutations('account', ['incrementProfileCreationStep']),
 		...mapActions('employer/values', ['addValues']),
 
 		async submit() {
@@ -161,7 +161,7 @@ export default {
 				});
 
 				this.toggle();
-				if(this.currentProfileCreationStep === 1) this.nextStep();
+				if(this.currentProfileCreationStep === 0) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');
 			}

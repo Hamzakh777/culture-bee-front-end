@@ -65,7 +65,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('employer', ['nextStep']),
+		...mapMutations('account', ['incrementProfileCreationStep']),
 		...mapActions('employer/vision', ['addVision', 'updateVision']),
 
 		toggle() {
@@ -106,10 +106,9 @@ export default {
 				});
 
 				this.toggle();
-				this.nextStep();
+				this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');
-				console.error(error);
 			}
 			this.toggleLoader();
 		},
@@ -124,7 +123,6 @@ export default {
 				this.toggle();
 			} catch (error) {
 				alert('An error happened');
-				console.error(error);
 			}
 			this.toggleLoader();
 		},

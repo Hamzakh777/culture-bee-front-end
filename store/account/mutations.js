@@ -3,6 +3,10 @@ const mutations = {
 		state.currentStep = state.currentStep + 1;
 	},
 
+	incrementProfileCreationStep(state) {
+		state.currentProfileCreationStep += 1;
+	},
+
 	previousStep(state) {
 		state.currentStep += -1;
 	},

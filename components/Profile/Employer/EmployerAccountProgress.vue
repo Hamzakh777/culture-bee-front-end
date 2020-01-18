@@ -55,7 +55,7 @@ export default {
 
 	data() {
 		return {
-			totalSteps: 6,
+			totalSteps: [0,1,2,3,4,5],
 			steps
 		};
 	},
