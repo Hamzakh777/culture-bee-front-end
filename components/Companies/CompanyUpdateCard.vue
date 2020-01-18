@@ -39,12 +39,12 @@
 			>
 				<span class="sub-title mb-5">update</span>
 				<h4 class="mb-5 text-lg md:text-8 font-bold text-gray-800">
-					Lorem ipsum dolor sit amet, consectetur 
+					{{ update.description }} 
 				</h4>
 				<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 					<span 
 						class="inline-block mb-2 mr-4"
-						v-for="(tag, index) in tags"
+						v-for="(tag, index) in update.tags"
 						:key="index"
 					>
 						{{ tag }}
@@ -58,11 +58,11 @@
 			class="px-7-1/2 py-9 bg-white"
 		>
 			<span class="inline-block sub-title mb-5">update</span>
-			<h4 class="mb-5 text-lg md:text-5-3/4 font-bold text-gray-800">Lorem ipsum dolor sit amet, consectetur </h4>
+			<h4 class="mb-5 text-lg md:text-5-3/4 font-bold text-gray-800">{{ update.description }}</h4>
 			<div class="text-xs font-bold text-gray-800 tracking-widest uppercase">
 				<span 
 					class="inline-block mb-2 mr-4"
-					v-for="(tag, index) in tags"
+					v-for="(tag, index) in update.tags"
 					:key="index"
 				>
 					{{ tag }}
@@ -113,7 +113,6 @@ export default {
 	
 	data() {
 		return {
-			tags: ['volunteer', 'csr', 'pride'],
 			isLoading: false
 		}
 	},
