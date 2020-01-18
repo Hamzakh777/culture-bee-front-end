@@ -128,7 +128,6 @@ export default {
 	methods: {
 		toggleMobileMenu() {
 			this.isOpen = !this.isOpen;
-			console.log('adf');
 		},
 
 		openUserPopup() {
