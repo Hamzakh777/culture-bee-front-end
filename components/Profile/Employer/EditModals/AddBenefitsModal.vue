@@ -131,7 +131,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['currentProfileCreationStep'])
+		...mapState('employer', ['currentProfileCreationStep'])
 	},
 
 	data() {
@@ -177,7 +177,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('account', ['incrementProfileCreationStep']),
+		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapMutations('employer', ['nextStep']),
 		...mapActions('employer/benefits', ['addBenefits']),
 

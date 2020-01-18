@@ -162,7 +162,7 @@ export default {
 	},
 
 	computed: {
-        ...mapState('account', ['name', 'companyName', 'location', 'quickPitch', 'profileImgUrl', 'coverImgUrl']),
+        ...mapState('employer', ['name', 'companyName', 'location', 'quickPitch', 'profileImgUrl', 'coverImgUrl']),
 
         coverPhoto() {
             if(this.cover !== null) {
@@ -220,7 +220,7 @@ export default {
     },
     
     methods: {
-        ...mapActions('account', ['updateAccountDetails']),
+        ...mapActions('employer', ['updateAccountDetails']),
 
         inputFileProfile(newFile, oldFile, prevent) {
 			if (newFile && !oldFile) {

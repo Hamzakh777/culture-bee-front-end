@@ -125,7 +125,7 @@ export default {
 
 	computed: {
 		...mapState('employer/values', ['values']),
-		...mapState('account', ['currentProfileCreationStep']) 
+		...mapState('employer', ['currentProfileCreationStep']) 
 	},
 
 	created() {
@@ -146,7 +146,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('account', ['incrementProfileCreationStep']),
+		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapActions('employer/values', ['addValues']),
 
 		async submit() {

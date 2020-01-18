@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import EmployerHero from '~/components/Profile/Employer/EmployerHero';
 import EmployerAccountProgress from '~/components/Profile/Employer/EmployerAccountProgress';
 import EmployerEditProfileModals from '~/components/Profile/Employer/EmployerEditProfileModals';
@@ -23,6 +24,17 @@ export default {
 		EmployerProfileSections
 	},
 
-	
+	created() {
+		try {
+			this.getProfileDetails(this.$route.params.id);
+		} catch (error) {
+			alert('An error happend trying to load company vision');
+			console.error(error);
+		}
+	},
+
+	methods: {
+		...mapActions('employer', ['getProfileDetails'])
+	},
 };
 </script>

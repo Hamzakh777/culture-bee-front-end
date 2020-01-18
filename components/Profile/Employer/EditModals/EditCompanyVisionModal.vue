@@ -49,7 +49,8 @@ export default {
 
 
 	computed: {
-		...mapState('employer/vision', ['description'])
+		...mapState('employer/vision', ['description']),
+		...mapState('employer', ['currentProfileCreationStep']) 
 	},
 
 	created() {
@@ -65,7 +66,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('account', ['incrementProfileCreationStep']),
+		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapActions('employer/vision', ['addVision', 'updateVision']),
 
 		toggle() {
@@ -106,7 +107,7 @@ export default {
 				});
 
 				this.toggle();
-				this.incrementProfileCreationStep();
+				if(this.currentProfileCreationStep === 1) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');
 			}

@@ -1,18 +1,25 @@
 const actions = {
-    addUpdate({ commit }, id) {
+    async getProfileDetails({ commit }, id) {
         try {
-            console.log('removing update');
+            const response = await this.$axios.get(`api/employer/${id}`);
+
+            commit('setProfileDetails', response.data.data);
         } catch (error) {
-            alert(error);
+            alert('An error occured trying to retrieve the user data');
         }
     },
-    deleteUpdate({ commit }, id) {
-        try {
-            console.log('removing update');
-        } catch (error) {
-            alert(error);
-        }
-    }
+    updateAccountDetails({ commit }, data) {
+        return new Promise((resolve, reject) => {
+            this.$axios.post('/api/profile', data)
+                .then((response) => {
+                    commit('setProfileDetails', response.data.user);
+                    resolve(response);
+                })
+                .catch(err => {
+                    reject(err);
+                })
+        })
+    },
 }
 
 export default actions;

@@ -44,7 +44,7 @@
 						class="secondary-btn text-yellow cursor-pointer"
 						to="/"
 					>
-						{{ totalJobs }} Jobs
+						0 Jobs
 					</nuxt-link>
 				</div>
 			</div>
@@ -106,9 +106,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['totalJobs']),
-		...mapState('account', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName']),
-		...mapState('account', ['location'])
+		...mapState('employer', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName', 'location']),
 	},
 
 	methods: {

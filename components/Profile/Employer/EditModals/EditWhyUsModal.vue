@@ -134,7 +134,7 @@ export default {
 			'ethos',
 			'coreValues'
 		]),
-		...mapState('account', ['currentProfileCreationStep']) 
+		...mapState('employer', ['currentProfileCreationStep']) 
 	},
 
 	data() {
@@ -228,7 +228,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('account', ['incrementProfileCreationStep']),
+		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapMutations('employer', ['nextStep']),
 		...mapActions('employer/whyUs', ['addWhyUs']),
 

@@ -1,33 +1,18 @@
 const state = () => ({
 	isEditing: true, 
+	id: null,
+	companyName: null,
+	quickPitch: null,
 	currentProfileCreationStep: 1,
-	// intro
-	coverPhotoUrl: '',
-	companyLogoUrl: '',
-	companyName: '',
-	quickPitch: 'Funky fresh sustainable wears for people who cares',
-	totalJobs: 16,
-	companyVision: 'TALA is a new brand of athleisure and activewear that holds sustainability at its core. Garments are produced and hand finished in Portugal where a number of steps have been taken to ensure every step of the process is as sustainable as possible. \n Partnering with a world-leading facility has ensured that the garments not only fulfil the functionality demanded by the customer but also lessen the footprint by spinning the required yarn and fibres on site.',
-	// why us
-	companyTagline: 'We believe that #itscooltobekind',
-	companyEthos: 'We are on a mission to create products that are 100% up-cycled, and we are 92% of the way there…! Our packaging is recycled and recyclable and the tags are made from 100% plantable paper. Simply plant, love and care for them, and watch them grow!',
-	coreValues: [
-		{
-			title: 'WE LISTEN',
-			subtitle: 'All of our #TeamTala family has a say in our products',
-			description: 'We want them to be comfortable & empowered with expressing their opinions in the products.'
-		},
-		{
-			title: 'WE care',
-			subtitle: 'We’re a bunch of kind souls trying to save the world ',
-			description: 'We’re all big characters who have their opinions but will always stay open-minded.'
-		},
-		{
-			title: 'WE evolve',
-			subtitle: 'The nature of our company means that we’re adaptive',
-			description: 'As the clothing is made from recycled materials, we have to stay on our toes with creativity'
-		}
-	]
+	role: 'employer',
+	email: '',
+	industry: '',
+	name: '',
+	skills: [],
+	profileImgUrl: null,
+	coverImgUrl: null,
+	accessToken: process.browser === true ? (localStorage.getItem('access_token') || null) : null,
+	profileImgFile: null
 });
 
 export default state;
