@@ -46,7 +46,7 @@
 				>
 					<div class="flex justify-between">
 						<div class="base-title mb-3">
-							core value
+							core value {{ parseInt(index) + 1 }}
 						</div>
 						<img class="w-6" src="/logo-small.svg" />
 					</div>
@@ -55,6 +55,10 @@
 						placeholder="Type a keyword in here"
 						type="text"
 						v-model="coreValue.title.$model"
+					/>
+					<base-input-error-message
+						v-if="coreValue.title.$error"
+						:error-type="'required'"
 					/>
 					<div class="base-title mb-3">
 						subheader
@@ -65,6 +69,10 @@
 						type="text"
 						v-model="coreValue.subtitle.$model"
 					/>
+					<base-input-error-message
+						v-if="coreValue.subtitle.$error"
+						:error-type="'required'"
+					/>
 					<div class="base-title mb-3">
 						description
 					</div>
@@ -74,6 +82,10 @@
 						v-model="coreValue.description.$model"
 					>
 					</textarea>
+					<base-input-error-message
+						v-if="coreValue.description.$error"
+						:error-type="'required'"
+					/>
 				</div>
 			</div>
 			<!-- next button -->
@@ -121,7 +133,8 @@ export default {
 			'tagline',
 			'ethos',
 			'coreValues'
-		])
+		]),
+		...mapState('account', ['currentProfileCreationStep']) 
 	},
 
 	data() {
@@ -173,6 +186,20 @@ export default {
 		this.$bus.$on('open-employer-why-us-modal', () => {
 			this.toggle();
 			this.clonedCoreValues = this.coreValues;
+
+			// close the data in the store
+			this.clonedCoreValues = JSON.parse(JSON.stringify(this.coreValues));
+
+			while (this.clonedCoreValues.length !== 3) {
+				console.log('tes')
+				const emptyValue = {
+					title: '',
+					subtitle: '',
+					description: ''
+				};
+				
+				this.clonedCoreValues.push(emptyValue);
+			}
 		});
 
 		this.$bus.$on('open-employer-edit-why-us-modal', () => {
@@ -197,10 +224,11 @@ export default {
 				
 				this.clonedCoreValues.push(emptyValue);
 			}
-		})
+		});
 	},
 
 	methods: {
+		...mapMutations('account', ['incrementProfileCreationStep']),
 		...mapMutations('employer', ['nextStep']),
 		...mapActions('employer/whyUs', ['addWhyUs']),
 
@@ -252,6 +280,7 @@ export default {
 
 				this.toggle();
 				this.nextStep();
+				if(this.currentProfileCreationStep === 3) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');
 				console.error(error);

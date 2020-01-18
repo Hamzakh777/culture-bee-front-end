@@ -107,7 +107,8 @@ export default {
 
 	computed: {
 		...mapState('employer', ['totalJobs']),
-		...mapState('account', ['location', 'quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName'])
+		...mapState('account', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName']),
+		...mapState('account', ['location'])
 	},
 
 	methods: {

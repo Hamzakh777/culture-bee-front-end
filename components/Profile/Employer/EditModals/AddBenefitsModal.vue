@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
@@ -130,6 +130,10 @@ export default {
 		BaseInputErrorMessage
 	},
 
+	computed: {
+		...mapState('account', ['currentProfileCreationStep'])
+	},
+
 	data() {
 		return {
 			isActive: false,
@@ -138,8 +142,6 @@ export default {
 			benefits: []
 		};
 	},
-
-
 
 	created() {
 		this.$bus.$on('open-employer-add-benefits-modal', () => {
@@ -175,6 +177,7 @@ export default {
 	},
 
 	methods: {
+		...mapMutations('account', ['incrementProfileCreationStep']),
 		...mapMutations('employer', ['nextStep']),
 		...mapActions('employer/benefits', ['addBenefits']),
 
@@ -252,6 +255,7 @@ export default {
 
 				this.nextStep();
 				this.toggle();
+				if(this.currentProfileCreationStep === 4) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');
 			}

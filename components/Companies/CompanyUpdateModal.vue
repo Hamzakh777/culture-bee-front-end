@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import { required } from 'vuelidate/lib/validators';
 import FileUpload from 'vue-upload-component';
 import TagSelect from './TagSelect';
@@ -145,6 +145,7 @@ export default {
 
 	computed: {
 		...mapState('employer/updates', ['updates']),
+		...mapState('account', ['currentProfileCreationStep']),
 
 		updateImg() {
             if(this.img !== null) {
