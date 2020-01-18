@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<employer-values-section :is-edit-page="isEditPage" />
+		<employer-values-section v-if="currentProfileCreationStep === 1" :is-edit-page="isEditPage" />
 		<employer-sections-links v-if="!isEditPage" />
-		<employer-company-vision-section  :is-edit-page="isEditPage" />
-		<employer-culture-feed  :is-edit-page="isEditPage" />
-		<employer-why-us-section  :is-edit-page="isEditPage" />
-		<employer-benefits-section  :is-edit-page="isEditPage" />
-		<employer-jobs-section :is-edit-page="isEditPage" />
+		<employer-company-vision-section v-if="currentProfileCreationStep === 2"  :is-edit-page="isEditPage" />
+		<employer-culture-feed v-if="currentProfileCreationStep === 3" :is-edit-page="isEditPage" />
+		<employer-why-us-section v-if="currentProfileCreationStep === 4" :is-edit-page="isEditPage" />
+		<employer-benefits-section v-if="currentProfileCreationStep === 5" :is-edit-page="isEditPage" />
+		<employer-jobs-section v-if="currentProfileCreationStep === 6" :is-edit-page="isEditPage" />
 	</div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
 
 	watch: {
 		/**
-		 * When the id updates we should trigger a request to fetch the for each section
+		 * When id updates show the sections
 		 */
 		id(newVal) {
 			if(newVal !== null && newVal !== undefined) this.fetchData();
@@ -51,7 +51,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['id'])
+		...mapState('account', ['id', 'currentProfileCreationStep'])
 	},
 
 	methods: {
