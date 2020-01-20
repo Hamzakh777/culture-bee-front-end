@@ -13,7 +13,7 @@
 					>
 						<font-awesome-icon 
 							:icon="value.icon" 
-							class="h-5 text-8" 
+							class="h-5 text-8"
 						/>
 					</div>
 					<div class="ml-5 max-w-xs text-sm font-bold">

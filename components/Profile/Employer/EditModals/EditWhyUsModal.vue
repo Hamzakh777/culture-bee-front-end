@@ -57,6 +57,7 @@
 						v-model="coreValue.title.$model"
 					/>
 					<base-input-error-message
+						class="-mt-4"
 						v-if="coreValue.title.$error"
 						:error-type="'required'"
 					/>
@@ -70,6 +71,7 @@
 						v-model="coreValue.subtitle.$model"
 					/>
 					<base-input-error-message
+					class="-mt-4"
 						v-if="coreValue.subtitle.$error"
 						:error-type="'required'"
 					/>
@@ -77,7 +79,7 @@
 						description
 					</div>
 					<textarea
-						class="input-text w-full h-48 py-3 resize-none"
+						class="input-text w-full h-48 mb-4 py-3 resize-none"
 						placeholder="You can type up to 250 characters here"
 						v-model="coreValue.description.$model"
 					>

@@ -20,9 +20,9 @@
 						v-model="benefit.title.$model"
 					/>
 					<base-input-error-message
-						class="mt-2"
 						v-if="benefit.title.$error"
 						:error-type="'required'"
+						style="margin-top: 0.75rem"
 					/>
 				</div>
 				<div class="mb-8">
@@ -37,7 +37,7 @@
 					>
 					</textarea>
 					<base-input-error-message
-						class="mt-1"
+						style="margin-top: 0.5rem"
 						v-if="benefit.subtitle.$error"
 						:error-type="'required'"
 					/>
