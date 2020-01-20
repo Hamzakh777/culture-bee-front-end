@@ -125,7 +125,7 @@ export default {
 
 	computed: {
 		...mapState('employer/values', ['values']),
-		...mapState('employer', ['currentProfileCreationStep']) 
+		...mapState('employer', ['currentProfileCreationStep'])
 	},
 
 	created() {
