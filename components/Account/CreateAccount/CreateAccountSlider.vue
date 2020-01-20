@@ -152,12 +152,12 @@ export default {
                     jobSeeker: {
                         title: 'tell us about you',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            'The details you enter here will be visible on your profile and will help employers discover your journey'
                     },
                     employer: {
                         title: 'About the company',
                         description:
-                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, neque.'
+                            'The details you enter here will be visible on your employer profile and will help job seekers discover your journey'
                     }
                 }
             ]
