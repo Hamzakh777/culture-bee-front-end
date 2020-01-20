@@ -28,7 +28,6 @@
 			<!-- Your industry -->
 			<v-select
 				class="mb-4"
-				:value="industry"
 				@input="setStoreProp('industry', $event !== null ? $event.description : null)"
 				:options="industries"
 				:max-height="'250px'"
