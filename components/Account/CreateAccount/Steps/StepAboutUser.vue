@@ -152,7 +152,9 @@ export default {
 			});
 
 			// set the registration step to 1
-			this.setStoreProp('currentStep', 1);
+			setTimeout(() => {
+				this.setStoreProp('currentStep', 1);
+			}, 2000);
 		},
 
 		setLocation(location) {
