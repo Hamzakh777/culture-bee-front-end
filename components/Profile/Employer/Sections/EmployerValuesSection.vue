@@ -11,7 +11,10 @@
 						class="flex items-center justify-center h-14 w-14 rounded-full border-2"
 						style="border-color: currentColor"
 					>
-						<font-awesome-icon :icon="value.icon" class="text-8" />
+						<font-awesome-icon 
+							:icon="value.icon" 
+							class="h-5 text-8" 
+						/>
 					</div>
 					<div class="ml-5 max-w-xs text-sm font-bold">
 						{{ value.title }}
