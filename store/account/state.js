@@ -1,5 +1,5 @@
 const state = () => ({
-	currentStep: 4,
+	currentStep: 1,
 	id: null,
 	companyName: null,
 	quickPitch: null,

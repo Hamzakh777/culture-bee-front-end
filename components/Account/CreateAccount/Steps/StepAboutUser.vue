@@ -51,6 +51,7 @@
 			:is-last-step="true" 
 			@prev="previousStep" 
 			@next="submit" 
+			:is-loading="false"
 		/>
 	</div>
 </template>
@@ -89,7 +90,8 @@ export default {
 	data() {
 		return {
 			industries,
-			placesInstance: null
+			placesInstance: null,
+			isLoading: false
 		};
     },
     

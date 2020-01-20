@@ -2,7 +2,8 @@
 	<div class="py-6">
 		<div class="flex items-end mb-6">
 			<div
-				class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-yellow bg-center bg-cover bg-no-repeat"
+				class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-center bg-cover bg-no-repeat"
+				:class="{'bg-yellow': profileImgFile === null}"
 				:style="
 					'background-image: url(' +
 						(profileImgFile !== null
