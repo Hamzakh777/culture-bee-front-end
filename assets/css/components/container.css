@@ -1,0 +1,9 @@
+.container {
+    @apply p-6;
+}
+
+@media(min-width: 768px) {
+    .container {
+        @apply p-10;
+    }
+}

@@ -9,6 +9,7 @@
 @import './components/base-title.css';
 @import './components/typography/main.css';
 @import './plugins/main.css';
+@import './components/container.css';
 /* purgecss end ignore */
 
 @tailwind base;

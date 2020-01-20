@@ -4,9 +4,6 @@ module.exports = {
 			poppins: ['Poppins', 'sans-serif'],
 			'D-Din': ['D-Din', 'sans-serif']
 		},
-		container: {
-			padding: '2rem',
-		},
 		colors: {
 			transparent: 'transparent',
 			black: '#000000',
@@ -91,6 +88,9 @@ module.exports = {
 			},
 			maxHeight: {
 				'90-vh': '90vh'
+			},
+			maxWidth: {
+				'100-vw': '100vw'
 			},
 			spacing: {
 				'1/2': '0.125rem',
