@@ -145,7 +145,8 @@ export default {
 
 	computed: {
 		...mapState('employer/updates', ['updates']),
-		...mapState('employer', ['currentProfileCreationStep']) 
+		...mapState('employer', ['currentProfileCreationStep']),
+		
 		updateImg() {
             if(this.img !== null) {
                 return this.img.url;
