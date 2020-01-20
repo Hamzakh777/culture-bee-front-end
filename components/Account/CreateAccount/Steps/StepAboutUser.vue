@@ -20,7 +20,7 @@
 			<input
 				id="address-input"
 				class="input-text"
-				type="text"
+				type="search"
 				placeholder="Location"
 				:value="location"
 				@input="setLocation($event.target.value)"
@@ -29,10 +29,10 @@
 			<v-select
 				class="mb-4"
 				:value="industry"
-				@input="setStoreProp('industry', $event.Description)"
+				@input="setStoreProp('industry', $event !== null ? $event.description : null)"
 				:options="industries"
 				:max-height="'250px'"
-				label="Description"
+				label="description"
 				placeholder="Your industry"
 			/>
 			<base-input-error-message
@@ -125,6 +125,7 @@ export default {
 
 
 			this.placesInstance.on('change', e => {
+				console.log(e.suggestion.value)
 				this.setStoreProp('location', e.suggestion.value);
 			});
 
