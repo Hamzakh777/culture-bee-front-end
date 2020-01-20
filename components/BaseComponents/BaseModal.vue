@@ -1,9 +1,9 @@
 <template>
-	<div v-if="isActive" class="fixed inset-0 z-100">
+	<div v-if="isActive" class="fixed inset-0 z-100 max-w-100-vw">
 		<div
 			v-on-clickaway="close"
 			@mouseleave="$emit('mouse-leave')"
-			class="absolute top-1/2 left-1/2 transform-center w-11/12 h-full md:h-auto max-h-90-vh max-w-5xl z-100 bg-white overflow-y-auto overflow-x-hidden"
+			class="absolute top-1/2 left-1/2 transform-center w-full md:w-11/12 h-full h-full md:h-auto md:max-h-90-vh max-w-100-vw md:max-w-5xl z-100 bg-white overflow-y-auto overflow-x-hidden"
 			:class="{ additionalClasses }"
 		>
 			<div 
