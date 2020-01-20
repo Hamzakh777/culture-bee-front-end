@@ -145,8 +145,7 @@ export default {
 
 	computed: {
 		...mapState('employer/updates', ['updates']),
-		...mapState('account', ['currentProfileCreationStep']),
-
+		...mapState('employer', ['currentProfileCreationStep']) 
 		updateImg() {
             if(this.img !== null) {
                 return this.img.url;
@@ -204,7 +203,7 @@ export default {
 	},
 
 	methods: {
-		...mapMutations('account', ['incrementProfileCreationStep']),
+		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapActions('employer/updates', ['addUpdate', 'updateUpdate']),
 
 		toggle() {
