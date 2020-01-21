@@ -2,7 +2,7 @@
 	<div class="py-18" id="updates">
 		<div class="container mx-auto">
 			<div class="flex items-center justify-between">
-				<div class="base-title">Company feed</div>
+				<div class="base-title">Culture feed</div>
 				<button
 					v-if="isEditPage"
 					class="primary-btn"
