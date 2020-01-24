@@ -263,7 +263,7 @@ export default {
             this.toggleLoader();
 		},
 
-		inputFile(newFile, oldFile, prevent) {
+		inputFile(newFile, oldFile) {
 			if (newFile && !oldFile) {
 				// add
 				this.img = newFile;
@@ -277,7 +277,7 @@ export default {
 		inputFilter(newFile, oldFile, prevent) {
 			if (newFile && !oldFile) {
 				if (!/\.(jpg|jpeg|png)$/i.test(newFile.name)) {
-					this.alert('Your choice is not a picture');
+					alert('Your choice is not a picture');
 					return prevent();
 				}
 			}

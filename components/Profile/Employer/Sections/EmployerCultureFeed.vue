@@ -1,5 +1,5 @@
 <template>
-	<div class="py-18" id="updates">
+	<div class="py-4 lg:py-18" id="updates">
 		<div class="container mx-auto">
 			<div class="flex items-center justify-between">
 				<div class="base-title">Culture feed</div>

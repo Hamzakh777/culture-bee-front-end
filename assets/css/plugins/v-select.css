@@ -1,7 +1,7 @@
 @import '~/node_modules/vue-select/dist/vue-select.css';
 
 .vs__dropdown-toggle, .vs--open .vs__dropdown-toggle {
-    @apply py-2 pl-4 pr-2 border-2 border-gray-700 rounded-none;
+    @apply py-2-1/2 pl-4 pr-2 border-2 border-gray-700 rounded-none;
 }
 
 .vs__dropdown-menu {
@@ -31,4 +31,8 @@
 
 .vs__deselect svg {
     @apply p-2 fill-current text-yellow;
+}
+
+.vs__deselect {
+    @apply h-4 w-4;
 }

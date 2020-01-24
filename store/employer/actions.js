@@ -5,7 +5,9 @@ const actions = {
 
             commit('setProfileDetails', response.data.data);
         } catch (error) {
-            alert('An error occured trying to retrieve the user data');
+            if (process.browser) {
+                window.alert('An error occured trying to retrieve the user data');
+            }
         }
     },
     updateAccountDetails({ commit }, data) {

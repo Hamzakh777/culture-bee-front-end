@@ -1,5 +1,5 @@
 <template>
-	<div class="py-18 bg-gray-800" id="benefits">
+	<div class="py-6 lg:py-18 bg-gray-800" id="benefits">
 		<div class="container mx-auto">
 			<div class="base-title-light">
 				Benefits

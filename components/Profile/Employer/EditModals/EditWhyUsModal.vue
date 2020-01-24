@@ -231,7 +231,6 @@ export default {
 
 	methods: {
 		...mapMutations('employer', ['incrementProfileCreationStep']),
-		...mapMutations('employer', ['nextStep']),
 		...mapActions('employer/whyUs', ['addWhyUs']),
 
 		next() {
@@ -281,7 +280,6 @@ export default {
 				});
 
 				this.toggle();
-				this.nextStep();
 				if(this.currentProfileCreationStep === 3) this.incrementProfileCreationStep();
 			} catch (error) {
 				alert('An error happened');

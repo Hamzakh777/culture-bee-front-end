@@ -1,18 +1,19 @@
 <template>
-	<div class="py-18" id="vision">
-		<div class="container flex justify-between mx-auto">
-			<div class="base-title">Company vision</div>
-			<div class="max-w-4xl px-8">
+	<div class="relative py-6 lg:py-18" id="vision">
+		<div class="container flex flex-col md:flex-row md:justify-between mx-auto">
+			<div class="base-title mb-8">Company vision</div>
+			<div class="max-w-4xl md:px-8">
 				<div class="text-5-1/2 font-bold text-gray-800">
 					<base-splited-paragraphs :text="description" />
 				</div>
 			</div>
 			<!-- edit button -->
-			<div class="ml-16">
+			<div class="absolute md:static top-0 right-0 mt-14 mr-6 lg:mt-0 lg:mr-0 lg:ml-16">
 				<base-edit-pen
 					v-if="isEditPage"
 					@click="edit"
-					class="text-gray-800 hover:text-yellow"
+					:pen-class-list="['h-8', 'md:h-7']"
+					class="h-12 text-gray-800 hover:text-yellow"
 				/>
 			</div>
 		</div>

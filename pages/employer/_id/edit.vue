@@ -6,6 +6,7 @@
 		</div>
 		<employer-profile-sections :is-edit-page="true" />
 		<employer-edit-profile-modals /> 
+		<job-post-modal />
 	</div>
 </template>
 
@@ -15,13 +16,15 @@ import EmployerHero from '~/components/Profile/Employer/EmployerHero';
 import EmployerAccountProgress from '~/components/Profile/Employer/EmployerAccountProgress';
 import EmployerEditProfileModals from '~/components/Profile/Employer/EmployerEditProfileModals';
 import EmployerProfileSections from '~/components/Profile/Employer/EmployerProfileSections';
+import JobPostModal from '~/components/Jobs/JobPostModal';
 
 export default {
 	components: {
 		EmployerHero,
 		EmployerAccountProgress,
 		EmployerEditProfileModals,
-		EmployerProfileSections
+		EmployerProfileSections,
+		JobPostModal
 	},
 
 	created() {

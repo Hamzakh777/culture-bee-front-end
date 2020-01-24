@@ -1,7 +1,7 @@
 <template>
-    <div class="card w-31-% px-8 py-12 bg-white">
+    <div class="card w-full lg:w-31-% mb-8 px-8 py-12 bg-white">
         <!-- title -->
-        <div class="mb-6 font-D-Din text-5xl uppercase font-bold text-gray-800">
+        <div class="mb-4 lg:mb-6 font-D-Din text-8 lg:text-5xl uppercase font-bold text-gray-800">
             {{ value.title }}
         </div>
         <!-- sub title -->
@@ -9,7 +9,7 @@
             {{ value.subtitle }}
         </div>
         <!-- description -->
-        <div class="text-base font-normal text-gray-800">
+        <div class="text-xs md:text-base font-normal text-gray-800">
             {{ value.description }}
         </div>
     </div>

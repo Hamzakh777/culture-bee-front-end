@@ -70,7 +70,7 @@
 						placeholder="Add value"
 						v-model="value.title"
 					/>
-					<div class="relative w-10 h-4">
+					<div class="relative w-10 h-4 -mt-2">
 						<base-close-button
 							v-if="(value.title !== '' && value.title !== null) || (value.icon !== '' && value.icon !== null)"
 							@click="resetValue(index)"
