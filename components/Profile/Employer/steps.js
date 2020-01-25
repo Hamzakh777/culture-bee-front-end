@@ -45,7 +45,7 @@ export default {
         title: 'Are you ready to advertise a job?',
         description: 'Attract potential employees with an advert that really represents your company',
         iconUrl: '/profile/employer/step-6.svg',
-        nextEventName: 'event-name',
+        nextEventName: 'open-post-job-modal',
         nextButtonText: 'Post a job'
     }
 };
