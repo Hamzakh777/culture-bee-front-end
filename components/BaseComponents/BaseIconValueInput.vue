@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-row items-center w-full mb-3 p-2 border-2 border-gray-800"
+        class="flex flex-row items-center w-full mb-3 lg:mb-6 p-2 border-2 border-gray-800"
     >
         <!-- icon -->
         <div 
