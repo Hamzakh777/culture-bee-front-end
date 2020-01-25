@@ -146,7 +146,6 @@ module.exports = {
 			},
 			width: {
 				'10-%': '10%',
-				
 				'31-%': '31%',
 				'40-%': '40%',
 				'45-%': '45%',
@@ -160,7 +159,7 @@ module.exports = {
 	},
 	variants: {
 		fill: ['responsive', 'hover', 'focus'],
-		margin: ['responsive', 'last', 'hover', 'focus']
+		margin: ['responsive', 'last', 'first', 'hover', 'focus']
 	},
 	plugins: [
 		function ({ addUtilities }) {

@@ -10,53 +10,72 @@
 					<div class="base-title">
 						COMPANY
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<!-- company -->
-						<input class="input input-text w-full" type="text" />
-						<!-- location -->
-                        <div>
-                            <input
-                                class="input input-text w-full"
-                                type="text"
-                                placeholder="location"
-                                v-model="location"
-                            />
-                            <base-input-error-message
-                                class="mb-2"
-                                v-if="$v.location.$error"
-                                :error-type="'required'"
-                            />
-                        </div>
-						<!-- seniority -->
-                        <div>
-                            <v-select
-                                class="input"
-                                placeholder="Seniority"
-                                :options="['skill 1', 'skill 2']"
-                                :multiple="false"
-                                v-model="seniority"
-                            />
-                            <base-input-error-message
-                                class="mb-2"
-                                v-if="$v.seniority.$error"
-                                :error-type="'required'"
-                            />
-                        </div>
-						<!-- type -->
-                        <div>
-                            <v-select
-                                class="input"
-                                placeholder="Type"
-                                :options="['skill 1', 'skill 2']"
-                                :multiple="false"
-                                v-model="type"
-                            />
-                            <base-input-error-message
-                                class="mb-2"
-                                v-if="$v.type.$error"
-                                :error-type="'required'"
-                            />
-                        </div>
+						<div class="lg:flex justify-between">
+							<input class="input input-text lg:flex-grow  w-full lg:w-auto lg:mr-8" type="text" />
+							<!-- location -->
+							<div class="lg:flex-grow lg:w-1/2">
+								<input
+									class="input input-text w-full"
+									type="text"
+									placeholder="location"
+									v-model="location"
+								/>
+								<base-input-error-message
+									style="margin-bottom: 1rem"
+									v-if="$v.location.$error"
+									:error-type="'required'"
+								/>
+							</div>
+						</div>
+						<div class="lg:flex justify-between">
+							<!-- seniority -->
+							<div class="lg:mr-8 lg:flex-grow">
+								<v-select
+									class="input"
+									placeholder="Seniority"
+									:options="['skill 1', 'skill 2']"
+									:multiple="false"
+									v-model="seniority"
+								/>
+								<base-input-error-message
+									style="margin-bottom: 1rem"
+									v-if="$v.seniority.$error"
+									:error-type="'required'"
+								/>
+							</div>
+							<!-- industry -->
+							<div class="lg:mr-8 lg:flex-grow">
+								<v-select
+									class="input"
+									placeholder="Seniority"
+									:options="industriesList"
+									:multiple="false"
+									v-model="industry"
+								/>
+								<base-input-error-message
+									style="margin-bottom: 1rem"
+									v-if="$v.industry.$error"
+									:error-type="'required'"
+								/>
+							</div>
+							<!-- type -->
+							<div class="lg:flex-grow">
+								<v-select
+									class="input"
+									placeholder="Type"
+									:options="['skill 1', 'skill 2']"
+									:multiple="false"
+									v-model="type"
+								/>
+								<base-input-error-message
+									style="margin-bottom: 1rem"
+									v-if="$v.type.$error"
+									:error-type="'required'"
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- job title -->
@@ -64,14 +83,14 @@
 					<div class="base-title">
 						Job Title
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<input
 							type="text"
 							class="input-text w-full input"
 							v-model="jobTitle"
 						/>
                         <base-input-error-message
-                            class="mb-2"
+                            style="margin-bottom: 1rem"
                             v-if="$v.jobTitle.$error"
                             :error-type="'required'"
                         />
@@ -82,7 +101,7 @@
 					<div class="base-title">
 						Quick pitch
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<textarea
 							type="text"
 							class="input-text py-3 h-26 w-full input resize-none"
@@ -92,7 +111,7 @@
 						>
 						</textarea>
                         <base-input-error-message
-                            class="mb-2"
+                            style="margin-bottom: 1rem"
                             v-if="$v.quickPitch.$error"
                             :error-type="'required'"
                         />
@@ -103,23 +122,25 @@
 					<div class="base-title">
 						Add tags
 					</div>
-					<div>
+					<div class="lg:flex flex-grow items-start">
 						<!-- tags select input -->
-						<tag-select
-							class="w-full"
-							v-if="tags.length !== 3"
-							:options="tagsList"
-							placeholder="add a tag"
-							v-model="tags"
-						/>
-                        <base-input-error-message
-                            class="mb-2"
-                            v-if="$v.tags.$error"
-                            :error-type="'required'"
-                        />
+						<div>
+							<tag-select
+								class="w-full lg:pr-6"
+								v-if="tags.length !== 3"
+								:options="tagsList"
+								placeholder="add a tag"
+								v-model="tags"
+							/>
+							<base-input-error-message
+								style="margin-bottom: 1rem"
+								v-if="$v.tags.$error"
+								:error-type="'required'"
+							/>
+						</div>
 						<!-- selected tags -->
 						<base-selected-option
-							class="w-full mb-4 mr-6"
+							class="w-full lg:w-auto mb-4 mr-6"
 							v-for="(tag, index) in tags"
 							:key="index"
 							@remove="removeTag(index)"
@@ -133,23 +154,25 @@
 					<div class="base-title">
 						Add skills
 					</div>
-					<div>
-						<!-- skills select input -->
-						<tag-select
-							class="w-full"
-							v-if="skills.length !== 3"
-							:options="skillsList"
-							placeholder="add a tag"
-							v-model="skills"
-						/>
-                        <base-input-error-message
-                            class="mb-2"
-                            v-if="$v.skills.$error"
-                            :error-type="'required'"
-                        />
+					<div class="lg:flex flex-grow items-start">
+						<div>
+							<!-- skills select input -->
+							<tag-select
+								class="w-full lg:pr-6"
+								v-if="skills.length !== 3"
+								:options="skillsList"
+								placeholder="add a tag"
+								v-model="skills"
+							/>
+							<base-input-error-message
+								style="margin-bottom: 1rem"
+								v-if="$v.skills.$error"
+								:error-type="'required'"
+							/>
+						</div>
 						<!-- selected tags -->
 						<base-selected-option
-							class="w-full mb-4 mr-6"
+							class="w-full lg:w-auto mb-4 mr-6"
 							v-for="(skill, index) in skills"
 							:key="index"
 							@remove="removeSkill(index)"
@@ -159,12 +182,12 @@
 					</div>
 				</div>
 				<!-- application -->
-				<div class="row">
-					<div class="base-title">
+				<div class="row row--col">
+					<div class="base-title base-title--w-full">
 						where would you like applicants to apply?
 					</div>
-					<div>
-                        <div>
+					<div class="lg:flex justify-between">
+                        <div class="lg:w-1/2 lg:pr-3">
                             <input
                                 class="input-text w-full input"
                                 type="email"
@@ -172,12 +195,12 @@
                                 placeholder="Email address"
                             />
                             <base-input-error-message
-                                class="mb-2"
+                                style="margin-bottom: 1rem"
                                 v-if="$v.applicationEmail.$error"
                                 :error-type="'required'"
                             />
                         </div>
-                        <div>
+                        <div class="lg:w-1/2 lg:pl-3">
                             <input
                                 class="input-text w-full input"
                                 type="url"
@@ -194,7 +217,7 @@
 					<div class="base-title">
 						WHY THIS ROLE?
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<textarea
 							type="text"
 							class="input-text py-3 h-26 w-full input resize-none"
@@ -209,7 +232,7 @@
 					<div class="base-title">
 						ownership
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<base-icon-value-input 
                             v-for="(value, index) in ownershipValues" 
                             :key="index"
@@ -222,7 +245,7 @@
 					<div class="base-title">
 						promo photo
 					</div>
-					<div class="flex justify-between items-start">
+					<div class="flex justify-between items-start lg:flex-grow">
 						<client-only>
 							<file-upload
 								input-id="file1"
@@ -242,7 +265,7 @@
 						<!-- the uploaded image -->
 						<div
 							v-if="promoPhoto !== null"
-							class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
+							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
 							:style="`background-image: url(${promoPhoto.url})`"
 						>
 							<base-close-button
@@ -261,7 +284,7 @@
 					<div class="base-title">
 						applicant qualities
 					</div>
-					<div>
+					<div class="lg:flex-grow">
 						<base-icon-value-input
                             v-for="(quality, index) in applicantQualities" 
                             :key="index"
@@ -274,7 +297,7 @@
 					<div class="base-title">
 						ABOUT THE COLLEAGUES
 					</div>
-					<div>
+					<div class="flex-grow">
 						<textarea
 							type="text"
 							class="input-text py-3 h-32 w-full input resize-none"
@@ -290,7 +313,7 @@
 					<div class="base-title">
 						THE FAMILY
 					</div>
-					<div class="flex justify-between items-start">
+					<div class="flex justify-between items-start lg:flex-grow">
 						<client-only>
 							<file-upload
 								input-id="file2"
@@ -310,7 +333,7 @@
 						<!-- the uploaded image -->
 						<div
 							v-if="familyPhoto !== null"
-							class="relative h-25 w-25 bg-center bg-cover bg-gray-300"
+							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
 							:style="`background-image: url(${familyPhoto.url})`"
 						>
 							<base-close-button
@@ -324,8 +347,9 @@
 			</div>
 			<!-- buttons -->
 			<div
-				class="flex flex-col md:flex-row md:justify-between items-center mt-8"
+				class="relative flex flex-col md:flex-row md:justify-between items-center mt-8 pt-8"
 			>
+				<div class="absolute top-0 left-1/2 -transform-x-50 w-screen h-1/2 bg-gray-900"></div>
 				<div class="flex py-6 md:py-0">
 					<div
 						class="h-3 w-3 rounded-full mr-2 last:mr-0 cursor-pointer"
@@ -389,11 +413,13 @@ export default {
 		return {
 			tagsList: ['tag 1', 'tag 2', 'tag 3'],
 			skillsList: ['skill 1', 'skill 2', 'skill 3'],
+			industriesList: ['industry 1', 'industry 2'],
 			isActive: true,
 			isLoading: false,
-			currentStep: 1,
+			currentStep: 3,
 			location: null,
 			seniority: null,
+			industry: null,
 			type: null,
 			jobTitle: null,
 			quickPitch: null,
@@ -423,6 +449,9 @@ export default {
                 seniority: {
                     required
                 },
+				industry: {
+					required
+				},
                 type: {
                     required
                 },
@@ -572,5 +601,20 @@ export default {
 }
 .base-title {
 	@apply mb-4;
+}
+
+@media(min-width: 1024px) {
+	.row {
+		@apply flex-row;
+	}
+	.row--col {
+		@apply flex-col;
+	}
+	.base-title {
+		@apply w-60 pr-6;
+	}
+	.base-title--w-full {
+		@apply w-full;
+	}
 }
 </style>
