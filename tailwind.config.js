@@ -16,11 +16,13 @@ module.exports = {
 				'800': '#393E41',
 				'900': '#221F20'
 			},
+			gallery: '#EEEEEE',
 			pink: {
 				500: '#F36868'
 			},
 			purple: '#474350',
 			yellow: '#FED006',
+			'light-yellow': 'rgba(254, 209, 6, 0.2)', // rgba for opacity
 			'yellow-hover': '#E2B800',
 			white: '#ffffff'
 		},

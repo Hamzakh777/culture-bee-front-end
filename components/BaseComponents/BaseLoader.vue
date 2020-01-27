@@ -1,7 +1,11 @@
 <template>
-    <div class="absolute inset-0 z-100" :style="`background-color: ${backgroundColor}`">
+    <div 
+        class="absolute inset-0 z-100" 
+        :style="`background-color: ${backgroundColor}`"
+    >
         <div class="absolute top-1/2 left-1/2 transform-center h-7-1/2 w-7-1/2">
-            <div class="h-7-1/2 w-7-1/2 rounded-full bg-transparent border-4 border-light-teal border-l-teal spinning-loader"></div>
+            <div 
+                class="h-7-1/2 w-7-1/2 rounded-full bg-transparent border-4 border-light-yellow border-l-yellow spinning-loader"></div>
         </div>
     </div>
 </template>
@@ -25,7 +29,7 @@ export default {
 }
 
 .spinning-loader {
-    border-left-color: #36C0C3;
+    border-left-color: #FED006;
     animation-name: rotate-s-loader;
     animation-iteration-count: infinite;
     animation-duration: 1s;
