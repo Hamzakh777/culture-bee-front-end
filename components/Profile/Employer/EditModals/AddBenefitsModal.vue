@@ -97,7 +97,7 @@
 				<div class="flex items-center">
 					<button
 						class="secondary-btn mr-14"
-						@click.prevent="nextStep"
+						@click.prevent="skip"
 					>
 						skip
 					</button>
@@ -277,8 +277,9 @@ export default {
 			return formData;
 		},
 
-		reset() {
-
+		skip() {
+			this.nextStep();
+			this.toggle();
 		}
 	}
 };
