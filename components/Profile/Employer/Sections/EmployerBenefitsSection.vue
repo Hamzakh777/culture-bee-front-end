@@ -4,13 +4,31 @@
 			<div class="base-title-light">
 				Benefits
 			</div>
-			<div class="flex justify-between flex-wrap mt-12">
+			<div 
+				v-if="isMobile"
+				class="md:flex md:justify-between md:flex-wrap mt-12"
+				v-swiper:mySwiper="swiperOption"
+			>
+				<div class="swiper-wrapper">
+					<benefit-card 
+						class="swiper-slide h-68"
+						v-for="(benefit, index) in benefits"
+						:key="index"
+						:is-edit-page="isEditPage" 
+						:benefit="benefit"
+					/>
+				</div>
+			</div>
+			<div 
+				v-else
+				class="md:flex md:justify-between md:flex-wrap mt-12"
+			>
 				<benefit-card 
-                    v-for="(benefit, index) in benefits"
-                    :key="index"
-                    :is-edit-page="isEditPage" 
-                    :benefit="benefit"
-                />
+					v-for="(benefit, index) in benefits"
+					:key="index"
+					:is-edit-page="isEditPage" 
+					:benefit="benefit"
+				/>
 			</div>
 		</div>
 	</div>
@@ -38,6 +56,31 @@ export default {
         ...mapState('employer/benefits', ['benefits'])
 	},
 
+	data() {
+		return {
+			isMobile: false,
+			swiperOption: {
+				slidesPerView: 1,
+				spaceBetween: 64,
+				breakpoints: {
+					// when window width is >= 640px
+					640: {
+						slidesPerView: 1,
+						centeredSlides: true,
+						spaceBetween: 40
+					}
+				}
+			}
+		}
+	},
+
+	beforeMount() {
+		if(process.browser) {
+			const innerWidth = window.innerWidth;
+			if(innerWidth < 768) this.isMobile = true;
+		}
+	},
+
 	mounted() {
 		try {
 			this.fetchBenefits(this.$route.params.id);
@@ -52,3 +95,8 @@ export default {
 	}
 };
 </script>
+<style scoped>
+.swiper-slide {
+	@apply h-94;
+}
+</style>

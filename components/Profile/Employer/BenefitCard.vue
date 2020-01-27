@@ -5,7 +5,7 @@
 				? `background-image: url(${benefit.imgUrl})`
 				: ''
 		"
-		class="relative h-118 mb-14 md:w-48-% lg:w-31-% bg-gray-200 bg-center bg-cover bg-no-repeat"
+		class="relative h-118 mb-14 w-full md:w-48-% lg:w-31-% bg-gray-200 bg-center bg-cover bg-no-repeat"
 	>
 		<div class="flex flex-col justify-between relative z-1 h-full w-full">
 			<div v-if="isEditPage" class="flex justify-end mt-6 mr-6">
