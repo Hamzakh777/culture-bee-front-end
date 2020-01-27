@@ -190,7 +190,7 @@ export default {
 
 	data() {
 		return {
-			isActive: true,
+			isActive: false,
 			id: null,
 			tags: [
 				'Volunteer',
