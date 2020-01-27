@@ -145,7 +145,6 @@ export default {
 
 	created() {
 		this.$bus.$on('open-employer-add-benefits-modal', () => {
-			this.reset();
 			this.toggle();
 
 			while (this.benefits.length !== 6) {
