@@ -1,40 +1,54 @@
 <template>
 	<div>
-		<employer-hero :is-edit-page="true"/>
-		<div class="container mx-auto py-10">
-			<employer-account-progress />
+		<div 
+			v-if="isLoading"
+			class="relative h-screen"
+		>
+			<base-loader />
 		</div>
-		<employer-profile-sections :is-edit-page="true" />
-		<employer-edit-profile-modals /> 
-		<job-post-modal />
+		<div v-else>
+			<employer-hero :is-edit-page="true"/>
+			<div class="container mx-auto py-10">
+				<employer-account-progress />
+			</div>
+			<employer-profile-sections :is-edit-page="true" />
+			<employer-edit-profile-modals /> 
+			<job-post-modal />
+		</div>
 	</div>
 </template>
 
 <script>
 import Vue from 'vue';
 import { mapActions } from 'vuex';
+import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import EmployerHero from '~/components/Profile/Employer/EmployerHero';
 import EmployerAccountProgress from '~/components/Profile/Employer/EmployerAccountProgress';
 import EmployerEditProfileModals from '~/components/Profile/Employer/EmployerEditProfileModals';
 import EmployerProfileSections from '~/components/Profile/Employer/EmployerProfileSections';
 import JobPostModal from '~/components/Jobs/JobPostModal';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
+	mixins: [baseToggleLoaderMixin],
+
 	components: {
 		EmployerHero,
 		EmployerAccountProgress,
 		EmployerEditProfileModals,
 		EmployerProfileSections,
-		JobPostModal
+		JobPostModal,
+		BaseLoader
 	},
 
-	created() {
+	async created() {
+		this.toggleLoader();
 		try {
-			this.getProfileDetails(this.$route.params.id);
+			await this.getProfileDetails(this.$route.params.id);
 		} catch (error) {
 			alert('An error happend trying to load company vision');
-			console.error(error);
 		}
+		this.toggleLoader();
 	},
 
 	beforeCreate() {
@@ -47,6 +61,6 @@ export default {
 
 	methods: {
 		...mapActions('employer', ['getProfileDetails'])
-	},
+	}
 };
 </script>
