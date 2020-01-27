@@ -99,13 +99,14 @@
                 }
 
                 this.$emit('change', newSelection);
+                this.toggle();
             }
         }
     }
 </script>
 <style scoped>
 .plus {
-	@apply relative h-3 w-3 mx-auto cursor-pointer;
+	@apply relative h-3 w-3 cursor-pointer;
 }
 .plus::before,
 .plus::after {
