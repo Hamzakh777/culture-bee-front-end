@@ -16,7 +16,7 @@
 				<!-- selected img -->
 				<div
 					v-if="updateImg !== null && updateImg !== ''"
-					class="absolute bottom-0 left-0 h-26 w-26 mb-5 ml-5 bg-center bg-cover"
+					class="hidden md:block absolute bottom-0 left-0 h-26 w-26 mb-5 ml-5 bg-center bg-cover"
 					:style="`background-image: url(${updateImg})`"
 				>
 					<base-close-button
@@ -25,7 +25,6 @@
 						@click="removeImg"
 					/>
 				</div>
-
 
 				<textarea
 					class="input-text w-full h-full px-0 border-none text-base resize-none"
@@ -39,16 +38,46 @@
 					:error-type="'required'"
 				/>
 			</div>
-			<!-- tags -->
-			<div class="flex items-center justify-between my-8">
-				<div class="flex">
+			<!-- upload image on mobile -->
+			<div class="flex md:hidden justify-between items-start">
+				<client-only>
+					<file-upload
+						extensions="jpg,jpeg,png"
+						accept="image/png,image/jpeg,image/jpg"
+						:multiple="false"
+						:size="1024 * 1024"
+						@input-filter="inputFilter"
+						@input-file="inputFile"
+					>
+						<img
+							class="cursor-pointer hover:opacity-75 transition-all"
+							src="/profile/employer/camera.svg"
+						/>
+					</file-upload>
+				</client-only>
+
+				<div
+					v-if="updateImg !== null && updateImg !== ''"
+					class="relative h-26 w-26 mb-5 ml-5 bg-center bg-cover"
+					:style="`background-image: url(${updateImg})`"
+				>
+					<base-close-button
+						class="right-0 top-0 mt-2 mr-2"
+						style="position: absolute; width: 1.25rem; height: 1.25rem;"
+						@click="removeImg"
+					/>
+				</div>
+			</div>
+			<div class="flex flex-col items-stretch justify-between my-8">
+				<!-- tags -->
+				<div class="flex flex-col lg:flex-row mb-6">
 					<div class="base-title mr-6 mt-2">
 						add tags
 					</div>
-					<div class="flex flex-row items-center flex-wrap">
+					<div class="flex flex-col md:flex-row items-stretch flex-wrap">
 						<!-- selected tags -->
 						<base-selected-option
-							class="mb-4 mr-6"
+							class="w-full md:w-auto mb-4 md:mr-6"
 							v-for="(tag, index) in selectedTags"
 							:key="index"
 							@remove="removeTag(index)"
@@ -64,7 +93,8 @@
 						/>
 					</div>
 				</div>
-				<div class="flex justify-center items-center">
+				<!-- pin update -->
+				<div class="flex justify-between items-center">
 					<div class="base-title mr-6">
 						pin update
 					</div>
@@ -87,7 +117,7 @@
 							@input-file="inputFile"
 						>
 							<img
-								class="cursor-pointer hover:opacity-75 transition-all"
+								class="hidden md:block cursor-pointer hover:opacity-75 transition-all"
 								src="/profile/employer/camera.svg"
 							/>
 						</file-upload>
@@ -95,6 +125,7 @@
 
 					<!-- add an update -->
 					<base-ajax-button
+						class="w-full md:w-auto"
 						v-if="!isEdit"
                         @click="add"
                         :is-loading="isLoading" 
@@ -103,6 +134,7 @@
 					</base-ajax-button>
 					<!-- update an update -->
 					<base-ajax-button
+						class="w-full md:w-auto"
 						v-else
                         @click="update"
                         :is-loading="isLoading" 
@@ -158,7 +190,7 @@ export default {
 
 	data() {
 		return {
-			isActive: false,
+			isActive: true,
 			id: null,
 			tags: [
 				'Volunteer',
