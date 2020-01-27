@@ -2,6 +2,7 @@
 	<div class="py-6">
 		<div class="flex items-end mb-6">
 			<div
+				v-if="role === 'employer'"
 				class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-center bg-cover bg-no-repeat"
 				:class="{'bg-yellow': profileImgFile === null}"
 			>
@@ -9,9 +10,22 @@
 					class="w-98-%"
 					:src="profileImgFile !== null
 							? profileImgFile.url
-							: '/images/global/icons/smile-face.png'"
+							: ''"
 				>
 			</div>
+			<div
+				v-else-if="role === 'job-seeker'"
+				class="flex justify-center items-center p-3 w-20 h-20 border-2 border-gray-700 bg-center bg-cover bg-no-repeat"
+				:class="{'bg-yellow': profileImgFile === null}"
+				:style="
+					'background-image: url(' +
+						(profileImgFile !== null
+							? profileImgFile.url
+							: '/images/global/icons/smile-face.png') +
+						'); background-size:' +
+						(profileImgFile !== null ? 'cover' : '90% 90%')
+				"
+			></div>
 			<file-upload
 				class="relative ml-4 font-medium text-gray-800 cursor-pointer underline"
 				extensions="gif,jpg,jpeg,png,webp"
@@ -20,7 +34,7 @@
 				@input-file="inputFile"
 				ref="upload"
 			>
-				Upload your profile photo
+				{{ role === 'employer' ? 'Upload your logo' : 'Upload your profile photo' }}
 			</file-upload>
 		</div>
 		<input
@@ -60,7 +74,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['name', 'profileImgFile'])
+		...mapState('account', ['name', 'profileImgFile', 'role'])
 	},
 
 	validations: {

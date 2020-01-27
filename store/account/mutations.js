@@ -46,6 +46,18 @@ const mutations = {
 			localStorage.removeItem('access_token');
 			state.accessToken = null;
 		}
+	},
+
+	resetData(state) {
+		state.id = null;
+		state.companyName = null;
+		state.quickPitch = null;
+		state.role = '';
+		state.currentStep = 1;
+		state.email = null;
+		state.industry = '';
+		state.name = '';
+		state.profileImgFile = null;
 	}
 };
 

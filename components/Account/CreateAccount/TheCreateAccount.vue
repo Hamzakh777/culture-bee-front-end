@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import CreateAccountNav from './CreateAccountNav';
 import CreateAccountSlider from './CreateAccountSlider';
 import StepUserType from './Steps/StepUserType';
@@ -47,10 +47,18 @@ export default {
 		...mapState('account', ['currentStep'])
 	},
 
+	created() {
+		this.resetData();
+	},
+
 	data() {
 		return {
 			userType: null
 		};
-	}
+	},
+
+	methods: {
+		...mapMutations('account', ['resetData'])
+	},
 };
 </script>
