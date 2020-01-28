@@ -1,32 +1,29 @@
 <template>
-	<div class="py-6 lg:py-18 bg-gray-800" id="benefits">
+	<div id="benefits" class="py-6 lg:py-18 bg-gray-800">
 		<div class="container mx-auto">
 			<div class="base-title-light">
 				Benefits
 			</div>
-			<div 
+			<div
 				v-if="isMobile"
-				class="md:flex md:justify-between md:flex-wrap mt-12"
 				v-swiper:mySwiper="swiperOption"
+				class="md:flex md:justify-between md:flex-wrap mt-12"
 			>
 				<div class="swiper-wrapper">
-					<benefit-card 
-						class="swiper-slide h-68"
+					<benefit-card
 						v-for="(benefit, index) in benefits"
 						:key="index"
-						:is-edit-page="isEditPage" 
+						:is-edit-page="isEditPage"
 						:benefit="benefit"
+						class="swiper-slide h-68"
 					/>
 				</div>
 			</div>
-			<div 
-				v-else
-				class="md:flex md:justify-between md:flex-wrap mt-12"
-			>
-				<benefit-card 
+			<div v-else class="md:flex md:justify-between md:flex-wrap mt-12">
+				<benefit-card
 					v-for="(benefit, index) in benefits"
 					:key="index"
-					:is-edit-page="isEditPage" 
+					:is-edit-page="isEditPage"
 					:benefit="benefit"
 				/>
 			</div>
@@ -41,6 +38,10 @@ import BenefitCard from '../BenefitCard';
 export default {
 	name: 'EmployerBenefitsSection',
 
+	components: {
+		BenefitCard
+	},
+
 	props: {
 		isEditPage: {
 			type: Boolean,
@@ -48,12 +49,8 @@ export default {
 		}
 	},
 
-	components: {
-		BenefitCard
-    },
-    
-    computed: {
-        ...mapState('employer/benefits', ['benefits'])
+	computed: {
+		...mapState('employer/benefits', ['benefits'])
 	},
 
 	data() {
@@ -71,13 +68,13 @@ export default {
 					}
 				}
 			}
-		}
+		};
 	},
 
 	beforeMount() {
-		if(process.browser) {
+		if (process.browser) {
 			const innerWidth = window.innerWidth;
-			if(innerWidth < 768) this.isMobile = true;
+			if (innerWidth < 768) this.isMobile = true;
 		}
 	},
 
@@ -85,7 +82,7 @@ export default {
 		try {
 			this.fetchBenefits(this.$route.params.id);
 		} catch (error) {
-			alert('An error happend trying to load benefits')
+			alert('An error happend trying to load benefits');
 			console.error(error);
 		}
 	},

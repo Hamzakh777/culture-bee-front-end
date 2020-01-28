@@ -1,21 +1,23 @@
 const state = () => ({
 	id: null,
-	location: '',
-	seniority: '',
+	location: 'SE17, London',
+	seniority: 'junior, part-time',
 	industry: '',
 	type: '',
-	jobTitle: '',
-	quickPitch: '',
+	jobTitle: 'Job title here',
+	quickPitch: 'Lorem ipsum dolor sit anet, consectutr adispiscing elit',
 	applicationUrl: '',
 	applicationEmail: '',
-	tags: [],
+	tags: ['ethical', 'startup', 'fashion'],
 	skills: ['creative', 'creative storytelling', 'brand creation', 'social advertising'],
 	whyThisRole: '',
 	ownershipValues: [],
 	applicantQualities: [],
 	promoPhotoUrl: null,
 	aboutTheColleagues: '',
-	familyPhotoUrl: null
+	familyPhotoUrl: null,
+	createdAt: 'today',
+	userId: 1
 });
 
 export default state;

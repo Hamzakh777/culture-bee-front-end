@@ -1,18 +1,15 @@
 <template>
 	<div>
-		<div 
-			v-if="isLoading"
-			class="relative h-screen"
-		>
+		<div v-if="isLoading" class="relative h-screen">
 			<base-loader />
 		</div>
 		<div v-else>
-			<employer-hero :is-edit-page="true"/>
+			<employer-hero :is-edit-page="true" />
 			<div class="container mx-auto py-10">
 				<employer-account-progress />
 			</div>
 			<employer-profile-sections :is-edit-page="true" />
-			<employer-edit-profile-modals /> 
+			<employer-edit-profile-modals />
 			<job-post-modal />
 		</div>
 	</div>
@@ -30,8 +27,6 @@ import JobPostModal from '~/components/Jobs/JobPostModal';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
-	mixins: [baseToggleLoaderMixin],
-
 	components: {
 		EmployerHero,
 		EmployerAccountProgress,
@@ -40,6 +35,7 @@ export default {
 		JobPostModal,
 		BaseLoader
 	},
+	mixins: [baseToggleLoaderMixin],
 
 	async created() {
 		this.toggleLoader();
@@ -53,9 +49,9 @@ export default {
 
 	beforeCreate() {
 		if (process.browser) {
-			require('swiper/dist/css/swiper.css')
-			const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
-			Vue.use(VueAwesomeSwiper)
+			require('swiper/dist/css/swiper.css');
+			const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
+			Vue.use(VueAwesomeSwiper);
 		}
 	},
 

@@ -1,4 +1,4 @@
 /* paragraph */
 .p {
-    @apply ;
+    @apply text-xs text-gray-800 font-normal;
 }

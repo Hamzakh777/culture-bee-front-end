@@ -13,7 +13,10 @@
 					<div class="lg:flex-grow">
 						<!-- company -->
 						<div class="lg:flex justify-between">
-							<input class="input input-text lg:flex-grow  w-full lg:w-auto lg:mr-8" type="text" />
+							<input
+								class="input input-text lg:flex-grow  w-full lg:w-auto lg:mr-6"
+								type="text"
+							/>
 							<!-- location -->
 							<div class="lg:flex-grow lg:w-1/2">
 								<input
@@ -31,7 +34,7 @@
 						</div>
 						<div class="lg:flex justify-between">
 							<!-- seniority -->
-							<div class="lg:mr-8 lg:flex-grow">
+							<div class="lg:w-31-%">
 								<v-select
 									class="input"
 									placeholder="Seniority"
@@ -46,7 +49,7 @@
 								/>
 							</div>
 							<!-- industry -->
-							<div class="lg:mr-8 lg:flex-grow">
+							<div class="lg:w-31-%">
 								<v-select
 									class="input"
 									placeholder="Seniority"
@@ -61,7 +64,7 @@
 								/>
 							</div>
 							<!-- type -->
-							<div class="lg:flex-grow">
+							<div class="lg:w-31-%">
 								<v-select
 									class="input"
 									placeholder="Type"
@@ -89,11 +92,11 @@
 							class="input-text w-full input"
 							v-model="jobTitle"
 						/>
-                        <base-input-error-message
-                            style="margin-bottom: 1rem"
-                            v-if="$v.jobTitle.$error"
-                            :error-type="'required'"
-                        />
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.jobTitle.$error"
+							:error-type="'required'"
+						/>
 					</div>
 				</div>
 				<!-- quick pitch -->
@@ -110,11 +113,11 @@
 							maxlength="200"
 						>
 						</textarea>
-                        <base-input-error-message
-                            style="margin-bottom: 1rem"
-                            v-if="$v.quickPitch.$error"
-                            :error-type="'required'"
-                        />
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.quickPitch.$error"
+							:error-type="'required'"
+						/>
 					</div>
 				</div>
 				<!-- tags -->
@@ -161,7 +164,7 @@
 								class="w-full lg:pr-6"
 								v-if="skills.length !== 3"
 								:options="skillsList"
-								placeholder="add a tag"
+								placeholder="add a skill"
 								v-model="skills"
 							/>
 							<base-input-error-message
@@ -187,27 +190,27 @@
 						where would you like applicants to apply?
 					</div>
 					<div class="lg:flex justify-between">
-                        <div class="lg:w-1/2 lg:pr-3">
-                            <input
-                                class="input-text w-full input"
-                                type="email"
-                                v-model="applicationEmail"
-                                placeholder="Email address"
-                            />
-                            <base-input-error-message
-                                style="margin-bottom: 1rem"
-                                v-if="$v.applicationEmail.$error"
-                                :error-type="'required'"
-                            />
-                        </div>
-                        <div class="lg:w-1/2 lg:pl-3">
-                            <input
-                                class="input-text w-full input"
-                                type="url"
-                                v-model="applicationUrl"
-                                placeholder="Enter external link"
-                            />
-                        </div>
+						<div class="lg:w-1/2 lg:pr-3">
+							<input
+								class="input-text w-full input"
+								type="email"
+								v-model="applicationEmail"
+								placeholder="Email address"
+							/>
+							<base-input-error-message
+								style="margin-bottom: 1rem"
+								v-if="$v.applicationEmail.$error"
+								:error-type="'required'"
+							/>
+						</div>
+						<div class="lg:w-1/2 lg:pl-3">
+							<input
+								class="input-text w-full input"
+								type="url"
+								v-model="applicationUrl"
+								placeholder="Enter external link"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -226,6 +229,11 @@
 							maxlength="200"
 						>
 						</textarea>
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.whyThisRole.$error"
+							:error-type="'required'"
+						/>
 					</div>
 				</div>
 				<div class="row">
@@ -233,11 +241,11 @@
 						ownership
 					</div>
 					<div class="lg:flex-grow">
-						<base-icon-value-input 
-                            v-for="(value, index) in ownershipValues" 
-                            :key="index"
-                            :value="value" 
-                        />
+						<base-icon-value-input
+							v-for="(value, index) in ownershipValues"
+							:key="index"
+							:value="value"
+						/>
 					</div>
 				</div>
 				<!-- promo photo -->
@@ -286,10 +294,10 @@
 					</div>
 					<div class="lg:flex-grow">
 						<base-icon-value-input
-                            v-for="(quality, index) in applicantQualities" 
-                            :key="index"
-                            :value="quality" 
-                        />
+							v-for="(quality, index) in applicantQualities"
+							:key="index"
+							:value="quality"
+						/>
 					</div>
 				</div>
 				<!-- about the COLLEAGUES -->
@@ -349,7 +357,9 @@
 			<div
 				class="relative flex flex-col md:flex-row md:justify-between items-center mt-8 pt-8"
 			>
-				<div class="absolute top-0 left-1/2 -transform-x-50 w-screen h-1/2 bg-gray-900"></div>
+				<div
+					class="absolute top-0 left-1/2 -transform-x-50 w-screen h-1/2 bg-gray-900"
+				></div>
 				<div class="flex py-6 md:py-0">
 					<div
 						class="h-3 w-3 rounded-full mr-2 last:mr-0 cursor-pointer"
@@ -361,7 +371,9 @@
 						:key="i"
 					></div>
 				</div>
-				<div class="flex flex-col md:flex-row w-full md:w-auto items-stretch">
+				<div
+					class="flex flex-col md:flex-row w-full md:w-auto items-stretch"
+				>
 					<button
 						v-if="currentStep !== 1"
 						class="secondary-btn mb-6 md:mr-14 md:mb-0"
@@ -374,7 +386,7 @@
 						:is-loading="isLoading"
 						@click="nextStep"
 					>
-						Save
+						{{ currentStep === 3 ? 'Save' : 'Next' }}
 					</base-ajax-button>
 				</div>
 			</div>
@@ -414,98 +426,98 @@ export default {
 			tagsList: ['tag 1', 'tag 2', 'tag 3'],
 			skillsList: ['skill 1', 'skill 2', 'skill 3'],
 			industriesList: ['industry 1', 'industry 2'],
-			isActive: true,
+			isActive: false,
 			isLoading: false,
-			currentStep: 3,
-			location: null,
-			seniority: null,
-			industry: null,
-			type: null,
-			jobTitle: null,
-			quickPitch: null,
-			applicationUrl: null,
-			applicationEmail: null,
+			currentStep: 1,
+			location: '',
+			seniority: '',
+			industry: '',
+			type: '',
+			jobTitle: '',
+			quickPitch: '',
+			applicationUrl: '',
+			applicationEmail: '',
 			tags: [],
 			skills: [],
-			whyThisRole: null,
-            ownershipValues: [],
-            applicantQualities: [],
+			whyThisRole: '',
+			ownershipValues: [],
+			applicantQualities: [],
 			promoPhoto: null,
-			aboutTheColleagues: null,
+			aboutTheColleagues: '',
 			familyPhoto: null,
 			value: {
 				title: '',
 				icon: ''
 			}
 		};
-    },
-    
-    validations() {
-        if(this.currentStep === 1) {
-            return {
-                location: {
-                    required
-                },
-                seniority: {
-                    required
-                },
+	},
+
+	validations() {
+		if (this.currentStep === 1) {
+			return {
+				location: {
+					required
+				},
+				seniority: {
+					required
+				},
 				industry: {
 					required
 				},
-                type: {
-                    required
-                },
-                jobTitle: {
-                    required
-                },
-                quickPitch: {
-                    required
-                },
-                tags: {
-                    required
-                },
-                skills: {
-                    required
-                },
-                applicationEmail: {
-                    required,
-                    email
-                }
-            } 
-        } else if(this.currentStep === 2) {
-            return {
-                whyThisRole: {
-                    required
-                }
-            }
-        } else if(this.currentStep === 3) {
-            return {}
-        }
-    },
+				type: {
+					required
+				},
+				jobTitle: {
+					required
+				},
+				quickPitch: {
+					required
+				},
+				tags: {
+					required
+				},
+				skills: {
+					required
+				},
+				applicationEmail: {
+					required,
+					email
+				}
+			};
+		} else if (this.currentStep === 2) {
+			return {
+				whyThisRole: {
+					required
+				}
+			};
+		} else if (this.currentStep === 3) {
+			return {};
+		}
+	},
 
 	beforeCreate() {
 		this.$bus.$on('open-post-job-modal', () => {
 			this.toggle();
 
-            // ownership values
+			// ownership values
 			while (this.ownershipValues.length !== 6) {
 				const emptyValue = {
-					title: null,
-					icon: null
+					title: '',
+					icon: ''
 				};
 
 				this.ownershipValues.push(emptyValue);
-            }
-            
-            // applicant qualities
-            while (this.applicantQualities.length !== 6) {
+			}
+
+			// applicant qualities
+			while (this.applicantQualities.length !== 6) {
 				const emptyValue = {
-					title: null,
-					icon: null
+					title: '',
+					icon: ''
 				};
 
 				this.applicantQualities.push(emptyValue);
-            }
+			}
 		});
 	},
 
@@ -539,7 +551,7 @@ export default {
 			}
 			if (!newFile && oldFile) {
 				// remove
-				this.promoPhoto = null;
+				this.promoPhoto = '';
 			}
 		},
 
@@ -550,7 +562,7 @@ export default {
 			}
 			if (!newFile && oldFile) {
 				// remove
-				this.familyPhoto = null;
+				this.familyPhoto = '';
 			}
 		},
 
@@ -572,22 +584,54 @@ export default {
 		},
 
 		removePromoPhoto() {
-			this.promoPhoto = null;
+			this.promoPhoto = '';
 		},
 
 		removeFamilyPhoto() {
-			this.familyPhoto = null;
-        },
-        
-        previousStep() {
-            this.currentStep -= 1;
-        },  
+			this.familyPhoto = '';
+		},
+
+		previousStep() {
+			this.currentStep -= 1;
+		},
 
 		nextStep() {
 			this.$v.$touch();
-            if (this.$v.$invalid) return;
-            if(this.currentStep !== 3) return this.currentStep += 1;
+			if (this.$v.$invalid) return;
+			if (this.currentStep !== 3) return (this.currentStep += 1);
 
+			this.saveJob();
+		},
+
+		async saveJob() {
+			this.toggleLoader();
+			try {
+				const formData = new FormData();
+				formData.append('location', this.location);
+				formData.append('seniority', this.seniority);
+				formData.append('industry', this.industry);
+				formData.append('type', this.type);
+				formData.append('jobTitle', this.jobTitle);
+				formData.append('quickPitch', this.quickPitch);
+				formData.append('applicationUrl', this.applicationUrl);
+				formData.append('applicationEmail', this.applicationEmail);
+				formData.append('tags', this.tags === [] ? '': JSON.stringify(this.tags));
+				formData.append('skills', this.skills === [] ? '': JSON.stringify(this.skills));
+				formData.append('whyThisRole', this.whyThisRole);
+				formData.append('ownershipValues', this.ownershipValues === [] ? '': JSON.stringify(this.ownershipValues));
+				formData.append('applicantQualities', this.applicantQualities === [] ? '': JSON.stringify(this.applicantQualities));
+				formData.append('aboutTheColleagues', this.aboutTheColleagues);
+				formData.append('promoPhoto', this.promoPhoto === null ? '': this.promoPhoto.file);
+				formData.append('familyPhoto', this.familyPhoto === null ? '' : this.familyPhoto.file);
+
+				const response = await this.$axios.post('/api/jobs', formData);
+
+				console.log(response);
+			} catch (error) {
+				alert('An error happend');
+				console.error(error);
+			}
+			this.toggleLoader();
 		}
 	}
 };
@@ -603,7 +647,7 @@ export default {
 	@apply mb-4;
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
 	.row {
 		@apply flex-row;
 	}
