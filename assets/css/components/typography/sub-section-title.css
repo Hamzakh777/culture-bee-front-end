@@ -1,3 +1,9 @@
 .sub-section-title {
     @apply mb-3 text-base font-bold text-gray-800;
 }
+
+@media(min-width: 768px) {
+    .sub-section-title {
+        @apply text-5-1/2;
+    }
+}

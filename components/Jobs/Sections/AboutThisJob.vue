@@ -4,7 +4,7 @@
 			<div class="section-title mb-4">
 				About this job
 			</div>
-			<div>
+			<div class="lg:flex justify-between flex-wrap">
 				<!-- why this role -->
 				<div class="section">
 					<div class="sub-section-title">
@@ -36,9 +36,9 @@
 					</div>
 				</div>
 				<!-- promo photo -->
-				<div class="section relative h-68 my-4">
+				<div class="section relative h-68 md:h-72 my-4">
 					<div
-						class="absolute left-1/2 -transform-x-50 inset-y-0 w-screen bg-pink-500"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500"
 					></div>
 				</div>
 				<!-- what you'll bring - qualities -->
@@ -62,9 +62,9 @@
 					</div>
 				</div>
 				<!-- family photo -->
-				<div class="section relative h-68 my-4">
+				<div class="section lg:order-6 relative h-68 md:h-72 my-4 md:my-0">
 					<div
-						class="absolute left-1/2 -transform-x-50 inset-y-0 w-screen bg-pink-500"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500"
 					></div>
 				</div>
 				<!-- work family description - aboutTheColleagues -->
@@ -107,5 +107,17 @@ export default {
 <style scoped>
 .section {
 	@apply py-4;
+}
+
+@media(min-width: 768px) {
+    .section {
+        @apply py-6;
+    }
+}
+
+@media(min-width: 1024px) {
+	.section {
+		@apply w-46-%;
+	}
 }
 </style>

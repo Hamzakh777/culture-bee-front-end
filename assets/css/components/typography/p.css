@@ -2,3 +2,9 @@
 .p {
     @apply text-xs text-gray-800 font-normal;
 }
+
+@media(min-width: 768px) {
+    .p {
+        @apply text-base;
+    }
+}
