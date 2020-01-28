@@ -43,7 +43,8 @@ export default {
 	props: {
 		isEditPage: {
 			type: Boolean,
-			required: true
+			required: false,
+			default: false
 		}
 	},
 
