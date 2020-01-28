@@ -5,6 +5,7 @@
 		</div>
 		<div v-else>
 			<hero-section />
+			<employer-values-section />
 			<about-this-job />
 			<skills-section />
 			<employer-benefits-section />
@@ -20,6 +21,7 @@ import AboutThisJob from '~/components/Jobs/Sections/AboutThisJob';
 import HeroSection from '~/components/Jobs/Sections/HeroSection';
 import EmployerCultureFeed from '~/components/Profile/Employer/Sections/EmployerCultureFeed';
 import EmployerBenefitsSection from '~/components/Profile/Employer/Sections/EmployerBenefitsSection';
+import EmployerValuesSection from '~/components/Profile/Employer/Sections/EmployerValuesSection';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
@@ -30,7 +32,8 @@ export default {
 		BaseLoader,
 		EmployerCultureFeed,
 		HeroSection,
-		EmployerBenefitsSection
+		EmployerBenefitsSection,
+		EmployerValuesSection
 	},
 
 	mixins: [baseToggleLoaderMixin],

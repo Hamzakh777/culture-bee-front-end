@@ -1,5 +1,5 @@
 <template>
-	<div class="relative py-14 bg-gray-800">
+	<div class="relative py-8 bg-gray-800">
 		<div class="container flex items-center mx-auto">
 			<div class="flex flex-grow flex-col lg:flex-row justify-between">
 				<div
