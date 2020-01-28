@@ -99,7 +99,7 @@
 import { mapState } from 'vuex';
 
 export default {
-	name: 'AboutThisJob',
+	name: 'JobAbout',
 
 	computed: {
 		...mapState('job', [

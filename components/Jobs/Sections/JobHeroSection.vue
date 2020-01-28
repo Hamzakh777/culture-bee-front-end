@@ -6,6 +6,15 @@
 			>
 				<div class="flex flex-col md:flex-row items-start w-full">
 					<!-- logo -->
+					<div 
+						class="flex md:hidden items-center h-45 w-45 mt-42 md:mt-0 p-5 bg-white overflow-hidden"
+					>
+						<img 
+							v-if="profileImgUrl !== null && profileImgUrl !== undefined"
+							:src="profileImgUrl"
+						>
+					</div>
+					<!-- follow card -->
 					<div class="hidden md:block">
                         <company-follow-card
                             :logo-url="profileImgUrl"
@@ -75,7 +84,7 @@
 					<base-follow-button class="md:hidden" />
 					<!-- posted date -->
 					<span
-						class="hideen md:block lg:hidden text-xs font-bold tracking-widest uppercase text-white"
+						class="hidden md:block lg:hidden text-xs font-bold tracking-widest uppercase text-white"
 					>
 						posted: {{ createdAt }}
 					</span>

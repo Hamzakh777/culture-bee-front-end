@@ -4,21 +4,23 @@
 			<base-loader />
 		</div>
 		<div v-else>
-			<hero-section />
+			<job-hero-section />
 			<employer-values-section />
-			<about-this-job />
-			<skills-section />
+			<job-about />
+			<job-skills-section />
 			<employer-benefits-section />
 			<employer-culture-feed />
+			<job-similar-jobs />
 		</div>
 	</div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import SkillsSection from '~/components/Jobs/Sections/SkillsSection';
-import AboutThisJob from '~/components/Jobs/Sections/AboutThisJob';
-import HeroSection from '~/components/Jobs/Sections/HeroSection';
+import JobSkillsSection from '~/components/Jobs/Sections/JobSkillsSection';
+import JobAbout from '~/components/Jobs/Sections/JobAbout';
+import JobHeroSection from '~/components/Jobs/Sections/JobHeroSection';
+import JobSimilarJobs from '~/components/Jobs/Sections/JobSimilarJobs';
 import EmployerCultureFeed from '~/components/Profile/Employer/Sections/EmployerCultureFeed';
 import EmployerBenefitsSection from '~/components/Profile/Employer/Sections/EmployerBenefitsSection';
 import EmployerValuesSection from '~/components/Profile/Employer/Sections/EmployerValuesSection';
@@ -27,11 +29,12 @@ import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
 	components: {
-		SkillsSection,
-		AboutThisJob,
+		JobSkillsSection,
+		JobAbout,
 		BaseLoader,
 		EmployerCultureFeed,
-		HeroSection,
+		JobHeroSection,
+		JobSimilarJobs,
 		EmployerBenefitsSection,
 		EmployerValuesSection
 	},

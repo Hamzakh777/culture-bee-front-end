@@ -21,7 +21,7 @@
     import { mapState } from 'vuex';
 
     export default {
-        name: 'SkillsSection',
+        name: 'JobSkillsSection',
 
         computed: {
             ...mapState('job', ['skills'])
