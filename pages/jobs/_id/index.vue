@@ -7,6 +7,8 @@
 			<hero-section />
 			<about-this-job />
 			<skills-section />
+			<employer-benefits-section />
+			<employer-culture-feed />
 		</div>
 	</div>
 </template>
@@ -16,6 +18,8 @@ import { mapActions, mapState } from 'vuex';
 import SkillsSection from '~/components/Jobs/Sections/SkillsSection';
 import AboutThisJob from '~/components/Jobs/Sections/AboutThisJob';
 import HeroSection from '~/components/Jobs/Sections/HeroSection';
+import EmployerCultureFeed from '~/components/Profile/Employer/Sections/EmployerCultureFeed';
+import EmployerBenefitsSection from '~/components/Profile/Employer/Sections/EmployerBenefitsSection';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
@@ -24,7 +28,9 @@ export default {
 		SkillsSection,
 		AboutThisJob,
 		BaseLoader,
-		HeroSection
+		EmployerCultureFeed,
+		HeroSection,
+		EmployerBenefitsSection
 	},
 
 	mixins: [baseToggleLoaderMixin],

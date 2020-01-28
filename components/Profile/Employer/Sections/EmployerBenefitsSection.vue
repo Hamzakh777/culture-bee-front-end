@@ -50,6 +50,7 @@ export default {
 	},
 
 	computed: {
+		...mapState('employer', ['id']),
 		...mapState('employer/benefits', ['benefits'])
 	},
 
@@ -80,10 +81,9 @@ export default {
 
 	mounted() {
 		try {
-			this.fetchBenefits(this.$route.params.id);
+			this.fetchBenefits(this.id);
 		} catch (error) {
 			alert('An error happend trying to load benefits');
-			console.error(error);
 		}
 	},
 

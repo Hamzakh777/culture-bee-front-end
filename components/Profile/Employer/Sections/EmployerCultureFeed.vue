@@ -68,6 +68,7 @@ export default {
 	},
 
 	computed: {
+		...mapState('employer', ['id']),
 		...mapState('employer/updates', ['updates']),
 
 		/**
@@ -93,10 +94,9 @@ export default {
 
 	mounted() {
 		try {
-			this.fetchUpdates(this.$route.params.id);
+			this.fetchUpdates(this.id);
 		} catch (error) {
 			alert('An error happend trying to load company feed updates');
-			console.error(error);
 		}
 	},
 
