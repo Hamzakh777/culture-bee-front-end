@@ -4,7 +4,7 @@
 			<div
 				class="container flex items-end relative z-1 h-full py-12 mx-auto"
 			>
-				<div class="flex flex-col md:flex-row items-stretch w-full">
+				<div class="flex flex-col md:flex-row items-start w-full">
 					<!-- logo -->
 					<div class="hidden md:block">
                         <company-follow-card
@@ -18,15 +18,15 @@
                     </div>
 					<!-- company info -->
 					<div
-						class="hidden md:flex flex-grow flex-col items-stretch justify-between ml-14 bg-white md:bg-transparent text-gray-800 md:text-white"
+						class="hidden md:flex flex-grow flex-col items-stretch justify-between lg:justify-start ml-14 bg-white md:bg-transparent text-gray-800 md:text-white"
 					>
-						<div class="flex justify-between mt-2 mb-8">
+						<div class="flex justify-between lg:justify-start mt-2 mb-8">
 							<!-- seniority -->
 							<div class="job-info">
 								{{ seniority }}
 							</div>
 							<!-- tags -->
-							<div class="flex mx-4">
+							<div class="flex lg:hidden mx-4">
 								<span
 									v-for="(tag, index) in tags"
 									:key="index"
@@ -39,6 +39,12 @@
 							<div class="lg:hidden job-info">
 								{{ location }}
 							</div>
+							<!-- posted date -->
+							<span
+								class="hideen lg:block ml-6 text-sm font-bold tracking-widest uppercase text-white"
+							>
+								posted: {{ createdAt }}
+							</span>
 						</div>
 						<div>
 							<!-- jot title -->
@@ -48,8 +54,18 @@
 								{{ jobTitle }}
 							</div>
 							<!-- quick pitch -->
-							<div class="max-w-xs text-5-1/2 font-bold">
+							<div class="lg:mb-6 max-w-xs text-5-1/2 md:text-base lg:text-normal lg:text-sm font-bold">
 								{{ quickPitch }}
+							</div>
+							<!-- tags -->
+							<div class="hidden lg:flex">
+								<span
+									v-for="(tag, index) in tags"
+									:key="index"
+									class="job-info mr-4 last:mr-0"
+								>
+									{{ tag }}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -59,7 +75,7 @@
 					<base-follow-button class="md:hidden" />
 					<!-- posted date -->
 					<span
-						class="text-xs font-bold tracking-widest uppercase text-white"
+						class="hideen md:block lg:hidden text-xs font-bold tracking-widest uppercase text-white"
 					>
 						posted: {{ createdAt }}
 					</span>
@@ -145,5 +161,11 @@ export default {
 <style scoped>
 .job-info {
 	@apply text-yellow text-xxs font-bold uppercase tracking-widest;
+}
+
+@media(min-width: 1024px) {
+	.job-info {
+		@apply text-sm;
+	}
 }
 </style>
