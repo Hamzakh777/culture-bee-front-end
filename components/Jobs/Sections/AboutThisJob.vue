@@ -36,9 +36,13 @@
 					</div>
 				</div>
 				<!-- promo photo -->
-				<div class="section relative h-68 md:h-72 my-4">
+				<div 
+					v-if="promoPhotoUrl"
+					class="section relative h-68 md:h-72 my-4"
+				>
 					<div
-						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500 bg-cover bg-center"
+						:style="`background-image: url(${promoPhotoUrl})`"
 					></div>
 				</div>
 				<!-- what you'll bring - qualities -->
@@ -62,9 +66,13 @@
 					</div>
 				</div>
 				<!-- family photo -->
-				<div class="section lg:order-6 relative h-68 md:h-72 my-4 md:my-0">
+				<div 
+					v-if="familyPhotoUrl"
+					class="section lg:order-6 relative h-68 md:h-72 my-4 md:my-0"
+				>
 					<div
-						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500 bg-cover bg-center"
+						:style="`background-image: url(${promoPhotoUrl})`"
 					></div>
 				</div>
 				<!-- work family description - aboutTheColleagues -->
