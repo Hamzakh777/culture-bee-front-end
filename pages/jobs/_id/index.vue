@@ -10,7 +10,7 @@
 			<job-skills-section />
 			<employer-benefits-section />
 			<employer-culture-feed />
-			<job-similar-jobs />
+			<!-- <job-similar-jobs /> -->
 		</div>
 	</div>
 </template>
@@ -20,7 +20,7 @@ import { mapActions, mapState } from 'vuex';
 import JobSkillsSection from '~/components/Jobs/Sections/JobSkillsSection';
 import JobAbout from '~/components/Jobs/Sections/JobAbout';
 import JobHeroSection from '~/components/Jobs/Sections/JobHeroSection';
-import JobSimilarJobs from '~/components/Jobs/Sections/JobSimilarJobs';
+// import JobSimilarJobs from '~/components/Jobs/Sections/JobSimilarJobs';
 import EmployerCultureFeed from '~/components/Profile/Employer/Sections/EmployerCultureFeed';
 import EmployerBenefitsSection from '~/components/Profile/Employer/Sections/EmployerBenefitsSection';
 import EmployerValuesSection from '~/components/Profile/Employer/Sections/EmployerValuesSection';
@@ -34,7 +34,7 @@ export default {
 		BaseLoader,
 		EmployerCultureFeed,
 		JobHeroSection,
-		JobSimilarJobs,
+		// JobSimilarJobs,
 		EmployerBenefitsSection,
 		EmployerValuesSection
 	},
@@ -48,7 +48,7 @@ export default {
 	async created() {
 		this.toggleLoader();
 		try {
-			// await this.fetchJob(this.$route.params.id);
+			await this.fetchJob(this.$route.params.id);
 			await this.getProfileDetails(this.userId);
 		} catch (error) {
 			alert('An error happend trying to load company vision');

@@ -238,13 +238,14 @@
 				</div>
 				<div class="row">
 					<div class="base-title">
-						ownership
+						Role responsibilities
 					</div>
 					<div class="lg:flex-grow">
 						<base-icon-value-input
 							v-for="(value, index) in ownershipValues"
 							:key="index"
 							:value="value"
+							placeholder="Add value"
 						/>
 					</div>
 				</div>
@@ -633,7 +634,7 @@ export default {
 
 				await this.$axios.post('/api/jobs', formData);
 
-				if(this.currentProfileCreationStep === 4) this.incrementProfileCreationStep();
+				if(this.currentProfileCreationStep === 5) this.incrementProfileCreationStep();
 				this.toggle();
 			} catch (error) {
 				alert('An error happend');

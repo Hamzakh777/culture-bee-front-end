@@ -12,12 +12,6 @@
 					</div>
 					<div class="p">
 						{{ whyThisRole }}
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea
-						commodo consequat. Duis aute irure. Lorem ipsum dolor
-						sit amet, consectetur adipiscing elit, sed do
 					</div>
 				</div>
 				<!-- what you'll own -->
@@ -25,15 +19,16 @@
 					<div class="sub-section-title">
 						What you’ll own
 					</div>
-					<div class="p">
-						{{ whyThisRole }}
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea
-						commodo consequat. Duis aute irure. Lorem ipsum dolor
-						sit amet, consectetur adipiscing elit, sed do
-					</div>
+					<ul>
+						<li
+							v-for="(responsibility, index) in responsibilities"
+							:key="index"
+							class="relative pl-4"
+						>
+							{{ responsibility.title }}
+							<div class="absolute left-0 top-0 h-1 w-1 mt-3 rounded-full bg-gray-800"></div>
+						</li>
+					</ul>
 				</div>
 				<!-- promo photo -->
 				<div 
@@ -41,7 +36,7 @@
 					class="section relative h-68 md:h-72 my-4"
 				>
 					<div
-						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500 bg-cover bg-center"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-cover bg-center"
 						:style="`background-image: url(${promoPhotoUrl})`"
 					></div>
 				</div>
@@ -52,16 +47,22 @@
 					</div>
 					<div>
 						<div class="relative pl-10">
-							<img
-								class="absolute top-0 left-0 h-4"
-								src="/icons/checkmark.svg"
-							/>
-							<p class="p">
-								Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Exercitationem ratione sequi
-								aspernatur omnis totam officia deleniti iusto
-								molestiae quaerat cupiditate?
-							</p>
+							<div
+								class="relative mb-4"
+								v-for="(quality, index) in qualities"
+								:key="index"
+							>
+								<img
+									class="absolute top-0 left-0 h-4"
+									src="/icons/checkmark.svg"
+								/>
+								<p 
+									class="p"
+									:class="{'font-bold': index === 0}"
+								>
+									{{ quality.title }}
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -71,7 +72,7 @@
 					class="section lg:order-6 relative h-68 md:h-72 my-4 md:my-0"
 				>
 					<div
-						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-pink-500 bg-cover bg-center"
+						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-cover bg-center"
 						:style="`background-image: url(${promoPhotoUrl})`"
 					></div>
 				</div>
@@ -82,12 +83,6 @@
 					</div>
 					<p class="p">
 						{{ aboutTheColleagues }}
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea
-						commodo consequat. Duis aute irure. Lorem ipsum dolor
-						sit amet, consectetur adipiscing elit, sed do
 					</p>
 				</div>
 			</div>
@@ -107,8 +102,21 @@ export default {
 			'applicantQualities',
 			'promoPhotoUrl',
 			'familyPhotoUrl',
-			'aboutTheColleagues'
-		])
+			'aboutTheColleagues',
+			'ownershipValues'
+		]),
+
+		responsibilities() {
+			return this.ownershipValues.filter((responsibility) => {
+				return responsibility.title !== '' && responsibility.title !== null
+			})
+		},
+
+		qualities() {
+			return this.applicantQualities.filter((quality) => {
+				return quality.title !== '' && quality.title !== null
+			})
+		}
 	}
 };
 </script>

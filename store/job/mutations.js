@@ -17,6 +17,7 @@ const mutations = {
 		state.promoPhotoUrl = job.promoPhotoUrl;
 		state.aboutTheColleagues = job.aboutTheColleagues;
 		state.familyPhotoUrl = job.familyPhotoUrl;
+		state.createdAt = job.createdAt;
 		state.userId = job.userId;
 	}
 };

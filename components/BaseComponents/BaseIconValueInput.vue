@@ -51,7 +51,7 @@
 			v-model="value.title"
 			class="flex-grow input-text border-none"
 			type="text"
-			placeholder="Add value"
+			:placeholder="placeholder"
 		/>
 		<div class="relative w-10 h-4 -mt-2">
 			<base-close-button
@@ -86,6 +86,11 @@ export default {
 		value: {
 			type: Object,
 			required: true
+		},
+		placeholder: {
+			type: String,
+			required: false,
+			default: 'Add value'
 		}
 	},
 

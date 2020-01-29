@@ -4,29 +4,31 @@
 			<div class="base-title-light">
 				Benefits
 			</div>
-			<div
-				v-if="isMobile"
-				v-swiper:mySwiper="swiperOption"
-				class="md:flex md:justify-between md:flex-wrap mt-12"
-			>
-				<div class="swiper-wrapper">
+			<client-only>
+				<div
+					v-if="isMobile"
+					v-swiper:mySwiper="swiperOption"
+					class="md:flex md:justify-between md:flex-wrap mt-12"
+				>
+					<div class="swiper-wrapper">
+						<benefit-card
+							v-for="(benefit, index) in benefits"
+							:key="index"
+							:is-edit-page="isEditPage"
+							:benefit="benefit"
+							class="swiper-slide h-68"
+						/>
+					</div>
+				</div>
+				<div v-else class="md:flex md:justify-between md:flex-wrap mt-12">
 					<benefit-card
 						v-for="(benefit, index) in benefits"
 						:key="index"
 						:is-edit-page="isEditPage"
 						:benefit="benefit"
-						class="swiper-slide h-68"
 					/>
 				</div>
-			</div>
-			<div v-else class="md:flex md:justify-between md:flex-wrap mt-12">
-				<benefit-card
-					v-for="(benefit, index) in benefits"
-					:key="index"
-					:is-edit-page="isEditPage"
-					:benefit="benefit"
-				/>
-			</div>
+			</client-only>
 		</div>
 	</div>
 </template>

@@ -1,5 +1,5 @@
 const state = () => ({
-	benefits: []
+	jobs: []
 });
 
 export default state;

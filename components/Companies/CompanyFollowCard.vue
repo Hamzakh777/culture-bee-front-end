@@ -4,7 +4,7 @@
 			<img :src="logoUrl" alt />
 		</div>
 		<div
-			class="flex items-center justify-center relative h-18 bg-gray-800"
+			class="flex items-center justify-center relative h-16 bg-gray-800"
 		>
 			<base-follow-button 
                 class="text-center" 
