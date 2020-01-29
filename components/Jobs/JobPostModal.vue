@@ -531,6 +531,7 @@ export default {
 
 	methods: {
 		...mapMutations('employer', ['incrementProfileCreationStep']),
+		...mapMutations('employer/jobs', ['addJob']),
 
 		toggle() {
 			this.isActive = !this.isActive;
@@ -632,8 +633,9 @@ export default {
 				formData.append('promoPhoto', this.promoPhoto === null ? '': this.promoPhoto.file);
 				formData.append('familyPhoto', this.familyPhoto === null ? '' : this.familyPhoto.file);
 
-				await this.$axios.post('/api/jobs', formData);
-
+				const response = await this.$axios.post('/api/jobs', formData);
+				
+				this.addJob(response.data.job);
 				if(this.currentProfileCreationStep === 5) this.incrementProfileCreationStep();
 				this.toggle();
 			} catch (error) {
