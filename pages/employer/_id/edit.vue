@@ -17,7 +17,7 @@
 
 <script>
 import Vue from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import EmployerHero from '~/components/Profile/Employer/EmployerHero';
 import EmployerAccountProgress from '~/components/Profile/Employer/EmployerAccountProgress';
@@ -37,10 +37,19 @@ export default {
 	},
 	mixins: [baseToggleLoaderMixin],
 
+
+	computed: {
+		...mapState('account', ['id'])
+	},
+
 	async created() {
 		this.toggleLoader();
 		try {
 			await this.getProfileDetails(this.$route.params.id);
+			
+			if(parseInt(this.$route.params.id) !== this.id) {
+				this.$router.push('/404');
+			}
 		} catch (error) {
 			alert('An error happend trying to load company vision');
 		}
