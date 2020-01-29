@@ -46,9 +46,9 @@
 						What you’ll bring
 					</div>
 					<div>
-						<div class="relative pl-10">
+						<div class="relative">
 							<div
-								class="relative mb-4"
+								class="relative mb-4 pl-10"
 								v-for="(quality, index) in qualities"
 								:key="index"
 							>
