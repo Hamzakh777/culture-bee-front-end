@@ -112,7 +112,8 @@ export default {
 				this.getLogedInUser();
                 this.$router.push({
                     path: '/feed'
-                });
+				});
+				
 			} catch (error) {
 				this.toggleLoader();
 				// credentials are wrong

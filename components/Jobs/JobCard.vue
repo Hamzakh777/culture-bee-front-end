@@ -1,7 +1,9 @@
 <template>
 	<div class="flex justify-between items-stretch px-10 py-12 border border-gray-300">
 		<!-- company logo and follow button -->
-		<div class="flex flex-col w-32 h-40 border border-gray-100 bg-white">
+		<div 
+			class="flex flex-col w-32 h-40 border border-gray-100 bg-white"
+		>
 			<div class="flex justify-center items-center flex-grow p-4">
 				<img src alt />
 			</div>

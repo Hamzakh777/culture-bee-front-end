@@ -51,7 +51,7 @@ export default {
 		try {
 			await this.getProfileDetails(this.$route.params.id);
 			
-			if(parseInt(this.$route.params.id) !== this.id) {
+			if(parseInt(this.$route.params.id) !== this.id && process.browser) {
 				this.$router.push('/404');
 			}
 		} catch (error) {

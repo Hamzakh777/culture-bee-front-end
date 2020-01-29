@@ -23,6 +23,7 @@ const actions = {
 				.catch(err => reject(err));
 		});
 	},
+	
 	updateAccountDetails({ commit }, data) {
 		return new Promise((resolve, reject) => {
 			this.$axios.post('/api/profile', data)
@@ -36,6 +37,7 @@ const actions = {
 				})
 		})
 	},
+
 	async getLogedInUser({ commit }) {
 		try {
 			const response = await this.$axios.get('api/profile');
@@ -45,6 +47,7 @@ const actions = {
 			alert('An error occured trying to retrieve the user data');
 		}
 	},
+
 	async logout({ commit }) {
 		try {
 			await this.$axios.post('api/logout');

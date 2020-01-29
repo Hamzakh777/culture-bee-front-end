@@ -396,6 +396,7 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
+import { mapState, mapMutations } from 'vuex';
 import vSelect from 'vue-select';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
@@ -419,6 +420,10 @@ export default {
 		BaseIconValueInput,
 		vSelect,
 		FileUpload
+	},
+
+	computed: {
+		...mapState('employer', ['currentProfileCreationStep'])
 	},
 
 	data() {
@@ -524,6 +529,8 @@ export default {
 	created() {},
 
 	methods: {
+		...mapMutations('employer', ['incrementProfileCreationStep']),
+
 		toggle() {
 			this.isActive = !this.isActive;
 		},
@@ -624,9 +631,10 @@ export default {
 				formData.append('promoPhoto', this.promoPhoto === null ? '': this.promoPhoto.file);
 				formData.append('familyPhoto', this.familyPhoto === null ? '' : this.familyPhoto.file);
 
-				const response = await this.$axios.post('/api/jobs', formData);
+				await this.$axios.post('/api/jobs', formData);
 
-				console.log(response);
+				if(this.currentProfileCreationStep === 4) this.incrementProfileCreationStep();
+				this.toggle();
 			} catch (error) {
 				alert('An error happend');
 				console.error(error);
