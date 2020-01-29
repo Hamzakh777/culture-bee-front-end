@@ -73,7 +73,7 @@
 				>
 					<div
 						class="absolute md:relative left-1/2 -transform-x-50 inset-y-0 w-screen md:w-full md:h-full bg-cover bg-center"
-						:style="`background-image: url(${promoPhotoUrl})`"
+						:style="`background-image: url(${familyPhotoUrl})`"
 					></div>
 				</div>
 				<!-- work family description - aboutTheColleagues -->
