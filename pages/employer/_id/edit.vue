@@ -5,7 +5,10 @@
 		</div>
 		<div v-else>
 			<employer-hero :is-edit-page="true" />
-			<div class="container mx-auto py-10">
+			<div 
+				v-if="currentProfileCreationStep < 6"
+				class="container mx-auto py-10"
+			>
 				<employer-account-progress />
 			</div>
 			<employer-profile-sections :is-edit-page="true" />
@@ -39,7 +42,8 @@ export default {
 
 
 	computed: {
-		...mapState('account', ['id'])
+		...mapState('account', ['id']),
+		...mapState('employer', ['currentProfileCreationStep'])
 	},
 
 	async created() {
