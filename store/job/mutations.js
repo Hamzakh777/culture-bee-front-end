@@ -1,7 +1,6 @@
 const mutations = {
 	setJob(state, job) {
 		state.id = job.id;
-		state.id = job.id;
 		state.location = job.location;
 		state.seniority = job.seniority;
 		state.industry = job.industry;
