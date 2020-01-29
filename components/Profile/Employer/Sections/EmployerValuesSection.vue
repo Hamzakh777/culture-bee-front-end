@@ -54,6 +54,7 @@ export default {
 
 	computed: {
 		...mapState('employer/values', ['values']),
+		...mapState('employer', ['id']),
 
 		valuesToShow() {
 			return this.values.filter(
@@ -64,7 +65,7 @@ export default {
 
 	mounted() {
 		try {
-			this.fetchValues(this.$route.params.id);
+			this.fetchValues(this.id);
 		} catch (error) {
 			alert('An error happend trying to load company values');
 		}
