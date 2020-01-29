@@ -44,7 +44,7 @@ const actions = {
 
 			commit('setUserData', response.data.data);
 		} catch (error) {
-			alert('An error occured trying to retrieve the user data');
+			console.error(error);
 		}
 	},
 

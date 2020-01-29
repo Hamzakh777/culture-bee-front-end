@@ -1,8 +1,8 @@
 <template>
-	<div class="flex justify-between items-stretch px-10 py-12 border border-gray-300">
+	<div class="flex flex-col md:flex-row justify-between items-stretch px-0 md:px-10 pt-10 md:py-12 border border-gray-300">
 		<!-- company logo and follow button -->
 		<div 
-			class="flex flex-col w-32 h-40 border border-gray-100 bg-white"
+			class="hidden lg:flex flex-col w-32 h-40 border border-gray-100 bg-white"
 		>
 			<div class="flex justify-center items-center flex-grow p-4">
 				<img src alt />
@@ -12,12 +12,19 @@
 			</div>
 		</div>
 		<!-- job details -->
-		<div class="flex flex-col justify-between px-10 pt-4 flex-grow">
-			<div>
-				<!-- role -->
-				<div class="sub-title">jUNIOR, PART-TIME</div>
+		<div class="flex flex-col justify-between mb-5 md:mb-0 px-6 md:px-10 pt-0 md:pt-4 flex-grow">
+			<div class="mb-4">
+				<div class="flex items-start justify-start mb-2">
+					<!-- seniority -->
+					<div class="sub-title mr-4">jUNIOR, PART-TIME</div>
+					<img 
+						class="h-4"
+						style="max-width: 140px"
+						src="/logos/tala.png" 
+					>
+				</div>
 				<!-- job title -->
-				<div class="text-8 font-bold text-gray-800">Job title goes here</div>
+				<div class="text-5-1/2 lg:text-8 font-bold text-gray-800">Job title goes here</div>
 			</div>
 			<!-- location -->
 			<div class="small-text">LONDON, SE17</div>
@@ -35,9 +42,11 @@
 			</div>
 		</div>
 		<!-- job tags and date -->
-		<div class="flex flex-col justify-between text-right">
+		<div class="flex flex-col justify-between px-6 md:px-0 mb-8 text-right">
 			<base-like-icon v-if="isJobSeekerView" class="relative h-19" />
-			<div class="small-text">yesterday</div>
+			<!-- created at -->
+			<div class="hidden md:block small-text">yesterday</div>
+			<!-- tags -->
 			<div v-if="!isJobSeekerView" class="flex">
 				<div
 					v-for="(tag, index) in tags"
@@ -46,6 +55,10 @@
 					class="small-text"
 				>{{ tag }}</div>
 			</div>
+		</div>
+		<!-- follow card - shows up on mobile only -->
+		<div class="flex items-center justify-center relative h-12-1/2 bg-gray-800">
+			<base-follow-button class="text-center" />
 		</div>
 	</div>
 </template>

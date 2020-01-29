@@ -1,12 +1,12 @@
 <template>
     <div class="py-6 bg-gallery">
         <div class="container mx-auto">
-            <div class="section-title">
+            <div class="section-title mb-8">
                 similar jobs
             </div>
-            <div>
-                <job-card />
-            </div>
+        </div>
+        <div>
+            <job-card />
         </div>
     </div>
 </template>

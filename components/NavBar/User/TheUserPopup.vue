@@ -2,6 +2,7 @@
 	<div
 		v-if="isOpen"
 		v-on-clickaway="toggle"
+		@click="toggle"
 		class="absolute top-0 right-0 w-64 mt-24 border-2 border-gray-800 bg-white"
 	>
 		<div class="row flex items-center border-b-2 border-gray-800">
@@ -16,19 +17,31 @@
 				>
 					{{ name }}
 				</div>
-				<nuxt-link class="link" to="/profile">
+				<nuxt-link 
+					class="link" 
+					:to="`/employer/${id}`"
+				>
 					View profile
 				</nuxt-link>
 			</div>
 		</div>
 		<div class="row border-b-2 border-gray-800">
-			<nuxt-link class="link block mb-4" to="/account/details">
+			<nuxt-link 
+				class="link block mb-4" 
+				:to="`/employer/${id}/edit`"
+			>
 				Edit profile
 			</nuxt-link>
-			<nuxt-link class="link block mb-4" to="/account/details">
+			<nuxt-link 
+				class="link block mb-4" 
+				to="/account/details"
+			>
 				Account details
 			</nuxt-link>
-			<nuxt-link class="link block" to="/jobs">
+			<nuxt-link 
+				class="link block" 
+				to="/jobs"
+			>
 				Your jobs
 			</nuxt-link>
 		</div>
@@ -54,7 +67,7 @@ export default {
 
 	computed: {
 		...mapGetters('account', ['nameInitials']),
-		...mapState('account', ['name'])
+		...mapState('account', ['name', 'id'])
 	},
 
 	data() {

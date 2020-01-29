@@ -5,7 +5,7 @@
 		</div>
 		<div v-else>
 			<employer-hero :is-edit-page="true" />
-			<div 
+			<div
 				v-if="currentProfileCreationStep < 6"
 				class="container mx-auto py-10"
 			>
@@ -40,7 +40,6 @@ export default {
 	},
 	mixins: [baseToggleLoaderMixin],
 
-
 	computed: {
 		...mapState('account', ['id']),
 		...mapState('employer', ['currentProfileCreationStep'])
@@ -50,12 +49,17 @@ export default {
 		this.toggleLoader();
 		try {
 			await this.getProfileDetails(this.$route.params.id);
-			
-			if(parseInt(this.$route.params.id) !== this.id && process.browser) {
+
+			if (
+				parseInt(this.$route.params.id) !== this.id &&
+				process.browser
+			) {
 				this.$router.push('/404');
 			}
 		} catch (error) {
-			alert('An error happend trying to load company vision');
+			if (process.browser) {
+				alert('An error happend trying to load company vision');
+			}
 		}
 		this.toggleLoader();
 	},
