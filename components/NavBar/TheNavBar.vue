@@ -29,7 +29,6 @@
 						</nuxt-link>
 					</div>
 					<SearchButton />
-					
 					<!-- login button  -->
 					<nuxt-link
 						v-if="!isLoggedIn"
@@ -38,10 +37,9 @@
 					>
 						Sign in
 					</nuxt-link>
-
 					<!-- name initials -->
 					<div
-						v-else
+						v-if="isLoggedIn"
 						class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
 						@click="openUserPopup"
 					>
