@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		<!-- job tags and date -->
-		<div class="flex flex-col justify-between px-6 md:px-0 mb-8 text-right">
+		<div class="flex flex-col justify-between px-6 md:px-0 mb-8 lg:mb-0 text-right">
 			<base-like-icon v-if="isJobSeekerView" class="relative h-19" />
 			<!-- created at -->
 			<div class="hidden md:block small-text">{{ job.createdAt }}</div>
