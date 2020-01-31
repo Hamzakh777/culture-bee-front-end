@@ -5,6 +5,7 @@ module.exports = {
 			'D-Din': ['D-Din', 'sans-serif']
 		},
 		colors: {
+			alabaster: '#F7F7F7',
 			transparent: 'transparent',
 			black: '#000000',
 			blue: '#2C3258',
@@ -92,6 +93,7 @@ module.exports = {
 				'90-vh': '90vh'
 			},
 			maxWidth: {
+				'190': '47.5rem',
 				'100-vw': '100vw'
 			},
 			spacing: {

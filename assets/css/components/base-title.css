@@ -1,7 +1,14 @@
-.base-title {
-    @apply font-D-Din text-gray-800 text-8 uppercase font-bold;
+.base-title, .base-title--underline {
+    @apply relative z-1 font-D-Din text-gray-800 text-8 uppercase font-bold;
 }
 
 .base-title-light {
     @apply font-D-Din text-white text-8 uppercase font-bold;
+}
+
+.base-title--underline::before {    
+    content: '';
+    height: 5px;
+    z-index: -1;
+    @apply absolute bottom-0 left-0 right-0 mb-1 bg-yellow transition-all;
 }
