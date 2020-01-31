@@ -36,3 +36,7 @@
 .vs__deselect {
     @apply h-4 w-4;
 }
+
+.vs__actions {
+    padding: 4px 6px 0 0;
+}
