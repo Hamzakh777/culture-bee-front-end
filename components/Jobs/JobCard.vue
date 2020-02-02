@@ -117,7 +117,7 @@
 					<button
 						v-if="!job.isUnexpired"
 						class="action-btn"
-						@click.job="renewJob"
+						@click.stop="renewJob"
 					>
 						Renew
 					</button>
