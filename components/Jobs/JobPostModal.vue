@@ -525,6 +525,10 @@ export default {
 				this.applicantQualities.push(emptyValue);
 			}
 		});
+
+		this.$bus.$on('open-edit-job-modal', () => {
+			this.toggle();
+		});
 	},
 
 	created() {},

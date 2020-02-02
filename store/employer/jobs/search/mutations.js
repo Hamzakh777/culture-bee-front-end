@@ -7,8 +7,12 @@ const mutations = {
 		state.jobs = jobs;
 	},
 
-	toggleLoader(state) {
-		state.isLoading = !state.isLoading;
+	hideLoader(state) {
+		state.isLoading = false;
+	},
+	
+	showLoader(state) {
+		state.isLoading = true;
 	}
 };
 

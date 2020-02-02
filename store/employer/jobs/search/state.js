@@ -5,6 +5,7 @@ const state = () => ({
 	category: 'live',
 	industry: '',
 	seniority: '',
+	location: '',
 	type: ''
 });
 

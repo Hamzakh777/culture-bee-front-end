@@ -6,6 +6,7 @@
 				:key="index"
 				class="base-title focus:outline-none"
 				:class="{'base-title--underline': jobCategory.value === category}"
+				@click.stop="setStoreProp('category', jobCategory.value)"
 			>
 				{{ jobCategory.name }}
 			</button>
@@ -36,24 +37,31 @@
 		<div class="flex">
 			<!-- industries -->
 			<v-select
-				class="flex-grow mr-4 w-31-%"
+				class="flex-grow mr-4 w-24-%"
 				:options="['1', '2']"
 				placeholder="Industries"
 				@input="setStoreProp('industry', $event)"
 			/>
 			<!-- type  -->
 			<v-select 
-				class="flex-grow mr-4 w-31-%" 
+				class="flex-grow mr-4 w-24-%" 
 				:options="['1', '2']" 
 				placeholder="Type" 
 				@input="setStoreProp('type', $event)"
 			/>
 			<!-- seniority  -->
 			<v-select 
-				class="flex-grow w-31-%" 
+				class="flex-grow mr-4 w-24-%" 
 				:options="['1', '2']" 
 				placeholder="Seniority" 
 				@input="setStoreProp('seniority', $event)"
+			/>
+			<!-- location  -->
+			<v-select 
+				class="flex-grow w-24-%" 
+				:options="['1', '2']" 
+				placeholder="Location" 
+				@input="setStoreProp('location', $event)"
 			/>
 		</div>
 	</div>
@@ -90,13 +98,15 @@ export default {
 				{
 					name: 'expired jobs',
 					value: 'expired'
-				},
+				}
 			]
 		}
 	},
 
 	created() {
-		this.bayWatch(['type', 'category', 'query', 'seniority', 'industry'], this.fetchJobs.bind(this))
+		this.bayWatch(['type', 'category', 'query', 'seniority', 'industry'], this.fetchJobs.bind(this));
+
+		this.fetchJobs();
 	},
 
 	methods: {

@@ -9,17 +9,15 @@
 					<jobs-filter />
 				</div>
 			</div>
-			<div 
-				v-if="isLoading"
-				class="relative h-screen w-screen"
-			>
+			<div v-if="isLoading" class="relative h-screen w-screen">
 				<base-loader />
 			</div>
 			<div class="container mx-auto py-16 min-h-screen">
-				<job-card 
-					v-for="(job) in jobs"
+				<job-card
+					v-for="job in jobs"
 					:key="job.id"
 					:job="job"
+					:isEdit="true"
 				/>
 			</div>
 		</div>
@@ -36,7 +34,6 @@ import JobPostModal from '~/components/Jobs/JobPostModal';
 import JobCard from '~/components/Jobs/JobCard';
 
 export default {
-
 	components: {
 		BaseLoader,
 		JobsFilter,
@@ -51,7 +48,7 @@ export default {
 	data() {
 		return {
 			isLoadingUserData: false
-		}
-	},
+		};
+	}
 };
 </script>
