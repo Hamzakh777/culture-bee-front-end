@@ -1,5 +1,6 @@
 <template>
 	<div
+		v-if="isVisible"
 		@click="viewJob"
 		class="flex flex-col md:flex-row justify-between items-stretch relative mb-4 lg:mb-8 px-0 md:px-10 pt-10 md:py-12 border border-gray-300 cursor-pointer"
 	>
