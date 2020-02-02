@@ -18,10 +18,11 @@
 			</div>
 			<!-- list of jobs -->
 			<div class="mt-12">
-				<job-card  
+				<job-card 
                     v-for="(job, index) in jobs"
                     :key="index"
                     :job="job"
+					:is-edit="isEditPage" 
                 />
 			</div>
 		</div>

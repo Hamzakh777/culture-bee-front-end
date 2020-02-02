@@ -1,8 +1,15 @@
 <template>
 	<div
 		@click="viewJob"
-		class="flex flex-col md:flex-row justify-between items-stretch mb-4 lg:mb-8 px-0 md:px-10 pt-10 md:py-12 border border-gray-300 cursor-pointer"
+		class="flex flex-col md:flex-row justify-between items-stretch relative mb-4 lg:mb-8 px-0 md:px-10 pt-10 md:py-12 border border-gray-300 cursor-pointer"
 	>
+		<!-- loader  -->
+		<div 
+			v-if="isLoading"
+			class="absolute inset-0"
+		>
+			<base-loader />
+		</div>
 		<!-- company logo and follow button -->
 		<div
 			class="hidden lg:flex flex-col w-32 h-40 border border-gray-100 bg-white"
@@ -69,7 +76,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="hidden lg:flex flex-col items-end justify-between pl-16">
+		<div 
+			v-if="isEdit"
+			class="hidden lg:flex flex-col items-end justify-between pl-16"
+		>
 			<div class="relative">
 				<button
 					class="flex justify-center items-center h-12 w-12 bg-gray-800 focus:outline-none"
@@ -89,11 +99,13 @@
 				>
 					<button
 						class="action-btn border-gray-300 border-b-2"
+						@click.stop="deleteJob"
 					>
 						Delete
 					</button>
 					<button
 						class="action-btn"
+						@click.job="expireJob"
 					>
 						Expire
 					</button>
@@ -118,16 +130,19 @@
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
 import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 import BaseLikeIcon from '~/components/BaseComponents/BaseLikeIcon';
+import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 
 export default {
 	name: 'JobCarb',
 
-	mixins: [clickaway],
+	mixins: [clickaway, baseToggleLoaderMixin],
 
 	components: {
 		BaseFollowButton,
-		BaseLikeIcon
+		BaseLikeIcon,
+		BaseLoader
 	},
 
 	props: {
@@ -138,16 +153,22 @@ export default {
 			required: false,
 			default: false
 		},
+		isEdit: {
+			type: Boolean,
+			required: false, 
+			default: false
+		},
 		job: {
 			type: Object,
 			required: true
-		}
+		},
 	},
 
 	data() {
 		return {
 			tags: ['FASHION', 'Ethical', 'hacking'],
-			isActionsDropdownActive: false
+			isActionsDropdownActive: false,
+			isVisible: true // used to hide the card when delete or expire toggled
 		};
 	},
 
@@ -156,6 +177,7 @@ export default {
 			this.isActionsDropdownActive = !this.isActionsDropdownActive;
 		},
 
+
 		/**
 		 * Toggle following the comany
 		 */
@@ -163,6 +185,23 @@ export default {
 
 		viewJob() {
 			return this.$router.push(`/jobs/${this.job.id}`);
+		},
+		
+		async deleteJob() {
+			this.toggleLoader();
+			try {
+				await this.$axios.delete(`api/jobs/${this.job.id}`);
+
+				this.isVisible = false;
+			} catch (error) {
+				alert('An error happened trying to delete the job');
+				console.error(error);
+			}
+			this.toggleLoader();
+		},
+
+		async expireJob() {
+			//
 		}
 	}
 };
