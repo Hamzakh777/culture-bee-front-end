@@ -15,8 +15,8 @@
 			/>
 			<!-- post update button -->
 			<button
-				class="primary-btn hidden lg:block w-31-%"
 				@click="$bus.$emit('open-post-company-update-modal')"
+				class="primary-btn hidden lg:block w-31-%"
 			>
 				Post update
 			</button>
@@ -40,8 +40,8 @@
 					<!-- name initials -->
 					<div
 						v-if="isLoggedIn"
-						class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
 						@click="openUserPopup"
+						class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
 					>
 						{{ nameInitials }}
 					</div>
@@ -61,22 +61,10 @@
 					</div>
 
 					<!-- user popup -->
-					<the-user-popup 
-						v-if="isLoggedIn"
-					/>
+					<the-user-popup v-if="isLoggedIn" />
 				</div>
 			</div>
 		</div>
-		<!-- <div class="hidden lg:flex justify-between py-4">
-            <a 
-                href=""
-                class="text-xs text-gray-900 font-bold tracking-widest"
-                v-for="(filter, index) in filters"
-                :key="index"
-            >
-                {{ filter }}
-            </a>
-        </!-->
 
 		<!-- mobile menu -->
 		<div
@@ -85,7 +73,13 @@
 		>
 			<div class="flex flex-col justify-between w-full h-full">
 				<div>
-					<nuxt-link to="#">
+					<nuxt-link
+						v-if="role === 'employer'"
+						:to="`/employer/${id}/jobs`"
+					>
+						<span class="page-link-mobile mb-6">Jobs</span>
+					</nuxt-link>
+					<nuxt-link v-else to="/jobs">
 						<span class="page-link-mobile mb-6">Jobs</span>
 					</nuxt-link>
 					<nav-filters-dropdown />
@@ -115,7 +109,7 @@ export default {
 	},
 
 	computed: {
-		...mapGetters('account', ['isLoggedIn', 'nameInitials'])
+		...mapGetters('account', ['isLoggedIn', 'nameInitials', 'role', 'id'])
 	},
 
 	data: () => ({
