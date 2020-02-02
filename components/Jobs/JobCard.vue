@@ -98,17 +98,28 @@
 					v-if="isActionsDropdownActive"
 					class="absolute top-0 right-0 mt-14 bg-white shadow-md"
 				>
+					<!-- delete button -->
 					<button
 						class="action-btn border-gray-300 border-b-2"
 						@click.stop="deleteJob"
 					>
 						Delete
 					</button>
+					<!-- expire  -->
 					<button
+						v-if="job.isUnexpired"
 						class="action-btn"
-						@click.job="expireJob"
+						@click.stop="expireJob"
 					>
 						Expire
+					</button>
+					<!-- renew  -->
+					<button
+						v-if="!job.isUnexpired"
+						class="action-btn"
+						@click.job="renewJob"
+					>
+						Renew
 					</button>
 				</div>
 			</div>
@@ -196,13 +207,32 @@ export default {
 				this.isVisible = false;
 			} catch (error) {
 				alert('An error happened trying to delete the job');
-				console.error(error);
 			}
 			this.toggleLoader();
 		},
 
 		async expireJob() {
-			//
+			this.toggleLoader();
+			try {
+				await this.$axios.post(`api/jobs/${this.job.id}/expire`);
+
+				this.isVisible = false;
+			} catch (error) {
+				alert('An error happened trying to expire the job');
+			}
+			this.toggleLoader();
+		},
+
+		async renewJob() {
+			this.toggleLoader();
+			try {
+				await this.$axios.post(`api/jobs/${this.job.id}/renew`);
+
+				this.isVisible = false;
+			} catch (error) {
+				alert('An error happened trying to renew the job');
+			}
+			this.toggleLoader();
 		}
 	}
 };
