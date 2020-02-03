@@ -89,7 +89,6 @@
                 const exists = this.value.indexOf(option.value);
                 let newSelection = this.value;
 
-                console.log(exists);
                 if(exists === -1) {
                     // add it
                     newSelection.push(option.value); 
