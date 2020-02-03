@@ -273,9 +273,9 @@
 						</client-only>
 						<!-- the uploaded image -->
 						<div
-							v-if="promoPhoto !== null"
+							v-if="promoPhotoUrl !== null && promoPhotoUrl !== ''"
 							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
-							:style="`background-image: url(${promoPhoto.url})`"
+							:style="`background-image: url(${promoPhotoUrl})`"
 						>
 							<base-close-button
 								class="top-0 right-0 mt-2 mr-2"
@@ -341,9 +341,9 @@
 						</client-only>
 						<!-- the uploaded image -->
 						<div
-							v-if="familyPhoto !== null"
+							v-if="familyPhotoUrl !== null && familyPhotoUrl !== ''"
 							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
-							:style="`background-image: url(${familyPhoto.url})`"
+							:style="`background-image: url(${familyPhotoUrl})`"
 						>
 							<base-close-button
 								class="top-0 right-0 mt-2 mr-2"
@@ -391,6 +391,13 @@
 					</base-ajax-button>
 				</div>
 			</div>
+			<!-- loader -->
+			<div 
+				v-if="isBigLoaderActive"
+				class="absolute inset-0"
+			>
+				<base-loader />
+			</div>
 		</template>
 	</base-modal>
 </template>
@@ -407,6 +414,7 @@ import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 import TagSelect from '~/components/BaseComponents/BaseTagSelect';
 import BaseIconValueInput from '~/components/BaseComponents/BaseIconValueInput';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
 	name: 'JobPostModal',
@@ -420,7 +428,8 @@ export default {
 		TagSelect,
 		BaseIconValueInput,
 		vSelect,
-		FileUpload
+		FileUpload,
+		BaseLoader
 	},
 
 	computed: {
@@ -434,7 +443,9 @@ export default {
 			industriesList: ['industry 1', 'industry 2'],
 			isActive: false,
 			isLoading: false,
+			isBigLoaderActive: false,
 			currentStep: 1,
+			id: '',
 			location: '',
 			seniority: '',
 			industry: '',
@@ -448,9 +459,11 @@ export default {
 			whyThisRole: '',
 			ownershipValues: [],
 			applicantQualities: [],
-			promoPhoto: null,
+			promoPhotoFile: null,
+			promoPhotoUrl: null,
 			aboutTheColleagues: '',
-			familyPhoto: null,
+			familyPhotoFile: null,
+			familyPhotoUrl: null,
 			value: {
 				title: '',
 				icon: ''
@@ -526,8 +539,10 @@ export default {
 			}
 		});
 
-		this.$bus.$on('open-edit-job-modal', () => {
+		this.$bus.$on('open-edit-job-modal', (id) => {
 			this.toggle();
+
+			this.fetchJob(id);
 		});
 	},
 
@@ -545,6 +560,10 @@ export default {
 			this.isLoading = !this.isLoading;
 		},
 
+		toggleBigLoader() {
+			this.isBigLoaderActive = !this.isBigLoaderActive;
+		},
+
 		removeTag(indexToRemove) {
 			this.tags = this.tags.filter(
 				(tag, index) => index !== indexToRemove
@@ -560,22 +579,26 @@ export default {
 		inputFilePromoPhoto(newFile, oldFile) {
 			if (newFile && !oldFile) {
 				// add
-				this.promoPhoto = newFile;
+				this.promoPhotoFile = newFile.file;
+				this.promoPhotoUrl = newFile.url;
 			}
 			if (!newFile && oldFile) {
 				// remove
-				this.promoPhoto = '';
+				this.promoPhotoFile = null;
+				this.promoPhotoUrl = null;
 			}
 		},
 
 		inputFileFamilyPhoto(newFile, oldFile) {
 			if (newFile && !oldFile) {
 				// add
-				this.familyPhoto = newFile;
+				this.familyPhotoFile = newFile.file;
+				this.familyPhotoUrl = newFile.url;
 			}
 			if (!newFile && oldFile) {
 				// remove
-				this.familyPhoto = '';
+				this.familyPhotoFile = null;
+				this.familyPhotoUrl = null;
 			}
 		},
 
@@ -597,11 +620,13 @@ export default {
 		},
 
 		removePromoPhoto() {
-			this.promoPhoto = '';
+			this.promoPhotoFile = null;
+			this.promoPhotoUrl = '';
 		},
 
 		removeFamilyPhoto() {
-			this.familyPhoto = '';
+			this.familyPhotoFile = null;
+			this.familyPhotoUrl = '';
 		},
 
 		previousStep() {
@@ -613,7 +638,13 @@ export default {
 			if (this.$v.$invalid) return;
 			if (this.currentStep !== 3) return (this.currentStep += 1);
 
-			this.saveJob();
+			if(this.id !== null) {
+				// if we have an id, update the job
+				this.updateJob();
+			} else {
+				// save the job
+				this.saveJob();
+			}
 		},
 
 		async saveJob() {
@@ -634,8 +665,8 @@ export default {
 				formData.append('ownershipValues', this.ownershipValues === [] ? '': JSON.stringify(this.ownershipValues));
 				formData.append('applicantQualities', this.applicantQualities === [] ? '': JSON.stringify(this.applicantQualities));
 				formData.append('aboutTheColleagues', this.aboutTheColleagues);
-				formData.append('promoPhoto', this.promoPhoto === null ? '': this.promoPhoto.file);
-				formData.append('familyPhoto', this.familyPhoto === null ? '' : this.familyPhoto.file);
+				formData.append('promoPhotoFile', this.promoPhotoFile === null ? '': this.promoPhotoFile);
+				formData.append('familyPhotoFile', this.familyPhotoFile === null ? '' : this.familyPhotoFile);
 
 				const response = await this.$axios.post('/api/jobs', formData);
 				
@@ -644,6 +675,75 @@ export default {
 				this.toggle();
 			} catch (error) {
 				alert('An error happend');
+				console.error(error);
+			}
+			this.toggleLoader();
+		},
+
+		/**
+		 * @param {Number} id
+		 */
+		async fetchJob(id) {
+			this.toggleBigLoader();
+			try {
+				const response  = await this.$axios.get(`api/jobs/${id}`);
+				const job = response.data.job;
+
+				this.id = job.id;
+				this.location = job.location;
+				this.seniority = job.seniority;
+				this.industry = job.industry;
+				this.type = job.type;
+				this.jobTitle = job.jobTitle;
+				this.quickPitch = job.quickPitch;
+				this.applicationUrl = job.applicationUrl;
+				this.applicationEmail = job.applicationEmail;
+				this.tags = job.tags;
+				this.skills = job.skills;
+				this.whyThisRole = job.whyThisRole;
+				this.ownershipValues = job.ownershipValues;
+				this.applicantQualities = job.applicantQualities;
+				this.promoPhotoUrl = job.promoPhotoUrl;
+				this.aboutTheColleagues = job.aboutTheColleagues;
+				this.familyPhotoUrl = job.familyPhotoUrl;
+				this.createdAt = job.createdAt;
+				this.userId = job.userId;
+			} catch (error) {
+				console.error(error);
+			}
+			this.toggleBigLoader();
+		},
+
+		async updateJob() {
+			this.toggleLoader();
+			try {
+				const formData = new FormData();
+				formData.append('_method', 'PUT');
+				formData.append('location', this.location);
+				formData.append('seniority', this.seniority);
+				formData.append('industry', this.industry);
+				formData.append('type', this.type);
+				formData.append('jobTitle', this.jobTitle);
+				formData.append('quickPitch', this.quickPitch);
+				formData.append('applicationUrl', this.applicationUrl);
+				formData.append('applicationEmail', this.applicationEmail);
+				formData.append('tags', this.tags === [] ? '': JSON.stringify(this.tags));
+				formData.append('skills', this.skills === [] ? '': JSON.stringify(this.skills));
+				formData.append('whyThisRole', this.whyThisRole);
+				formData.append('ownershipValues', this.ownershipValues === [] ? '': JSON.stringify(this.ownershipValues));
+				formData.append('applicantQualities', this.applicantQualities === [] ? '': JSON.stringify(this.applicantQualities));
+				formData.append('aboutTheColleagues', this.aboutTheColleagues);
+				formData.append('promoPhotoFile', this.promoPhotoFile === null ? '': this.promoPhotoFile);
+				formData.append('familyPhotoFile', this.familyPhotoFile === null ? '' : this.familyPhotoFile);
+				formData.append('promoPhotoUrl', this.promoPhotoUrl);
+				formData.append('FamilyPhotoUrl', this.familyPhotoUrl);
+
+				const response = await this.$axios.post(`/api/jobs/${this.id}`, formData);
+
+				console.log(response);
+
+			} catch (error) {
+				alert('An error happend updating the job');
 				console.error(error);
 			}
 			this.toggleLoader();

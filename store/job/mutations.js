@@ -19,7 +19,11 @@ const mutations = {
 		state.familyPhotoUrl = job.familyPhotoUrl;
 		state.createdAt = job.createdAt;
 		state.userId = job.userId;
-	}
+	},
+	
+	mutate(state, payload) {
+		state[payload.property] = payload.with;
+	},
 };
 
 export default mutations;

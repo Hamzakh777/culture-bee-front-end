@@ -125,7 +125,7 @@
 			</div>
 			<button 
 				class="primary-btn"
-				@click.stop="$bus.$emit('open-edit-job-modal')"
+				@click.stop="$bus.$emit('open-edit-job-modal', job.id)"
 			>
 				Edit job
 			</button>
@@ -173,7 +173,7 @@ export default {
 		job: {
 			type: Object,
 			required: true
-		},
+		}
 	},
 
 	data() {
