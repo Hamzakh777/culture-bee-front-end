@@ -1,8 +1,8 @@
 <template>
-	<div class="relative z-1">
+	<div v-on-clickaway="close" class="relative lg:z-1">
 		<!-- toggle button  -->
 		<div
-			@click.stop="toggle"
+			@click="toggle"
 			class="select-head relative flex items-center h-12 w-full pl-6 pr-7 border-gray-700 border-2 rounded-none text-sm text-gray-900 font-semibold focus:outline-none cursor-pointer"
 		>
 			<span>
@@ -84,7 +84,11 @@ export default {
 	methods: {
 		toggle() {
 			this.isOpen = !this.isOpen;
-		},
+        },
+        
+        close() {
+            this.isOpen = false;
+        },
 
 		change(option) {
 			const exists = this.value.indexOf(option.value);

@@ -4,7 +4,7 @@
 			<base-loader />
 		</div>
 		<div v-else>
-			<div class="py-16 bg-alabaster">
+			<div class="relative z-1 py-4 lg:y-16 bg-alabaster">
 				<div class="flex justify-center container mx-auto">
 					<jobs-filter />
 				</div>

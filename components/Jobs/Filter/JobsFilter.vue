@@ -1,17 +1,17 @@
 <template>
 	<div class="w-full max-w-190">
-		<div class="flex justify-between mb-6">
+		<div class="flex justify-around lg:justify-between mb-4 lg:mb-6">
 			<button 
 				v-for="(jobCategory, index) in jobsCategories"
 				:key="index"
-				class="base-title focus:outline-none"
+				class="base-title text-lg md:text-xl lg:text-3xl focus:outline-none"
 				:class="{'base-title--underline': jobCategory.value === category}"
 				@click.stop="setStoreProp('category', jobCategory.value)"
 			>
 				{{ jobCategory.name }}
 			</button>
 			<button
-				class="primary-btn"
+				class="primary-btn hidden md:block"
 				@click.prevent="$bus.$emit('open-post-job-modal')"
 			>
 				Post a job
@@ -19,14 +19,14 @@
 		</div>
 		<!-- search input  -->
 		<div
-			class="flex items-center mb-6 py-6 border-t-2 border-b-2 border-gray-700"
+			class="flex items-center mb-6 py-4 lg:py-6 border-t-2 border-b-2 border-gray-700"
 		>
 			<base-app-icon
 				name="search"
 				:classList="['h-8 text-gray-700 fill-current ']"
 			/>
 			<input
-				class="flex-grow ml-4 text-5-1/2 font-semibold bg-transparent text-gray-700 placeholder-gray-700 focus:outline-none"
+				class="flex-grow ml-4 text-base lg:text-5-1/2 font-semibold bg-transparent text-gray-700 placeholder-gray-700 focus:outline-none"
 				placeholder="Type to search"
 				type="text"
 				:value="query"
@@ -34,10 +34,10 @@
 			/>
 		</div>
 		<!-- filters -->
-		<div class="flex">
+		<div class="flex flex-col lg:flex-row">
 			<!-- industries -->
 			<search-select-input 
-				class="w-24-% mr-4"
+				class="w-full mb-4 lg:w-24-% mr-4"
 				:options="['1', '2']"
 				placeholder="Industries"
 				:value="industries"
@@ -45,7 +45,7 @@
 			/>
 			<!-- type  -->
 			<search-select-input 
-				class="w-24-% mr-4"
+				class="w-full mb-4 lg:w-24-% mr-4"
 				:options="['1', '2']"
 				placeholder="Type"
 				:value="type"
@@ -53,7 +53,7 @@
 			/>
 			<!-- seniority  -->
 			<search-select-input 
-				class="w-24-% mr-4"
+				class="w-full mb-4 lg:w-24-% mr-4"
 				:options="['1', '2']"
 				placeholder="Seniority"
 				:value="seniority"
@@ -61,14 +61,20 @@
 			/>
 			<!-- location  -->
 			<search-select-input 
-				class="w-24-%"
+				class="w-full lg:w-24-%"
 				:options="['1', '2']"
 				placeholder="Location"
 				:value="locations"
 				@change="setStoreProp('locations', $event)"
 			/>
 		</div>
-		
+		<!-- add update button  -->
+		<button
+			class="primary-btn w-full mt-6 md:hidden"
+			@click.prevent="$bus.$emit('open-post-job-modal')"
+		>
+			Post a job
+		</button>
 	</div>
 </template>
 
