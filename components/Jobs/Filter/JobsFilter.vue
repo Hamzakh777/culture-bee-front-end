@@ -38,7 +38,7 @@
 			<!-- industries -->
 			<search-select-input 
 				class="w-full mb-4 lg:w-24-% mr-4"
-				:options="['1', '2']"
+				:options="industriesList"
 				placeholder="Industries"
 				:value="industries"
 				@change="setStoreProp('industries', $event)"
@@ -62,7 +62,7 @@
 			<!-- location  -->
 			<search-select-input 
 				class="w-full lg:w-24-%"
-				:options="['1', '2']"
+				:options="locationsList"
 				placeholder="Location"
 				:value="locations"
 				@change="setStoreProp('locations', $event)"
@@ -112,6 +112,26 @@ export default {
 					name: 'expired jobs',
 					value: 'expired'
 				}
+			],
+			locationsList: [
+				'London',
+				'Birmingham',
+				'Manchester',
+				'Liverpool',
+				'Leeds'
+			],
+			industriesList: [
+				'Tech',
+				'Finance',
+				'Health',
+				'Energy',
+				'Media',
+				'Ecommerce',
+				'Art',
+				'Fashion',
+				'Travel',
+				'Sports',
+				'Non-profit'
 			]
 		}
 	},
