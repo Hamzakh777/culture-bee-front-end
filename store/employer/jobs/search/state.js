@@ -3,10 +3,10 @@ const state = () => ({
 	isLoading: false,
 	query: '',
 	category: 'live',
-	industry: '',
-	seniority: '',
-	location: '',
-	type: ''
+	industries: [],
+	seniority: [],
+	locations: [],
+	type: []
 });
 
 export default state;
