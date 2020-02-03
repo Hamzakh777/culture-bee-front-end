@@ -36,34 +36,39 @@
 		<!-- filters -->
 		<div class="flex">
 			<!-- industries -->
-			<v-select
-				class="flex-grow mr-4 w-24-%"
+			<search-select-input 
+				class="w-24-% mr-4"
 				:options="['1', '2']"
 				placeholder="Industries"
-				@input="setStoreProp('industry', $event)"
+				:value="industries"
+				@change="setStoreProp('industries', $event)"
 			/>
 			<!-- type  -->
-			<v-select 
-				class="flex-grow mr-4 w-24-%" 
-				:options="['1', '2']" 
-				placeholder="Type" 
-				@input="setStoreProp('type', $event)"
+			<search-select-input 
+				class="w-24-% mr-4"
+				:options="['1', '2']"
+				placeholder="Type"
+				:value="type"
+				@change="setStoreProp('type', $event)"
 			/>
 			<!-- seniority  -->
-			<v-select 
-				class="flex-grow mr-4 w-24-%" 
-				:options="['1', '2']" 
-				placeholder="Seniority" 
-				@input="setStoreProp('seniority', $event)"
+			<search-select-input 
+				class="w-24-% mr-4"
+				:options="['1', '2']"
+				placeholder="Seniority"
+				:value="seniority"
+				@change="setStoreProp('seniority', $event)"
 			/>
 			<!-- location  -->
-			<v-select 
-				class="flex-grow w-24-%" 
-				:options="['1', '2']" 
-				placeholder="Location" 
-				@input="setStoreProp('location', $event)"
+			<search-select-input 
+				class="w-24-%"
+				:options="['1', '2']"
+				placeholder="Location"
+				:value="locations"
+				@change="setStoreProp('locations', $event)"
 			/>
 		</div>
+		
 	</div>
 </template>
 
@@ -73,6 +78,7 @@ import vSelect from 'vue-select';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
 import baseBayWatch from '~/mixins/base/baseBayWatch';
+import SearchSelectInput from '~/components/Search/SearchSelectInput';
 
 export default {
 	name: 'JobsFilter',
@@ -81,11 +87,12 @@ export default {
 
 	components: {
 		BaseAppIcon,
-		vSelect
+		vSelect,
+		SearchSelectInput
 	},
 
 	computed: {
-		...mapState('employer/jobs/search', ['category', 'industry', 'type', 'seniority', 'query'])
+		...mapState('employer/jobs/search', ['category', 'locations', 'type', 'seniority', 'query', 'industries'])
 	},
 
 	data() {
@@ -104,7 +111,7 @@ export default {
 	},
 
 	created() {
-		this.bayWatch(['type', 'category', 'query', 'seniority', 'industry'], this.fetchJobs.bind(this));
+		this.bayWatch(['type', 'category', 'query', 'seniority', 'industries', 'locations'], this.fetchJobs.bind(this));
 
 		this.fetchJobs();
 	},
