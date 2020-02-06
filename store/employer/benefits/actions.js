@@ -23,6 +23,23 @@ const actions = {
 		});
 	},
 
+	/**
+	 * Create a benefit
+	 * @param {Object} context 
+	 * @param {FormData} data 
+	 */
+	addBenefit({ commit }, data) {
+		return new Promise((resolve, reject) => {
+			this.$axios
+				.post(`api/employer/benefits`, data)
+				.then(response => {
+					commit('addBenefit', response.data.benefit);
+					resolve(response);
+				})
+				.catch(err => reject(err));
+		});
+	},
+
 	updateBenefit({ commit }, data) {
 		return new Promise((resolve, reject) => {
 			this.$axios

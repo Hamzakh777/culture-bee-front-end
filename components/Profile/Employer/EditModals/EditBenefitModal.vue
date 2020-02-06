@@ -1,7 +1,7 @@
 <template>
 	<base-modal :is-active="isActive" @close="toggle">
 		<template #title>
-			Edit benefit
+			{{ isEdit ? 'Edit' : 'Add' }} benefit
 		</template>
 		<template #content>
 			<div>
@@ -79,7 +79,10 @@
 			<!-- buttons -->
 			<div class="flex justify-end items-center w-full">
 				<div class="flex items-center">
-					<base-ajax-button :is-loading="isLoading" @click="submit">
+					<base-ajax-button 
+						:is-loading="isLoading" 
+						@click="submit"
+					>
 						Save
 					</base-ajax-button>
 				</div>
@@ -114,8 +117,9 @@ export default {
 		return {
 			isActive: false,
 			isLoading: false,
+			isEdit: false,
 			benefitToEdit: {
-                id: null,
+				id: null,
 				title: '',
 				subtitle: '',
 				imgFile: null,
@@ -127,17 +131,19 @@ export default {
 	created() {
 		this.$bus.$on('open-edit-benefit-modal', id => {
 			this.toggle();
-			let benefitToEdit = this.benefits.filter(
-				item => id === item.id
-			)[0];
+			let benefitToEdit = this.benefits.filter(item => id === item.id)[0];
 
-            benefitToEdit = JSON.parse(JSON.stringify(benefitToEdit));
-            
-            this.benefitToEdit.id = benefitToEdit.id;
-            this.benefitToEdit.title = benefitToEdit.title;
-            this.benefitToEdit.subtitle = benefitToEdit.subtitle;
-            this.benefitToEdit.imgUrl = benefitToEdit.imgUrl;
+			benefitToEdit = JSON.parse(JSON.stringify(benefitToEdit));
 
+			this.benefitToEdit.id = benefitToEdit.id;
+			this.benefitToEdit.title = benefitToEdit.title;
+			this.benefitToEdit.subtitle = benefitToEdit.subtitle;
+			this.benefitToEdit.imgUrl = benefitToEdit.imgUrl;
+		});
+
+		this.$bus.$on('open-add-benefit-modal', () => {
+			this.toggle();
+			this.isEdit = false;
 		});
 	},
 
@@ -153,7 +159,7 @@ export default {
 	},
 
 	methods: {
-		...mapActions('employer/benefits', ['updateBenefit']),
+		...mapActions('employer/benefits', ['updateBenefit', 'addBenefit']),
 
 		toggle() {
 			this.isActive = !this.isActive;
@@ -200,10 +206,21 @@ export default {
 			this.changeImg(null, null);
 		},
 
-		async submit() {
+		/**
+		 * validate the inputs and either update or create a benefit
+		 */
+		submit() {
 			this.$v.$touch();
 			if (this.$v.$invalid) return;
 
+			if(this.isEdit) {
+				this.update();
+			} else {
+				this.add();
+			}
+		},
+
+		async update() {
 			this.toggleLoader();
 			try {
 				const formData = new FormData();
@@ -228,14 +245,38 @@ export default {
 				await this.updateBenefit({
 					id: this.benefitToEdit.id,
 					formData
-                });
-                
-                this.toggle();
+				});
+
+				this.toggle();
 			} catch (error) {
-                alert('An error happend');
-                console.error(error);
+				alert('An error happend');
+				console.error(error);
 			}
 			this.toggleLoader();
+		},
+
+		async add() {
+			this.toggleLoader();
+			try {
+				const formData = new FormData();
+				formData.append(`title`, this.benefitToEdit.title);
+				formData.append(`subtitle`, this.benefitToEdit.subtitle);
+				formData.append(
+					`imgFile`,
+					this.benefitToEdit.imgFile === null
+						? ''
+						: this.benefitToEdit.imgFile
+				);
+
+				await this.addBenefit(formData);
+
+				this.toggle();
+			} catch (error) {
+				alert('An error happened trying to add a benefit');
+				console.error(error);
+			} finally {
+				this.toggleLoader();
+			}
 		}
 	}
 };

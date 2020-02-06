@@ -1,8 +1,17 @@
 <template>
 	<div id="benefits" class="py-6 lg:py-18 bg-gray-800">
 		<div class="container mx-auto">
-			<div class="base-title-light">
-				Benefits
+			<div class="flex justify-between items-center">
+				<div class="base-title-light">
+					Benefits
+				</div>
+				<button
+					v-if="isEditPage"
+					@click.prevent="$bus.$emit('open-add-benefit-modal')"
+					class="primary-btn"
+				>
+					Add benefit
+				</button>
 			</div>
 			<client-only>
 				<div
