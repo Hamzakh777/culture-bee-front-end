@@ -52,7 +52,7 @@
 							<div class="lg:w-31-%">
 								<v-select
 									class="input"
-									placeholder="Seniority"
+									placeholder="Industry"
 									:options="industriesList"
 									:multiple="false"
 									v-model="industry"
