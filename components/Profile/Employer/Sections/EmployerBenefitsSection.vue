@@ -21,9 +21,9 @@
 				>
 					<div class="swiper-wrapper">
 						<benefit-card
-							v-for="(benefit, index) in benefits"
+							v-for="(benefit, index) in benefitsToShow"
 							:key="index"
-							:is-edit-page="isEditPage"
+							:is-edit-page="isEditPage && !isDummyContent"
 							:benefit="benefit"
 							class="swiper-slide h-68"
 						/>
@@ -31,9 +31,9 @@
 				</div>
 				<div v-else class="md:flex md:justify-between md:flex-wrap mt-12">
 					<benefit-card
-						v-for="(benefit, index) in benefits"
+						v-for="(benefit, index) in benefitsToShow"
 						:key="index"
-						:is-edit-page="isEditPage"
+						:is-edit-page="isEditPage && !isDummyContent"
 						:benefit="benefit"
 					/>
 				</div>
@@ -45,6 +45,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import BenefitCard from '../BenefitCard';
+import dummyBenefits from '~/mocks/Employer/benefits';
 
 export default {
 	name: 'EmployerBenefitsSection',
@@ -61,14 +62,34 @@ export default {
 		}
 	},
 
+	watch: {
+		benefitsToShow(newVal) {
+			if(newVal === dummyBenefits) {
+				this.isDummyContent = true;
+			} else {
+				this.isDummyContent = false;
+			}
+		}
+	},
+
 	computed: {
 		...mapState('employer', ['id']),
-		...mapState('employer/benefits', ['benefits'])
+		...mapState('employer/benefits', ['benefits']),
+
+		benefitsToShow() {
+			// if user has no value and he is on the edit page, we show dummy content
+			if(this.benefits.length === 0 && this.isEditPage) {
+				return dummyBenefits;
+			} else { 
+				return this.benefits;
+			}
+		}
 	},
 
 	data() {
 		return {
 			isMobile: false,
+			isDummyContent: false,
 			swiperOption: {
 				slidesPerView: 1,
 				spaceBetween: 64,
