@@ -1,11 +1,19 @@
 <template>
-	<base-modal :is-active="isActive" @close="toggle">
+	<base-modal 
+		:is-active="isActive" 
+		@close="toggle"
+	>
 		<template #title>Add values</template>
 		<template #content>
 			<div class="base-title mb-6">
-				what does your company believe in?
+				What are your company values?
 			</div>
-			<div class="mb-8">
+			<base-tip-box 
+				class="z-1 mr-10 mt-1 top-0 right-0"
+				title="tip"
+				description="Share up to 6 of your company values"
+			/>
+			<div class="min-h-60 mb-8">
 				<div
 					v-for="(value, index) in clonedValues"
 					:key="index"
@@ -42,6 +50,7 @@
 							<v-select
 								:options="fontawesomeIcons"
 								:clearable="false"
+								placeholder="Search icons here"
 								class="bg-white w-40 shadow-xl"
 								v-model="value.icon"
 							>
@@ -100,6 +109,7 @@ import BaseModal from '~/components/BaseComponents/BaseModal';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import fontawesomeIcons from '~/assets/data/fontawesomeIcons';
+import BaseTipBox from '~/components/BaseComponents/BaseTipBox';
 
 export default {
 	name: 'EditValuesModal',
@@ -110,7 +120,24 @@ export default {
 		BaseModal,
 		BaseAjaxButton,
 		BaseCloseButton,
-		vSelect
+		vSelect,
+		BaseTipBox
+	},
+
+	watch: {
+		clonedValues: {
+			handler(newVal) {
+				const length = newVal.length;
+				const element = newVal[length - 1];
+				if(element.title !== null && element.icon !== null && element.title !== '' && length !== 6) {
+					this.clonedValues.push({
+						title: null,
+						icon: null
+					});
+				}
+			},
+			deep: true
+		}
 	},
 
 	data() {
@@ -134,13 +161,13 @@ export default {
 			// close the data in the store
 			this.clonedValues = JSON.parse(JSON.stringify(this.values));
 
-			while (this.clonedValues.length !== 6) {
-				const emptyValue = {
+			const length = this.clonedValues.length;
+			const element = this.clonedValues[length - 1];
+			if(element.title !== null && element.icon !== null && element.title !== '' && length !== 6) {
+				this.clonedValues.push({
 					title: null,
 					icon: null
-				};
-				
-				this.clonedValues.push(emptyValue);
+				});
 			}
 		});
 	},
