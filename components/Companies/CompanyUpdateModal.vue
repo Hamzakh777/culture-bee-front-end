@@ -193,12 +193,14 @@ export default {
 			isActive: false,
 			id: null,
 			tags: [
+				'Achievement',
+				'Challenge',
+				'Diversity',
+				'Office',
+				'Social',
+				'Team',
 				'Volunteer',
-				'Finance',
-				'CSR',
-				'Energy',
-				'IT & Computing',
-				'Networking'
+				'Wellness'
 			],
 			description: null,
 			isPinned: true,
