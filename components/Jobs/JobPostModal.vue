@@ -128,12 +128,10 @@
 					<div class="lg:flex flex-grow items-start">
 						<!-- tags select input -->
 						<div>
-							<tag-select
-								class="w-full lg:pr-6"
+							<base-free-text-input 
 								v-if="tags.length !== 3"
-								:options="tagsList"
-								placeholder="add a tag"
-								v-model="tags"
+								class="mb-4 mr-4"
+								@add="addTag"
 							/>
 							<base-input-error-message
 								style="margin-bottom: 1rem"
@@ -160,12 +158,10 @@
 					<div class="lg:flex flex-grow items-start">
 						<div>
 							<!-- skills select input -->
-							<tag-select
-								class="w-full lg:pr-6"
+							<base-free-text-input 
 								v-if="skills.length !== 3"
-								:options="skillsList"
-								placeholder="add a skill"
-								v-model="skills"
+								class="mb-4 mr-4"
+								@add="addSkill"
 							/>
 							<base-input-error-message
 								style="margin-bottom: 1rem"
@@ -408,10 +404,10 @@ import { mapState, mapMutations } from 'vuex';
 import vSelect from 'vue-select';
 import FileUpload from 'vue-upload-component';
 import BaseModal from '~/components/BaseComponents/BaseModal';
+import BaseFreeTextInput from '~/components/BaseComponents/BaseFreeTextInput';
 import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 import BaseSelectedOption from '~/components/BaseComponents/BaseSelectedOption';
 import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
-import TagSelect from '~/components/BaseComponents/BaseTagSelect';
 import BaseIconValueInput from '~/components/BaseComponents/BaseIconValueInput';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
@@ -425,11 +421,11 @@ export default {
 		BaseCloseButton,
 		BaseAjaxButton,
 		BaseSelectedOption,
-		TagSelect,
 		BaseIconValueInput,
 		vSelect,
 		FileUpload,
-		BaseLoader
+		BaseLoader,
+		BaseFreeTextInput
 	},
 
 	computed: {
@@ -564,10 +560,18 @@ export default {
 			this.isBigLoaderActive = !this.isBigLoaderActive;
 		},
 
+		addTag(tag) {
+			this.tags.push(tag);
+		},
+
 		removeTag(indexToRemove) {
 			this.tags = this.tags.filter(
 				(tag, index) => index !== indexToRemove
 			);
+		},
+
+		addSkill(skill) {
+			this.skills.push(skill);
 		},
 
 		removeSkill(indexToRemove) {
