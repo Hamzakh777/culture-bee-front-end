@@ -91,6 +91,11 @@ export default {
 			type: String,
 			required: false,
 			default: 'Add value'
+		},
+		abilityToSelectIcon: {
+			type: Boolean,
+			required: false,
+			default: true
 		}
 	},
 
@@ -109,7 +114,9 @@ export default {
 		},
 
 		toggleIconList() {
-			this.isIconListActive = !this.isIconListActive;
+			if(this.abilityToSelectIcon) {
+				this.isIconListActive = !this.isIconListActive;
+			}
 		}
 	}
 };
