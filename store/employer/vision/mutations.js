@@ -1,7 +1,9 @@
 const mutations = {
     setVision(state, vision) {
-        state.description = vision.description;
-        state.id = vision.id;
+        if (vision !== null) {
+            state.description = vision.description;
+            state.id = vision.id;
+        }
     }
 };
 
