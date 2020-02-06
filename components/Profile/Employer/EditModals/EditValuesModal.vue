@@ -128,6 +128,13 @@ export default {
 		clonedValues: {
 			handler(newVal) {
 				const length = newVal.length;
+				if(length === 0) {
+					return this.clonedValues.push({
+						title: null,
+						icon: null
+					});
+				}
+
 				const element = newVal[length - 1];
 				if(element.title !== null && element.icon !== null && element.title !== '' && length !== 6) {
 					this.clonedValues.push({
@@ -162,6 +169,13 @@ export default {
 			this.clonedValues = JSON.parse(JSON.stringify(this.values));
 
 			const length = this.clonedValues.length;
+			if(length === 0) {
+				return this.clonedValues.push({
+					title: null,
+					icon: null
+				});
+			}
+
 			const element = this.clonedValues[length - 1];
 			if(element.title !== null && element.icon !== null && element.title !== '' && length !== 6) {
 				this.clonedValues.push({
