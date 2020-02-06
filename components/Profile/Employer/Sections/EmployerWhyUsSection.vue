@@ -6,11 +6,11 @@
 				<div class="max-w-4xl md:px-8 text-gray-800">
 					<!-- company tagline -->
 					<div class="mb-6 text-5-1/2 md:text-10-1/2 font-bold">
-						{{ tagline }}
+						{{ taglineToShow }}
 					</div>
 					<!-- company ethos -->
 					<div class="text-xs md:text-base font-normal">
-						{{ ethos }}
+						{{ ethosToShow }}
 					</div>
 				</div>
 				<!-- edit button -->
@@ -25,7 +25,7 @@
 			</div>
 			<div class="flex flex-col justify-start lg:flex-row lg:items-stretch lg:justify-between mt-16">
 				<core-value-card
-					v-for="(coreValue, index) in coreValues"
+					v-for="(coreValue, index) in coreValuesToShow"
 					:key="index"
 					:value="coreValue"
 				/>
@@ -38,6 +38,7 @@
 import { mapState, mapActions } from 'vuex';
 import CoreValueCard from '../CoreValueCard';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
+import dummyWhyus from '~/mocks/Employer/whyUs';
 
 export default {
 	name: 'EmployerWhyUsSection',
@@ -60,7 +61,40 @@ export default {
 			'tagline',
 			'ethos',
 			'coreValues'
-		])
+		]),
+
+		/**
+		 * The tagline to show, so we can show dummy content if user has nothing yet
+		 */
+		taglineToShow() {
+			if(this.isEditPage && (this.tagline === '' || this.tagline === undefined)) {
+				return dummyWhyus.tagline;
+			} else {
+				return this.tagline;
+			}
+		},
+
+		/**
+		 * The ethos to show, so we can show dummy content if user has nothing yet
+		 */
+		ethosToShow() {
+			if(this.isEditPage && (this.ethos === '' || this.ethos === undefined)) {
+				return dummyWhyus.ethos;
+			} else {
+				return this.ethos;
+			}
+		},
+
+		/**
+		 * The core values to show, so we can show dummy content if user has nothing yet
+		 */
+		coreValuesToShow() {
+			if(this.isEditPage && (this.ethos === '' || this.ethos === undefined)) {
+				return dummyWhyus.coreValues;
+			} else {
+				return this.coreValues;
+			}
+		}
 	},
 
 	created() {
