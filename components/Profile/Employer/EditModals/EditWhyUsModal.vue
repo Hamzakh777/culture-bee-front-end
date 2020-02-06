@@ -57,8 +57,8 @@
 						v-model="coreValue.title.$model"
 					/>
 					<base-input-error-message
+						v-if="coreValue.title.$invalid && coreValue.title.$dirty"
 						class="-mt-4"
-						v-if="coreValue.title.$error"
 						:error-type="'required'"
 					/>
 					<div class="base-title mb-3">
@@ -71,8 +71,8 @@
 						v-model="coreValue.subtitle.$model"
 					/>
 					<base-input-error-message
-					class="-mt-4"
-						v-if="coreValue.subtitle.$error"
+						v-if="coreValue.subtitle.$invalid && coreValue.title.$dirty"
+						class="-mt-4"
 						:error-type="'required'"
 					/>
 					<div class="base-title mb-3">
@@ -85,7 +85,7 @@
 					>
 					</textarea>
 					<base-input-error-message
-						v-if="coreValue.description.$error"
+						v-if="coreValue.description.$invalid && coreValue.title.$dirty"
 						:error-type="'required'"
 					/>
 				</div>
@@ -234,15 +234,36 @@ export default {
 		...mapActions('employer/whyUs', ['addWhyUs']),
 
 		next() {
-			this.$v.$touch();
-			if (this.currentStep === 1) {
-				if (!this.$v.$invalid) {
-					this.goToNextStep();
-				}
-			} else if (this.currentStep === 4) {
-				if (!this.$v.clonedCoreValues.$each.$iter[2].$invalid) this.submit();
-			} else if (!this.$v.clonedCoreValues.$each.$iter[this.currentStep - 2].$invalid) {
-				this.goToNextStep();
+			// this.$v.$touch();
+			// if (this.currentStep === 1) {
+			// 	if (!this.$v.$invalid) {
+			// 		this.goToNextStep();
+			// 	}
+			// } else if (this.currentStep === 4) {
+			// 	if (!this.$v.clonedCoreValues.$each.$iter[2].$invalid) this.submit();
+			// } else if (!this.$v.clonedCoreValues.$each.$iter[this.currentStep - 2].$invalid) {
+			// 	this.goToNextStep();
+			// }
+			switch (this.currentStep) {
+				case 1:
+					this.$v.$touch();
+					if (!this.$v.$invalid) return this.goToNextStep();
+					break;
+
+				case 2:
+					this.$v.clonedCoreValues.$each.$iter[0].$touch();
+					if(!this.$v.clonedCoreValues.$each.$iter[0].$invalid) this.goToNextStep(); 
+					break;
+
+				case 3:
+					this.$v.clonedCoreValues.$each.$iter[1].$touch();
+					if(!this.$v.clonedCoreValues.$each.$iter[1].$invalid) this.goToNextStep(); 
+					break;
+
+				case 4:
+					this.$v.clonedCoreValues.$each.$iter[2].$touch();
+					if(!this.$v.clonedCoreValues.$each.$iter[2].$invalid) this.submit(); 
+					break;
 			}
 		},
 
