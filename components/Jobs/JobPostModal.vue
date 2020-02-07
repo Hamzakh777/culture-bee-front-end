@@ -6,24 +6,41 @@
 		<template #content>
 			<!-- first step -->
 			<div v-if="currentStep === 1">
+				<!-- job title -->
 				<div class="row">
 					<div class="base-title">
-						COMPANY
+						Job Title
+					</div>
+					<div class="lg:flex-grow">
+						<input
+							type="text"
+							class="input-text w-full input"
+							v-model="jobTitle"
+						/>
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.jobTitle.$error"
+							:error-type="'required'"
+						/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="base-title">
+						Details
 					</div>
 					<div class="lg:flex-grow">
 						<!-- company -->
 						<div class="lg:flex justify-between">
-							<input
-								class="input input-text lg:flex-grow  w-full lg:w-auto lg:mr-6"
-								type="text"
-							/>
 							<!-- location -->
-							<div class="lg:flex-grow lg:w-1/2">
+							<div class="lg:flex-grow lg:w-full">
 								<input
+									id="address-input"
 									class="input input-text w-full"
 									type="text"
-									placeholder="location"
-									v-model="location"
+									placeholder="Job location"
+									ref="location"
+									:value="location"
+									@input="setLocation($event.target.value)"
 								/>
 								<base-input-error-message
 									style="margin-bottom: 1rem"
@@ -37,7 +54,7 @@
 							<div class="lg:w-31-%">
 								<v-select
 									class="input"
-									placeholder="Seniority"
+									placeholder="Experience level"
 									:options="['skill 1', 'skill 2']"
 									:multiple="false"
 									v-model="seniority"
@@ -55,6 +72,8 @@
 									placeholder="Industry"
 									:options="industriesList"
 									:multiple="false"
+									:max-height="'160px'"
+									label="description"
 									v-model="industry"
 								/>
 								<base-input-error-message
@@ -68,7 +87,7 @@
 								<v-select
 									class="input"
 									placeholder="Type"
-									:options="['skill 1', 'skill 2']"
+									:options="typeOptions"
 									:multiple="false"
 									v-model="type"
 								/>
@@ -79,24 +98,6 @@
 								/>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- job title -->
-				<div class="row">
-					<div class="base-title">
-						Job Title
-					</div>
-					<div class="lg:flex-grow">
-						<input
-							type="text"
-							class="input-text w-full input"
-							v-model="jobTitle"
-						/>
-						<base-input-error-message
-							style="margin-bottom: 1rem"
-							v-if="$v.jobTitle.$error"
-							:error-type="'required'"
-						/>
 					</div>
 				</div>
 				<!-- quick pitch -->
@@ -123,7 +124,8 @@
 				<!-- tags -->
 				<div class="row">
 					<div class="base-title">
-						Add tags
+						tags
+						<span class="block text-sm">E.g. team-work, startup</span>
 					</div>
 					<div class="lg:flex flex-grow items-start">
 						<!-- tags select input -->
@@ -153,7 +155,8 @@
 				<!-- skills -->
 				<div class="row">
 					<div class="base-title">
-						Add skills
+						skill tags
+						<span class="block text-sm">E.g. javascript, project management</span>
 					</div>
 					<div class="lg:flex flex-grow items-start">
 						<div>
@@ -178,35 +181,6 @@
 						>
 							{{ skill }}
 						</base-selected-option>
-					</div>
-				</div>
-				<!-- application -->
-				<div class="row row--col">
-					<div class="base-title base-title--w-full">
-						where would you like applicants to apply?
-					</div>
-					<div class="lg:flex justify-between">
-						<div class="lg:w-1/2 lg:pr-3">
-							<input
-								class="input-text w-full input"
-								type="email"
-								v-model="applicationEmail"
-								placeholder="Email address"
-							/>
-							<base-input-error-message
-								style="margin-bottom: 1rem"
-								v-if="$v.applicationEmail.$error"
-								:error-type="'required'"
-							/>
-						</div>
-						<div class="lg:w-1/2 lg:pl-3">
-							<input
-								class="input-text w-full input"
-								type="url"
-								v-model="applicationUrl"
-								placeholder="Enter external link"
-							/>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -234,21 +208,58 @@
 				</div>
 				<div class="row">
 					<div class="base-title">
-						Role responsibilities
+						responsibilities
+						<span class="block text-sm">List what this person will own</span>
 					</div>
 					<div class="lg:flex-grow">
 						<base-icon-value-input
 							v-for="(value, index) in ownershipValues"
 							:key="index"
 							:value="value"
-							placeholder="Add value"
+							placeholder="Add a responsibility"
+							:ability-to-select-icon="false"
 						/>
+					</div>
+				</div>
+				<!-- applicant qualities -->
+				<div class="row">
+					<div class="base-title">
+						Skills
+						<span class="block text-sm">List the skills and qualities you are looking for</span>
+					</div>
+					<div class="lg:flex-grow">
+						<base-icon-value-input
+							v-for="(quality, index) in applicantQualities"
+							:key="index"
+							:value="quality"
+							placeholder="Add a skill or quality"
+							:ability-to-select-icon="false"
+						/>
+					</div>
+				</div>
+			</div>
+			<!-- third step -->
+			<div v-else-if="currentStep === 3">
+				<!-- about the COLLEAGUES -->
+				<div class="row">
+					<div class="base-title">
+						Describe the team
+					</div>
+					<div class="flex-grow">
+						<textarea
+							type="text"
+							class="input-text py-3 h-32 w-full input resize-none"
+							v-model="aboutTheColleagues"
+							placeholder="You can use up to 350 characters here"
+							maxlength="350"
+						>
+						</textarea>
 					</div>
 				</div>
 				<!-- promo photo -->
 				<div class="row">
 					<div class="base-title">
-						promo photo
+						Add photo
 					</div>
 					<div class="flex justify-between items-start lg:flex-grow">
 						<client-only>
@@ -270,7 +281,7 @@
 						<!-- the uploaded image -->
 						<div
 							v-if="promoPhotoUrl !== null && promoPhotoUrl !== ''"
-							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
+							class="relative h-36 w-56 ml-6 bg-center bg-cover bg-gray-300"
 							:style="`background-image: url(${promoPhotoUrl})`"
 						>
 							<base-close-button
@@ -281,42 +292,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- third step -->
-			<div v-else-if="currentStep === 3">
-				<!-- applicant qualities -->
-				<div class="row">
-					<div class="base-title">
-						applicant qualities
-					</div>
-					<div class="lg:flex-grow">
-						<base-icon-value-input
-							v-for="(quality, index) in applicantQualities"
-							:key="index"
-							:value="quality"
-						/>
-					</div>
-				</div>
-				<!-- about the COLLEAGUES -->
-				<div class="row">
-					<div class="base-title">
-						ABOUT THE COLLEAGUES
-					</div>
-					<div class="flex-grow">
-						<textarea
-							type="text"
-							class="input-text py-3 h-32 w-full input resize-none"
-							v-model="aboutTheColleagues"
-							placeholder="You can use up to 350 characters here"
-							maxlength="350"
-						>
-						</textarea>
-					</div>
-				</div>
 				<!-- family photo -->
-				<div class="row">
+				<div class="row mt-6 lg:mt-8">
 					<div class="base-title">
-						THE FAMILY
+						Add team photo
 					</div>
 					<div class="flex justify-between items-start lg:flex-grow">
 						<client-only>
@@ -338,13 +317,42 @@
 						<!-- the uploaded image -->
 						<div
 							v-if="familyPhotoUrl !== null && familyPhotoUrl !== ''"
-							class="relative h-25 w-25 ml-6 bg-center bg-cover bg-gray-300"
+							class="relative h-36 w-56 ml-6 bg-center bg-cover bg-gray-300"
 							:style="`background-image: url(${familyPhotoUrl})`"
 						>
 							<base-close-button
 								class="top-0 right-0 mt-2 mr-2"
 								style="position: absolute; height: 1.25rem; width: 1.25rem"
 								@click="removeFamilyPhoto"
+							/>
+						</div>
+					</div>
+				</div>
+				<!-- application -->
+				<div class="row row--col">
+					<div class="base-title base-title--w-full">
+						where would you like applicants to apply?
+					</div>
+					<div class="lg:flex justify-between">
+						<div class="lg:w-1/2 lg:pr-3">
+							<input
+								class="input-text w-full input"
+								type="email"
+								v-model="applicationEmail"
+								placeholder="Email address"
+							/>
+							<base-input-error-message
+								style="margin-bottom: 1rem"
+								v-if="$v.applicationEmail.$error"
+								:error-type="'required'"
+							/>
+						</div>
+						<div class="lg:w-1/2 lg:pl-3">
+							<input
+								class="input-text w-full input"
+								type="url"
+								v-model="applicationUrl"
+								placeholder="Enter external link"
 							/>
 						</div>
 					</div>
@@ -411,6 +419,7 @@ import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 import BaseIconValueInput from '~/components/BaseComponents/BaseIconValueInput';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
+import industriesList from '~/assets/data/account/industries';
 
 export default {
 	name: 'JobPostModal',
@@ -428,18 +437,85 @@ export default {
 		BaseFreeTextInput
 	},
 
+	watch: {
+		isActive(newVal) {
+			if(newVal === false) return;
+			// if (process.browser && this.currentStep === 1) {
+			// 	const places = require('places.js');
+
+			// 	this.placesInstance = places({
+			// 		appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
+			// 		apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
+			// 		container: window.document.getElementById('address-input')
+			// 	});
+
+
+			// 	this.placesInstance.on('change', e => {
+			// 		this.setLocation(e.suggestion.value);
+			// 	});
+
+			// 	this.placesInstance.on('clear', () => {
+			// 		this.setLocation('');
+			// 	});
+			// }
+		},
+
+		ownershipValues: {
+			handler(newVal) {
+				const length = newVal.length;
+				if(length === 0) {
+					return this.ownershipValues.push({
+						title: null,
+						icon: null
+					});
+				}
+
+				const element = newVal[length - 1];
+				if(element.title !== null && element.title !== '' && length !== 6) {
+					this.ownershipValues.push({
+						title: null,
+						icon: null
+					});
+				}
+			},
+			deep: true
+		},
+
+		applicantQualities: {
+			handler(newVal) {
+				const length = newVal.length;
+				if(length === 0) {
+					return this.applicantQualities.push({
+						title: null,
+						icon: null
+					});
+				}
+
+				const element = newVal[length - 1];
+				if(element.title !== null && element.title !== '' && length !== 6) {
+					this.applicantQualities.push({
+						title: null,
+						icon: null
+					});
+				}
+			},
+			deep: true
+		}
+	},
+
 	computed: {
-		...mapState('employer', ['currentProfileCreationStep'])
+		...mapState('employer', ['currentProfileCreationStep', 'companyName'])
 	},
 
 	data() {
 		return {
-			tagsList: ['tag 1', 'tag 2', 'tag 3'],
 			skillsList: ['skill 1', 'skill 2', 'skill 3'],
-			industriesList: ['industry 1', 'industry 2'],
+			industriesList,
+			typeOptions: ['Full-time', 'Part-time', 'Contract', 'Temp', 'Job share'],
 			isActive: false,
 			isLoading: false,
 			isBigLoaderActive: false,
+			placesInstance: null,
 			currentStep: 1,
 			id: '',
 			location: '',
@@ -493,10 +569,6 @@ export default {
 				},
 				skills: {
 					required
-				},
-				applicationEmail: {
-					required,
-					email
 				}
 			};
 		} else if (this.currentStep === 2) {
@@ -506,7 +578,12 @@ export default {
 				}
 			};
 		} else if (this.currentStep === 3) {
-			return {};
+			return {
+				applicationEmail: {
+					required,
+					email
+				}
+			};
 		}
 	},
 
@@ -515,34 +592,61 @@ export default {
 			this.toggle();
 
 			// ownership values
-			while (this.ownershipValues.length !== 6) {
-				const emptyValue = {
-					title: '',
-					icon: ''
-				};
-
-				this.ownershipValues.push(emptyValue);
+			const lengthValues = this.ownershipValues.length;
+			if(lengthValues === 0) {
+				this.ownershipValues.push({
+					title: null,
+					icon: null
+				});
+			} else {
+				const elementValues = this.ownershipValues[lengthValues - 1];
+				if(elementValues.title !== null && elementValues.title !== '' && lengthValues !== 6) {
+					this.ownershipValues.push({
+						title: null,
+						icon: null
+					});
+				}
 			}
 
-			// applicant qualities
-			while (this.applicantQualities.length !== 6) {
-				const emptyValue = {
-					title: '',
-					icon: ''
-				};
 
-				this.applicantQualities.push(emptyValue);
+			// applicant qualities
+			const lengthQualities = this.applicantQualities.length;
+			if(lengthQualities === 0) {
+				this.applicantQualities.push({
+					title: null,
+					icon: null
+				});
+			} else {
+				const elementQualities = this.applicantQualities[lengthQualities - 1];
+				if(elementQualities.title !== null && elementQualities.title !== '' && lengthQualities !== 6) {
+					this.applicantQualities.push({
+						title: null,
+						icon: null
+					});
+				}
 			}
 		});
 
 		this.$bus.$on('open-edit-job-modal', (id) => {
 			this.toggle();
+			const elementValues = this.ownershipValues[lengthValues - 1];
+			if(elementValues.title !== null && elementValues.title !== '' && lengthValues !== 6) {
+				this.ownershipValues.push({
+					title: null,
+					icon: null
+				});
+			}
 
+			const elementQualities = this.applicantQualities[lengthQualities - 1];
+			if(elementQualities.title !== null && elementQualities.title !== '' && lengthQualities !== 6) {
+				this.applicantQualities.push({
+					title: null,
+					icon: null
+				});
+			}
 			this.fetchJob(id);
 		});
 	},
-
-	created() {},
 
 	methods: {
 		...mapMutations('employer', ['incrementProfileCreationStep']),
@@ -578,6 +682,13 @@ export default {
 			this.tags = this.tags.filter(
 				(tag, index) => index !== indexToRemove
 			);
+		},
+
+		/**
+		 * @param {String} value
+		 */
+		setLocation(value) {
+			this.location = value;
 		},
 
 		inputFilePromoPhoto(newFile, oldFile) {
@@ -642,7 +753,7 @@ export default {
 			if (this.$v.$invalid) return;
 			if (this.currentStep !== 3) return (this.currentStep += 1);
 
-			if(this.id !== null) {
+			if(this.id !== null && this.id !== '') {
 				// if we have an id, update the job
 				this.updateJob();
 			} else {

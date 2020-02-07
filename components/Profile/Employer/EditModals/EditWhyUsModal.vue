@@ -8,7 +8,7 @@
 			<div v-if="currentStep === 1">
 				<div class="flex justify-between">
 					<div class="base-title mb-3">
-						company tagline
+						Your no.1 reason to join you
 					</div>
 					<img class="w-6" src="/logo-small.svg" />
 				</div>
@@ -24,7 +24,7 @@
 					:error-type="'required'"
 				/>
 				<div class="base-title mb-3">
-					Ethos
+					share the details
 				</div>
 				<textarea
 					class="input-text w-full h-48 py-3 mb-4 resize-none"
@@ -46,7 +46,7 @@
 				>
 					<div class="flex justify-between">
 						<div class="base-title mb-3">
-							core value {{ parseInt(index) + 1 }}
+							REASON NO.{{ parseInt(index) + 1 }}
 						</div>
 						<img class="w-6" src="/logo-small.svg" />
 					</div>
