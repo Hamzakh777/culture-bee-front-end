@@ -195,8 +195,8 @@
 							type="text"
 							class="input-text py-3 h-26 w-full input resize-none"
 							v-model="whyThisRole"
-							placeholder="You can use up to 200 characters here"
-							maxlength="200"
+							placeholder="You can use up to 500 characters here"
+							maxlength="500"
 						>
 						</textarea>
 						<base-input-error-message
