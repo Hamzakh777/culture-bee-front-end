@@ -473,7 +473,7 @@ export default {
 				}
 
 				const element = newVal[length - 1];
-				if(element.title !== null && element.title !== '' && length !== 6) {
+				if(element.title !== null && element.title !== '') {
 					this.ownershipValues.push({
 						title: null,
 						icon: null
@@ -494,7 +494,7 @@ export default {
 				}
 
 				const element = newVal[length - 1];
-				if(element.title !== null && element.title !== '' && length !== 6) {
+				if(element.title !== null && element.title !== '') {
 					this.applicantQualities.push({
 						title: null,
 						icon: null
