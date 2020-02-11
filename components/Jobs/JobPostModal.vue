@@ -55,7 +55,7 @@
 								<v-select
 									class="input"
 									placeholder="Experience level"
-									:options="['skill 1', 'skill 2']"
+									:options="experienceLevels"
 									:multiple="false"
 									v-model="seniority"
 								/>
@@ -514,6 +514,7 @@ export default {
 			skillsList: ['skill 1', 'skill 2', 'skill 3'],
 			industriesList,
 			typeOptions: ['Full-time', 'Part-time', 'Contract', 'Temp', 'Job share'],
+			experienceLevels: ['Internship', 'Entry-level', 'Associate', 'Mid-Senior', 'Director', 'Executive'],
 			isActive: false,
 			isLoading: false,
 			isBigLoaderActive: false,
