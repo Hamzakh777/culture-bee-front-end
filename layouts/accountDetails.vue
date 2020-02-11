@@ -47,11 +47,18 @@
     import CompanyUpdateModal from '@/components/Companies/CompanyUpdateModal';
 
     export default {
+        head() {
+            return {
+                script: [{ src: '//js.hs-scripts.com/6897914.js', defer: true }]
+            }
+        },
+        
         components: {
             TheNavBar,
             TheFooter,
             CompanyUpdateModal
         },
+
         created() {
             if(process.browser) {
                 this.retrieveToken();

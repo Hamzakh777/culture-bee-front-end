@@ -1,41 +1,46 @@
 <template>
 	<div>
-        <the-nav-bar />
+		<the-nav-bar />
 		<nuxt />
-        <the-footer />
-        <company-update-modal />
+		<the-footer />
+		<company-update-modal />
 	</div>
 </template>
 <script>
-import {mapMutations, mapGetters, mapActions} from 'vuex';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
 import TheNavBar from '@/components/NavBar/TheNavBar';
 import TheFooter from '@/components/Footer/TheFooter';
 import CompanyUpdateModal from '@/components/Companies/CompanyUpdateModal';
 
 export default {
-    
-    components: {
-        TheNavBar,
-        TheFooter,
-        CompanyUpdateModal
-    },
+	head() {
+		return {
+			script: [{ src: '//js.hs-scripts.com/6897914.js', defer: true }]
+		};
+	},
 
-    computed: {
-        ...mapGetters('account', ['isLoggedIn', 'accessToken'])
-    },
+	components: {
+		TheNavBar,
+		TheFooter,
+		CompanyUpdateModal
+	},
 
-    created() {
-        if(process.browser) {
-            this.retrieveToken();
-        }
-        if(this.isLoggedIn) {
-            this.getLogedInUser();
-        }
-    },
+	computed: {
+		...mapGetters('account', ['isLoggedIn', 'accessToken'])
+	},
 
-    methods: {
-        ...mapMutations('account', ['retrieveToken']),
-        ...mapActions('account', ['getLogedInUser'])
-    }
+	created() {
+		if (process.browser) {
+			this.retrieveToken();
+		}
+		if (this.isLoggedIn) {
+			this.getLogedInUser();
+		}
+	},
+
+	methods: {
+		...mapMutations('account', ['retrieveToken']),
+		...mapActions('account', ['getLogedInUser'])
+	}
 };
 </script>
