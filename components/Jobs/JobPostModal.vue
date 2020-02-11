@@ -452,24 +452,26 @@ export default {
 	watch: {
 		isActive(newVal) {
 			if(newVal === false) return;
-			// if (process.browser && this.currentStep === 1) {
-			// 	const places = require('places.js');
-
-			// 	this.placesInstance = places({
-			// 		appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
-			// 		apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
-			// 		container: window.document.getElementById('address-input')
-			// 	});
-
-
-			// 	this.placesInstance.on('change', e => {
-			// 		this.setLocation(e.suggestion.value);
-			// 	});
-
-			// 	this.placesInstance.on('clear', () => {
-			// 		this.setLocation('');
-			// 	});
-			// }
+				if(process.browser && this.currentStep === 1) {
+				setTimeout(() => {
+					const places = require('places.js');
+		
+					this.placesInstance = places({
+						appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
+						apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
+						container: window.document.getElementById('address-input')
+					});
+		
+		
+					this.placesInstance.on('change', e => {
+						this.setLocation(e.suggestion.value);
+					});
+		
+					this.placesInstance.on('clear', () => {
+						this.setLocation('');
+					});
+				}, 100);
+			}
 		},
 
 		ownershipValues: {
@@ -672,6 +674,29 @@ export default {
 		});
 	},
 
+	mounted() {
+		if(process.browser && this.currentStep === 1 && this.isActive) {
+			setTimeout(() => {
+				const places = require('places.js');
+	
+				this.placesInstance = places({
+					appId: process.env.VUE_APP_ALGOLIA_PLACES_APP_ID,
+					apiKey: process.env.VUE_APP_ALGOLIA_PLACES_APP_KEY,
+					container: window.document.getElementById('address-input')
+				});
+	
+	
+				this.placesInstance.on('change', e => {
+					this.setLocation(e.suggestion.value);
+				});
+	
+				this.placesInstance.on('clear', () => {
+					this.setLocation('');
+				});
+			}, 100);
+		}
+	},
+
 	methods: {
 		...mapMutations('employer', ['incrementProfileCreationStep']),
 		...mapMutations('employer/jobs', ['addJob']),
@@ -814,7 +839,6 @@ export default {
 				this.toggle();
 			} catch (error) {
 				alert('An error happend');
-				console.error(error);
 			}
 			this.toggleLoader();
 		},
