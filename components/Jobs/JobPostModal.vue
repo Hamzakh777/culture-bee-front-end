@@ -154,15 +154,15 @@
 				</div>
 				<!-- skills -->
 				<div class="row">
-					<div class="base-title">
+					<div class="base-title flex-shrink-0">
 						skill tags
 						<span class="block text-sm">E.g. javascript, project management</span>
 					</div>
-					<div class="lg:flex flex-grow items-start">
+					<div class="lg:flex flex-grow items-start flex-wrap">
 						<div>
 							<!-- skills select input -->
 							<base-free-text-input 
-								v-if="skills.length !== 3"
+								v-if="skills.length !== 6"
 								class="mb-4 mr-4"
 								@add="addSkill"
 							/>
@@ -679,7 +679,7 @@ export default {
 		},
 
 		removeSkill(indexToRemove) {
-			this.tags = this.tags.filter(
+			this.skills = this.skills.filter(
 				(tag, index) => index !== indexToRemove
 			);
 		},
@@ -867,6 +867,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .row {
 	@apply flex flex-col;
 }
