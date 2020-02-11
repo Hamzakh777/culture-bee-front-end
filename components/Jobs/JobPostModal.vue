@@ -1,7 +1,7 @@
 <template>
 	<base-modal :is-active="isActive" @close="toggle">
 		<template #title>
-			Post job
+			{{ isEdit ? 'Edit' : 'Post' }} job
 		</template>
 		<template #content>
 			<!-- first step -->
@@ -292,6 +292,11 @@
 								@click="removePromoPhoto"
 							/>
 						</div>
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.promoPhotoUrl.$error"
+							:error-type="'required'"
+						/>
 					</div>
 				</div>
 				<!-- family photo -->
@@ -328,6 +333,11 @@
 								@click="removeFamilyPhoto"
 							/>
 						</div>
+						<base-input-error-message
+							style="margin-bottom: 1rem"
+							v-if="$v.familyPhotoUrl.$error"
+							:error-type="'required'"
+						/>
 					</div>
 				</div>
 				<!-- application -->
@@ -520,6 +530,7 @@ export default {
 			isBigLoaderActive: false,
 			placesInstance: null,
 			currentStep: 1,
+			isEdit: false,
 			id: '',
 			location: '',
 			seniority: '',
@@ -585,6 +596,12 @@ export default {
 				applicationEmail: {
 					required,
 					email
+				},
+				promoPhotoUrl: {
+					required
+				},
+				familyPhotoUrl: {
+					required
 				}
 			};
 		}
@@ -630,8 +647,12 @@ export default {
 			}
 		});
 
-		this.$bus.$on('open-edit-job-modal', (id) => {
+		this.$bus.$on('open-edit-job-modal', async (id) => {
+			this.isEdit = true;
 			this.toggle();
+			await this.fetchJob(id);
+
+			const lengthValues = this.ownershipValues.length;
 			const elementValues = this.ownershipValues[lengthValues - 1];
 			if(elementValues.title !== null && elementValues.title !== '' && lengthValues !== 6) {
 				this.ownershipValues.push({
@@ -640,6 +661,7 @@ export default {
 				});
 			}
 
+			const lengthQualities = this.applicantQualities.length;
 			const elementQualities = this.applicantQualities[lengthQualities - 1];
 			if(elementQualities.title !== null && elementQualities.title !== '' && lengthQualities !== 6) {
 				this.applicantQualities.push({
@@ -647,7 +669,6 @@ export default {
 					icon: null
 				});
 			}
-			this.fetchJob(id);
 		});
 	},
 
@@ -800,36 +821,42 @@ export default {
 
 		/**
 		 * @param {Number} id
+		 * @return {Promise}
 		 */
-		async fetchJob(id) {
-			this.toggleBigLoader();
-			try {
-				const response  = await this.$axios.get(`api/jobs/${id}`);
-				const job = response.data.job;
+		fetchJob(id) {
+			return new Promise(async (resolve, reject) => {
+				this.toggleBigLoader();
+				try {
+					const response  = await this.$axios.get(`api/jobs/${id}`);
+					const job = response.data.job;
+	
+					this.id = job.id;
+					this.location = job.location;
+					this.seniority = job.seniority;
+					this.industry = job.industry;
+					this.type = job.type;
+					this.jobTitle = job.jobTitle;
+					this.quickPitch = job.quickPitch;
+					this.applicationUrl = job.applicationUrl;
+					this.applicationEmail = job.applicationEmail;
+					this.tags = job.tags;
+					this.skills = job.skills;
+					this.whyThisRole = job.whyThisRole;
+					this.ownershipValues = job.ownershipValues;
+					this.applicantQualities = job.applicantQualities;
+					this.promoPhotoUrl = job.promoPhotoUrl;
+					this.aboutTheColleagues = job.aboutTheColleagues;
+					this.familyPhotoUrl = job.familyPhotoUrl;
+					this.createdAt = job.createdAt;
+					this.userId = job.userId;
 
-				this.id = job.id;
-				this.location = job.location;
-				this.seniority = job.seniority;
-				this.industry = job.industry;
-				this.type = job.type;
-				this.jobTitle = job.jobTitle;
-				this.quickPitch = job.quickPitch;
-				this.applicationUrl = job.applicationUrl;
-				this.applicationEmail = job.applicationEmail;
-				this.tags = job.tags;
-				this.skills = job.skills;
-				this.whyThisRole = job.whyThisRole;
-				this.ownershipValues = job.ownershipValues;
-				this.applicantQualities = job.applicantQualities;
-				this.promoPhotoUrl = job.promoPhotoUrl;
-				this.aboutTheColleagues = job.aboutTheColleagues;
-				this.familyPhotoUrl = job.familyPhotoUrl;
-				this.createdAt = job.createdAt;
-				this.userId = job.userId;
-			} catch (error) {
-				console.error(error);
-			}
-			this.toggleBigLoader();
+					resolve();
+				} catch (error) {
+					reject(error);
+					alert(error);
+				}
+				this.toggleBigLoader();
+			});
 		},
 
 		async updateJob() {
@@ -856,13 +883,11 @@ export default {
 				formData.append('promoPhotoUrl', this.promoPhotoUrl);
 				formData.append('FamilyPhotoUrl', this.familyPhotoUrl);
 
-				const response = await this.$axios.post(`/api/jobs/${this.id}`, formData);
+				await this.$axios.post(`/api/jobs/${this.id}`, formData);
 
-				console.log(response);
-
+				this.toggle();
 			} catch (error) {
 				alert('An error happend updating the job');
-				console.error(error);
 			}
 			this.toggleLoader();
 		}
