@@ -216,6 +216,7 @@
 							v-for="(value, index) in ownershipValues"
 							:key="index"
 							:value="value"
+							icon-name="checkmark"
 							placeholder="Add a responsibility"
 							:ability-to-select-icon="false"
 						/>
@@ -232,6 +233,7 @@
 							v-for="(quality, index) in applicantQualities"
 							:key="index"
 							:value="quality"
+							icon-name="checkmark"
 							placeholder="Add a skill or quality"
 							:ability-to-select-icon="false"
 						/>

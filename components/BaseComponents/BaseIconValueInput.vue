@@ -4,9 +4,19 @@
 	>
 		<!-- icon -->
 		<div class="relative w-10 ml-4">
+			<!-- custom select icon  -->
+			<div 
+				v-if="value.icon === null || value.icon === '' && iconName !== ''"
+				class="absolute h-5 w-5 top-1/2 left-1/2 transform-center"
+			>
+				<base-app-icon 
+					:name="iconName"
+					:classList="['h-4 fill-current stroke-current text-yellow']"
+				/> 
+			</div>
 			<!-- plus -->
 			<div
-				v-if="value.icon === null || value.icon === ''"
+				v-else-if="value.icon === null || value.icon === '' && iconName === ''"
 				@click="toggleIconList"
 				class="plus"
 			></div>
@@ -71,13 +81,15 @@ import vSelect from 'vue-select';
 import { mixin as clickaway } from 'vue-clickaway';
 import fontawesomeIcons from '~/assets/data/fontawesomeIcons';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
+import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 
 export default {
 	name: 'BaseIconValueInput',
 
 	components: {
 		BaseCloseButton,
-		vSelect
+		vSelect,
+		BaseAppIcon
 	},
 
 	mixins: [clickaway],
@@ -96,6 +108,11 @@ export default {
 			type: Boolean,
 			required: false,
 			default: true
+		},
+		iconName: {
+			type: String,
+			required: false,
+			default: ''
 		}
 	},
 

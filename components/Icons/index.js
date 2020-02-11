@@ -2,6 +2,7 @@
 require('./arrow-down')
 require('./arrow')
 require('./camera')
+require('./checkmark')
 require('./edit-pen')
 require('./facebook-logo')
 require('./instagram')
