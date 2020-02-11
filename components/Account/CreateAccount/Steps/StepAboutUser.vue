@@ -1,21 +1,6 @@
 <template>
 	<div class="py-8">
 		<div class="mb-4">
-			<!-- company name -->
-			<input
-				v-if="role === 'employer'"
-				class="input-text"
-				type="text"
-				placeholder="Company name"
-				:value="companyName"
-				@input="setStoreProp('companyName', $event.target.value)"
-			/>
-			<div v-if="role === 'employer'">
-				<base-input-error-message
-					v-if="$v.companyName.$error"
-					:error-type="'required'"
-				/>
-			</div>
 			<!-- location -->
 			<input
 				id="address-input"
@@ -80,7 +65,6 @@ export default {
 		...mapState('account', [
 			'role',
 			'industry',
-			'companyName',
 			'skills',
 			'location',
 			'id'
@@ -95,22 +79,9 @@ export default {
 		};
     },
     
-    validations() {
-		if (this.role === 'job-seeker') {
-			return {
-				industry: {
-					required
-				}
-			};
-		} else {
-			return {
-				industry: {
-					required
-				},
-				companyName: {
-					required
-				}
-			};
+    validations: {
+		industry: {
+			required
 		}
 	},
 
@@ -124,9 +95,7 @@ export default {
 				container: document.querySelector('#address-input')
 			});
 
-
 			this.placesInstance.on('change', e => {
-				console.log(e.suggestion.value)
 				this.setStoreProp('location', e.suggestion.value);
 			});
 

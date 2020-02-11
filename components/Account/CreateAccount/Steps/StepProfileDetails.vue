@@ -37,6 +37,7 @@
 				{{ role === 'employer' ? 'Upload your logo' : 'Upload your profile photo' }}
 			</file-upload>
 		</div>
+		<!-- name  -->
 		<input
 			class="input-text w-full mb-4"
 			type="text"
@@ -53,6 +54,20 @@
 			:error-type="'min-length-3'"
 			:custom-message="'A name min length is 3'"
 		/>
+		<!-- company name -->
+		<div class="w-full mb-4" v-if="role === 'employer'">
+			<input
+				class="input-text w-full mb-4"
+				type="text"
+				placeholder="Company name"
+				:value="companyName"
+				@input="setStoreProp('companyName', $event.target.value)"
+			/>
+			<base-input-error-message
+				v-if="$v.companyName.$error"
+				:error-type="'required'"
+			/>
+		</div>
 		<steps-nav @next="submit" :no-prev="true" :is-loading="isLoading" />
 	</div>
 </template>
@@ -62,10 +77,13 @@ import { required, minLength } from 'vuelidate/lib/validators';
 import { mapState, mapMutations, mapActions } from 'vuex';
 import FileUpload from 'vue-upload-component';
 import StepsNav from './StepsNav';
+import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
 import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
 
 export default {
 	name: 'StepProfileDetails',
+
+	mixins: [mutateStorePropMixin],
 
 	components: {
 		StepsNav,
@@ -74,13 +92,27 @@ export default {
 	},
 
 	computed: {
-		...mapState('account', ['name', 'profileImgFile', 'role'])
+		...mapState('account', ['name', 'profileImgFile', 'companyName', 'role'])
 	},
 
-	validations: {
-		name: {
-			required,
-			minLength: minLength(3)
+	validations() {
+		if (this.role === 'job-seeker') {
+			return {
+				name: {
+					required,
+					minLength: minLength(3)
+				},
+			};
+		} else {
+			return {
+				name: {
+					required,
+					minLength: minLength(3)
+				},
+				companyName: {
+					required
+				}
+			};
 		}
 	},
 
