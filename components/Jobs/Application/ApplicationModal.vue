@@ -73,18 +73,17 @@
 			</div>
 			<!-- buttons -->
 			<div
-				class="relative flex flex-col md:flex-row md:justify-between items-center mt-8 pt-8"
+				class="relative mt-8 pt-8"
 			>
 				<div
 					class="absolute top-0 left-1/2 -transform-x-50 w-screen h-1/2 bg-gray-900"
 				></div>
 				<div
-					class="flex flex-row md:flex-row w-full md:w-auto items-stretch"
+					class="flex justify-end w-full md:w-auto items-stretch"
 				>
 					<base-ajax-button
 						:is-loading="isLoading"
 						@click="apply"
-						class="w-full"
 					>
 						Send your application
 					</base-ajax-button>
