@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 
 export default {
@@ -62,7 +61,7 @@ export default {
 
 	data() {
 		return {
-			isActive: true
+			isActive: false
 		};
 	},
 

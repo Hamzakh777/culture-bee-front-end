@@ -41,7 +41,7 @@
 		<input
 			class="input-text w-full mb-4"
 			type="text"
-			placeholder="Name"
+			:placeholder="role === 'employer' ? 'Contact name' : 'Name'"
 			:value="name"
 			@input="setName($event.target.value)"
 		/>

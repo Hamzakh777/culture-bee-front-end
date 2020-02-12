@@ -80,7 +80,6 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
-import vSelect from 'vue-select';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
 import baseBayWatch from '~/mixins/base/baseBayWatch';
@@ -93,7 +92,6 @@ export default {
 
 	components: {
 		BaseAppIcon,
-		vSelect,
 		SearchSelectInput
 	},
 

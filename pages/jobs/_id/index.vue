@@ -11,6 +11,8 @@
 			<employer-benefits-section />
 			<employer-culture-feed />
 			<!-- <job-similar-jobs /> -->
+			<job-application-modal />
+			<job-apply-authenticate />
 		</div>
 	</div>
 </template>
@@ -26,6 +28,8 @@ import EmployerBenefitsSection from '~/components/Profile/Employer/Sections/Empl
 import EmployerValuesSection from '~/components/Profile/Employer/Sections/EmployerValuesSection';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
+import JobApplyAuthenticate from '~/components/Jobs/Application/Authentication';
+import JobApplicationModal from '~/components/Jobs/Application/ApplicationModal';
 
 export default {
 	components: {
@@ -36,7 +40,9 @@ export default {
 		JobHeroSection,
 		// JobSimilarJobs,
 		EmployerBenefitsSection,
-		EmployerValuesSection
+		EmployerValuesSection,
+		JobApplyAuthenticate,
+		JobApplicationModal
 	},
 
 	mixins: [baseToggleLoaderMixin],

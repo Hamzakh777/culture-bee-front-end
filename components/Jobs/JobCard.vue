@@ -66,11 +66,11 @@
 			<!-- created at -->
 			<div class="hidden md:block small-text">{{ job.createdAt }}</div>
 			<!-- tags -->
-			<div v-if="!isJobSeekerView" class="flex">
+			<div v-if="!isJobSeekerView" class="flex flex-wrap">
 				<div
 					v-for="(tag, index) in job.tags"
 					:key="index"
-					:class="{ 'ml-5': index !== 0 }"
+					:class="{ 'mr-5 lg:ml-5': index !== 0 }"
 					class="small-text"
 				>
 					{{ tag }}

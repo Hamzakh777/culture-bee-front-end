@@ -9,12 +9,12 @@
 				</div>
 			</div>
 			<img
-				class="block lg:hidden object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
+				class="hidden lg:hidden object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
 				src="/images/splash-page/hero.png"
 				alt="cultureBee"
 			/>
 			<div
-				class="hidden lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
+				class="block lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
 				style="height: 2000px"
 			>
 				<div 

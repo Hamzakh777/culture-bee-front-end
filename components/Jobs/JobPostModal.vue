@@ -123,7 +123,7 @@
 				</div>
 				<!-- tags -->
 				<div class="row">
-					<div class="base-title">
+					<div class="base-title flex-shrink">
 						tags
 						<span class="block text-sm">E.g. team-work, startup</span>
 					</div>
@@ -188,15 +188,16 @@
 			<div v-else-if="currentStep === 2">
 				<div class="row">
 					<div class="base-title">
-						WHY THIS ROLE?
+						job description
+						<span class="block text-sm">Be transparent, share the highs and the challenges of the role</span>
 					</div>
 					<div class="lg:flex-grow">
 						<textarea
 							type="text"
-							class="input-text py-3 h-26 w-full input resize-none"
+							class="input-text py-3 h-50 w-full input resize-none"
 							v-model="whyThisRole"
-							placeholder="You can use up to 500 characters here"
-							maxlength="500"
+							placeholder="You can use up to 1000 characters here"
+							maxlength="1000"
 						>
 						</textarea>
 						<base-input-error-message
@@ -250,10 +251,10 @@
 					<div class="flex-grow">
 						<textarea
 							type="text"
-							class="input-text py-3 h-32 w-full input resize-none"
+							class="input-text py-3 h-50 w-full input resize-none"
 							v-model="aboutTheColleagues"
-							placeholder="You can use up to 350 characters here"
-							maxlength="350"
+							placeholder="You can use up to 1000 characters here"
+							maxlength="1000"
 						>
 						</textarea>
 					</div>

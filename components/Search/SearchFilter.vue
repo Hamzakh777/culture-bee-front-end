@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import vSelect from 'vue-select';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import BaseTagSelect from '~/components/BaseComponents/BaseTagSelect';
