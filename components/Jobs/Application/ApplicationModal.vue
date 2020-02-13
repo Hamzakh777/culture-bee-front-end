@@ -120,9 +120,15 @@ export default {
 
 	data() {
 		return {
-            isActive: true,
+            isActive: false,
             cvFile: null
 		};
+	},
+
+	created() {
+		this.$bus.$on('open-job-application-modal', () => {
+			this.toggle();
+		});
 	},
 
 	methods: {
