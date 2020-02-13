@@ -3,7 +3,6 @@ const state = () => ({
 	id: null,
 	companyName: null,
 	quickPitch: null,
-	currentProfileCreationStep: 0,
 	role: 'employer',
 	email: '',
 	industry: '',
@@ -11,7 +10,6 @@ const state = () => ({
 	skills: [],
 	profileImgUrl: null,
 	coverImgUrl: null,
-	accessToken: process.browser === true ? (localStorage.getItem('access_token') || null) : null,
 	profileImgFile: null
 });
 
