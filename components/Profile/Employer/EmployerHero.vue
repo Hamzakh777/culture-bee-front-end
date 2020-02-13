@@ -45,7 +45,7 @@
 							class="secondary-btn text-yellow cursor-pointer"
 							to="/"
 						>
-							0 Jobs
+							{{ jobsTotal }} Jobs
 						</nuxt-link>
 					</div>
 				</div>
@@ -117,14 +117,14 @@
 				class="secondary-btn text-yellow cursor-pointer"
 				to="/"
 			>
-				0 Jobs
+				{{ jobsTotal }} Jobs
 			</nuxt-link>
 		</div>
 	</div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
@@ -146,6 +146,7 @@ export default {
 
 	computed: {
 		...mapState('employer', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName', 'location']),
+		...mapGetters('employer/jobs', ['jobsTotal'])
 	},
 
 	methods: {
