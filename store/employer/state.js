@@ -4,6 +4,7 @@ const state = () => ({
 	companyName: null,
 	quickPitch: null,
 	role: 'employer',
+	location: '',
 	email: '',
 	industry: '',
 	name: '',
