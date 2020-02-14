@@ -1,7 +1,12 @@
 <template>
 	<div>
-		<employer-hero :is-edit-page="false"/>
-		<employer-profile-sections />
+		<div v-if="isLoading" class="relative h-screen">
+			<base-loader />
+		</div>
+		<div v-else>
+			<employer-hero :is-edit-page="false"/>
+			<employer-profile-sections />
+		</div>
 	</div>
 </template>
 
@@ -11,26 +16,33 @@ import { mapActions } from 'vuex';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import EmployerHero from '~/components/Profile/Employer/EmployerHero';
 import EmployerProfileSections from '~/components/Profile/Employer/EmployerProfileSections';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
 	mixins: [baseToggleLoaderMixin],
 
 	components: {
 		EmployerHero,
-		EmployerProfileSections
+		EmployerProfileSections,
+		BaseLoader
 	},
 
-	async created() {
-		this.toggleLoader();
+	data() {
+		return {
+			isLoading: true
+		}
+	},
+
+	async mounted() {
 		try {
 			await this.getProfileDetails(this.$route.params.id);
 		} catch (error) {
 			if(process.browser) {
 				alert('An error happend trying to load company vision');
-				console.log(error);
 			}
+		} finally {
+			this.toggleLoader();
 		}
-		this.toggleLoader();
 	},
 
 	beforeCreate() {
@@ -43,6 +55,6 @@ export default {
 
 	methods: {
 		...mapActions('employer', ['getProfileDetails'])
-	},
+	}
 };
 </script>
