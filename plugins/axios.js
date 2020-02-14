@@ -7,8 +7,5 @@ export default function ({ $axios, redirect }) {
 			}
 			return redirect('/login');
 		}
-		else if (code === 404) {
-			return redirect('/404');
-		}
 	});
 }
