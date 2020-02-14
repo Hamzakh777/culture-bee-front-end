@@ -218,6 +218,24 @@ export default {
 		}
 	},
 
+	created() {
+		this.$bus.$on('open-post-company-update-modal', () => {
+            this.toggle();
+            this.reset();
+		});
+		this.$bus.$on('open-edit-company-update-modal', id => {
+			const update = this.updates.filter(update => update.id === id)[0];
+
+			this.toggle();
+			this.isEdit = true;
+			
+			this.description = update.description;
+			this.isPinned = update.isPinned;
+			this.imgUrl = update.imgUrl;
+			this.selectedTags = update.tags;
+			this.id = update.id;
+		});
+	},
 
 	methods: {
 		...mapMutations('employer', ['incrementProfileCreationStep']),
