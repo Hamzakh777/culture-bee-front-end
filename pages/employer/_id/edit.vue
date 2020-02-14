@@ -37,8 +37,13 @@ export default {
 		...mapState('employer', ['currentProfileCreationStep'])
 	},
 
-	async created() {
-		this.toggleLoader();
+	data() {
+		return {
+			isLoading: true
+		}
+	},
+
+	async mounted() {
 		try {
 			await this.getProfileDetails(this.$route.params.id);
 
@@ -52,8 +57,9 @@ export default {
 			if (process.browser) {
 				alert('An error happend trying to load company vision');
 			}
+		} finally {
+			this.toggleLoader();
 		}
-		this.toggleLoader();
 	},
 
 	beforeCreate() {
