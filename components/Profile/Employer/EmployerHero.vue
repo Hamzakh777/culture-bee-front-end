@@ -43,7 +43,7 @@
 						<nuxt-link
 							v-else
 							class="secondary-btn text-yellow cursor-pointer"
-							to="/"
+							:to="`/employer/${id}/jobs`"
 						>
 							{{ jobsTotal }} Jobs
 						</nuxt-link>
@@ -115,7 +115,7 @@
 			<nuxt-link
 				v-else
 				class="secondary-btn text-yellow cursor-pointer"
-				to="/"
+				:to="`/employer/${id}/jobs`"
 			>
 				{{ jobsTotal }} Jobs
 			</nuxt-link>
@@ -145,7 +145,7 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName', 'location']),
+		...mapState('employer', ['id', 'quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName', 'location']),
 		...mapGetters('employer/jobs', ['jobsTotal'])
 	},
 
