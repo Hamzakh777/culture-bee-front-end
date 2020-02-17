@@ -80,6 +80,7 @@
 		<div 
 			v-if="isEdit"
 			class="hidden lg:flex flex-col items-end justify-between pl-10"
+			
 		>
 			<div class="relative">
 				<button
