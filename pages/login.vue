@@ -9,7 +9,7 @@
             <div class="w-full">
                 <img
                     class="hidden md:block mb-4 md:mb-0 mx-auto h-10"
-                    src="/logo-big-light.svg"
+                    src="/logo-big-light.png"
                 />
                 <div>
                     <div class="px-4 text-white">
