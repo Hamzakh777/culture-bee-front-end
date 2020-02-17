@@ -51,7 +51,7 @@
 				<div
 					v-for="(tag, index) in job.tags"
 					:key="index"
-					:class="{ 'ml-5': index !== 0 }"
+					:class="{ 'mr-5': index !== 0 }"
 					class="small-text"
 				>
 					{{ tag }}
@@ -64,13 +64,13 @@
 		>
 			<base-like-icon v-if="isJobSeekerView" class="relative h-19" />
 			<!-- created at -->
-			<div class="hidden md:block small-text">{{ job.createdAt }}</div>
+			<div class="hidden md:block mr-5 small-text">{{ job.createdAt }}</div>
 			<!-- tags -->
 			<div v-if="!isJobSeekerView" class="flex flex-wrap">
 				<div
 					v-for="(tag, index) in job.tags"
 					:key="index"
-					:class="{ 'ml-5 lg:ml-5': index !== 0 }"
+					:class="{ 'mr-5': index !== 0 }"
 					class="small-text"
 				>
 					{{ tag }}
@@ -79,7 +79,7 @@
 		</div>
 		<div 
 			v-if="isEdit"
-			class="hidden lg:flex flex-col items-end justify-between pl-16"
+			class="hidden lg:flex flex-col items-end justify-between pl-10"
 		>
 			<div class="relative">
 				<button
