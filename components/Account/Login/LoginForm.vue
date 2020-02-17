@@ -48,6 +48,13 @@
 			>
 				Login
 			</base-ajax-button>
+			<!-- forgot password  -->
+			<nuxt-link 
+				class="link block mt-10 underline"
+				to="'/password/forgot'"
+			>
+				Forgot password
+			</nuxt-link>
 		</div>
 	</div>
 </template>
