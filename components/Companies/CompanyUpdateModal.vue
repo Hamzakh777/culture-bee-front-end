@@ -16,7 +16,7 @@
 				<!-- selected img -->
 				<div
 					v-if="updateImg !== null && updateImg !== ''"
-					class="hidden md:block absolute bottom-0 left-0 h-26 w-26 mb-5 ml-5 bg-center bg-cover"
+					class="hidden md:block absolute bottom-0 left-0 h-36 w-56 mb-5 ml-5 bg-center bg-cover"
 					:style="`background-image: url(${updateImg})`"
 				>
 					<base-close-button
@@ -58,7 +58,7 @@
 
 				<div
 					v-if="updateImg !== null && updateImg !== ''"
-					class="relative h-26 w-26 mb-5 ml-5 bg-center bg-cover"
+					class="relative h-36 w-56 mb-5 ml-5 bg-center bg-cover"
 					:style="`background-image: url(${updateImg})`"
 				>
 					<base-close-button
