@@ -75,6 +75,11 @@
 						add tags
 					</div>
 					<div class="flex flex-col md:flex-row items-stretch flex-wrap">
+						<base-free-text-input 
+							v-if="selectedTags.length !== 3"
+							class="mb-4 mr-4"
+							@add="addTag"
+						/>
 						<!-- selected tags -->
 						<base-selected-option
 							class="w-full md:w-auto mb-4 md:mr-6"
@@ -84,13 +89,6 @@
 						>
 							{{ tag }}
 						</base-selected-option>
-						<!-- tags select input -->
-						<tag-select
-							v-if="selectedTags.length !== 3"
-							:options="tags"
-							placeholder="add tag"
-							v-model="selectedTags"
-						/>
 					</div>
 				</div>
 				<!-- pin update -->
@@ -159,6 +157,7 @@ import BaseAjaxButton from '~/components/BaseComponents/BaseAjaxButton';
 import BasePinButton from '~/components/BaseComponents/BasePinButton';
 import BaseCloseButton from '~/components/BaseComponents/BaseCloseButton';
 import BaseInputErrorMessage from '~/components/BaseComponents/BaseInputErrorMessage';
+import BaseFreeTextInput from '~/components/BaseComponents/BaseFreeTextInput';
 
 export default {
 	name: 'CompanyUpdateModal',
@@ -172,7 +171,8 @@ export default {
 		FileUpload,
 		BasePinButton,
 		BaseCloseButton,
-		BaseInputErrorMessage
+		BaseInputErrorMessage,
+		BaseFreeTextInput
 	},
 
 	computed: {
@@ -323,6 +323,10 @@ export default {
 					newFile.url = URL.createObjectURL(newFile.file);
 				}
 			}
+		},
+
+		addTag(tag) {
+			this.selectedTags.push(tag);
 		},
 
 		removeTag(indexToRemove) {
