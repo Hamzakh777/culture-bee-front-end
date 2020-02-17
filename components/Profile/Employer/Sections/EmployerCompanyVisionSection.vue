@@ -1,5 +1,5 @@
 <template>
-	<div class="relative py-6 lg:py-18" id="vision">
+	<div class="relative py-6 lg:pt-18 lg:pb-0" id="vision">
 		<div class="container flex flex-col md:flex-row md:justify-between mx-auto">
 			<div class="base-title mb-8">Company vision</div>
 			<div class="max-w-4xl md:px-8">
