@@ -70,7 +70,7 @@
 				<div
 					v-for="(tag, index) in job.tags"
 					:key="index"
-					:class="{ 'mr-5 lg:ml-5': index !== 0 }"
+					:class="{ 'ml-5 lg:ml-5': index !== 0 }"
 					class="small-text"
 				>
 					{{ tag }}
@@ -124,7 +124,8 @@
 				</div>
 			</div>
 			<button 
-				class="primary-btn"
+				class="primary-btn block"
+				style="min-width: 120px"
 				@click.stop="$bus.$emit('open-edit-job-modal', job.id)"
 			>
 				Edit job
