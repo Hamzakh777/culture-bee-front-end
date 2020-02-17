@@ -11,7 +11,7 @@
 			<!-- desktop image  -->
 			<div
 				class="hidden lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
-				style="height: 2000px"
+				:style="`height: ${scrollDistance}px`"
 			>
 				<div 
 					class="hero-img h-screen fixed left-0 h-screen w-full bg-contain bg-no-repeat bg-center transition-all"
