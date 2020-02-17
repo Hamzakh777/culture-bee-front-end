@@ -1,15 +1,15 @@
 <template>
-	<div class="relative max-w-100-vw py-8 bg-gray-800">
+	<div class="relative max-w-100-vw py-8 bg-gray-800 overflow-x-hidden">
 		<div class="container flex items-center mx-auto">
-			<div class="flex flex-grow flex-col lg:flex-row justify-between">
+			<div class="flex flex-grow flex-wrap flex-col lg:flex-row justify-start">
 				<div
 					v-for="(value, index) in valuesToShow"
 					:key="index"
-					class="flex items-center relative pl-16 md:pl-16 md:pr-18 ml-12 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
-					style="max-width: 16.66666%"
+					class="flex items-center relative my-5 pl-8 md:pl-0 md:pr-18 ml-12 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
+					style="max-width: 16.66666%; min-width: 200px"
 				>
 					<div
-						class="flex items-center justify-center absolute top-1/2 -transform-y-50 left-0 h-16 w-16 md:h-14 md:w-14 rounded-full border-2"
+						class="flex items-center justify-center flex-shrink-0 h-16 w-16 md:h-14 md:w-14 rounded-full border-2"
 						style="border-color: currentColor"
 					>
 						<font-awesome-icon 
