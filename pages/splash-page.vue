@@ -308,7 +308,6 @@ export default {
 			this.scrollHeight = window.pageYOffset;
 			if(this.scrollHeight <= (this.scrollDistance - window.innerHeight) && this.scrollHeight !== 0) {
 				const currentScale = this.scrollHeight / (this.scrollDistance - window.innerHeight) ;
-				console.log(currentScale);
 
 				this.animationProgress = currentScale;
 				this.imgScale = this.baseImgScale - currentScale;
