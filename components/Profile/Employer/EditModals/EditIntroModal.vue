@@ -20,7 +20,7 @@
 					></div>
                     <client-only>
                         <file-upload
-                            class="absolute z-2  h-4 w-4 top-0 right-0 mr-10 mt-10 text-white"
+                            class="absolute z-2 h-8 w-8 top-0 right-0 mr-10 mt-10 shadow-md bg-black text-white"
                             extensions="gif,jpg,jpeg,png,webp"
                             accept="image/png,image/jpeg"
                             input-id="file1"
@@ -29,19 +29,24 @@
                             @input-file="inputFileCoverPhoto"
                             ref="upload"
                         >
-                            <base-app-icon
-                                :class-list="[
-                                    'absolute',
-                                    'top-0',
-                                    'right-0',
-                                    'h-7',
-                                    'fill-current',
-                                    'text-white',
-                                    'cursor-pointer',
-                                    'hover:text-yellow'
-                                ]"
-                                name="edit-pen"
-                            />
+                            <div
+                                class="absolute inset-0"
+                            >
+                                <base-app-icon
+                                    :class-list="[
+                                        'absolute',
+                                        'top-1/2',
+                                        'left-1/2',
+                                        'transform-center',
+                                        'h-5',
+                                        'fill-current',
+                                        'text-white',
+                                        'cursor-pointer',
+                                        'hover:text-yellow'
+                                    ]"
+                                    name="edit-pen"
+                                />
+                            </div>
                         </file-upload>
                     </client-only>
 				</div>
