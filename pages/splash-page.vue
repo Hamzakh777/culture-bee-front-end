@@ -2,34 +2,41 @@
 	<div>
 		<!-- hero section -->
 		<div class="hero relative md:min-h-screen bg-gray-to-black">
-			<div class="lg:fixed z-10 top-0 inset-x-0 w-full px-4 bg-gray-to-black">
+			<div class="fixed z-10 top-0 inset-x-0 w-full px-4 bg-gray-to-black">
 				<div class="container mx-auto flex flex-row justify-between items-center py-6">
 					<base-logo :is-light="true" />
 					<button class="btn-yellow" v-scroll-to="'#newsletter'">Early access</button>
 				</div>
 			</div>
-			<img
-				class="hidden lg:hidden object-contain max-h-full mx-auto md:pt-32 py-10 md:pb-10 px-8"
-				src="/images/splash-page/hero.png"
-				alt="cultureBee"
-			/>
+			<!-- desktop image  -->
 			<div
-				class="block lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
+				class="hidden lg:block relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
 				style="height: 2000px"
 			>
 				<div 
 					class="hero-img h-screen fixed left-0 h-screen w-full bg-contain bg-no-repeat bg-center transition-all"
 					:class="{'fixed top-0 z-20': animationProgress !== 100, 'absolute bottom-0 z-1': animationProgress === 100}"
-					:style="`transform: scale(${imgScale}); transform-origin: center center;`"
+					:style="`transform: scale(${imgScale}); transform-origin: center center`"
 				>
-
+				</div>
+			</div>
+			<!-- mobile image  -->
+			<div
+				class="block lg:hidden relative mx-auto md:pt-0 py-10 md:pb-0 px-8 overflow-y-scroll"
+				:style="`height: ${scrollDistance}px`"
+			>
+				<div 
+					class="hero-img-mobile h-screen fixed left-0 h-screen w-full bg-contain bg-no-repeat bg-center transition-all"
+					:class="{'fixed top-0 z-20': animationProgress !== 100, 'absolute bottom-0 z-1': animationProgress === 100}"
+					:style="`transform: scale(${imgScale}); transform-origin: center center`"
+				>
 				</div>
 			</div>
 		</div>
 		<!-- mainling list sign up section -->
 		<div class="py-8 md:py-18 px-4" id="newsletter">
 			<div class="container mx-auto max-w-5xl">
-				<h2 class="section-title mb-4 md:mb-10 text-center">EARLY ACCESS & PRODUCT UPDATES</h2>
+				<h2 class="section-title mb-4 md:mb-10 text-center">JOIN THE CHANGE WE ALL CRAVE</h2>
 				<div v-if="!isSubscribedToNewsletter">
 					<div class="flex flex-col md:flex-row md:items-stretch w-full max-w-3xl mx-auto mb-5 md:mb-8">
 						<input
@@ -68,9 +75,7 @@
 						/>
 						<div>
 							<small class="block pl-4 mb-2 text-left">
-								By signing up to CultureBee, you are agreeing to our
-								<a href="#">Terms of Use</a> and
-								<a href="#">Privacy Policy</a>
+								Get early access and product updates
 							</small>
 							<base-input-error-message 
 								v-if="!$v.isGdprAccepted.required && $v.isGdprAccepted.$error"
@@ -101,10 +106,10 @@
 					<div class="flex flex-col justify-center w-full md:w-1/2 pr-8">
 						<h2
 							class="section-title section-title-light mb-6 md:mb-16"
-						>See inside a brand’s culture without leaving your seat</h2>
+						>SHARE YOUR REAL STORY</h2>
 						<p
 							class="block text-base font-normal max-w-sm"
-						>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						>Connect with people and employers in a human way.</p>
 					</div>
 					<div class="w-full md:w-1/2 mt-10 md:mt-0">
 						<img
@@ -124,10 +129,10 @@
 						<img class="w-full" src="/images/splash-page/section-4-img.png" alt="culturebee job adverts" />
 					</div>
 					<div class="flex flex-col justify-center w-full md:w-1/2 mb-10 md:mb-0 pl-0 md:pl-8">
-						<h2 class="section-title mb-4 md:mb-10">JOB ADVERTS WITH 100% TRANSPARENCY</h2>
+						<h2 class="section-title mb-4 md:mb-10">DISCOVER OPPORTUNITIES</h2>
 						<p
 							class="text-base font-normal max-w-sm"
-						>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+						>Connect with people and employers that share your values.</p>
 					</div>
 				</div>
 			</div>
@@ -135,7 +140,7 @@
 		<!-- section cta -->
 		<div class="py-8 md:py-18 px-8 bg-black text-white">
 			<div class="mb-12">
-				<img class="w-full mx-auto max-w-5xl" src="/images/splash-page/section-5-img.jpg" alt />
+				<img class="w-full mx-auto max-w-5xl" src="/images/splash-page/section-5-img.png" alt />
 			</div>
 			<div class="container flex flex-col items-center mx-auto">
 				<div class="inline-block text-center">
@@ -199,7 +204,6 @@
 
 <script>
 import { required, email } from 'vuelidate/lib/validators';
-// import ZoomScroll from 'vue-zoom-scroll';
 import FooterBottom from '~/components/Footer/FooterBottom';
 import BaseLogo from '~/components/BaseComponents/BaseLogo';
 import BaseRadioButton from '~/components/BaseComponents/BaseRadioButton';
@@ -216,8 +220,7 @@ export default {
 		BaseRadioButton,
 		BaseBigInputErrorMessage,
 		BaseInputErrorMessage,
-		BaseAjaxButton,
-		// ZoomScroll
+		BaseAjaxButton
 	},
 
 	data() {
@@ -231,12 +234,14 @@ export default {
 				'wolt.png'
 			],
 			scrollHeight: 0,
-			imgScale: 1.5,
+			baseImgScale: 1.8,
+			imgScale: 1.8,
 			animationProgress: 0,
 			email: '',
 			isGdprAccepted: false,
 			isSubscribedToNewsletter: false,
-			isLoading: false
+			isLoading: false,
+			scrollDistance: 2000
 		};
 	},
 
@@ -256,6 +261,19 @@ export default {
 					this.handleScroll();
                 }, {passive: true}
 			);
+			this.handleScroll();
+
+			if(window.innerWidth > 768) {
+				// if desktop or table 
+				this.baseImgScale = 2.4;
+				this.scrollDistance = 2000;
+			} else {
+				// mobile
+				this.baseImgScale = 1.4;
+				this.scrollDistance = 1400;
+			}
+
+			this.imgScale = this.baseImgScale;
 		}
     },
     
@@ -274,29 +292,27 @@ export default {
 			
 			try {
 				this.isLoading = true;
-				const response =  await this.$axios.$post(`/api/newsletter`, {
+				await this.$axios.$post(`/api/newsletter`, {
 					email: 'test@gmail.com'
 				});
 
-				console.log(response);
 				this.isLoading = false;
 				this.isSubscribedToNewsletter = true;
 			} catch (error) {
 				this.isLoading = false;
-				console.error(error);
 			}
 		},
 
 		handleScroll() {
 			// get the scroll distance starting from the top of the page
 			this.scrollHeight = window.pageYOffset;
-			
-			if(this.scrollHeight <= (2000 - window.innerHeight) && this.scrollHeight !== 0) {
-				const currentScale = this.scrollHeight / (2000 - window.innerHeight) ;
+			if(this.scrollHeight <= (this.scrollDistance - window.innerHeight) && this.scrollHeight !== 0) {
+				const currentScale = this.scrollHeight / (this.scrollDistance - window.innerHeight) ;
+				console.log(currentScale);
 
 				this.animationProgress = currentScale;
-				this.imgScale = 1.8 - currentScale;
-			} else if(this.scrollHeight >= (2000 - window.innerHeight)) {
+				this.imgScale = this.baseImgScale - currentScale;
+			} else if(this.scrollHeight >= (this.scrollDistance - window.innerHeight)) {
 				this.animationProgress = 100;
 			}
 		}
@@ -308,6 +324,11 @@ export default {
 .hero-img {
 	background-image: url(/images/splash-page/hero.png);
 }
+
+.hero-img-mobile {
+	background-image: url(/images/splash-page/hero-mobile.png);
+}
+
 .hero >>> .zoom-scroll__content {
 	@apply bg-no-repeat;
 }
