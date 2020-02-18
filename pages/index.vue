@@ -51,7 +51,7 @@
 		<div id="newsletter" class="py-8 md:py-18 px-4">
 			<div class="container mx-auto max-w-5xl">
 				<h2 class="section-title mb-4 md:mb-10 text-center">
-					EARLY ACCESS & PRODUCT UPDATES
+					GET EARLY ACCESS
 				</h2>
 				<div v-if="!isSubscribedToNewsletter">
 					<div
@@ -160,11 +160,10 @@
 						<h2
 							class="section-title section-title-light mb-6 md:mb-16"
 						>
-							NO MORE BORING JOB ADS OR SOULLESS CVS
+							DISCOVER NEW AND EXCITING COMPANIES
 						</h2>
 						<p class="block text-base font-normal max-w-sm">
-							Join the change we all crave, connect with people
-							and employers in a human way.
+							From high-growth startups to NGOs, discover and follow+ the most desirable opportunities around.
 						</p>
 					</div>
 					<div class="w-full md:w-1/2 mt-10 md:mt-0">
@@ -192,11 +191,10 @@
 						class="flex flex-col justify-center w-full md:w-1/2 mb-10 md:mb-0 pl-0 md:pl-8"
 					>
 						<h2 class="section-title mb-4 md:mb-10 md:w-84">
-							JOB ADVERTS THAT TELL A STORY
+							EXPLORE CULTURES AND CONNECT
 						</h2>
 						<p class="text-base font-normal max-w-sm">
-							Job ads that inspire, showcase the culture and help
-							you find a career that you'll thrive in.
+							Everything you need to know about a company before you set a foot in the door. Connect with companies that share your values.
 						</p>
 					</div>
 				</div>
