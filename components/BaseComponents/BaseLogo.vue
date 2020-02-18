@@ -1,7 +1,7 @@
 <template>
     <div>
         <img 
-            :src="isLight ? '/logo-big-light.svg' : '/logo-big.png'" 
+            :src="isLight ? '/logo-big-light.png' : '/logo-big.png'" 
             class="hidden md:inline-block h-11-1/4"
             alt="culturebee logo"
         >
