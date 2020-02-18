@@ -29,7 +29,7 @@
                 </div>
                 <div class="w-full mx-auto md:w-31-%">
                     <a 
-                        href="/contact"
+                        href="mailto:nicola@culturebee.io"
                         class="btn-yellow block w-full md:w-45 mx-auto py-4 lg:py-2-1/2 text-center"
                     >
                         Get in touch
@@ -54,38 +54,26 @@
             return {
                 footerLinks: [
                     {
-                        name: 'About us',
-                        href: '/about-us'
-                    },
-                    {
-                        name: 'FAQs',
-                        href: '/faqs'
-                    },
-                    {
-                        name: 'Legal',
-                        href: '/Legal'
-                    },
-                    {
-                        name: 'Your data',
-                        href: '/your-data'
+                        name: 'Privacy Policy',
+                        href: '/privacy-policy'
                     }
                 ],
                 socialLinks: [
                     {
                         icon: 'twitter',
-                        href: '#'
+                        href: 'https://twitter.com/TeamCultureBee'
                     },
                     {
                         icon: 'linkedin-letters',
-                        href: '#'
+                        href: 'https://www.linkedin.com/company/40887338/'
                     },
                     {
                         icon: 'facebook-logo',
-                        href: '#'
+                        href: 'https://www.facebook.com/CultureBee-2396002807322462/'
                     },
                     {
                         icon: 'instagram',
-                        href: '#'
+                        href: 'https://www.instagram.com/teamculturebee/'
                     }
                 ]
             }
