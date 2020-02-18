@@ -389,7 +389,7 @@ export default {
 
 			if(window.innerWidth > 768) {
 				// if desktop or table 
-				this.baseImgScale = 2.4;
+				this.baseImgScale = 2.6;
 				this.scrollDistance = 2000;
 			} else {
 				// mobile
