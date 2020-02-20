@@ -25,6 +25,13 @@
                             {{ location }}
                         </div>
                     </div>
+					<!-- apply button - shows up on mobile only -->
+					<button
+						class="primary-btn md:hidden mt-8 w-full"
+						@click="$bus.$emit('open-job-application-modal')"
+					>
+						Apply
+					</button>
 					<!-- company info -->
 					<div
 						class="hidden md:flex flex-grow flex-col items-stretch justify-between lg:justify-start ml-14 bg-white md:bg-transparent text-gray-800 md:text-white"
@@ -56,28 +63,37 @@
 							</span>
 						</div>
 						<div>
-							<!-- jot title -->
-							<div
-								class="mb-3 text-13 font-D-Din tracking-tight uppercase font-bold tracking-wide leading-none"
-							>
-								{{ jobTitle }}
-							</div>
-							<!-- quick pitch -->
-							<div class="lg:mb-6 max-w-xs text-5-1/2 md:text-base lg:text-normal lg:text-sm font-bold">
-								{{ quickPitch }}
-							</div>
-							<!-- tags -->
-							<div class="hidden lg:flex">
-								<span
-									v-for="(tag, index) in tags"
-									:key="index"
-									class="job-info mr-4 last:mr-0"
+							<div>
+								<!-- jot title -->
+								<div
+									class="mb-3 text-13 font-D-Din tracking-tight uppercase font-bold tracking-wide leading-none"
 								>
-									{{ tag }}
-								</span>
+									{{ jobTitle }}
+								</div>
+								<!-- quick pitch -->
+								<div class="lg:mb-6 max-w-xs text-5-1/2 md:text-base lg:text-normal lg:text-sm font-bold">
+									{{ quickPitch }}
+								</div>
+								<!-- tags -->
+								<div class="hidden lg:flex">
+									<span
+										v-for="(tag, index) in tags"
+										:key="index"
+										class="job-info mr-4 last:mr-0"
+									>
+										{{ tag }}
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- apply button - shows up on table and desktop only -->
+					<button
+						class="primary-btn hidden md:inline-block self-end mb-4 px-14 w-auto"
+						@click="$bus.$emit('open-job-application-modal')"
+					>
+						Apply
+					</button>
 				</div>
 				<div class="absolute top-0 right-0 mt-4 mr-4 md:mr-8">
 					<!-- follow button -->
