@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full max-w-190">
-		<div class="flex justify-between mb-6">
+		<div class="flex justify-between mb-6 px-20">
 			<button
 				v-for="(searchCategory, index) in searchCategories"
 				:key="index"
@@ -39,18 +39,13 @@
 				placeholder="Industries"
 			/>
 			<!-- type  -->
-			<base-tag-select
-				:options="['1', '2']"
-				@input="setStoreProp('type', $event)"
-				class="flex-grow mr-4 w-24-%"
-				placeholder="Type"
-			/>
-			<!-- seniority  -->
+
+			<!-- employer features  -->
 			<v-select
 				:options="['1', '2']"
 				@input="setStoreProp('seniority', $event)"
 				class="flex-grow mr-4 w-24-%"
-				placeholder="Seniority"
+				placeholder="Employer features"
 			/>
 			<!-- location  -->
 			<v-select
@@ -64,7 +59,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import vSelect from 'vue-select';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import BaseTagSelect from '~/components/BaseComponents/BaseTagSelect';
@@ -86,23 +81,27 @@ export default {
 		return {
 			searchCategories: [
 				{
-					name: '',
-					value: ''
+					name: 'Employers',
+					value: 'employers'
 				},
 				{
-					name: '',
-					value: ''
+					name: 'Updates',
+					value: 'updates'
 				},
 				{
-					name: '',
-					value: ''
+					name: 'Jobs',
+					value: 'jobs'
 				}
 			]
 		};
 	},
 
 	computed: {
-		...mapState('search', [''])
+		...mapState('search', ['category'])
+	},
+
+	methods: {
+		...mapMutations('search', ['mutate'])
 	}
 };
 </script>

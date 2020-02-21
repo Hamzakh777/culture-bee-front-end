@@ -199,7 +199,6 @@ module.exports = {
 			};
 			addUtilities(newUtilities);
 		},
-		require('./node_modules/tailwindcss-plugins/gradients/index.js'),
-		require('tailwindcss-transitions')()
+		require('./node_modules/tailwindcss-plugins/gradients/index.js')
 	]
 };

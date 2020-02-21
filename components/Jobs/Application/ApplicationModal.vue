@@ -115,7 +115,7 @@ export default {
 
 	computed: {
         ...mapState('account', ['profileImgUrl', 'name', 'quickPitch']),
-        ...mapState('job', ['jobTitle'])
+        ...mapState('job', ['jobTitle', 'id'])
 	},
 
 	data() {
@@ -151,8 +151,21 @@ export default {
             this.cvFile = null;
         },
 
-		apply() {
-			//
+		async apply() {
+			this.toggleLoader();
+			try {
+				const formData = new FormData();
+				formData.append('cv', this.cvFile === null ? '': this.cvFile.file);
+				const response = await this.$axios.post(`/api/jobs/${this.id}/apply`, formData);
+
+				console.log(response);
+				
+			} catch (error) {
+				console.error(error);
+				
+			} finally {
+				this.toggleLoader();
+			}
 		}
 	}
 };

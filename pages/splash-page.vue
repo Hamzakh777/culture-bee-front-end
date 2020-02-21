@@ -311,7 +311,7 @@ export default {
 
 				this.animationProgress = currentScale;
 				this.imgScale = this.baseImgScale - currentScale;
-			} else if(this.scrollHeight >= (this.scrollDistance - window.innerHeight)) {
+			} else if(this.scrollHeight >= (this.scrollDistance)) {
 				this.animationProgress = 100;
 			}
 		}

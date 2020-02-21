@@ -1,37 +1,41 @@
 .btn-circular-arrow {
-    @apply absolute top-0 z-10 mt-45 h-16 w-16 rounded-full border-2 border-gray-700 bg-white opacity-100 transition-all transition-250 transition-ease-out;
+	@apply absolute top-0 z-10 mt-45 h-16 w-16 rounded-full border-2 border-gray-700 bg-white opacity-100 transition-all duration-200 ease-out;
 }
 
-.btn-circular-arrow-next, .btn-circular-arrow-prev {
-    @apply .btn-circular-arrow;
+.btn-circular-arrow-next,
+.btn-circular-arrow-prev {
+	@apply .btn-circular-arrow;
 }
 
 .btn-circular-arrow-next {
-    @apply right-0 transform-x-50;
+	@apply right-0 transform-x-50;
 }
 
 .btn-circular-arrow-prev {
-    @apply left-0 -transform-x-50;
+	@apply left-0 -transform-x-50;
 }
 
-.btn-circular-arrow-next:focus, .btn-circular-arrow-prev:focus {
-    @apply outline-none;
+.btn-circular-arrow-next:focus,
+.btn-circular-arrow-prev:focus {
+	@apply outline-none;
 }
 
-.btn-circular-arrow-next::before, .btn-circular-arrow-prev::before  {
-    content: '';
-    @apply absolute top-1/2 left-1/2 h-4 w-4 border-t-2 border-r-2 border-gray-700;
+.btn-circular-arrow-next::before,
+.btn-circular-arrow-prev::before {
+	content: '';
+	@apply absolute top-1/2 left-1/2 h-4 w-4 border-t-2 border-r-2 border-gray-700;
 }
 
 .btn-circular-arrow-next::before {
-    transform: translate(-60%, -50%) rotate(45deg);
+	transform: translate(-60%, -50%) rotate(45deg);
 }
 
 .btn-circular-arrow-prev::before {
-    transform: translate(-40%, -50%) rotate(-135deg);
+	transform: translate(-40%, -50%) rotate(-135deg);
 }
 
 /* animations */
-.swiper-button-disabled.btn-circular-arrow-prev, .swiper-button-disabled.btn-circular-arrow-next {
+.swiper-button-disabled.btn-circular-arrow-prev,
+.swiper-button-disabled.btn-circular-arrow-next {
 	opacity: 0;
 }
