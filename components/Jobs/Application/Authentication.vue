@@ -86,7 +86,7 @@ export default {
 			};
 
 			this.mutate(payload);
-
+			this.setRoleToJobSeeker();
 			this.$router.push({
 				path: '/login'
 			});
@@ -99,10 +99,19 @@ export default {
 			};
 
 			this.mutate(payload);
-
+			this.setRoleToJobSeeker();
 			this.$router.push({
 				path: '/register'
 			});
+		},
+
+		setRoleToJobSeeker() {
+			const payload = {
+				property: 'role',
+				with: 'job-seeker'
+			};
+
+			this.mutate(payload);
 		}
 	}
 };
