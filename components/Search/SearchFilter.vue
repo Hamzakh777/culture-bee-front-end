@@ -7,7 +7,7 @@
 				:class="{
 					'base-title--underline': searchCategory.value === category
 				}"
-				@click.stop="setStoreProp('category', searchCategory.value)"
+				@click.stop="searchCategoryChanged(searchCategory.value)"
 				class="base-title focus:outline-none"
 			>
 				{{ searchCategory.name }}
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
 import baseBayWatch from '~/mixins/base/baseBayWatch';
@@ -71,8 +71,15 @@ export default {
 		...mapState('search', ['category', 'query'])
 	},
 
+	mounted() {
+		if(process.browser) {
+			this.fetchSearchResults();
+		}
+	},
+
 	methods: {
 		...mapMutations('search', ['mutate']),
+		...mapActions('search', ['fetchSearchResults']),
 
 		searchQueryChanged(value) {
 			// Don't trigger a request on each input - each letter added
@@ -80,7 +87,15 @@ export default {
 			this.timer = setTimeout(() => {
 				this.setStoreProp('query', value);
 			}, 250);
+			this.fetchSearchResults();
 		},
+
+		searchCategoryChanged(value) {
+			// clear results
+			this.setStoreProp('results', []); 
+			this.setStoreProp('category', value);
+			this.fetchSearchResults();
+		}
 	}
 };
 </script>

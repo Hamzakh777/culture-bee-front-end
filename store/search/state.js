@@ -1,7 +1,8 @@
 const state = () => ({
 	query: '',
 	category: 'employers', // employers - updates - jobs
-	results: []
+	results: [],
+	isLoading: false
 });
 
 export default state;

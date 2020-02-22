@@ -5,6 +5,10 @@ const mutations = {
 
 	setResults(state, data) {
 		state.results = data;
+	},
+
+	toggleLoader(state) {
+		state.isLoading = !state.isLoading;
 	}
 };
 

@@ -1,6 +1,7 @@
 const actions = {
 	fetchSearchResults({ state, commit }) {
 		return new Promise((resolve, reject) => {
+			commit('toggleLoader');
 			this.$axios
 				.post(`api/search`, {
 					category: state.category,
@@ -11,6 +12,7 @@ const actions = {
 					resolve(response);
 				})
 				.catch(err => reject(err));
+			commit('toggleLoader');
 		});
 	}
 };
