@@ -57,7 +57,12 @@ export default {
 			await this.fetchJob(this.$route.params.id);
 			await this.getProfileDetails(this.userId);
 		} catch (error) {
-			alert('An error happend trying to load company vision');
+			const code = parseInt(error.response && error.response.status);
+			if(code === 404) {
+				this.$router.push({
+					path: '/404'
+				});
+			}
 		}
 		this.toggleLoader();
 	},
