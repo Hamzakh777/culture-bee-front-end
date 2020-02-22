@@ -19,16 +19,22 @@
 					<div class="sub-section-title">
 						What you’ll own
 					</div>
-					<ul>
-						<li
-							v-for="(responsibility, index) in responsibilities"
-							:key="index"
-							class="relative pl-4"
+					<div
+						v-for="(responsibility, index) in responsibilities"
+						:key="index"
+						class="relative mb-4 pl-10"
+					>
+						<img
+							class="absolute top-0 left-0 h-4"
+							src="/icons/checkmark.svg"
+						/>
+						<p 
+							class="p"
+							:class="{'font-bold': index === 0}"
 						>
 							{{ responsibility.title }}
-							<div class="absolute left-0 top-0 h-1 w-1 mt-3 rounded-full bg-gray-800"></div>
-						</li>
-					</ul>
+						</p>
+					</div>
 				</div>
 				<!-- promo photo -->
 				<div 
