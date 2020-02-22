@@ -26,7 +26,7 @@
 				</div>
 				<!-- already a member  -->
 				<div
-					class="flex flex-col justify-between w-full md:w-1/2 mt-6 md:mt-0 pt-8 pb-4 md:pl-12 md:py-4 border-t-2 md:border-l-2 border-gray-800"
+					class="flex flex-col justify-between w-full md:w-1/2 mt-6 md:mt-0 pt-8 pb-4 md:pl-12 md:py-4 border-t-2 md:border-t-0 md:border-l-2 border-gray-800"
 				>
 					<div>
 						<div class="base-title mb-6">
