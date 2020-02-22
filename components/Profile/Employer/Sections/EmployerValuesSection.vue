@@ -5,7 +5,7 @@
 				<div
 					v-for="(value, index) in valuesToShow"
 					:key="index"
-					class="flex items-center relative my-5 pl-8 md:pl-0 md:pr-18 ml-12 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
+					class="flex items-center relative my-5 pl-8 md:pl-0 md:pr-18 ml-12 mt-0 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
 					style="max-width: 16.66666%; min-width: 200px"
 				>
 					<div
