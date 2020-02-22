@@ -7,7 +7,7 @@ const actions = {
 					query: state.query
 				})
 				.then(response => {
-					commit('setResults', response.data.job);
+					commit('setResults', response.data.results);
 					resolve(response);
 				})
 				.catch(err => reject(err));
