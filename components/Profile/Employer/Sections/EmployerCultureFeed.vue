@@ -12,15 +12,9 @@
 				</button>
 			</div>
 			<!-- updates -->
-			<div v-if="updates.length !== 0" class="updates-wrapper mt-16">
-				<company-update-card
-					class="hidden md:block"
-					size="big"
-					:is-edit-page="isEditPage"
-					:update="updates[0]"
-				/>
-				<div>
-					<company-update-card
+			<div v-if="updates.length !== 0" class="flex justify-between mt-16">
+				<div class="w-1/2 pr-8">
+					<feed-card
 						v-for="(update,
 						index) in slicedFeedElements.firstColElements"
 						:key="update.id"
@@ -29,8 +23,8 @@
 						:size="(index + 1) % 2 === 0 ? 'medium' : 'small'"
 					/>
 				</div>
-				<div>
-					<company-update-card
+				<div class="w-1/2 pl-8">
+					<feed-card
 						v-for="(update,
 						index) in slicedFeedElements.secondColElements"
 						:key="update.id"
@@ -52,6 +46,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import CompanyUpdateCard from '~/components/Companies/CompanyUpdateCard';
+import FeedCard from '~/components/Feed/FeedCard';
 
 export default {
 	name: 'EmployerCultureFeed',
@@ -65,7 +60,8 @@ export default {
 	},
 
 	components: {
-		CompanyUpdateCard
+		CompanyUpdateCard,
+		FeedCard
 	},
 
 	computed: {
@@ -79,9 +75,6 @@ export default {
 		// eslint-disable-next-line
 			slicedFeedElements() {
 			const updates = JSON.parse(JSON.stringify(this.updates));
-			// remove the first element
-			updates.shift();
-
 			const updatesLength = updates.length;
 			const arrSpliceIndex =
 				updatesLength % 2 ? updatesLength / 2 : (updatesLength + 1) / 2;
@@ -106,18 +99,3 @@ export default {
 	}
 };
 </script>
-
-<style scoped>
-.updates-wrapper {
-	@media (min-width: 1024px) {
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr;
-		grid-template-rows: auto auto;
-		grid-gap: 2rem;
-	}
-}
-.main-update {
-	grid-area: 1 / 1 / 3 / 2;
-	@apply bg-yellow;
-}
-</style>

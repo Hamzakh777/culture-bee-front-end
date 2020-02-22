@@ -107,7 +107,6 @@ export default {
 	},
 
 	computed: {
-		...mapState('user', ['role']),
 		...mapState('employer', ['isEditing'])
 	},
 	
