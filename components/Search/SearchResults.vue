@@ -28,7 +28,11 @@
         <div
             v-else-if="category === 'jobs'"
         >
-            
+            <job-card 
+                v-for="(job, index) in results"
+                :key="index"
+                :job="job"
+            />
         </div>
         <!-- loader  -->
         <base-loader 
@@ -42,6 +46,7 @@
     import EmployerCard from '~/components/Companies/CompanieCard';
     import BaseLoader from '~/components/BaseComponents/BaseLoader';
     import FeedCard from '~/components/Feed/FeedCard';
+    import JobCard from '~/components/Jobs/JobCard';
 
     export default {
         name: 'SearchResults',
@@ -49,7 +54,8 @@
         components: {
             EmployerCard,
             BaseLoader,
-            FeedCard
+            FeedCard,
+            JobCard
         },
 
         computed: {
