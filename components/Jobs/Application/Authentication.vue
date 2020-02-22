@@ -4,9 +4,9 @@
 			Apply to
 		</template>
 		<template #content>
-			<div class="flex justify-between">
+			<div class="flex flex-col md:flex-row md:justify-between">
 				<!-- new to cultureBee - register  -->
-				<div class="flex flex-col justify-between w-1/2 py-4 pr-12">
+				<div class="flex flex-col justify-between w-full md:w-1/2 py-4 md:pr-12">
 					<div>
 						<div class="base-title mb-6">
 							new to culturebee?
@@ -26,7 +26,7 @@
 				</div>
 				<!-- already a member  -->
 				<div
-					class="flex flex-col justify-between w-1/2 pl-12 py-4 border-l-2 border-gray-800"
+					class="flex flex-col justify-between w-full md:w-1/2 mt-6 md:mt-0 pt-8 pb-4 md:pl-12 md:py-4 border-t-2 md:border-l-2 border-gray-800"
 				>
 					<div>
 						<div class="base-title mb-6">
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import BaseModal from '~/components/BaseComponents/BaseModal';
 
 export default {
@@ -72,16 +73,36 @@ export default {
 	},
 
 	methods: {
+		...mapMutations('account', ['mutate']),
+
 		toggle() {
 			this.isActive = !this.isActive;
 		},
 
 		signIn() {
-			//
+			const payload = {
+				property: 'redirectUrlOnAuth',
+				with: this.$router.path
+			};
+
+			this.mutate(payload);
+
+			this.$router.push({
+				path: '/login'
+			});
 		},
 
 		signUp() {
-			//
+			const payload = {
+				property: 'redirectUrlOnAuth',
+				with: this.$router.path
+			};
+
+			this.mutate(payload);
+
+			this.$router.push({
+				path: '/register'
+			});
 		}
 	}
 };
