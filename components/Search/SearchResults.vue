@@ -2,23 +2,33 @@
     <div class="relative min-h-screen">
         <!-- employers  -->
         <div
+            class="flex flex-col md:flex-row md:justify-between flex-wrap"
             v-if="category === 'employers'"
         >
-        <companie-card 
-
-        />
+            <employer-card 
+                v-for="(employer, index) in results"
+                :key="index"
+                :employer="employer"
+                class="mb-12"
+            />
         </div>
         <!-- update  -->
         <div
             v-else-if="category === 'updates'"
+            class="flex flex-col md:flex-row md:justify-between flex-wrap"
         >
-
+            <feed-card 
+                v-for="(update, index) in results"
+                :key="index"
+                :update="update"
+                class="w-46-%"
+            />
         </div>
         <!-- jobs  -->
         <div
             v-else-if="category === 'jobs'"
         >
-
+            
         </div>
         <!-- loader  -->
         <base-loader 
@@ -28,50 +38,22 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex';
-    import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
-    import CompanieCard from '~/components/Companies/CompanieCard';
+    import { mapState } from 'vuex';
+    import EmployerCard from '~/components/Companies/CompanieCard';
     import BaseLoader from '~/components/BaseComponents/BaseLoader';
+    import FeedCard from '~/components/Feed/FeedCard';
 
     export default {
         name: 'SearchResults',
 
-        mixins: [baseToggleLoaderMixin],
-
         components: {
-            CompanieCard,
-            BaseLoader
-        },
-
-        watch: {
-            query() {
-                this.handleQueryChange();
-            }
+            EmployerCard,
+            BaseLoader,
+            FeedCard
         },
 
         computed: {
-            ...mapState('search', ['category', 'query'])
-        },
-
-        mounted() {
-            if(process.browser) {
-                this.handleQueryChange();
-            }
-        },
-
-        methods: {
-            ...mapActions('search', ['fetchSearchResults']),
-
-            async handleQueryChange() {
-                this.toggleLoader();
-                try {
-                    await this.fetchSearchResults();
-                } catch (error) {
-                    console.error(error);
-                } finally {
-                    this.toggleLoader();
-                }
-            }
+            ...mapState('search', ['category', 'results', 'isLoading'])
         }
     }
 </script>
