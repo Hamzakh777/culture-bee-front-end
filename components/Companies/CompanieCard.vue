@@ -1,6 +1,6 @@
 <template>
     <div 
-        class="relative h-94 w-31-% bg-cover bg-center shadow-md"
+        class="relative h-123 w-31-% bg-cover bg-center shadow-md"
         style="background-image: url('/images/companies/image-1.jpg')"
     >
         <!-- follow button -->
@@ -9,7 +9,11 @@
                 <div class="yellow-sm-bar absolute top-1/2 left-1/2 transform-center"></div>
                 <div class="yellow-sm-bar absolute top-1/2 left-1/2" style="transform: translate(-50%, -50%) rotate(90deg)"></div>
             </div>
-            <span class="text-xs text-white font-bold uppercase tracking-widest">follow</span>
+            <span 
+                class="text-xs text-white font-bold uppercase tracking-widest"
+            >
+                follow
+            </span>
         </div>
 
         <!-- company icon -->
@@ -22,7 +26,7 @@
         </div>
 
         <!-- tags list -->
-        <div class="flex items-center absolute bottom-0 left-0 right-0 h-10 bg-white px-8 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800">
+        <div class="flex items-center absolute bottom-0 left-0 right-0 h-10 bg-white px-8 py-6 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800">
             <span
                 class="mr-6 md:mr-4"
                 v-for="(tag, index) in tags"

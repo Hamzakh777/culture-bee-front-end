@@ -23,36 +23,10 @@
 			/>
 			<input
 				:value="query"
-				@input="setStoreProp('query', $event.target.value)"
+				@input="searchQueryChanged($event.target.value)"
 				class="flex-grow ml-4 text-5-1/2 font-semibold bg-transparent text-gray-700 placeholder-gray-700 focus:outline-none"
 				placeholder="Type to search"
 				type="text"
-			/>
-		</div>
-		<!-- filters -->
-		<div class="flex">
-			<!-- industries -->
-			<base-select-input
-				:options="['1', '2']"
-				@input="setStoreProp('industry', $event)"
-				class="flex-grow mr-4 w-24-%"
-				placeholder="Industries"
-			/>
-			<!-- type  -->
-
-			<!-- employer features  -->
-			<v-select
-				:options="['1', '2']"
-				@input="setStoreProp('seniority', $event)"
-				class="flex-grow mr-4 w-24-%"
-				placeholder="Employer features"
-			/>
-			<!-- location  -->
-			<v-select
-				:options="['1', '2']"
-				@input="setStoreProp('location', $event)"
-				class="flex-grow w-24-%"
-				placeholder="Location"
 			/>
 		</div>
 	</div>
@@ -60,9 +34,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import vSelect from 'vue-select';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
-import BaseTagSelect from '~/components/BaseComponents/BaseTagSelect';
 import mutateStorePropMixin from '~/mixins/base/mutateStorePropMixin';
 import baseBayWatch from '~/mixins/base/baseBayWatch';
 
@@ -70,9 +42,7 @@ export default {
 	name: 'SearchFitler',
 
 	components: {
-		BaseAppIcon,
-		BaseTagSelect,
-		vSelect
+		BaseAppIcon
 	},
 
 	mixins: [mutateStorePropMixin, baseBayWatch],
@@ -92,16 +62,25 @@ export default {
 					name: 'Jobs',
 					value: 'jobs'
 				}
-			]
+			],
+			timer: null
 		};
 	},
 
 	computed: {
-		...mapState('search', ['category'])
+		...mapState('search', ['category', 'query'])
 	},
 
 	methods: {
-		...mapMutations('search', ['mutate'])
+		...mapMutations('search', ['mutate']),
+
+		searchQueryChanged(value) {
+			// Don't trigger a request on each input - each letter added
+			clearTimeout(this.timer);
+			this.timer = setTimeout(() => {
+				this.setStoreProp('query', value);
+			}, 250);
+		},
 	}
 };
 </script>

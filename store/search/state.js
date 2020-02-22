@@ -1,11 +1,7 @@
 const state = () => ({
-	employers: [],
-	updates: [],
-	category: '', // employer - updates - lbog posts
-	isHiring: false,
-	industries: [],
-	employerFeatures: [],
-	locations: []
+	query: '',
+	category: 'employers', // employers - updates - jobs
+	results: []
 });
 
 export default state;

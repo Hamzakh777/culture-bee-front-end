@@ -4,7 +4,7 @@ const state = () => ({
 	companyName: null,
 	quickPitch: null,
 	currentProfileCreationStep: 1,
-	role: 'job-seeker', // employer - job-seeker
+	role: '', // employer - job-seeker
 	email: '',
 	industry: '',
 	name: '',
@@ -12,7 +12,8 @@ const state = () => ({
 	profileImgUrl: null,
 	coverImgUrl: null,
 	accessToken: process.browser === true ? (localStorage.getItem('access_token') || null) : null,
-	profileImgFile: null
+	profileImgFile: null,
+	redirectUrlOnAuth: ''
 });
 
 export default state;

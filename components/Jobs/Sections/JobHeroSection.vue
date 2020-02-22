@@ -27,8 +27,9 @@
                     </div>
 					<!-- apply button - shows up on mobile only -->
 					<button
+						v-if="role === 'job-seeker' || !isLoggedIn"
 						class="primary-btn md:hidden mt-8 w-full"
-						@click="$bus.$emit('open-job-application-modal')"
+						@click="handleApplyClick"
 					>
 						Apply
 					</button>
@@ -89,8 +90,9 @@
 					</div>
 					<!-- apply button - shows up on table and desktop only -->
 					<button
+						v-if="role === 'job-seeker' || !isLoggedIn"
 						class="primary-btn hidden md:inline-block self-end mb-4 px-14 w-auto"
-						@click="$bus.$emit('open-job-application-modal')"
+						@click="handleApplyClick"
 					>
 						Apply
 					</button>
@@ -154,7 +156,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import CompanyFollowCard from '~/components/Companies/CompanyFollowCard';
 import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
@@ -167,6 +169,9 @@ export default {
 	},
 
 	computed: {
+		...mapState('account', [
+			'role'
+		]),
 		...mapState('employer', [
 			'profileImgUrl',
 			'coverImgUrl',
@@ -179,7 +184,18 @@ export default {
 			'seniority',
 			'tags',
 			'createdAt'
-		])
+		]),
+		...mapGetters('account', ['isLoggedIn'])
+	},
+
+	methods: {
+		handleApplyClick() {
+			if(this.isLoggedIn) {
+				this.$bus.$emit('open-job-application-modal');
+			} else {
+				this.$bus.$emit('open-job-authenticate-modal');
+			}
+		}
 	}
 };
 </script>

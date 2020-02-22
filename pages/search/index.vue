@@ -5,9 +5,6 @@
                 <search-filter />
             </div>
         </div>
-        <div v-if="isLoading" class="relative h-screen w-screen">
-            <base-loader />
-        </div>
         <div class="container mx-auto py-16 min-h-screen">
             <search-results />
         </div>
@@ -20,6 +17,7 @@
     import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
     export default {
+
         components: {
             SearchFilter,
             SearchResults,

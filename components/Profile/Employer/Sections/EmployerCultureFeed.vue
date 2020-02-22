@@ -12,8 +12,8 @@
 				</button>
 			</div>
 			<!-- updates -->
-			<div v-if="updates.length !== 0" class="flex justify-between mt-16">
-				<div class="w-1/2 pr-8">
+			<div v-if="updates.length !== 0" class="flex flex-col md:flex-row md:justify-between mt-16">
+				<div class="w-full md:w-1/2 md:pr-8">
 					<feed-card
 						v-for="(update,
 						index) in slicedFeedElements.firstColElements"
@@ -23,7 +23,7 @@
 						:size="(index + 1) % 2 === 0 ? 'medium' : 'small'"
 					/>
 				</div>
-				<div class="w-1/2 pl-8">
+				<div class="w-full md:w-1/2 md:pl-8">
 					<feed-card
 						v-for="(update,
 						index) in slicedFeedElements.secondColElements"

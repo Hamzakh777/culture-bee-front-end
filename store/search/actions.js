@@ -1,10 +1,13 @@
 const actions = {
-	fetchData({ commit }, id) {
+	fetchSearchResults({ state, commit }) {
 		return new Promise((resolve, reject) => {
 			this.$axios
-				.get(`api/jobs/${id}`)
+				.post(`api/search`, {
+					category: state.category,
+					query: state.query
+				})
 				.then(response => {
-					commit('setJob', response.data.job);
+					commit('setResults', response.data.job);
 					resolve(response);
 				})
 				.catch(err => reject(err));
