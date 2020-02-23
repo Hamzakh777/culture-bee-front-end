@@ -15,6 +15,7 @@
 			/>
 			<!-- post update button -->
 			<button
+				v-if="isLoggedIn && role === 'employer'"
 				@click="$bus.$emit('open-post-company-update-modal')"
 				class="primary-btn hidden lg:block w-31-%"
 			>
@@ -93,7 +94,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import SearchButton from './SearchButton';
 import NavFiltersDropdown from './NavFiltersDropdown';
 import TheUserPopup from './User/TheUserPopup';
@@ -109,7 +110,8 @@ export default {
 	},
 
 	computed: {
-		...mapGetters('account', ['isLoggedIn', 'nameInitials', 'role', 'id'])
+		...mapGetters('account', ['isLoggedIn', 'nameInitials']),
+		...mapState('account', ['role', 'id'])
 	},
 
 	data: () => ({

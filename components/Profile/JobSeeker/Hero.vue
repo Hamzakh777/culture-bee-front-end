@@ -65,6 +65,9 @@
 				<!-- follow button -->
 				<base-follow-button 
 					v-if="!isEditPage"
+					:following="following"
+					@follow="follow"
+					@unfollow="unfollow"
 					class="absolute bottom-0 right-0"
 				/>
 			</div>
@@ -110,7 +113,7 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
     import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
     import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
@@ -131,10 +134,12 @@
         },
 
         computed: {
-            ...mapState('job-seeker', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'name', 'location']),
+            ...mapState('job-seeker', ['quickPitch', 'profileImgUrl', 'coverImgUrl', 'name', 'location', 'following']),
         },
 
         methods: {
+			...mapActions('job-seeker', ['follow', 'unfollow']),
+
             openEditIntro() {
                 this.$bus.$emit('open-job-seeker-intro-modal');
             }

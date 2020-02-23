@@ -22,6 +22,13 @@ const mutations = {
         state.quickPitch = data.quickPitch;
         state.coverImgUrl = data.coverImgUrl;
         state.role = data.role;
+        state.following = data.following;
+    },
+    follow(state) {
+        state.following = true;
+    },
+    unfollow(state) {
+        state.following = false;
     }
 };
 

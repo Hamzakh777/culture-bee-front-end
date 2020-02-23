@@ -10,7 +10,8 @@ const state = () => ({
 	skills: [],
 	profileImgUrl: null,
 	coverImgUrl: null,
-	profileImgFile: null
+	profileImgFile: null,
+	following: false
 });
 
 export default state;
