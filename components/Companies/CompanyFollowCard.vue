@@ -7,6 +7,9 @@
 			class="flex items-center justify-center relative h-16 bg-gray-800"
 		>
 			<base-follow-button 
+				:following="following"
+				@unfollow="$emit('unfollow')"
+				@follow="$emit('follow')"
                 class="text-center" 
             />
 		</div>
@@ -24,7 +27,11 @@ export default {
             type: String,
             required: false,
             default: ''
-        }
+		},
+		following: {
+			type: Boolean,
+			required: true
+		}
     },
 
 	components: {

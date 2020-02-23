@@ -18,6 +18,9 @@
 					<div class="hidden md:block">
                         <company-follow-card
                             :logo-url="profileImgUrl"
+							:following="following"
+							@unfollow="unfollow"
+							@follow="follow"
                             class="h-45 w-36 border-none"
                         />
                         <!-- location -->
@@ -99,7 +102,12 @@
 				</div>
 				<div class="absolute top-0 right-0 mt-4 mr-4 md:mr-8">
 					<!-- follow button -->
-					<base-follow-button class="md:hidden" />
+					<base-follow-button 
+						class="md:hidden" 
+						:following="following"
+						@unfollow="unfollow"
+						@follow="follow"
+					/>
 					<!-- posted date -->
 					<span
 						class="hidden md:block lg:hidden text-xs font-bold tracking-widest uppercase text-white"
@@ -156,7 +164,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import CompanyFollowCard from '~/components/Companies/CompanyFollowCard';
 import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
@@ -175,7 +183,8 @@ export default {
 		...mapState('employer', [
 			'profileImgUrl',
 			'coverImgUrl',
-			'companyName'
+			'companyName',
+			'following'
 		]),
 		...mapState('job', [
 			'jobTitle',
@@ -189,6 +198,8 @@ export default {
 	},
 
 	methods: {
+		...mapActions('employer', ['follow', 'unfollow']),
+
 		handleApplyClick() {
 			if(this.isLoggedIn) {
 				this.$bus.$emit('open-job-application-modal');
