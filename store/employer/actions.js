@@ -24,6 +24,34 @@ const actions = {
 					reject(err);
 				});
 		});
+	},
+
+	follow({ commit, state }) {
+		return new Promise((resolve, reject) => {
+			this.$axios
+				.post(`/api/user/${state.id}/follow`,)
+				.then(response => {
+					commit('follow');
+					resolve(response);
+				})
+				.catch(err => {
+					reject(err);
+				});
+		}); 
+	},
+
+	unfollow({ commit, state }) {
+		return new Promise((resolve, reject) => {
+			this.$axios
+				.post(`/api/user/${state.id}/unfollow`)
+				.then(response => {
+					commit('unfollow');
+					resolve(response);
+				})
+				.catch(err => {
+					reject(err);
+				});
+		}); 
 	}
 };
 

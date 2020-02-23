@@ -1,6 +1,7 @@
 <template>
 	<div
 		class="flex items-center justify-center relative top-0 right-0 cursor-pointer"
+		@click="handleClick"
 	>
 		<div class="relative h-4 w-4 mr-3">
 			<div
@@ -12,14 +13,33 @@
 			></div>
 		</div>
 		<span class="text-xs text-white font-bold uppercase tracking-widest"
-			>follow</span
+			>
+				{{ following ? 'unfollow' : 'follow' }}
+			</span
 		>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'BaseFollowButton'
+	name: 'BaseFollowButton',
+
+	props: {
+		following: {
+			type: Boolean,
+			required: true
+		}
+	},
+
+	methods: {
+		handleClick() {
+			if(this.following) {
+				this.$emit('unfollow');
+			} else {
+				this.$emit('follow');
+			}
+		}
+	}
 };
 </script>
 

@@ -1,19 +1,26 @@
 <template>
 	<div class="relative md:h-138 bg-gray-to-black">
 		<div class="relative h-full">
-			<div class="container flex items-end relative z-1 h-full py-12 mx-auto">
+			<div
+				class="container flex items-end relative z-1 h-full py-12 mx-auto"
+			>
 				<div class="flex flex-col md:flex-row items-stretch w-full">
 					<!-- logo -->
-					<div 
+					<div
 						class="flex items-center h-45 w-45 mt-42 md:mt-0 p-5 bg-white overflow-hidden"
 					>
-						<img 
-							v-if="profileImgUrl !== null && profileImgUrl !== undefined"
+						<img
+							v-if="
+								profileImgUrl !== null &&
+									profileImgUrl !== undefined
+							"
 							:src="profileImgUrl"
-						>
+						/>
 					</div>
 					<!-- company info -->
-					<div class="hidden md:flex flex-col justify-between ml-14 bg-white md:bg-transparent text-gray-800 md:text-white">
+					<div
+						class="hidden md:flex flex-col justify-between ml-14 bg-white md:bg-transparent text-gray-800 md:text-white"
+					>
 						<div>
 							<div class="flex items-center">
 								<div
@@ -42,8 +49,8 @@
 						</div>
 						<nuxt-link
 							v-else
-							class="secondary-btn text-yellow cursor-pointer"
 							:to="`/employer/${id}/jobs`"
+							class="secondary-btn text-yellow cursor-pointer"
 						>
 							{{ jobsTotal }} Jobs
 						</nuxt-link>
@@ -65,27 +72,39 @@
 						'cursor-pointer',
 						'hover:text-yellow'
 					]"
-					name="edit-pen"
 					@click="openEditIntro"
+					name="edit-pen"
 				/>
 
 				<!-- follow button -->
-				<base-follow-button 
+				<base-follow-button
 					v-if="!isEditPage"
+					:following="following"
+					@unfollow="unfollow"
+					@follow="follow"
 					class="absolute bottom-0 right-0"
 				/>
 			</div>
 			<!-- bg image -->
-			<div 
-				class="absolute inset-0 z-0 bg-center bg-cover bg-center"
-			>
-				<div class="absolute inset-0 z-0 bg-cover bg-center" :style=" coverImgUrl !== undefined && coverImgUrl !== null ? `background-image: url(${coverImgUrl})` : ''"></div>
-				<div class="absolute inset-0 z-1 opacity-50 bg-gray-to-black"></div>
+			<div class="absolute inset-0 z-0 bg-center bg-cover bg-center">
+				<div
+					:style="
+						coverImgUrl !== undefined && coverImgUrl !== null
+							? `background-image: url(${coverImgUrl})`
+							: ''
+					"
+					class="absolute inset-0 z-0 bg-cover bg-center"
+				></div>
+				<div
+					class="absolute inset-0 z-1 opacity-50 bg-gray-to-black"
+				></div>
 			</div>
 		</div>
 
 		<!-- company info -->
-		<div class="container flex md:hidden flex-col justify-between py-8 bg-white text-gray-800">
+		<div
+			class="container flex md:hidden flex-col justify-between py-8 bg-white text-gray-800"
+		>
 			<div>
 				<div class="flex flex-col">
 					<div
@@ -114,8 +133,8 @@
 			</div>
 			<nuxt-link
 				v-else
-				class="secondary-btn text-yellow cursor-pointer"
 				:to="`/employer/${id}/jobs`"
+				class="secondary-btn text-yellow cursor-pointer"
 			>
 				{{ jobsTotal }} Jobs
 			</nuxt-link>
@@ -124,7 +143,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import BaseAppIcon from '~/components/BaseComponents/BaseAppIcon';
 import BaseFollowButton from '~/components/BaseComponents/BaseFollowButton';
 
@@ -132,8 +151,8 @@ export default {
 	name: 'EmployerHero',
 
 	components: {
-        BaseAppIcon,
-        BaseFollowButton
+		BaseAppIcon,
+		BaseFollowButton
 	},
 
 	props: {
@@ -145,11 +164,21 @@ export default {
 	},
 
 	computed: {
-		...mapState('employer', ['id', 'quickPitch', 'profileImgUrl', 'coverImgUrl', 'companyName', 'location']),
+		...mapState('employer', [
+			'id',
+			'quickPitch',
+			'profileImgUrl',
+			'coverImgUrl',
+			'companyName',
+			'location',
+			'following'
+		]),
 		...mapGetters('employer/jobs', ['jobsTotal'])
 	},
 
 	methods: {
+		...mapActions('employer', ['follow', 'unfollow']),
+
 		openEditIntro() {
 			this.$bus.$emit('open-employer-intro-modal');
 		}
