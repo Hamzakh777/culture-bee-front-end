@@ -16,12 +16,17 @@
 			class="hidden lg:flex flex-col w-32 h-40 border border-gray-100 bg-white"
 		>
 			<div class="flex justify-center items-center flex-grow p-4">
-				<img :src="job.owner.profile_img_url" />
+				<img :src="job.owner.profileImgUrl" />
 			</div>
 			<div
 				class="flex items-center justify-center relative h-12-1/2 bg-gray-800"
 			>
-				<base-follow-button class="text-center" />
+				<base-follow-button 
+					class="text-center" 
+					:following="following"
+					@follow="follow"
+					@unfollow="unfollow"
+				/>
 			</div>
 		</div>
 		<!-- job details -->
@@ -34,7 +39,7 @@
 					<div class="sub-title mr-4">{{ job.seniority }}</div>
 					<!-- logo -->
 					<img
-						:src="job.owner.profile_img_url"
+						:src="job.owner.profileImgUrl"
 						class="block lg:hidden h-5"
 						style="max-width: 140px"
 					/>
@@ -136,7 +141,12 @@
 		<div
 			class="flex lg:hidden items-center justify-center relative h-12-1/2 bg-gray-800"
 		>
-			<base-follow-button class="text-center" />
+			<base-follow-button 
+				:following="following"
+				@follow="follow"
+				@unfollow="unfollow"
+				class="text-center" 
+			/>
 		</div>
 	</div>
 </template>
@@ -182,20 +192,31 @@ export default {
 		return {
 			tags: ['FASHION', 'Ethical', 'hacking'],
 			isActionsDropdownActive: false,
-			isVisible: true // used to hide the card when delete or expire toggled
+			isVisible: true, // used to hide the card when delete or expire toggled
+			following: false
 		};
+	},
+
+	mounted() {
+		if(this.job.owner !== undefined) {
+			this.following = this.job.owner.following;
+		}
+		this.$bus.$on('employer-follow', (id) => {
+			if(id === this.job.owner.id) {
+				this.following = true;
+			}
+		});
+		this.$bus.$on('employer-unfollow', (id) => {
+			if(id === this.job.owner.id) {
+				this.following = false;
+			}
+		});
 	},
 
 	methods: {
 		toggleActionsDropdown() {
 			this.isActionsDropdownActive = !this.isActionsDropdownActive;
 		},
-
-
-		/**
-		 * Toggle following the comany
-		 */
-		followCompany() {},
 
 		viewJob() {
 			return this.$router.push(`/jobs/${this.job.id}`);
@@ -235,6 +256,29 @@ export default {
 				alert('An error happened trying to renew the job');
 			}
 			this.toggleLoader();
+		},
+
+		async follow() {
+			this.following = true;
+			this.$bus.$emit('employer-follow', this.job.owner.id);
+			try {
+				await this.$axios
+				.post(`/api/user/${this.job.owner.id}/follow`);
+			} catch (error) {
+				console.error(error);
+			}
+		},
+
+		async unfollow() {
+			this.following = false;
+			this.$bus.$emit('employer-unfollow', this.job.owner.id);
+			try {
+				await this.$axios
+				.post(`/api/user/${this.job.owner.id}/unfollow`);
+
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	}
 };

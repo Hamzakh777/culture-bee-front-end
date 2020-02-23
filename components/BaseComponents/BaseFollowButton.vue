@@ -1,7 +1,7 @@
 <template>
 	<div
 		class="flex items-center justify-center relative top-0 right-0 cursor-pointer"
-		@click="handleClick"
+		@click.stop="handleClick"
 	>
 		<div class="relative h-4 w-4 mr-3">
 			<div
