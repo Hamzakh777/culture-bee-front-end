@@ -19,7 +19,7 @@
 				</div>
 				<nuxt-link 
 					class="link" 
-					:to="`/employer/${id}`"
+					:to="viewProfileLink"
 				>
 					View profile
 				</nuxt-link>
@@ -28,7 +28,7 @@
 		<div class="row border-b-2 border-gray-800">
 			<nuxt-link 
 				class="link block mb-4" 
-				:to="`/employer/${id}/edit`"
+				:to="editProfileLink"
 			>
 				Edit profile
 			</nuxt-link>
@@ -39,6 +39,7 @@
 				Account details
 			</nuxt-link>
 			<nuxt-link 
+				v-if="role === 'employer'"
 				class="link block" 
 				to="/jobs"
 			>
@@ -67,7 +68,21 @@ export default {
 
 	computed: {
 		...mapGetters('account', ['nameInitials']),
-		...mapState('account', ['name', 'id'])
+		...mapState('account', ['name', 'id', 'role']),
+
+		editProfileLink() {
+			if(this.role === 'job-seeker') {
+				return `/jobseeker/${this.id}/edit`;
+			} 
+			return `/employer/${this.id}/edit`;
+		},
+
+		viewProfileLink() {
+			if(this.role === 'job-seeker') {
+				return `/jobseeker/${this.id}`;
+			} 
+			return `/employer/${this.id}`
+		}
 	},
 
 	data() {
