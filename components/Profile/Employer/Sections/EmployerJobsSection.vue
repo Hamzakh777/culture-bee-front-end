@@ -53,12 +53,14 @@ export default {
         ...mapState('employer/jobs', ['jobs'])
     },
 
-	async created() {
-        try {
-            await this.fetchJobs(this.id);
-        } catch (error) {
-            console.log(error);
-        }
+	async mounted() {
+		if(process.browser) {
+			try {
+				await this.fetchJobs(this.id);
+			} catch (error) {
+				console.log(error);
+			}
+		}
     },
 
 	methods: {

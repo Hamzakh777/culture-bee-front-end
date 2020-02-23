@@ -97,12 +97,13 @@ export default {
 		}
 	},
 
-	created() {
-		try {
-			this.fetchWhyUs(this.$route.params.id);
-		} catch (error) {
-			alert('An error happend trying to load company feed updates');
-			console.error(error);
+	mounted() {
+		if(process.browser) {
+			try {
+				this.fetchWhyUs(this.$route.params.id);
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	},
 

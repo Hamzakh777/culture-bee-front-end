@@ -34,17 +34,12 @@
                 :job="job"
             />
         </div>
-        <!-- loader  -->
-        <base-loader 
-            v-if="isLoading"
-        />
     </div>
 </template>
 
 <script>
     import { mapState } from 'vuex';
     import EmployerCard from '~/components/Companies/CompanieCard';
-    import BaseLoader from '~/components/BaseComponents/BaseLoader';
     import FeedCard from '~/components/Feed/FeedCard';
     import JobCard from '~/components/Jobs/JobCard';
 
@@ -53,13 +48,12 @@
 
         components: {
             EmployerCard,
-            BaseLoader,
             FeedCard,
             JobCard
         },
 
         computed: {
-            ...mapState('search', ['category', 'results', 'isLoading'])
+            ...mapState('search', ['category', 'results'])
         }
     }
 </script>

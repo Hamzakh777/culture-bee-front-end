@@ -71,10 +71,12 @@ export default {
 	},
 
 	mounted() {
-		try {
-			this.fetchValues(this.id);
-		} catch (error) {
-			alert('An error happend trying to load company values');
+		if(process.browser) {
+			try {
+				this.fetchValues(this.id);
+			} catch (error) {
+				alert('An error happend trying to load company values');
+			}
 		}
 	},
 

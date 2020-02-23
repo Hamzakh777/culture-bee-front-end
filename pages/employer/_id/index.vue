@@ -1,12 +1,14 @@
 <template>
 	<div>
-		<div v-if="isLoading" class="relative h-screen">
-			<base-loader />
-		</div>
-		<div v-else>
-			<employer-hero :is-edit-page="false"/>
-			<employer-profile-sections />
-		</div>
+		<client-only>
+			<div v-if="isLoading" class="relative h-screen">
+				<base-loader />
+			</div>
+			<div v-else>
+				<employer-hero :is-edit-page="false"/>
+				<employer-profile-sections />
+			</div>
+		</client-only>
 	</div>
 </template>
 
@@ -34,14 +36,14 @@ export default {
 	},
 
 	async mounted() {
-		try {
-			await this.getProfileDetails(this.$route.params.id);
-		} catch (error) {
-			if(process.browser) {
-				alert('An error happend trying to load company vision');
+		if(process.browser) {
+			try {
+				await this.getProfileDetails(this.$route.params.id);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				this.toggleLoader();
 			}
-		} finally {
-			this.toggleLoader();
 		}
 	},
 

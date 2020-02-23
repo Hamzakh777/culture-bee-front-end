@@ -16,7 +16,7 @@
 			</div>
 			<div class="flex justify-end">
 				<base-ajax-button :is-loading="isLoading" @click="submit">
-					Add to profile
+					Save
 				</base-ajax-button>
 			</div>
 		</template>

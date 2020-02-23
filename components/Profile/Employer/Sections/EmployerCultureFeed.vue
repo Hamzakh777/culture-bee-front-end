@@ -87,10 +87,12 @@ export default {
 	},
 
 	mounted() {
-		try {
-			this.fetchUpdates(this.id);
-		} catch (error) {
-			alert('An error happend trying to load company feed updates');
+		if(process.browser) {
+			try {
+				this.fetchUpdates(this.id);
+			} catch (error) {
+				alert('An error happend trying to load company feed updates');
+			}
 		}
 	},
 

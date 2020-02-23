@@ -59,10 +59,12 @@ export default {
 	},
 
 	mounted() {
-		try {
-			this.fetchVision(this.$route.params.id);
-		} catch (error) {
-			alert('An error happend trying to load company vision');
+		if(process.browser) {
+			try {
+				this.fetchVision(this.$route.params.id);
+			} catch (error) {
+				alert('An error happend trying to load company vision');
+			}
 		}
 	},
 

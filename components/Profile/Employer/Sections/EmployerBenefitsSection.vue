@@ -113,10 +113,12 @@ export default {
 	},
 
 	mounted() {
-		try {
-			this.fetchBenefits(this.id);
-		} catch (error) {
-			alert('An error happend trying to load benefits');
+		if(process.browser) {
+			try {
+				this.fetchBenefits(this.id);
+			} catch (error) {
+				alert('An error happend trying to load benefits');
+			}
 		}
 	},
 
