@@ -23,7 +23,7 @@
                                 <p
                                     class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                                 >
-                                    Lorem ipsum dolor sit amet, consectetur
+                                    No worries, we'll have you up and running in no time
                                 </p>
                             </div>
                         </div>
@@ -41,8 +41,7 @@
                             v-if="message === ''"
                         >
                             <p class="p mb-4">
-                                Enter the email addressed associated with your account and we’ll
-                                send a email with instruction to reset your password
+                                Enter your email address and a new password
                             </p>
                             <!-- email -->
                             <input
@@ -191,12 +190,12 @@
             },
 
             showSuccessMessage() {
-                this.message = "Your password has been reset succesfully, you'll be redirected to the home page where you can login";
+                this.message = "Your password has been reset successfully, you'll be redirected to login page";
                 this.redirect();
             },
 
             showErrorMessage() {
-                this.message = "Your password reset has faild, you'll be redirected to the login page where you can request to reset your password again";
+                this.message = "Sorry, that didn't work. Please try again.";
                 this.redirect();
             },
 

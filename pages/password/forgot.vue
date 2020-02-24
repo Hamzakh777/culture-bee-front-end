@@ -23,7 +23,7 @@
                                 <p
                                     class="hidden md:block max-w-xs mx-auto font-bold text-5-3/4 text-center"
                                 >
-                                    Lorem ipsum dolor sit amet, consectetur
+                                    No worries, we'll have you up and running in no time
                                 </p>
                             </div>
                         </div>
@@ -41,8 +41,8 @@
                             v-if="message === ''"
                         >
                             <p class="p mb-4">
-                                Enter the email addressed associated with your account and we’ll
-                                send a email with instruction to reset your password
+                                Enter the email address associated with your account and we’ll
+                                send an email with instructions to reset your password
                             </p>
                             <!-- company name -->
                             <input
@@ -135,11 +135,11 @@
             },
             
             showSuccessMessage() {
-                this.message = 'We sent you an email with the steps to reset your password, it may take up to 5mins to show up in your inbox';
+                this.message = 'We sent you an email with the steps to reset your password, it can take up to 5 mins to show up in your inbox';
             },
 
             showErrorMessage() {
-                this.message = 'An error happend trying to reset your email, please make sure the email is correct and that it exists in our database';
+                this.message = 'An error happened while we were trying to reset your email, please make sure the email is correct';
             }
         }
     }
