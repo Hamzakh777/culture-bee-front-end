@@ -21,14 +21,19 @@
         props: {
             text: {
                 type: String,
-                required: true
+                required: true,
+                default: ''
             }
         },
 
         computed: {
             // split string by detecting line brake
             splited() {
-                return this.text.match(/[^\r\n]+/g);
+                try {
+                    return this.text.match(/[^\r\n]+/g);
+                } catch (error) {
+                    console.error(error);
+                }
             }
         }
     }

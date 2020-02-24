@@ -6,13 +6,13 @@
 			<div class="base-title mb-8">About Me</div>
 			<div class="max-w-4xl md:px-8">
 				<div class="text-5-1/2 font-bold text-gray-800">
-					<base-splited-paragraphs :text="aboutMe" />
+					<base-splited-paragraphs :text="aboutMeToShow" />
 				</div>
 			</div>
 			<div>
 				<div class="base-title mb-8">Contact</div>
 				<p class="text-gray-700">email here</p>
-				<p class="text-gray-700">0979871398</p>
+				<p class="text-gray-700">{{ phoneNumber }}</p>
 			</div>
 			<!-- edit button -->
 			<div
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import dummyAboutMe from '~/mocks/JobSeeker/aboutMe';
 import BaseEditPen from '~/components/BaseComponents/BaseEditPen';
 import BaseSplitedParagraphs from '~/components/BaseComponents/BaseSplitedParagraphs';
 
@@ -41,13 +43,51 @@ export default {
 		BaseSplitedParagraphs
 	},
 
-	data() {
-		return {
-			aboutMe:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur sapiente minima hic est ullam earum quis quisquam delectus! Dignissimos quis, nihil nisi ullam quae facilis ipsam eligendi esse, earum suscipit vero qui quas adipisci molestiae.'
-		};
+	props: {
+		isEditPage: {
+			type: Boolean,
+			required: false,
+			default: false
+		}
 	},
 
-	methods: {}
+	computed: {
+		...mapState('job-seeker/about-me', ['aboutMe', 'phoneNumber']),
+		...mapState('job-seeker', ['email']),
+
+		/**
+		 * Since we want to show dummy content when the user has not inputed his
+		 */
+		aboutMeToShow() {
+			if (
+				this.isEditPage &&
+				(this.aboutMe === '' || this.aboutMe === undefined)
+			) {
+				return dummyAboutMe;
+			} else {
+				return this.aboutMe;
+			}
+		}
+	},
+
+	mounted() {
+		if (process.browser) {
+			const userId = this.$route.params.id;
+			if (userId === null || userId === undefined) return;
+			try {
+				this.fetchAboutMe(userId);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+	},
+
+	methods: {
+		...mapActions('job-seeker/about-me', ['fetchAboutMe']),
+
+		edit() {
+			this.$bus.$emit('open-job-seeker-about-me-modal');
+		}
+	}
 };
 </script>
