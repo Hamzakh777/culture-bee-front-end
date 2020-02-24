@@ -11,7 +11,7 @@
 			</div>
 			<div>
 				<div class="base-title mb-8">Contact</div>
-				<p class="text-gray-700">email here</p>
+				<p class="text-gray-700">{{ email }} </p>
 				<p class="text-gray-700">{{ phoneNumber }}</p>
 			</div>
 			<!-- edit button -->

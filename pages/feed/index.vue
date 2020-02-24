@@ -8,7 +8,7 @@
             <template #right-col>
                 <div class="p-9 bg-white">
                     <feed-post-update />
-                    <feed-not-loged-in />
+                    <!-- <feed-not-loged-in /> -->
                 </div>
             </template> 
         </the-feed-grid>
@@ -20,7 +20,7 @@
     import TheFeedGrid from '~/components/Feed/TheFeedGrid';
     import ProfileDetailsCard from '~/components/Feed/Profile/ProfileDetailsCard';
     import FeedPostUpdate from '~/components/Feed/FeedPostUpdate';
-    import FeedNotLogedIn from '~/components/Feed/FeedNotLogedIn';
+    // import FeedNotLogedIn from '~/components/Feed/FeedNotLogedIn';
 
     export default {
         components: {
@@ -28,7 +28,7 @@
             TheFeedGrid,
             ProfileDetailsCard,
             FeedPostUpdate,
-            FeedNotLogedIn
+            // FeedNotLogedIn
         }    
     }
 </script>

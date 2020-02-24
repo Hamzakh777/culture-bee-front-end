@@ -112,6 +112,8 @@
                         class="input-text w-full" 
                         type="text"
                         v-model="quickPitchCopy"
+                        maxlength="100"
+                        placeholder="This is your headline (max 100 characters)"
                     >
                     <base-input-error-message
                         style="margin-top: 0"

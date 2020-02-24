@@ -18,27 +18,33 @@
 
 		<!-- company icon -->
 		<div
-			class="flex justify-center items-center absolute z-10 bottom-0 left-0 mb-18 ml-8 w-26 h-26 p-2 bg-white"
+			class="flex justify-center items-center absolute z-10 bottom-0 left-0 mb-26 ml-8 w-26 h-26 p-2 bg-white"
 		>
 			<img :src="employer.profileImgUrl" class="w-full" alt="" />
 		</div>
 
 		<!-- overlay  -->
 		<div
-			class="absolute z-1 inset-0 bg-transparent-to-black opacity-75"
+			class="absolute z-1 inset-0 bg-black"
 		></div>
 
 		<!-- tags list -->
 		<div
-			class="flex items-center absolute z-10 bottom-0 left-0 right-0 h-10 bg-white px-8 py-6 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800"
+			class="flex flex-col items-start absolute z-10 bottom-0 left-0 right-0 bg-white px-8 py-6 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800"
 		>
-			<span
+			<!-- <span
 				v-for="(tag, index) in tags"
 				:key="index"
 				class="mr-6 md:mr-4"
 			>
 				{{ tag }}
-			</span>
+			</span> -->
+			<div class="base-title">
+				{{ employer.name }}
+			</div>
+			<div>
+				{{ employer.quickPitch }}
+			</div>
 		</div>
 	</div>
 </template>

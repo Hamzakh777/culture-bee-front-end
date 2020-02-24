@@ -12,9 +12,7 @@
 							new to culturebee?
 						</div>
 						<p class="p text-sm">
-							Apply to this job by creating a CultureBee
-							profile.<br />
-							This would only take around 5 mins.
+							Create an account to apply
 						</p>
 					</div>
 					<button
@@ -33,8 +31,7 @@
 							already a member?
 						</div>
 						<p class="p text-sm">
-							Sign in to apply for this job with your CultureBee
-							profile
+							Sign in to apply for this job
 						</p>
 					</div>
 					<button
