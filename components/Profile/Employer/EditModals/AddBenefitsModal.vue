@@ -52,7 +52,7 @@
 								extensions="jpg,jpeg,png"
 								accept="image/png,image/jpeg,image/jpg"
 								:multiple="false"
-								:size="1024 * 1024"
+								:size="1024 * 1024 * 10"
 								@input-filter="inputFilter"
 								@input-file="inputFile"
 							>
