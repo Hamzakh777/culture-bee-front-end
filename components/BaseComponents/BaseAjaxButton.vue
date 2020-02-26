@@ -2,7 +2,7 @@
     <button
         class="relative"
         :class="{'primary-btn': !isDark, 'primary-btn primary-btn--black': isDark}"
-        @click.prevent="click"
+        @click.prevent.stop="click"
     >
         <base-loader-dots 
             class="absolute top-1/2 left-1/2 transform-center h-5"
