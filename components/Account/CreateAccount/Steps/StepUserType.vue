@@ -1,6 +1,6 @@
 <template>
     <div class="py-6 mt-6">  
-        <div class="section-title mb-5 text-center">who are you?</div> 
+        <div class="section-title md:mt-14 mb-5 text-center">who are you?</div> 
         <button
             class="primary-btn block mb-4 py-4 w-full border-2 border-gray-800 text-3-1/2 hover:bg-transparent"
             :class="{'bg-gray-to-black text-white': type.value === role, 'bg-transparent text-gray-800': type.value !== role}"
