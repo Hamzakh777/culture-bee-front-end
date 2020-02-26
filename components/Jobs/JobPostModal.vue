@@ -271,7 +271,6 @@
 								extensions="jpg,jpeg,png"
 								accept="image/png,image/jpeg,image/jpg"
 								:multiple="false"
-								:size="1024 * 1024"
 								@input-filter="inputFilter"
 								@input-file="inputFilePromoPhoto"
 							>
@@ -312,7 +311,6 @@
 								extensions="jpg,jpeg,png"
 								accept="image/png,image/jpeg,image/jpg"
 								:multiple="false"
-								:size="1024 * 1024"
 								@input-filter="inputFilter"
 								@input-file="inputFileFamilyPhoto"
 							>
