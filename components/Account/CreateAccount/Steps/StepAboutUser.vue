@@ -27,7 +27,8 @@
 			<v-select
 				v-if="role === 'job-seeker'"
 				placeholder="Your skills"
-				:options="['skill 1', 'skill 2']"
+				taggable
+				:options="[]"
 				multiple
 				@input="setStoreProp('skills', $event)"
 			/>
