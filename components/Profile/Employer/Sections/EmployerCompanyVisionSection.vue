@@ -63,7 +63,7 @@ export default {
 			try {
 				this.fetchVision(this.$route.params.id);
 			} catch (error) {
-				alert('An error happend trying to load company vision');
+				console.error(error);
 			}
 		}
 	},
