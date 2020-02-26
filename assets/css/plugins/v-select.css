@@ -30,11 +30,27 @@
 }
 
 .vs__deselect svg {
-    @apply p-2 fill-current text-yellow;
+    @apply hidden;
 }
 
 .vs__deselect {
-    @apply h-4 w-4;
+    transform: rotate(45deg);
+    @apply relative h-3 w-3;
+}
+
+.vs__deselect::before, .vs__deselect::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 transform-center bg-gray-800;
+}
+
+.vs__deselect::before {
+    height: 2px; 
+    width: 100%;
+}
+
+.vs__deselect::after {
+    width: 2px; 
+    height: 100%;
 }
 
 .vs__actions {
