@@ -5,7 +5,7 @@
 			<input
 				id="address-input"
 				class="input-text"
-				type="search"
+				type="text"
 				placeholder="Location"
 				:value="location"
 				@input="setLocation($event.target.value)"
