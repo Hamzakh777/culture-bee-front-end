@@ -22,48 +22,45 @@
 				Post update
 			</button>
 
-			<div>
-				<div class="flex items-center relative">
-					<div class="hidden lg:inline-block">
-						<nuxt-link to="jobs">
-							<span class="page-link">Jobs</span>
-						</nuxt-link>
-					</div>
-					<SearchButton />
-					<!-- login button  -->
-					<nuxt-link
-						v-if="!isLoggedIn"
-						class="hidden md:inline-block btn-yellow h-12-1/2"
-						to="/login"
-					>
-						Sign in
+			<div class="flex items-center relative">
+				<div class="hidden lg:inline-block">
+					<nuxt-link to="/jobs">
+						<span class="page-link">Jobs</span>
 					</nuxt-link>
-					<!-- name initials -->
-					<div
-						v-if="isLoggedIn"
-						@click="openUserPopup"
-						class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
-					>
-						{{ nameInitials }}
-					</div>
-
-					<!-- nav burger button -->
-					<div
-						@click="toggleMobileMenu"
-						class="relative md:hidden h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
-					>
-						<div class="absolute top-1/2 left-1/2 transform-center">
-							<div
-								v-for="i in 3"
-								:key="i"
-								class="w-5 h-1/2 mb-1 bg-black last:mb-0"
-							></div>
-						</div>
-					</div>
-
-					<!-- user popup -->
-					<the-user-popup v-if="isLoggedIn" />
 				</div>
+				<SearchButton />
+
+				<nuxt-link
+					v-show="!isLoggedIn"
+					class="hidden md:inline-block btn-yellow h-12-1/2"
+					to="/login"
+				>
+					Sign in
+				</nuxt-link>
+
+				<div
+					v-show="isLoggedIn"
+					class="flex items-center justify-center h-12-1/2 w-12-1/2 bg-yellow uppercase text-gray-800 font-bold text-center cursor-pointer"
+					@click="openUserPopup"
+				>
+					{{ nameInitials ? nameInitials : 'CB'  }}
+				</div>
+
+				<div
+					@click="toggleMobileMenu"
+					class="relative md:hidden h-12-1/2 w-12-1/2 p-2 bg-yellow cursor-pointer"
+				>
+					<div class="absolute top-1/2 left-1/2 transform-center">
+						<div
+							v-for="i in 3"
+							:key="i"
+							class="w-5 h-1/2 mb-1 bg-black last:mb-0"
+						></div>
+					</div>
+				</div>
+
+				<!-- user popup -->
+				<the-user-popup v-show="isLoggedIn" />
 			</div>
 		</div>
 
