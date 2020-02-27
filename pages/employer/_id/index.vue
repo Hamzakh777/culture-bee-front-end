@@ -1,14 +1,12 @@
 <template>
 	<div>
-		<client-only>
-			<div v-if="isLoading" class="relative h-screen">
-				<base-loader />
-			</div>
-			<div v-else>
-				<employer-hero :is-edit-page="false"/>
-				<employer-profile-sections />
-			</div>
-		</client-only>
+		<div v-if="isLoading" class="relative h-screen">
+			<base-loader />
+		</div>
+		<div v-else>
+			<employer-hero :is-edit-page="false"/>
+			<employer-profile-sections />
+		</div>
 	</div>
 </template>
 
