@@ -15,7 +15,7 @@
 						>
 					</div>
 					<!-- follow card -->
-					<div class="hidden md:block">
+					<div class="hidden md:block" style="max-width: 10rem">
                         <company-follow-card
                             :logo-url="profileImgUrl"
 							:following="following"
