@@ -263,7 +263,6 @@ export default {
 				this.toggle();
 				if(this.currentProfileCreationStep === 2) this.incrementProfileCreationStep();
 			} catch (error) {
-				alert('an error happened');
 				console.error(error);
             }
             this.toggleLoader();
@@ -291,7 +290,6 @@ export default {
 
                 this.toggle();
 			} catch (error) {
-				alert('an error happened');
 				console.error(error);
             }
             this.toggleLoader();

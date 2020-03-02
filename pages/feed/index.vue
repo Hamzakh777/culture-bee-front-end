@@ -12,6 +12,13 @@
 					<div class="py-10">
 						<feed-card
 							v-for="(update,
+							index) in employerUpdates"
+							:key="update.id"
+							:update="update"
+							:is-edit-page="false"
+						/>
+						<feed-card
+							v-for="(update,
 							index) in updates"
 							:key="update.id"
 							:update="update"
@@ -28,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
 import TheFeedHero from '~/components/Feed/TheFeedHero';
 import TheFeedGrid from '~/components/Feed/TheFeedGrid';
@@ -70,6 +78,12 @@ export default {
 			currentPage: 1,
 			lastPage: 1
 		};
+	},
+
+	computed: {
+		...mapState('employer/updates', {
+			employerUpdates: 'updates'
+		}),
 	},
 
 	mounted() {
