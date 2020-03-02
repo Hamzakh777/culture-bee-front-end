@@ -41,7 +41,7 @@
 			<nuxt-link 
 				v-if="role === 'employer'"
 				class="link block" 
-				to="/jobs"
+				:to="`employer/${id}/jobs`"
 			>
 				Your jobs
 			</nuxt-link>
