@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto py-16 pl-90">
+    <div class="container flex items-center mx-auto py-16 lg:pl-60">
         <a 
             v-for="(link, index) in links"
             :key="index"
