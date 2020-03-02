@@ -21,6 +21,7 @@
 							:following="following"
 							@unfollow="unfollow"
 							@follow="follow"
+							:userId="id"
                             class="h-45 w-36 border-none"
                         />
                         <!-- location -->
@@ -181,6 +182,7 @@ export default {
 			'role'
 		]),
 		...mapState('employer', [
+			'id',
 			'profileImgUrl',
 			'coverImgUrl',
 			'companyName',

@@ -1,8 +1,11 @@
 <template>
 	<div class="flex flex-col w-32 h-40 border border-gray-100 bg-white">
-		<div class="flex justify-center items-center flex-grow p-4">
+		<nuxt-link 
+			class="flex justify-center items-center flex-grow p-4"
+			:to="`/employer/${userId}`"
+		>
 			<img :src="logoUrl" alt />
-		</div>
+		</nuxt-link>
 		<div
 			class="flex items-center justify-center relative h-16 bg-gray-800"
 		>
@@ -31,6 +34,9 @@ export default {
 		following: {
 			type: Boolean,
 			required: true
+		},
+		userId: {
+			type: Number
 		}
     },
 
