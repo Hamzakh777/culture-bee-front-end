@@ -14,22 +14,6 @@
                         Edit details
                     </nuxt-link>
                 </div>
-                <div class="row">
-                    <nuxt-link 
-                        class="link"
-                        to="/account/details"
-                    >
-                        Account overview
-                    </nuxt-link>
-                </div>
-                <div class="row">
-                    <nuxt-link 
-                        class="link"
-                        to="/account/details"
-                    >
-                        Billing
-                    </nuxt-link>
-                </div>
             </div>
             <div class="flex-grow">
                 <nuxt />
