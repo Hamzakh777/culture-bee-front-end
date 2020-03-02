@@ -4,8 +4,8 @@
     >
         <BaseAppIcon
             name="like"
-            :classList="['absolute', 'top-1/2', 'left-1/2', 'h-5', 'md:h-8', 'transform-center', 'stroke-current', 'stroke-w-2', 'hover:fill-light-white', 'cursor-pointer'].concat(isActive ? ['fill-white'] : [])"
-            @click.native="click"
+            :classList="['absolute', 'top-1/2', 'left-1/2', 'h-5', 'md:h-8', 'transform-center', 'stroke-current', 'stroke-w-2', 'hover:fill-light-white', 'cursor-pointer'].concat(isLiked ? ['fill-white'] : [])"
+            @click.native="$emit('click')"
         />
     </div>
 </template>
@@ -20,16 +20,10 @@
             BaseAppIcon
         },
 
-        data() {
-            return {
-                isActive: false
-            }
-        },
-
-        methods: {
-            click() {
-                this.$emit('click');
-                this.isActive = !this.isActive
+        props: {
+            isLiked: {
+                type: Boolean,
+                required: true
             }
         }
     }

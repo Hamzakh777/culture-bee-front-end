@@ -8,6 +8,8 @@
 			<base-like-icon 
 				v-if="!isEditPage"
 				class="top-0 right-0 md:mt-8" 
+				:isLiked="isLiked"
+				@click="handleLiking"
 			/>
 
 			<!-- edit remove buttons -->
@@ -92,8 +94,13 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			baseUrl: process.env.BASE_URL
+			baseUrl: process.env.BASE_URL,
+			isLiked: false
 		}
+	},
+
+	mounted() {
+		this.isLiked = this.update.isLiked;
 	},
 
 	methods: {
@@ -115,6 +122,26 @@ export default {
 
 		toggleLoader() {
 			this.isLoading = !this.isLoading;
+		},
+
+		toggleLike() {
+			this.isLiked = !this.isLiked;
+		},
+
+		async handleLiking() {
+			this.toggleLike();
+
+			try {
+				const url = `/api/update/${this.update.id}/liking`;
+
+				const response = await this.$axios.post(url);
+
+				if(this.isLiked !== response.data.isLiked) {
+					this.toggleLike();
+				}
+			} catch (error) {
+				this.toggleLike();
+			}
 		}
 	}
 };
