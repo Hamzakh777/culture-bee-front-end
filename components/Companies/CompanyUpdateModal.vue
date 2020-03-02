@@ -137,7 +137,7 @@
                         @click="update"
                         :is-loading="isLoading" 
                     >
-						Update update
+						Save changes
 					</base-ajax-button>
 				</div>
 			</div>
