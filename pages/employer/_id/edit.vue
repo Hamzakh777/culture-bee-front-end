@@ -23,6 +23,12 @@ import JobPostModal from '~/components/Jobs/JobPostModal';
 import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
 export default {
+	head() {
+		return {
+			title: 'CultureBee - The Company Culture Curator - Edit profile'
+		};
+	},
+
 	components: {
 		EmployerHero,
 		EmployerEditProfileModals,
@@ -40,7 +46,7 @@ export default {
 	data() {
 		return {
 			isLoading: true
-		}
+		};
 	},
 
 	async mounted() {

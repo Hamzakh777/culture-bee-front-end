@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="relative z-1 py-16 bg-alabaster">
+		<div class="relative z-1 py-8 bg-alabaster">
 			<div class="flex justify-center container mx-auto">
 				<search-filter />
 			</div>

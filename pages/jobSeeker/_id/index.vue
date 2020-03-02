@@ -1,40 +1,44 @@
 <template>
-    <div>
-        <div v-if="isLoading" class="relative h-screen">
-            <base-loader />
-        </div>
-        <div v-else>
-            <job-seeker-hero />
-            <about-me />
-        </div>
-    </div>
+	<div>
+		<div v-if="isLoading" class="relative h-screen">
+			<base-loader />
+		</div>
+		<div v-else>
+			<job-seeker-hero />
+			<about-me />
+		</div>
+	</div>
 </template>
 
 <script>
-    import { mapActions } from 'vuex';
-    import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
-    import JobSeekerHero from '~/components/Profile/JobSeeker/Hero';
-    import AboutMe from '~/components/Profile/JobSeeker/Sections/AboutMe';
-    import BaseLoader from '~/components/BaseComponents/BaseLoader';
-    
-    export default {
+import { mapActions } from 'vuex';
+import baseToggleLoaderMixin from '~/mixins/base/baseToggleLoaderMixin';
+import JobSeekerHero from '~/components/Profile/JobSeeker/Hero';
+import AboutMe from '~/components/Profile/JobSeeker/Sections/AboutMe';
+import BaseLoader from '~/components/BaseComponents/BaseLoader';
 
-        mixins: [baseToggleLoaderMixin],
+export default {
+	components: {
+		JobSeekerHero,
+		AboutMe,
+		BaseLoader
+	},
+	mixins: [baseToggleLoaderMixin],
 
-        components: {
-            JobSeekerHero,
-            AboutMe,
-            BaseLoader
-        },
-
-        data() {
+	head() {
 		return {
-                isLoading: true
-            }
-        },
+			title: 'CultureBee - The Company Culture Curator - View profile'
+		};
+	},
 
-        async mounted() {
-		if(process.browser) {
+	data() {
+		return {
+			isLoading: true
+		};
+	},
+
+	async mounted() {
+		if (process.browser) {
 			try {
 				await this.getProfileDetails(this.$route.params.id);
 			} catch (error) {
@@ -45,8 +49,8 @@
 		}
 	},
 
-        methods: {
-            ...mapActions('job-seeker', ['getProfileDetails'])
-        }
-    }
+	methods: {
+		...mapActions('job-seeker', ['getProfileDetails'])
+	}
+};
 </script>

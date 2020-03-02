@@ -32,6 +32,12 @@ import JobApplyAuthenticate from '~/components/Jobs/Application/Authentication';
 import JobApplicationModal from '~/components/Jobs/Application/ApplicationModal';
 
 export default {
+	head() {
+		return {
+			title: 'CultureBee - The Company Culture Curator - Jobs'
+		};
+	},
+
 	components: {
 		JobSkillsSection,
 		JobAbout,

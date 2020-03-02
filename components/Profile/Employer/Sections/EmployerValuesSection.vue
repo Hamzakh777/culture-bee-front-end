@@ -1,15 +1,15 @@
 <template>
 	<div class="relative max-w-100-vw py-8 bg-gray-800 overflow-x-hidden">
 		<div class="container flex items-center mx-auto">
-			<div class="flex flex-grow flex-wrap flex-col lg:flex-row justify-start">
+			<div class="flex flex-grow flex-col flex-wrap max-w-screen lg:flex-row justify-between">
 				<div
 					v-for="(value, index) in valuesToShow"
 					:key="index"
-					class="flex items-center relative my-5 pl-8 md:pl-0 md:pr-18 ml-12 mt-0 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
-					style="max-width: 16.66666%; min-width: 200px"
+					class="flex flex-col items-center relative my-5 pl-8 md:pl-6 md:pr-6 ml-12 mt-0 mb-16 lg:ml-0 lg:mb-0 last:mb-0 md:pr-6 text-white opacity-75 hover:opacity-100 hover:text-yellow"
+					style="max-width: 16.66666%; min-width: 100px"
 				>
 					<div
-						class="flex items-center justify-center flex-shrink-0 h-16 w-16 md:h-14 md:w-14 rounded-full border-2"
+						class="flex items-center justify-center flex-shrink-0 h-16 w-16 md:h-14 md:w-14 md:mb-4 rounded-full border-2"
 						style="border-color: currentColor"
 					>
 						<font-awesome-icon 
@@ -17,7 +17,9 @@
 							class="h-6 text-13 md:h-5 md:text-8"
 						/>
 					</div>
-					<div class="w-11/12 ml-5 max-w-xs text-sm font-bold">
+					<div 
+						class="w-11/12 ml-5 md:ml-0 max-w-xs text-sm font-bold"
+					>
 						{{ value.title }}
 					</div>
 				</div>

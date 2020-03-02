@@ -134,6 +134,12 @@
             }
         },
 
+        head() {
+            return {
+                title: 'CultureBee - The Company Culture Curator - Account'
+            };
+        },
+
         validations: {
             name: {
                 required

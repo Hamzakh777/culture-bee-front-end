@@ -50,6 +50,12 @@ export default {
 		LoginForm
 	},
 
+	head() {
+		return {
+			title: 'CultureBee - The Company Culture Curator - Login'
+		}
+	},
+
 	layout: 'simple'
 };
 </script>

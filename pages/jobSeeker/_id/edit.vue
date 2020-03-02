@@ -23,6 +23,12 @@
     export default {
         mixins: [baseToggleLoaderMixin],
 
+        head() {
+            return {
+                title: 'CultureBee - The Company Culture Curator - Edit profile'
+            };
+		},
+
         components: {
             JobSeekerHero,
             AboutMe,

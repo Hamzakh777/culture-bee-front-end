@@ -2,7 +2,7 @@
 	<div class="relative py-4 lg:py-18 bg-gray-100" id="why-us">
 		<div class="container mx-auto">
 			<div class="flex flex-col md:flex-row md:justify-between mx-auto">
-				<div class="base-title">Why us</div>
+				<div class="base-title flex-shrink-0">Why us</div>
 				<div class="max-w-4xl md:px-8 text-gray-800">
 					<!-- company tagline -->
 					<div class="mb-6 text-5-1/2 md:text-10-1/2 font-bold">

@@ -16,6 +16,7 @@
 					class="input-text w-full mb-8"
 					placeholder="Type a keyword in here"
 					type="text"
+					maxlength="50"
 					v-model="clonedTagline"
 				/>
 				<base-input-error-message
