@@ -139,6 +139,8 @@ export default {
 			this.benefitToEdit.title = benefitToEdit.title;
 			this.benefitToEdit.subtitle = benefitToEdit.subtitle;
 			this.benefitToEdit.imgUrl = benefitToEdit.imgUrl;
+
+			this.isEdit = true;
 		});
 
 		this.$bus.$on('open-add-benefit-modal', () => {
