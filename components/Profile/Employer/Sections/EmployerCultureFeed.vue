@@ -16,21 +16,21 @@
 				<div class="w-full md:w-1/2 md:pr-8">
 					<feed-card
 						v-for="(update,
-						index) in slicedFeedElements.firstColElements"
-						:key="update.id"
-						:update="update"
-						:is-edit-page="isEditPage"
-						:size="(index + 1) % 2 === 0 ? 'medium' : 'small'"
-					/>
-				</div>
-				<div class="w-full md:w-1/2 md:pl-8">
-					<feed-card
-						v-for="(update,
 						index) in slicedFeedElements.secondColElements"
 						:key="update.id"
 						:update="update"
 						:is-edit-page="isEditPage"
 						:size="(index + 1) % 2 !== 0 ? 'medium' : 'small'"
+					/>
+				</div>
+				<div class="w-full md:w-1/2  md:pl-8">
+					<feed-card
+						v-for="(update,
+						index) in slicedFeedElements.firstColElements"
+						:key="update.id"
+						:update="update"
+						:is-edit-page="isEditPage"
+						:size="(index + 1) % 2 === 0 ? 'medium' : 'small'"
 					/>
 				</div>
 			</div>
