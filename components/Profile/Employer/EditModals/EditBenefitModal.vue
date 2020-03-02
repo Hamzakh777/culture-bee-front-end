@@ -145,6 +145,14 @@ export default {
 
 		this.$bus.$on('open-add-benefit-modal', () => {
 			this.toggle();
+
+			this.benefitToEdit.id = null;
+			this.benefitToEdit.title = '';
+			this.benefitToEdit.subtitle = '';
+			this.benefitToEdit.imgFile = null;
+			this.benefitToEdit.imgUrl = null;
+
+			this.$v.$reset();
 			this.isEdit = false;
 		});
 	},
