@@ -11,21 +11,19 @@
 					<!-- <feed-not-loged-in /> -->
 					<div class="py-10">
 						<feed-card
-							v-for="(update,
-							index) in employerUpdates"
+							v-for="(update, index) in employerUpdates"
 							:key="update.id"
 							:update="update"
 							:is-edit-page="false"
 						/>
 						<feed-card
-							v-for="(update,
-							index) in updates"
+							v-for="(update, index) in updates"
 							:key="update.id"
 							:update="update"
 							:is-edit-page="false"
 						/>
 					</div>
-					<div class="relative h-20 w-full" v-if="isLoading">
+					<div v-if="isLoading" class="relative h-20 w-full">
 						<base-loader />
 					</div>
 				</div>
@@ -63,14 +61,6 @@ export default {
 
 	mixins: [baseToggleLoaderMixin],
 
-	watch: {
-		isBottomOfPage(newVal) {
-			if (newVal === true && this.isLoading === false) {
-				this.fetchFeedData();
-			}
-		}
-	},
-
 	data() {
 		return {
 			updates: [],
@@ -80,10 +70,18 @@ export default {
 		};
 	},
 
+	watch: {
+		isBottomOfPage(newVal) {
+			if (newVal === true && this.isLoading === false) {
+				this.fetchFeedData();
+			}
+		}
+	},
+
 	computed: {
 		...mapState('employer/updates', {
 			employerUpdates: 'updates'
-		}),
+		})
 	},
 
 	mounted() {
@@ -96,6 +94,8 @@ export default {
 					document.documentElement.offsetHeight;
 			};
 
+			this.currentPage = this.lastPage = 1;
+			this.updates = [];
 			this.fetchFeedData();
 		}
 	},
@@ -104,7 +104,9 @@ export default {
 		async fetchFeedData() {
 			try {
 				this.toggleLoader();
-				const response = await this.$axios.post(`api/feed?page=${this.currentPage}`);
+				const response = await this.$axios.post(
+					`api/feed?page=${this.currentPage}`
+				);
 
 				this.currentPage = response.data.paginationData.current_page;
 				this.lastPage = response.data.paginationData.last_page;
