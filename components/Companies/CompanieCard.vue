@@ -17,11 +17,12 @@
 		</div>
 
 		<!-- company icon -->
-		<div
-			class="flex justify-center items-center absolute z-10 bottom-0 left-0 mb-26 ml-8 w-26 h-26 p-2 bg-white"
+		<nuxt-link
+			class="flex justify-center items-center absolute z-10 top-0 left-0 mt-8 ml-8 w-26 h-26 p-2 bg-white"
+			:to="`/employer/${employer.id}`"
 		>
-			<img :src="employer.profileImgUrl" class="w-full" alt="" />
-		</div>
+			<img :src="employer.profileImgUrl" class="w-full" />
+		</nuxt-link>
 
 		<!-- overlay  -->
 		<div
@@ -32,13 +33,6 @@
 		<div
 			class="flex flex-col items-start absolute z-10 bottom-0 left-0 right-0 bg-white px-8 py-6 font-poppins text-xs font-bold uppercase tracking-widest text-gray-800"
 		>
-			<!-- <span
-				v-for="(tag, index) in tags"
-				:key="index"
-				class="mr-6 md:mr-4"
-			>
-				{{ tag }}
-			</span> -->
 			<div class="base-title">
 				{{ employer.name }}
 			</div>
