@@ -18,7 +18,7 @@
                 </div>
                 <nuxt-link 
                     class="primary-btn mt-6 px-14"
-                    to="#"
+                    to="/search"
                 >
                     Browse
                 </nuxt-link>
