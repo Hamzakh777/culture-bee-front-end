@@ -14,12 +14,7 @@
                 <base-app-icon 
                     name="camera"
                     :class-list="iconClassList"
-                />  
-            </div>
-            <div class="icon-wrapper">
-                <base-app-icon 
-                    name="video-camera"
-                    :class-list="iconClassList"
+                    @click="$bus.$emit('open-post-company-update-modal')"
                 />  
             </div>
         </div>
