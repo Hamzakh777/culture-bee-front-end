@@ -7,16 +7,22 @@
 			<div class="base-title mb-4">
 				Share a snapshot of your culture
 			</div>
-			<div class="relative h-84 mt-8 mb-8 p-6 border-2 border-gray-800">
+			<div class="relative flex flex-col justify-between mt-8 mb-8 p-6 border-2 border-gray-800" style="min-height: 21rem">
 				<base-tip-box
 					class="right-0 top-0 z-1 mt-4 mr-4"
 					title="Tip"
 					description="Remember to keep it real"
 				/>
+				<textarea
+					class="input-text flex-grow w-full h-full px-0 border-none text-base resize-none"
+					placeholder="Start typing"
+					v-model="description"
+				>
+				</textarea>
 				<!-- selected img -->
 				<div
 					v-if="updateImg !== null && updateImg !== ''"
-					class="hidden md:block absolute bottom-0 left-0 h-36 w-56 mb-5 ml-5 bg-center bg-cover"
+					class="hidden md:block relative flex-shrink-0 h-36 w-56 bg-center bg-cover"
 					:style="`background-image: url(${updateImg})`"
 				>
 					<base-close-button
@@ -24,20 +30,13 @@
 						style="position: absolute; width: 1.25rem; height: 1.25rem;"
 						@click="removeImg"
 					/>
-				</div>
-
-				<textarea
-					class="input-text w-full h-full px-0 border-none text-base resize-none"
-					placeholder="Start typing"
-					v-model="description"
-				>
-				</textarea>
-				<base-input-error-message
-					style="margin-top: 0"
-					v-if="$v.description.$error"
-					:error-type="'required'"
-				/>
+				</div>	
 			</div>
+			<base-input-error-message
+				style="margin-top: 0"
+				v-if="$v.description.$error"
+				:error-type="'required'"
+			/>
 			<!-- upload image on mobile -->
 			<div class="flex md:hidden justify-between items-start">
 				<client-only>
